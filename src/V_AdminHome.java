@@ -8,7 +8,7 @@ public class V_AdminHome extends JFrame{
 		this.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE); 
 		this.setResizable(false); 
 		this.setLayout(null);
-		//asdasdas
+		//asdasdasasd
 		this.setVisible(true);
 	}
 }
