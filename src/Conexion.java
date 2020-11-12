@@ -20,4 +20,10 @@ public class Conexion {
 		Statement stm = con.createStatement();
 		stm.executeUpdate(query);
 	}
+	
+	public ResultSet consulta(Connection con, String query) throws SQLException {
+		Statement stm = con.createStatement();
+		ResultSet rs = stm.executeQuery(query);
+		return rs;
+	}
 }
