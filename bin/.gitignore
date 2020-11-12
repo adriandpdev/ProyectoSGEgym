@@ -13,3 +13,15 @@
 /V_AdminActiAdd.class
 /V_AdminActiList.class
 /V_AdminScheAdd.class
+/Backend/
+/V_AdminUserList.class
+/V_AdminUserPend.class
+/V_AdminEmplAdd.class
+/V_AdminEmplList.class
+/V_AdminScheList.class
+/V_AdminScheExp.class
+/V_AdminProm.class
+/V_AdminWarn.class
+/V_AdminPayUs.class
+/V_AdminPayEm.class
+/Frontend/
