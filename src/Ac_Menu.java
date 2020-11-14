@@ -15,7 +15,8 @@ public class Ac_Menu implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		if (arg0.getActionCommand().equals("Alta usuario")) {
 			V_AdminUserAdd vAdUsAdd = new V_AdminUserAdd();
-			//vAdUsAdd.setVisible(true);
+			vent.add(vAdUsAdd);
+			vAdUsAdd.setVisible(true);
 		} else if (arg0.getActionCommand().equals("Lista usuarios")) {
 			V_AdminUserList vAdUsList = new V_AdminUserList();
 			//vAdUsList.setVisible(true);
@@ -56,7 +57,9 @@ public class Ac_Menu implements ActionListener {
 			V_AdminPayEm vAdPayEm = new V_AdminPayEm();
 			//vAdPayEm.setVisible(true);
 		} else if (arg0.getActionCommand().equals("Cerrar ventana")) {
-			vent.removeAll();
+			vent.getContentPane().setVisible(false);
+			vent.getContentPane().removeAll();
+			vent.getContentPane().setVisible(true);
 		}else if (arg0.getActionCommand().equals("Salir")) {
 			// Pedir confirmación
 			System.exit(0);

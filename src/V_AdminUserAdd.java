@@ -1,3 +1,8 @@
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.GridLayout;
+
+import javax.swing.*;
 
 public class V_AdminUserAdd extends JInternalFrame{
 
@@ -7,7 +12,6 @@ public class V_AdminUserAdd extends JInternalFrame{
 	
 	V_AdminUserAdd(){
 		this.setTitle("ALTA USUARIO");
-		this.setLocation(100, 100); 
 		this.setResizable(false); 
 		this.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE); 
 		
