@@ -1,4 +1,5 @@
+import javax.swing.JInternalFrame;
 
-public class V_AdminProm {
+public class V_AdminProm extends JInternalFrame {
 
 }

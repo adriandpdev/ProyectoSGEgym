@@ -1,4 +1,5 @@
+import javax.swing.JInternalFrame;
 
-public class V_AdminScheExp {
+public class V_AdminScheExp extends JInternalFrame{
 
 }

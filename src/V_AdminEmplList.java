@@ -1,4 +1,5 @@
+import javax.swing.JInternalFrame;
 
-public class V_AdminEmplList {
+public class V_AdminEmplList extends JInternalFrame{
 
 }

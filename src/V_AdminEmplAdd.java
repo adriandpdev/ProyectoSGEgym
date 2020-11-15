@@ -18,7 +18,7 @@ public class V_AdminEmplAdd extends JInternalFrame {
 		this.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE); 
 		
 		JPanel Norte= new JPanel();
-		Norte.add(Titulo= new JLabel("ALTA USUARIO"));
+		Norte.add(Titulo= new JLabel("ALTA EMPLEADO"));
 		
 		
 		JPanel Centro= new JPanel();
