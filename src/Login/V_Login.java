@@ -19,7 +19,7 @@ public class V_Login extends JFrame{
 	private JButton btn;
 	private JPanel pn[] = new JPanel[3];
 	private BufferedImage logo;
-	V_Login() throws IOException {
+	public V_Login() throws IOException {
 		super("Inicio de sesión");/*
 		try {
 			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel");
@@ -79,5 +79,8 @@ public class V_Login extends JFrame{
 		
 		
 		this.setVisible(true);
+	}
+	public JTextField[] gettxt() {
+		return txt;
 	}
 }

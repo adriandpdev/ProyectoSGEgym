@@ -1,12 +1,10 @@
 package EmplBack;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
-import EmplFront.V_EmplActiList;
-import EmplFront.V_EmplHome;
-import EmplFront.V_EmplPayLast;
-import EmplFront.V_EmplPayList;
-import EmplFront.V_EmplScheList;
+import EmplFront.*;
+import Login.*;
 
 public class Ac_MenuEmple implements ActionListener {
 	private V_EmplHome vent;
@@ -37,8 +35,14 @@ public class Ac_MenuEmple implements ActionListener {
 		} else if (arg0.getActionCommand().equals("Cerrar ventana")) {
 			cerrarventanas();
 		} else if (arg0.getActionCommand().equals("Cerrar sesión")) {
-			// Pedir confirmación
-			System.exit(0);
+			try {
+				V_Login vLogin = new V_Login();
+				vent.dispose();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
 
 	}

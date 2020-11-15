@@ -10,7 +10,7 @@ public class V_UserHome extends JFrame {
 	private JMenu[] me = new JMenu[7];
 	private JMenuItem[] mi = new JMenuItem[16];
 
-	V_UserHome() {
+	public V_UserHome() {
 		super("Gestión de gimnasio - Usuario");
 		this.setSize(800, 600);
 		this.setLocation(100, 100); // PONER AL CENTRO

@@ -2,24 +2,12 @@ package AdminBack;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.*;
 
-import AdminFront.V_AdminActiAdd;
-import AdminFront.V_AdminActiList;
-import AdminFront.V_AdminEmplAdd;
-import AdminFront.V_AdminEmplList;
-import AdminFront.V_AdminHome;
-import AdminFront.V_AdminPayEm;
-import AdminFront.V_AdminPayUs;
-import AdminFront.V_AdminProm;
-import AdminFront.V_AdminScheAdd;
-import AdminFront.V_AdminScheExp;
-import AdminFront.V_AdminScheList;
-import AdminFront.V_AdminUserAdd;
-import AdminFront.V_AdminUserList;
-import AdminFront.V_AdminUserPend;
-import AdminFront.V_AdminWarn;
+import AdminFront.*;
+import Login.*;
 
 public class Ac_MenuAdmin implements ActionListener {
 	private V_AdminHome vent;
@@ -90,8 +78,13 @@ public class Ac_MenuAdmin implements ActionListener {
 		} else if (arg0.getActionCommand().equals("Cerrar ventana")) {
 			cerrarventanas();
 		} else if (arg0.getActionCommand().equals("Cerrar sesión")) {
-			// Pedir confirmación
-			System.exit(0);
+			try {
+				V_Login vLogin = new V_Login();
+				vent.dispose();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 	private void cerrarventanas() {

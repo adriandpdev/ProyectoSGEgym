@@ -10,7 +10,7 @@ public class V_EmplHome extends JFrame {
 	private JMenu[] me = new JMenu[3];
 	private JMenuItem[] mi = new JMenuItem[6];
 
-	V_EmplHome() {
+	public V_EmplHome() {
 		super("Gestión de gimnasio - Empleado");
 		this.setSize(800, 600);
 		this.setLocation(100, 100); // PONER AL CENTRO

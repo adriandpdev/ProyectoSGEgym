@@ -1,15 +1,11 @@
 package UserBack;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
-import UserFront.V_UserActiAdd;
-import UserFront.V_UserActiList;
-import UserFront.V_UserAvList;
-import UserFront.V_UserHome;
-import UserFront.V_UserPayInfo;
-import UserFront.V_UserPayList;
-import UserFront.V_UserPromList;
-import UserFront.V_UserScheList;
+import Login.*;
+import UserFront.*;
+
 
 public class Ac_MenuUser implements ActionListener {
 	private V_UserHome vent;
@@ -56,8 +52,13 @@ public class Ac_MenuUser implements ActionListener {
 		} else if (arg0.getActionCommand().equals("Cerrar ventana")) {
 			cerrarventanas();
 		} else if (arg0.getActionCommand().equals("Cerrar sesión")) {
-			// Pedir confirmación
-			System.exit(0);
+			try {
+				V_Login vLogin = new V_Login();
+				vent.dispose();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 
