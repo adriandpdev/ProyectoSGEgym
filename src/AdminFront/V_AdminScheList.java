@@ -51,7 +51,6 @@ public class V_AdminScheList extends JInternalFrame{
 					{
 						resultado=resultado+"\n" +r.getString("nombre");
 					}
-					System.out.println(resultado);
 					actividades[i][j]=resultado;
 					resultado="";
 					}
