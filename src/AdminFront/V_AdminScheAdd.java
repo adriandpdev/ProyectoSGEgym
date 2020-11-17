@@ -11,6 +11,7 @@ import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSeparator;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
 
@@ -19,10 +20,26 @@ import main.Conexion;
 import main.Main;
 
 public class V_AdminScheAdd extends JInternalFrame{
-	private JPanel principal, eleccion, tabla;
-	private JComboBox dia, actividad;
-	private JSpinner hora;
-	private JButton subir;
+	private JPanel principal, eleccion, eliminar;
+	private JComboBox diaAdd, diaDel, actividadAdd, actividadDel, horaDel;
+	public JComboBox getDiaDel() {
+		return diaDel;
+	}
+
+	public JComboBox getActividadDel() {
+		return actividadDel;
+	}
+
+	public JComboBox getHoraDel() {
+		return horaDel;
+	}
+
+	public JButton getQuitar() {
+		return quitar;
+	}
+
+	private JSpinner horaAdd ;
+	private JButton subir, quitar;
 	private	String[] semana= {"LUNES", "MARTES", "MIERCOLES", "JUEVES", "VIERNES", "SABADO"};
 	public V_AdminScheAdd() {
 		
@@ -36,61 +53,104 @@ public class V_AdminScheAdd extends JInternalFrame{
 
 	private void AddElements() throws SQLException {
 		principal=new JPanel();
-		principal.setLayout(new BorderLayout());
+		principal.setLayout(new GridLayout(2,1));
 		
-		eleccion=new JPanel();
-		eleccion.setLayout(new GridLayout(4,3));
-		dia=new JComboBox();
-		for (int i = 0; i < semana.length; i++) {
-			dia.addItem(semana[i]);
-		}
-		SpinnerDateModel model = modeloHora();
-		hora = new JSpinner(model);
-		JSpinner.DateEditor de = new JSpinner.DateEditor(hora, "hh:mm a");
-		
-		hora.setEditor(de);
-		hora.addChangeListener(new Ac_AdminScheAdd(this));
-		actividad=new JComboBox();
-		rellenarActividades();
-		
-		eleccion.add(new JLabel("Elegir día"));
-		eleccion.add(new JLabel());
-		eleccion.add(dia);
-		
-		eleccion.add(new JLabel("Elegir hora"));
-		eleccion.add(new JLabel());
-		eleccion.add(hora);
-		
-		eleccion.add(new JLabel("Elegir clase"));
-		eleccion.add(new JLabel());
-		eleccion.add(actividad);
-		
-		eleccion.add(new JLabel());
-		subir=new JButton("Añadir");
-		eleccion.add(subir);
-		eleccion.add(new JLabel());
-		
-		principal.add(eleccion, BorderLayout.NORTH);
+		establecerAñadir();
 		
 		
-		tabla=new JPanel();
-		tabla.setLayout(new GridLayout(7,12));
-		principal.add(tabla, BorderLayout.SOUTH);
+		
+		establecerEliminar();
+		
+		principal.add(eleccion);
+		principal.add(eliminar);
 		
 		this.add(principal);
 		
 	}
 
+	private void establecerEliminar() {
+		eliminar=new JPanel();
+		eliminar.setLayout(new GridLayout(5,3));
+		
+		diaDel=new JComboBox();
+		for (int i = 0; i < semana.length; i++) {
+			diaDel.addItem(semana[i]);
+		}
+		diaDel.addActionListener(new Ac_AdminScheAdd(this));
+		horaDel = new JComboBox();
+		horaDel.setEnabled(false);
+		horaDel.addActionListener(new Ac_AdminScheAdd(this));
+		
+		actividadDel=new JComboBox();
+		actividadDel.setEnabled(false);
+		
+		eliminar.add(new JSeparator());
+		eliminar.add(new JSeparator());
+		eliminar.add(new JSeparator());
+		eliminar.add(new JLabel("Elegir día"));
+		eliminar.add(new JLabel());
+		eliminar.add(diaDel);
+		
+		eliminar.add(new JLabel("Elegir hora"));
+		eliminar.add(new JLabel());
+		eliminar.add(horaDel);
+		
+		eliminar.add(new JLabel("Elegir clase"));
+		eliminar.add(new JLabel());
+		eliminar.add(actividadDel);
+		
+		eliminar.add(new JLabel());
+		quitar=new JButton("Eliminar");
+		eliminar.add(quitar);
+		eliminar.add(new JLabel());
+	}
+
+	
+
+	private void establecerAñadir() throws SQLException {
+		eleccion=new JPanel();
+		eleccion.setLayout(new GridLayout(4,3));
+		diaAdd=new JComboBox();
+		for (int i = 0; i < semana.length; i++) {
+			diaAdd.addItem(semana[i]);
+		}
+		SpinnerDateModel model = modeloHora();
+		horaAdd = new JSpinner(model);
+		JSpinner.DateEditor de = new JSpinner.DateEditor(horaAdd, "HH:mm");
+		
+		horaAdd.setEditor(de);
+		horaAdd.addChangeListener(new Ac_AdminScheAdd(this));
+		actividadAdd=new JComboBox();
+		rellenarActividades();
+		
+		eleccion.add(new JLabel("Elegir día"));
+		eleccion.add(new JLabel());
+		eleccion.add(diaAdd);
+		
+		eleccion.add(new JLabel("Elegir hora"));
+		eleccion.add(new JLabel());
+		eleccion.add(horaAdd);
+		
+		eleccion.add(new JLabel("Elegir clase"));
+		eleccion.add(new JLabel());
+		eleccion.add(actividadAdd);
+		
+		eleccion.add(new JLabel());
+		subir=new JButton("Añadir");
+		eleccion.add(subir);
+		eleccion.add(new JLabel());
+	}
+
 	public JComboBox getDia() {
-		return dia;
+		return diaAdd;
 	}
 
 	public JComboBox getActividad() {
-		return actividad;
+		return actividadAdd;
 	}
 
 	public JSpinner getHora() {
-		return hora;
+		return horaAdd;
 	}
 
 	public JButton getSubir() {
@@ -114,7 +174,7 @@ public class V_AdminScheAdd extends JInternalFrame{
 		Conexion con= new Conexion();
 		ResultSet rs=con.consulta(Main.con, "select distinct(nombre) from Actividad");
 		while (rs.next()) {
-			actividad.addItem(rs.getString("nombre"));
+			actividadAdd.addItem(rs.getString("nombre"));
 		}
 	}
 }
