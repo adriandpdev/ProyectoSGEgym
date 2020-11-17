@@ -11,12 +11,12 @@ public class Main {
 	public static void main(String[] args) throws ClassNotFoundException, SQLException, IOException {
 		try {
 			Conexion c = new Conexion();
-			con = c.conectar();
+			con = c.conectar(); 
 		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
+			e.printStackTrace(); 
 		}
 
-		V_Login v = new V_Login();
+		V_Login v = new V_Login(); 
 
 		//V_AdminHome v = new V_AdminHome();
 		// V_UserHome v = new V_UserHome();
