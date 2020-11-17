@@ -1,5 +1,6 @@
 package main;
 import java.sql.*;
+import java.util.ArrayList;
 
 public class Conexion {
 	public Connection con;
@@ -26,5 +27,29 @@ public class Conexion {
 		Statement stm = con.createStatement();
 		ResultSet rs = stm.executeQuery(query);
 		return rs;
+	}
+	
+	public ArrayList<String> llenarCombo(Connection con, String q, String x) throws SQLException
+	{
+		Statement stm = con.createStatement();
+		ResultSet rs = null;
+		
+		ArrayList<String> lista = new ArrayList<String>();
+		
+		try {
+			rs = stm.executeQuery(q);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		try {
+			while(rs.next())
+			{
+				lista.add(rs.getString(x));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return lista;
 	}
 }
