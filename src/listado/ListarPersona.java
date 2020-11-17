@@ -23,6 +23,7 @@ public class ListarPersona {
                 per.setNombre(rs.getString(2));
                 per.setApellido(rs.getString(3));
                 per.setCuentabanc(rs.getString(4));
+                per.setPass(rs.getString(5));
                 per.setFechanac(rs.getString(6));
                 per.setTelefono(rs.getInt(7));
                 per.setCorreo(rs.getString(8));

@@ -1,0 +1,18 @@
+package listado;
+
+public class Indicadores {
+	
+	public static final int DNI=0;
+	public static final int NOMBRE=1;
+	public static final int APELLIDO=2;
+	public static final int CUENTABANC=3;
+	public static final int PASS=4;
+	public static final int FECHANAC=5;
+	public static final int TELEFONO=6;
+	public static final int CORREO=7;
+	public static final int ROL=8;
+
+	public static final int MODIFICAR=9;
+	public static final int ELIMINAR=10;
+
+}
