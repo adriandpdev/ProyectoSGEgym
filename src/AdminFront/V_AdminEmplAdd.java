@@ -2,6 +2,7 @@ package AdminFront;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.GridLayout;
+import java.text.SimpleDateFormat;
 
 import javax.swing.*;
 
@@ -13,7 +14,7 @@ public class V_AdminEmplAdd extends JInternalFrame {
 	private JButton Añadir, Limpiar;
 	
 	public V_AdminEmplAdd(){
-		this.setTitle("ALTA EMPLEADO");
+		this.setTitle("ALTA PROFESOR");
 		this.setLocation(100, 100); 
 		this.setResizable(false); 
 		this.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE); 
@@ -24,23 +25,26 @@ public class V_AdminEmplAdd extends JInternalFrame {
 		
 		JPanel Centro= new JPanel();
 		Centro.setLayout(new GridLayout(4,4,10,10));
-		Centro.add(Dni= new JLabel("DNI"));
-		Centro.add(txtDni= new JTextField());
 		Centro.add(Nombre= new JLabel("Nombre"));
 		Centro.add(txtNombre= new JTextField());
+		Centro.add(Apellidos= new JLabel("Apellidos"));
+		Centro.add(txtApellidos= new JTextField());
+		Centro.add(Dni= new JLabel("DNI"));
+		Centro.add(txtDni= new JTextField());
 		Centro.add(CCC= new JLabel("CCC"));
 		Centro.add(txtCCC= new JTextField());
 		Centro.add(email= new JLabel("E-mail"));
 		Centro.add(txtemail= new JTextField());
+		JFormattedTextField txtfecha = new JFormattedTextField(new SimpleDateFormat("dd/MM/yyyy"));
+		txtfecha.setValue(new java.util.Date());
 		Centro.add(Fecha= new JLabel("Fecha"));
-		Centro.add(txtfecha= new JTextField());
-		Centro.add(Apellidos= new JLabel("Apellidos"));
-		Centro.add(txtApellidos= new JTextField());
+		Centro.add(txtfecha);
 		Centro.add(Contraseña= new JLabel("Contraseña"));
 		Centro.add(txtContraseña= new JTextField());
 		Centro.add(Telefono= new JLabel("Telefono"));
 		Centro.add(txtTelefono= new JTextField());
 		txtContraseña.setEnabled(false);
+		
 		
 		JPanel Sur= new JPanel();
 		Sur.add(Añadir= new JButton("Añadir"));
