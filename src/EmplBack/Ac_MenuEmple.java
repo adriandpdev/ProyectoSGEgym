@@ -1,4 +1,5 @@
 package EmplBack;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -42,9 +43,7 @@ public class Ac_MenuEmple implements ActionListener {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
 		}
-
 	}
 
 	private void cerrarventanas() {

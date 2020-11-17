@@ -16,7 +16,7 @@ public class V_EmplHome extends JFrame {
 		this.setLocation(100, 100); // PONER AL CENTRO
 		this.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
-		
+
 		jmb = new JMenuBar();
 		this.setJMenuBar(jmb);
 

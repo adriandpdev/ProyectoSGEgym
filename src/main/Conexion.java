@@ -1,4 +1,5 @@
 package main;
+
 import java.sql.*;
 
 public class Conexion {
@@ -6,7 +7,8 @@ public class Conexion {
 
 	public Connection conectar() throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
-		con = DriverManager.getConnection("jdbc:mysql://80.211.5.118:3306/SGE-Gimnasio", "SGE-DAM-2020", "SGE2020root#");
+		con = DriverManager.getConnection("jdbc:mysql://80.211.5.118:3306/SGE-Gimnasio", "SGE-DAM-2020",
+				"SGE2020root#");
 		return con;
 	}
 
@@ -17,11 +19,11 @@ public class Conexion {
 		return rs.getInt("max(" + campo + ")") + 1;
 	}
 
-	public void alta(Connection con,String query) throws SQLException {
+	public void alta(Connection con, String query) throws SQLException {
 		Statement stm = con.createStatement();
 		stm.executeUpdate(query);
 	}
-	
+
 	public ResultSet consulta(Connection con, String query) throws SQLException {
 		Statement stm = con.createStatement();
 		ResultSet rs = stm.executeQuery(query);

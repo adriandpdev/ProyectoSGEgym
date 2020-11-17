@@ -9,11 +9,11 @@ public class V_UserHome extends JFrame {
 	private JMenuBar jmb;
 	private JMenu[] me = new JMenu[7];
 	private JMenuItem[] mi = new JMenuItem[16];
-	private String DNI1;//P
-	
+	private String DNI1;// P
+
 	public V_UserHome(String DNI) {
 		super("Gestión de gimnasio - Usuario");
-		DNI1 = DNI; //P
+		DNI1 = DNI; // P
 		this.setSize(800, 600);
 		this.setLocation(100, 100); // PONER AL CENTRO
 		this.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
@@ -72,7 +72,7 @@ public class V_UserHome extends JFrame {
 
 		this.setVisible(true);
 	}
-	
+
 	public String getDNI1() {
 		return DNI1;
 	}

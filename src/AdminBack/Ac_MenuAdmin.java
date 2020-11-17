@@ -9,6 +9,7 @@ import javax.swing.*;
 
 import AdminFront.*;
 import Login.*;
+import listado.*;
 
 public class Ac_MenuAdmin implements ActionListener {
 	private V_AdminHome vent;
@@ -25,7 +26,7 @@ public class Ac_MenuAdmin implements ActionListener {
 			vent.add(vAdUsAdd);
 			vAdUsAdd.setVisible(true);
 		} else if (arg0.getActionCommand().equals("Lista usuarios")) {
-			V_AdminUserList vAdUsList = new V_AdminUserList();
+			listado vAdUsList = new listado();
 			vent.add(vAdUsList);
 			vAdUsList.setVisible(true);
 		} else if (arg0.getActionCommand().equals("Pendiente de pago")) {
@@ -57,12 +58,12 @@ public class Ac_MenuAdmin implements ActionListener {
 			try {
 				vAdScList = new V_AdminScheList();
 				vent.add(vAdScList);
-			vAdScList.setVisible(true);
+				vAdScList.setVisible(true);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 		} else if (arg0.getActionCommand().equals("Exportar PDF")) {
 			V_AdminScheExp vAdScExp = new V_AdminScheExp();
 			vent.add(vAdScExp);
@@ -95,6 +96,7 @@ public class Ac_MenuAdmin implements ActionListener {
 			}
 		}
 	}
+
 	private void cerrarventanas() {
 		vent.getContentPane().setVisible(false);
 		vent.getContentPane().removeAll();
