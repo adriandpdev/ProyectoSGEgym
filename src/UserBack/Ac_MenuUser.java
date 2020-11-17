@@ -59,6 +59,10 @@ public class Ac_MenuUser implements ActionListener {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		} else if (arg0.getActionCommand().equals("Mi Perfil")) {
+			V_UserPerfil vUsPerfil = new V_UserPerfil(vent);
+			vent.add(vUsPerfil);
+			vUsPerfil.setVisible(true);
 		}
 	}
 
