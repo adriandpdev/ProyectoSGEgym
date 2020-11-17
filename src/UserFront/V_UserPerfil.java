@@ -34,7 +34,7 @@ public class V_UserPerfil extends JInternalFrame{
 		lbl[10] = new JLabel("Nueva Contraseña:");
 		txt_Dni = new JTextField();
 		txt_Rol = new JTextField();
-		txt_Nombre = new JTextField("aaa");
+		txt_Nombre = new JTextField();
 		txt_Apell = new JTextField();
 		txt_Antigua_Contraseña = new JTextField();
 		txt_Nueva_Contraseña = new JTextField();
