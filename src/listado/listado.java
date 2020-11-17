@@ -21,6 +21,8 @@ import javax.swing.border.BevelBorder;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableModel;
 
+import main.Conexion;
+
 public class listado extends JInternalFrame{
 	
 	/**
