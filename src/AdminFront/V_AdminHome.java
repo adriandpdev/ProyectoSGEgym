@@ -17,16 +17,7 @@ public class V_AdminHome extends JFrame {
 		this.setLocation(100, 100); // PONER AL CENTRO
 		this.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
-		try {
-			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel");
-			/*
-			 * for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) { if
-			 * ("Nimbus".equals(info.getName())) {
-			 * UIManager.setLookAndFeel(info.getClassName()); break; } }
-			 */
-		} catch (Exception e) {
-			System.out.println(e);
-		}
+		
 		jmb = new JMenuBar();
 		this.setJMenuBar(jmb);
 

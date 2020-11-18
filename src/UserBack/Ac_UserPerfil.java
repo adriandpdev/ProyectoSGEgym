@@ -5,7 +5,6 @@ import java.sql.ResultSet;
 
 import javax.swing.JOptionPane;
 
-import com.mysql.cj.protocol.Resultset;
 
 import UserFront.V_UserPerfil;
 import main.Conexion;

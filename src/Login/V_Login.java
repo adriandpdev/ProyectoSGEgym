@@ -21,11 +21,12 @@ public class V_Login extends JFrame {
 	private BufferedImage logo;
 
 	public V_Login() throws IOException {
-		super("Inicio de sesión");/*
-									 * try { UIManager.setLookAndFeel(
-									 * "com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel"); } catch
-									 * (Exception e) { System.out.println(e); }
-									 */
+		super("Inicio de sesión");
+		try {
+			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel");
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 		this.setSize(500, 600);
 		this.setLocation(100, 100); // PONER AL CENTRO
 		this.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
