@@ -10,7 +10,6 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
-<<<<<<< HEAD
 import main.Conexion;
 import main.Main;
 
