@@ -43,7 +43,7 @@ public class V_AdminScheAdd extends JInternalFrame {
 
 	private JSpinner horaAdd;
 	private JButton subir, quitar;
-	private String[] semana = { "LUNES", "MARTES", "MIERCOLES", "JUEVES", "VIERNES", "SABADO" };
+	private String[] semana = { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo" };
 
 	public V_AdminScheAdd() {
 
@@ -83,6 +83,7 @@ public class V_AdminScheAdd extends JInternalFrame {
 
 		horaDel = new JComboBox();
 		horaDel.setEnabled(false);
+		horaDel.addActionListener(new Ac_AdminScheAdd(this));
 
 		actividadDel = new JComboBox();
 		actividadDel.setEnabled(false);
