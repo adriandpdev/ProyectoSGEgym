@@ -1,11 +1,11 @@
 package UserBack;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import Login.*;
 import UserFront.*;
-
 
 public class Ac_MenuUser implements ActionListener {
 	private V_UserHome vent;
@@ -49,7 +49,11 @@ public class Ac_MenuUser implements ActionListener {
 			V_UserPromList vUsPrList = new V_UserPromList();
 			vent.add(vUsPrList);
 			vUsPrList.setVisible(true);
-		} else if (arg0.getActionCommand().equals("Cerrar ventana")) {
+		} else if (arg0.getActionCommand().equals("Mi Perfil")) {
+			V_UserPerfil vUsPerfil = new V_UserPerfil(vent);
+			vent.add(vUsPerfil);
+			vUsPerfil.setVisible(true);
+		}else if (arg0.getActionCommand().equals("Cerrar ventana")) {
 			cerrarventanas();
 		} else if (arg0.getActionCommand().equals("Cerrar sesión")) {
 			try {
@@ -59,11 +63,7 @@ public class Ac_MenuUser implements ActionListener {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		} else if (arg0.getActionCommand().equals("Mi Perfil")) {
-			V_UserPerfil vUsPerfil = new V_UserPerfil(vent);
-			vent.add(vUsPerfil);
-			vUsPerfil.setVisible(true);
-		}
+		} 
 	}
 
 	private void cerrarventanas() {

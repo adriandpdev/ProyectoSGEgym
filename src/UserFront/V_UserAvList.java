@@ -1,6 +1,7 @@
 package UserFront;
+
 import javax.swing.JInternalFrame;
 
-public class V_UserAvList extends JInternalFrame{
+public class V_UserAvList extends JInternalFrame {
 
 }

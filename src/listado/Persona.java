@@ -6,13 +6,37 @@ public class Persona {
 	String nombre;
 	String apellido;
 	String cuentabanc;
+	String pass;
 	String fechanac;
 	int telefono;
 	String correo;
 	String rol;
-	
+
 	public Persona() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public Persona(String dni, String nombre, String apellido, String cuentabanc, String pass, String fechanac,
+			int telefono, String correo, String rol) {
+		super();
+		this.dni = dni;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.cuentabanc = cuentabanc;
+		this.pass = pass;
+		this.fechanac = fechanac;
+		this.telefono = telefono;
+		this.correo = correo;
+		this.rol = rol;
+
+	}
+
+	public String getPass() {
+		return pass;
+	}
+
+	public void setPass(String pass) {
+		this.pass = pass;
 	}
 
 	public String getDni() {
@@ -78,6 +102,5 @@ public class Persona {
 	public void setRol(String rol) {
 		this.rol = rol;
 	}
-	
-	
+
 }

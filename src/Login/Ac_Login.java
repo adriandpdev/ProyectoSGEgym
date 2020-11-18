@@ -26,37 +26,37 @@ public class Ac_Login implements ActionListener {
 			try {
 				Boolean enc = false;
 				ResultSet rs = c.consulta(Main.con, "SELECT * FROM Persona");
-				while(rs.next()&&enc==false){ 
+				while (rs.next() && enc == false) {
 					if (vent.gettxt()[0].getText().equals(rs.getString("DNI"))) {
-						String DNI = rs.getString("DNI");//P
-						 if(vent.gettxt()[1].getText().equals(rs.getString("pass"))) {
-							 enc=true;	
-							 switch (rs.getString("rol")) {
-							 case "admin":
-								 V_AdminHome vAdHome = new V_AdminHome();
-								 vent.dispose();
-								 break;
-							 case "user":
-								 V_UserHome vUsHome = new V_UserHome(DNI);//P
-								 vent.dispose();
-								 break;
-							 case "empl":
-								 V_EmplHome vEmHome = new V_EmplHome();
-								 vent.dispose();
-								 break;
-							 }
-						 }
+						String DNI = rs.getString("DNI");// P
+						if (vent.gettxt()[1].getText().equals(rs.getString("pass"))) {
+							enc = true;
+							switch (rs.getString("rol")) {
+							case "admin":
+								V_AdminHome vAdHome = new V_AdminHome();
+								vent.dispose();
+								break;
+							case "user":
+								V_UserHome vUsHome = new V_UserHome(DNI);// P
+								vent.dispose();
+								break;
+							case "empl":
+								V_EmplHome vEmHome = new V_EmplHome();
+								vent.dispose();
+								break;
+							}
+						}
 					}
 				}
-				if (enc==false) {
+				if (enc == false) {
 					JOptionPane.showMessageDialog(vent, "El DNI o la contraseña introducidos no son validos");
 				}
-				
+
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
 
-}
+	}
 
 }
