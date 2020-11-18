@@ -14,8 +14,10 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
+import javax.swing.SwingConstants;
 
 import AdminBack.Ac_AdminScheAdd;
+import jdk.tools.jlink.internal.Jlink;
 import main.Conexion;
 import main.Main;
 
@@ -57,8 +59,6 @@ public class V_AdminScheAdd extends JInternalFrame{
 		
 		establecerAñadir();
 		
-		
-		
 		establecerEliminar();
 		
 		principal.add(eleccion);
@@ -70,23 +70,33 @@ public class V_AdminScheAdd extends JInternalFrame{
 
 	private void establecerEliminar() {
 		eliminar=new JPanel();
-		eliminar.setLayout(new GridLayout(5,3));
+		eliminar.setLayout(new GridLayout(6,3));
 		
 		diaDel=new JComboBox();
 		for (int i = 0; i < semana.length; i++) {
 			diaDel.addItem(semana[i]);
 		}
 		diaDel.addActionListener(new Ac_AdminScheAdd(this));
+		diaDel.setSelectedIndex(-1);
+		
+		
 		horaDel = new JComboBox();
 		horaDel.setEnabled(false);
-		horaDel.addActionListener(new Ac_AdminScheAdd(this));
+				
 		
 		actividadDel=new JComboBox();
 		actividadDel.setEnabled(false);
 		
+		
+		quitar=new JButton("Eliminar");
+		quitar.addActionListener(new Ac_AdminScheAdd(this));
+		
 		eliminar.add(new JSeparator());
 		eliminar.add(new JSeparator());
 		eliminar.add(new JSeparator());
+		
+		añadirTitulo("Eliminar clases", eliminar);
+		
 		eliminar.add(new JLabel("Elegir día"));
 		eliminar.add(new JLabel());
 		eliminar.add(diaDel);
@@ -100,7 +110,6 @@ public class V_AdminScheAdd extends JInternalFrame{
 		eliminar.add(actividadDel);
 		
 		eliminar.add(new JLabel());
-		quitar=new JButton("Eliminar");
 		eliminar.add(quitar);
 		eliminar.add(new JLabel());
 	}
@@ -109,7 +118,7 @@ public class V_AdminScheAdd extends JInternalFrame{
 
 	private void establecerAñadir() throws SQLException {
 		eleccion=new JPanel();
-		eleccion.setLayout(new GridLayout(4,3));
+		eleccion.setLayout(new GridLayout(5,3));
 		diaAdd=new JComboBox();
 		for (int i = 0; i < semana.length; i++) {
 			diaAdd.addItem(semana[i]);
@@ -122,6 +131,11 @@ public class V_AdminScheAdd extends JInternalFrame{
 		horaAdd.addChangeListener(new Ac_AdminScheAdd(this));
 		actividadAdd=new JComboBox();
 		rellenarActividades();
+		
+		subir=new JButton("Añadir");
+		subir.addActionListener(new Ac_AdminScheAdd(this));
+		
+		añadirTitulo("Añadir clases", eleccion);
 		
 		eleccion.add(new JLabel("Elegir día"));
 		eleccion.add(new JLabel());
@@ -136,7 +150,6 @@ public class V_AdminScheAdd extends JInternalFrame{
 		eleccion.add(actividadAdd);
 		
 		eleccion.add(new JLabel());
-		subir=new JButton("Añadir");
 		eleccion.add(subir);
 		eleccion.add(new JLabel());
 	}
@@ -176,5 +189,13 @@ public class V_AdminScheAdd extends JInternalFrame{
 		while (rs.next()) {
 			actividadAdd.addItem(rs.getString("nombre"));
 		}
+	}
+
+	private void añadirTitulo(String t, JPanel p) {
+		JLabel titulo=new JLabel(t);
+		titulo.setHorizontalAlignment(SwingConstants.CENTER);
+		p.add(new JLabel());
+		p.add(titulo);
+		p.add(new JLabel());
 	}
 }

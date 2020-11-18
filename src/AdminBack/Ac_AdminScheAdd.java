@@ -40,20 +40,58 @@ public class Ac_AdminScheAdd implements ChangeListener, ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource()== v.getDiaDel()) {
-			v.getHoraDel().removeAllItems();
-			if(v.getDiaDel().getSelectedItem()!="") {
-				try {
-					rellenarHoraBorrado();
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+			mostrarHoras();
+		}
+		if(e.getSource()==v.getSubir()) {
+			try {
+				if(!comprobarAula()) {
+					
 				}
-			}
-			else {
-				v.getHoraDel().removeAllItems();
-				v.getHoraDel().setEnabled(false);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
 		}
+		
+	}
+	private boolean comprobarAula() throws SQLException {
+		boolean ocupado=false;
+		Conexion con= new Conexion();
+		int aula;
+		ResultSet rs= con.consulta(Main.con, "Select * from Actividad , Horario  where Actividad.idActividad=Horario.idActividad and Horario.Diasemana like '"+v.getDia().getSelectedItem().toString()+"' and Horario.hora like '"+v.getHora().getValue().toString()+":00'");
+		ResultSet rs2=con.consulta(Main.con, "select idaula from Actividad where nombre like '"+v.getActividad().getSelectedItem().toString()+"'");
+		rs2.next();
+		aula=rs2.getInt("idaula");
+		
+		while (rs.next()) {
+			
+			if(rs.getInt("Actividad.idaula")==aula)
+				ocupado=true;
+			System.out.println(ocupado);
+		}
+		return ocupado;
+	}
+	private void mostrarHoras() {
+		if(v.getDiaDel().getSelectedIndex()!=-1) {
+			v.getHoraDel().removeAllItems();
+			try {
+				rellenarHoraBorrado();
+				mostrarClases();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		
+	}
+	private void mostrarClases() {
+		v.getActividadDel().removeAllItems();
+		
+			try {
+				rellenarClaseBorrado();
+			} catch (SQLException e2) {
+				e2.printStackTrace();
+			}
 		
 	}
 	private void rellenarHoraBorrado() throws SQLException {
@@ -65,4 +103,12 @@ public class Ac_AdminScheAdd implements ChangeListener, ActionListener{
 		v.getHoraDel().setEnabled(true);
 	}
 
+	private void rellenarClaseBorrado() throws SQLException{
+		Conexion con= new Conexion();
+		ResultSet rs=con.consulta(Main.con, "select nombre from Actividad, Horario where Actividad.idActividad = Horario.idActividad and Diasemana like '"+v.getDiaDel().getSelectedItem().toString()+"' and hora like '"+v.getHoraDel().getSelectedItem().toString()+"'");
+		while (rs.next()) {
+			v.getActividadDel().addItem(rs.getString("nombre"));
+		}
+		v.getActividadDel().setEnabled(true);
+	}
 }

@@ -3,6 +3,7 @@ package AdminBack;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.swing.*;
 
@@ -52,9 +53,16 @@ public class Ac_MenuAdmin implements ActionListener {
 			vent.add(vAdScAdd);
 			vAdScAdd.setVisible(true);
 		} else if (arg0.getActionCommand().equals("Visualizar horario")) {
-			V_AdminScheList vAdScList = new V_AdminScheList();
-			vent.add(vAdScList);
+			V_AdminScheList vAdScList;
+			try {
+				vAdScList = new V_AdminScheList();
+				vent.add(vAdScList);
 			vAdScList.setVisible(true);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		} else if (arg0.getActionCommand().equals("Exportar PDF")) {
 			V_AdminScheExp vAdScExp = new V_AdminScheExp();
 			vent.add(vAdScExp);
