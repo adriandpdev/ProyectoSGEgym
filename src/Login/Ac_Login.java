@@ -28,20 +28,20 @@ public class Ac_Login implements ActionListener {
 				ResultSet rs = c.consulta(Main.con, "SELECT * FROM Persona");
 				while (rs.next() && enc == false) {
 					if (vent.gettxt()[0].getText().equals(rs.getString("DNI"))) {
-						String DNI = rs.getString("DNI");// P
+						String DNI = rs.getString("DNI");
 						if (vent.gettxt()[1].getText().equals(rs.getString("pass"))) {
 							enc = true;
 							switch (rs.getString("rol")) {
 							case "admin":
-								V_AdminHome vAdHome = new V_AdminHome();
+								V_AdminHome vAdHome = new V_AdminHome(DNI);
 								vent.dispose();
 								break;
 							case "user":
-								V_UserHome vUsHome = new V_UserHome(DNI);// P
+								V_UserHome vUsHome = new V_UserHome(DNI);
 								vent.dispose();
 								break;
 							case "empl":
-								V_EmplHome vEmHome = new V_EmplHome();
+								V_EmplHome vEmHome = new V_EmplHome(DNI);
 								vent.dispose();
 								break;
 							}

@@ -1,19 +1,20 @@
-package UserBack;
+package AdminBack;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 
 import javax.swing.JOptionPane;
 
-
-import UserFront.V_UserPerfil;
+import AdminFront.V_AdminPerfil;
 import main.Conexion;
 import main.Main;
 
-public class Ac_UserPerfil implements ActionListener {
-	private V_UserPerfil vent;
+public class Ac_AdminPerfil implements ActionListener{
+
+private V_AdminPerfil vent;
 	
-	public Ac_UserPerfil(V_UserPerfil v){
+	public Ac_AdminPerfil(V_AdminPerfil v){
 		vent = v;
 	}
 	@Override

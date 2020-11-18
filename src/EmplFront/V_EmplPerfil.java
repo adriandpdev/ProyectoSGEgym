@@ -1,24 +1,34 @@
-package UserFront;
+package EmplFront;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.sql.ResultSet;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
+import EmplBack.Ac_EmplPerfil;
 import UserBack.Ac_UserPerfil;
+import UserFront.V_UserHome;
 import main.Conexion;
 import main.Main;
 
-public class V_UserPerfil extends JInternalFrame {
-
-	private V_UserHome v1;
+public class V_EmplPerfil extends JInternalFrame {
+	private V_EmplHome v1;
 	private JLabel[] lbl = new JLabel[11];
 	private JTextField txt_Dni, txt_Rol, txt_Nombre, txt_Apell, txt_Antigua_Contraseña, txt_Nueva_Contraseña,
 			txt_Correo, txt_Cb, txt_Nac, txt_Tlf;
 	private JButton btn_Guardar, btn_CambiarContraseña;
 
-	public V_UserPerfil(V_UserHome v) {
+	public V_EmplPerfil(V_EmplHome v) {
 		v1 = v;
 
 		// ATRIBUTOS DEL PANEL PRINCIPAL
@@ -161,16 +171,16 @@ public class V_UserPerfil extends JInternalFrame {
 		PanelSur.add(panel_btn_Cambiar_Contraeña, BorderLayout.SOUTH);
 
 		// ESCUCHAS Y EVENTOS
-		btn_Guardar.addActionListener(new Ac_UserPerfil(this));
-		btn_CambiarContraseña.addActionListener(new Ac_UserPerfil(this));
+		btn_Guardar.addActionListener(new Ac_EmplPerfil(this));
+		btn_CambiarContraseña.addActionListener(new Ac_EmplPerfil(this));
 
 		// AÑADO LOS PANELES PRINCIPALES
 		this.add(PanelNorte, BorderLayout.NORTH);
 		this.add(PanelCentral, BorderLayout.CENTER);
 		this.add(PanelSur, BorderLayout.SOUTH);
 		setVisible(true);
-
 	}
+	
 
 	//METODO RELLENO DE CAMPOS.
 	public void rellenarCampos() {
@@ -196,94 +206,126 @@ public class V_UserPerfil extends JInternalFrame {
 			e.printStackTrace();
 		}
 	}
-	
-	//Getters y Setters-------------------
-	public JButton getBtn_Guardar() {
-		return btn_Guardar;
+
+
+	public V_EmplHome getV1() {
+		return v1;
 	}
 
-	public JButton getBtn_CambiarContraseña() {
-		return btn_CambiarContraseña;
+
+	public void setV1(V_EmplHome v1) {
+		this.v1 = v1;
 	}
+
 
 	public JTextField getTxt_Dni() {
 		return txt_Dni;
 	}
 
+
 	public void setTxt_Dni(JTextField txt_Dni) {
 		this.txt_Dni = txt_Dni;
 	}
+
 
 	public JTextField getTxt_Rol() {
 		return txt_Rol;
 	}
 
+
 	public void setTxt_Rol(JTextField txt_Rol) {
 		this.txt_Rol = txt_Rol;
 	}
+
 
 	public JTextField getTxt_Nombre() {
 		return txt_Nombre;
 	}
 
+
 	public void setTxt_Nombre(JTextField txt_Nombre) {
 		this.txt_Nombre = txt_Nombre;
 	}
+
 
 	public JTextField getTxt_Apell() {
 		return txt_Apell;
 	}
 
+
 	public void setTxt_Apell(JTextField txt_Apell) {
 		this.txt_Apell = txt_Apell;
 	}
+
 
 	public JTextField getTxt_Antigua_Contraseña() {
 		return txt_Antigua_Contraseña;
 	}
 
+
 	public void setTxt_Antigua_Contraseña(JTextField txt_Antigua_Contraseña) {
 		this.txt_Antigua_Contraseña = txt_Antigua_Contraseña;
 	}
+
 
 	public JTextField getTxt_Nueva_Contraseña() {
 		return txt_Nueva_Contraseña;
 	}
 
+
 	public void setTxt_Nueva_Contraseña(JTextField txt_Nueva_Contraseña) {
 		this.txt_Nueva_Contraseña = txt_Nueva_Contraseña;
 	}
+
 
 	public JTextField getTxt_Correo() {
 		return txt_Correo;
 	}
 
+
 	public void setTxt_Correo(JTextField txt_Correo) {
 		this.txt_Correo = txt_Correo;
 	}
+
 
 	public JTextField getTxt_Cb() {
 		return txt_Cb;
 	}
 
+
 	public void setTxt_Cb(JTextField txt_Cb) {
 		this.txt_Cb = txt_Cb;
 	}
+
 
 	public JTextField getTxt_Nac() {
 		return txt_Nac;
 	}
 
+
 	public void setTxt_Nac(JTextField txt_Nac) {
 		this.txt_Nac = txt_Nac;
 	}
+
 
 	public JTextField getTxt_Tlf() {
 		return txt_Tlf;
 	}
 
+
 	public void setTxt_Tlf(JTextField txt_Tlf) {
 		this.txt_Tlf = txt_Tlf;
 	}
 
+
+	public JButton getBtn_Guardar() {
+		return btn_Guardar;
+	}
+
+
+	public JButton getBtn_CambiarContraseña() {
+		return btn_CambiarContraseña;
+	}	
+	
+	
 }

@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import EmplFront.*;
 import Login.*;
+import UserFront.V_UserPerfil;
 
 public class Ac_MenuEmple implements ActionListener {
 	private V_EmplHome vent;
@@ -33,7 +34,11 @@ public class Ac_MenuEmple implements ActionListener {
 			V_EmplPayList vEmPayList = new V_EmplPayList();
 			vent.add(vEmPayList);
 			vEmPayList.setVisible(true);
-		} else if (arg0.getActionCommand().equals("Cerrar ventana")) {
+		}else if (arg0.getActionCommand().equals("Mi Perfil")) {
+			V_EmplPerfil vEmPerfil = new V_EmplPerfil(vent);
+			vent.add(vEmPerfil);
+			vEmPerfil.setVisible(true); 
+		}else if (arg0.getActionCommand().equals("Cerrar ventana")) {
 			cerrarventanas();
 		} else if (arg0.getActionCommand().equals("Cerrar sesión")) {
 			try {

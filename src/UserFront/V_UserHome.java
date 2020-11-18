@@ -9,11 +9,11 @@ public class V_UserHome extends JFrame {
 	private JMenuBar jmb;
 	private JMenu[] me = new JMenu[7];
 	private JMenuItem[] mi = new JMenuItem[16];
-	private String DNI1;// P
+	private String DNI1;
 
 	public V_UserHome(String DNI) {
 		super("Gestión de gimnasio - Usuario");
-		DNI1 = DNI; // P
+		DNI1 = DNI;
 		this.setSize(800, 600);
 		this.setLocation(100, 100); // PONER AL CENTRO
 		this.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
@@ -60,15 +60,15 @@ public class V_UserHome extends JFrame {
 
 		me[4] = new JMenu("Opciones");
 		jmb.add(me[4]);
-		mi[9] = new JMenuItem("Mi Perfil");
-		mi[9].addActionListener(new Ac_MenuUser(this));
-		me[4].add(mi[9]);
-		mi[7] = new JMenuItem("Cerrar ventana");
+		mi[7] = new JMenuItem("Mi Perfil");
 		mi[7].addActionListener(new Ac_MenuUser(this));
 		me[4].add(mi[7]);
-		mi[8] = new JMenuItem("Cerrar sesión");
+		mi[8] = new JMenuItem("Cerrar ventana");
 		mi[8].addActionListener(new Ac_MenuUser(this));
 		me[4].add(mi[8]);
+		mi[9] = new JMenuItem("Cerrar sesión");
+		mi[9].addActionListener(new Ac_MenuUser(this));
+		me[4].add(mi[9]);
 
 		this.setVisible(true);
 	}

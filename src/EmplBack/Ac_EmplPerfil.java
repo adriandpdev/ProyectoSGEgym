@@ -1,19 +1,20 @@
-package UserBack;
+package EmplBack;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 
 import javax.swing.JOptionPane;
 
-
+import EmplFront.V_EmplPerfil;
 import UserFront.V_UserPerfil;
 import main.Conexion;
 import main.Main;
 
-public class Ac_UserPerfil implements ActionListener {
-	private V_UserPerfil vent;
+public class Ac_EmplPerfil implements ActionListener{
+private V_EmplPerfil vent;
 	
-	public Ac_UserPerfil(V_UserPerfil v){
+	public Ac_EmplPerfil(V_EmplPerfil v){
 		vent = v;
 	}
 	@Override

@@ -8,11 +8,13 @@ import AdminBack.Ac_MenuAdmin;
 public class V_AdminHome extends JFrame {
 	private JMenuBar jmb;
 	private JMenu[] me = new JMenu[7];
-	private JMenuItem[] mi = new JMenuItem[16];
+	private JMenuItem[] mi = new JMenuItem[17];
 	private JSeparator sep;
+	private String DNI1;
 
-	public V_AdminHome() {
+	public V_AdminHome(String DNI) {
 		super("Gestión de gimnasio - Administrador");
+		DNI1 = DNI;
 		this.setSize(800, 600);
 		this.setLocation(100, 100); // PONER AL CENTRO
 		this.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
@@ -83,13 +85,26 @@ public class V_AdminHome extends JFrame {
 
 		me[6] = new JMenu("Opciones");
 		jmb.add(me[6]);
-		mi[14] = new JMenuItem("Cerrar ventana");
+		mi[14] = new JMenuItem("Mi perfil");
 		mi[14].addActionListener(new Ac_MenuAdmin(this));
 		me[6].add(mi[14]);
-		mi[15] = new JMenuItem("Cerrar sesión");
+		mi[15] = new JMenuItem("Cerrar ventana");
 		mi[15].addActionListener(new Ac_MenuAdmin(this));
 		me[6].add(mi[15]);
+		mi[16] = new JMenuItem("Cerrar sesión");
+		mi[16].addActionListener(new Ac_MenuAdmin(this));
+		me[6].add(mi[16]);
 
 		this.setVisible(true);
 	}
+
+	public String getDNI1() {
+		return DNI1;
+	}
+
+	public void setDNI1(String dNI1) {
+		DNI1 = dNI1;
+	}
+	
+	
 }

@@ -4,14 +4,17 @@ import javax.swing.*;
 import javax.swing.UIManager.*;
 
 import EmplBack.Ac_MenuEmple;
+import UserBack.Ac_MenuUser;
 
 public class V_EmplHome extends JFrame {
 	private JMenuBar jmb;
 	private JMenu[] me = new JMenu[3];
-	private JMenuItem[] mi = new JMenuItem[6];
-
-	public V_EmplHome() {
+	private JMenuItem[] mi = new JMenuItem[7];
+	private String DNI1;
+	
+	public V_EmplHome(String DNI) {
 		super("Gestión de gimnasio - Empleado");
+		DNI1 = DNI;
 		this.setSize(800, 600);
 		this.setLocation(100, 100); // PONER AL CENTRO
 		this.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
@@ -40,13 +43,25 @@ public class V_EmplHome extends JFrame {
 
 		me[2] = new JMenu("Opciones");
 		jmb.add(me[2]);
-		mi[4] = new JMenuItem("Cerrar ventana");
+		mi[4] = new JMenuItem("Mi Perfil");
 		mi[4].addActionListener(new Ac_MenuEmple(this));
 		me[2].add(mi[4]);
-		mi[5] = new JMenuItem("Cerrar sesión");
+		mi[5] = new JMenuItem("Cerrar ventana");
 		mi[5].addActionListener(new Ac_MenuEmple(this));
 		me[2].add(mi[5]);
+		mi[6] = new JMenuItem("Cerrar sesión");
+		mi[6].addActionListener(new Ac_MenuEmple(this));
+		me[2].add(mi[6]);
 
 		this.setVisible(true);
 	}
+
+	public String getDNI1() {
+		return DNI1;
+	}
+
+	public void setDNI1(String dNI1) {
+		DNI1 = dNI1;
+	}
+	
 }
