@@ -124,7 +124,7 @@ public class V_AdminScheAdd extends JInternalFrame {
 		SpinnerDateModel model = modeloHora();
 		horaAdd = new JSpinner(model);
 		JSpinner.DateEditor de = new JSpinner.DateEditor(horaAdd, "HH:mm");
-
+		de.getTextField().setEditable(false);
 		horaAdd.setEditor(de);
 		horaAdd.addChangeListener(new Ac_AdminScheAdd(this));
 		actividadAdd = new JComboBox();
