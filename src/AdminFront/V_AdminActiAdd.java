@@ -135,6 +135,9 @@ public class V_AdminActiAdd  extends JInternalFrame{
 		jpSur.add(btnCancelar);
 
 		this.getContentPane().add(jpSur, BorderLayout.SOUTH);
+		
+		//Añadir escucha a los botones
+		btnAñadir.addActionListener(new Ac_AdminActiAdd(this));
 
 		this.setVisible(true);
 	}
