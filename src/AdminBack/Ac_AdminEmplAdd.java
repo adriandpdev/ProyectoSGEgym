@@ -32,6 +32,7 @@ public class Ac_AdminEmplAdd implements ActionListener {
 			vent.getTxtContraseña().setText("");
 			vent.getTxtTelefono().setText("");
 			vent.getTxtemail().setText("");
+			vent.getTxtContraseña().setText("");
 		}
 		
 	}
