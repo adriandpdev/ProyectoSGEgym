@@ -7,10 +7,14 @@ import java.text.SimpleDateFormat;
 
 import javax.swing.*;
 
+import AdminBack.Ac_AdminEmplAdd;
+import AdminBack.Ac_AdminUserAdd;
+
 public class V_AdminEmplAdd extends JInternalFrame {
 
 	private JLabel Titulo, Dni, Nombre, CCC, email, Fecha, Apellidos, Contraseña, Telefono;
-	private JTextField txtDni, txtNombre, txtCCC, txtemail, txtfecha, txtApellidos, txtContraseña, txtTelefono;
+	private JTextField txtDni, txtNombre, txtCCC, txtemail, txtApellidos, txtContraseña, txtTelefono;
+	private JFormattedTextField txtfecha;
 	private JButton Añadir, Limpiar;
 
 	public V_AdminEmplAdd() {
@@ -43,7 +47,7 @@ public class V_AdminEmplAdd extends JInternalFrame {
 		Centro.add(txtCCC = new JTextField());
 		Centro.add(email = new JLabel("E-mail"));
 		Centro.add(txtemail = new JTextField());
-		JFormattedTextField txtfecha = new JFormattedTextField(new SimpleDateFormat("dd/MM/yyyy"));
+		txtfecha = new JFormattedTextField(new SimpleDateFormat("dd/MM/yyyy"));
 		txtfecha.setValue(new java.util.Date());
 		Centro.add(Fecha = new JLabel("Fecha"));
 		Centro.add(txtfecha);
@@ -51,17 +55,83 @@ public class V_AdminEmplAdd extends JInternalFrame {
 		Centro.add(txtContraseña = new JTextField());
 		Centro.add(Telefono = new JLabel("Telefono"));
 		Centro.add(txtTelefono = new JTextField());
-		txtContraseña.setEnabled(false);
+		txtContraseña.setEnabled(true);
 
 		JPanel Sur = new JPanel();
 		Sur.add(Añadir = new JButton("Añadir"));
+		Añadir.addActionListener(new Ac_AdminEmplAdd(this));
 		Sur.add(Limpiar = new JButton("Limpiar"));
+		Limpiar.addActionListener(new Ac_AdminEmplAdd(this));
 
 		Container c = getContentPane();
 		c.add(Norte, BorderLayout.NORTH);
 		c.add(Centro, BorderLayout.CENTER);
 		c.add(Sur, BorderLayout.SOUTH);
 
+	}
+
+	public JTextField getTxtDni() {
+		return txtDni;
+	}
+
+	public void setTxtDni(JTextField txtDni) {
+		this.txtDni = txtDni;
+	}
+
+	public JTextField getTxtNombre() {
+		return txtNombre;
+	}
+
+	public void setTxtNombre(JTextField txtNombre) {
+		this.txtNombre = txtNombre;
+	}
+
+	public JTextField getTxtCCC() {
+		return txtCCC;
+	}
+
+	public void setTxtCCC(JTextField txtCCC) {
+		this.txtCCC = txtCCC;
+	}
+
+	public JTextField getTxtemail() {
+		return txtemail;
+	}
+
+	public void setTxtemail(JTextField txtemail) {
+		this.txtemail = txtemail;
+	}
+
+	public JTextField getTxtApellidos() {
+		return txtApellidos;
+	}
+
+	public void setTxtApellidos(JTextField txtApellidos) {
+		this.txtApellidos = txtApellidos;
+	}
+
+	public JTextField getTxtContraseña() {
+		return txtContraseña;
+	}
+
+	public void setTxtContraseña(JTextField txtContraseña) {
+		this.txtContraseña = txtContraseña;
+	}
+
+	public JTextField getTxtTelefono() {
+		return txtTelefono;
+	}
+
+	public void setTxtTelefono(JTextField txtTelefono) {
+		this.txtTelefono = txtTelefono;
+	}
+
+	public JFormattedTextField getTxtfecha() {
+		return txtfecha;
+	}
+
+	public void setTxtfecha(JFormattedTextField txtfecha) {
+		this.txtfecha = txtfecha;
 	}
 
 	private void FillFields() {
