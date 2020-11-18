@@ -23,7 +23,7 @@ private V_AdminPerfil vent;
 		if(e.getSource() == vent.getBtn_Guardar()) {
 			Conexion c = new Conexion();
 			try {
-				c.alta(Main.con, "UPDATE Persona SET nombre = '"+vent.getTxt_Nombre().getText()+"', apellido = '"+vent.getTxt_Apell().getText()+"', cuentabanc = '"+vent.getTxt_Cb().getText()+"', fechanac = '"+vent.getTxt_Nac().getText()+"', telefono = '"+Integer.parseInt(vent.getTxt_Tlf().getText())+"', correo = '"+vent.getTxt_Correo().getText()+"' WHERE DNI = '"+vent.getTxt_Dni().getText()+"'");
+				c.alta(Main.con, "UPDATE Persona SET DNI = '"+vent.getTxt_Dni().getText()+"' nombre = '"+vent.getTxt_Nombre().getText()+"', apellido = '"+vent.getTxt_Apell().getText()+"', cuentabanc = '"+vent.getTxt_Cb().getText()+"', fechanac = '"+vent.getTxt_Nac().getText()+"', telefono = '"+Integer.parseInt(vent.getTxt_Tlf().getText())+"', correo = '"+vent.getTxt_Correo().getText()+"' WHERE DNI = '"+vent.getTxt_Dni().getText()+"'");
 				JOptionPane.showMessageDialog(vent, "Cambios guardados con exito!");				
 			} catch (Exception ex) {
 				ex.printStackTrace();

@@ -62,9 +62,8 @@ public class V_AdminPerfil extends JInternalFrame {
 		btn_CambiarContraseña.setPreferredSize(new Dimension(150, 30));
 		btn_CambiarContraseña.setFont(new Font("fuente1", 1, 11));
 		// ELEMENTOS NO DISPONIBLES PARA EL USUARIO. (BLOQUEADOS)----
-		txt_Dni.setEnabled(false);
 		txt_Rol.setEnabled(false);
-		txt_Cb.setEnabled(false);
+
 
 		//METODO PARA RELLENAR LOS CAMPOS CON LOS DATOS DEL USUARIO
 		rellenarCampos();

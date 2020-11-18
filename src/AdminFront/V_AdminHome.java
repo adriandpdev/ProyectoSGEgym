@@ -85,12 +85,15 @@ public class V_AdminHome extends JFrame {
 
 		me[6] = new JMenu("Opciones");
 		jmb.add(me[6]);
-		mi[14] = new JMenuItem("Mi perfil");
+		
+		mi[14] = new JMenuItem("Mi Perfil");
 		mi[14].addActionListener(new Ac_MenuAdmin(this));
 		me[6].add(mi[14]);
+		
 		mi[15] = new JMenuItem("Cerrar ventana");
 		mi[15].addActionListener(new Ac_MenuAdmin(this));
 		me[6].add(mi[15]);
+		
 		mi[16] = new JMenuItem("Cerrar sesión");
 		mi[16].addActionListener(new Ac_MenuAdmin(this));
 		me[6].add(mi[16]);

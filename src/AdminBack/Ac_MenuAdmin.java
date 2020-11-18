@@ -84,11 +84,11 @@ public class Ac_MenuAdmin implements ActionListener {
 			V_AdminPayEm vAdPayEm = new V_AdminPayEm();
 			vent.add(vAdPayEm);
 			vAdPayEm.setVisible(true);
-		}else if (arg0.getActionCommand().equals("Mi Perfil")) {
+		} else if (arg0.getActionCommand().equals("Mi Perfil")) {
 			V_AdminPerfil vAdPerfil = new V_AdminPerfil(vent);
 			vent.add(vAdPerfil);
 			vAdPerfil.setVisible(true); 
-		}else if (arg0.getActionCommand().equals("Cerrar ventana")) {
+		} else if (arg0.getActionCommand().equals("Cerrar ventana")) {
 			cerrarventanas();
 		} else if (arg0.getActionCommand().equals("Cerrar sesión")) {
 			try {
