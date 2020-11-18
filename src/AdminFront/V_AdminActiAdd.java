@@ -5,15 +5,23 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.*;
 
-public class V_AdminActiAdd extends JInternalFrame {
+import main.Conexion;
+import main.Main;
+
+public class V_AdminActiAdd  extends JInternalFrame{
+
 	private JLabel lblTitulo, lblIdclase, lblNombreactividad, lblDniprofesor, lblIdaula;
 	private JTextField txtIdclase, txtNombreactividad;
 	private JComboBox cbDniprofesor, cbIdaula;
 	private JButton btnAñadir, btnCancelar;
 	private JPanel jpCentro, jpSur;
+	
+	Conexion c = new Conexion();
 
 	public V_AdminActiAdd() {
 		this.setTitle("Alta de Clases");
@@ -37,9 +45,42 @@ public class V_AdminActiAdd extends JInternalFrame {
 		txtNombreactividad = new JTextField();
 		lblDniprofesor = new JLabel("DNI PROFESOR");
 		cbDniprofesor = new JComboBox();
+		
+			String qu = "SELECT DNI FROM Persona WHERE rol LIKE 'empl'";
+			String xu = "dni";
+			
+			cbDniprofesor.removeAllItems();
+			ArrayList<String> lista = new ArrayList<String>();
+			try {
+				lista = c.llenarCombo(Main.con, qu, xu);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			for(int i = 0; i <lista.size();i++)
+			{
+				cbDniprofesor.addItem(lista.get(i));
+			}
+		
 		lblIdaula = new JLabel("ID AULA");
 		cbIdaula = new JComboBox();
-
+		
+		String q = "SELECT * FROM Aulas";
+		String x = "idAula";
+		
+			cbIdaula.removeAllItems();
+			ArrayList<String> lista2 = new ArrayList<String>();
+			try {
+				lista2 = c.llenarCombo(Main.con, q, x);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			for(int i = 0; i <lista2.size();i++)
+			{
+				cbIdaula.addItem(lista2.get(i));
+			}
+		
 		GridBagConstraints c = new GridBagConstraints();
 		c.gridwidth = 1;
 		c.weightx = 1;
@@ -97,4 +138,70 @@ public class V_AdminActiAdd extends JInternalFrame {
 
 		this.setVisible(true);
 	}
+
+	public JTextField getTxtIdclase() {
+		return txtIdclase;
+	}
+
+	public void setTxtIdclase(JTextField txtIdclase) {
+		this.txtIdclase = txtIdclase;
+	}
+
+	public JTextField getTxtNombreactividad() {
+		return txtNombreactividad;
+	}
+
+	public void setTxtNombreactividad(JTextField txtNombreactividad) {
+		this.txtNombreactividad = txtNombreactividad;
+	}
+
+	public JComboBox getCbDniprofesor() {
+		return cbDniprofesor;
+	}
+
+	public void setCbDniprofesor(JComboBox cbDniprofesor) {
+		this.cbDniprofesor = cbDniprofesor;
+	}
+
+	public JComboBox getCbIdaula() {
+		return cbIdaula;
+	}
+
+	public void setCbIdaula(JComboBox cbIdaula) {
+		this.cbIdaula = cbIdaula;
+	}
+
+	public JButton getBtnAñadir() {
+		return btnAñadir;
+	}
+
+	public void setBtnAñadir(JButton btnAñadir) {
+		this.btnAñadir = btnAñadir;
+	}
+
+	public JButton getBtnCancelar() {
+		return btnCancelar;
+	}
+
+	public void setBtnCancelar(JButton btnCancelar) {
+		this.btnCancelar = btnCancelar;
+	}
+
+	public JPanel getJpCentro() {
+		return jpCentro;
+	}
+
+	public void setJpCentro(JPanel jpCentro) {
+		this.jpCentro = jpCentro;
+	}
+
+	public JPanel getJpSur() {
+		return jpSur;
+	}
+
+	public void setJpSur(JPanel jpSur) {
+		this.jpSur = jpSur;
+	}
+	
+	
 }
