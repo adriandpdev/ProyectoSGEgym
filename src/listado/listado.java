@@ -21,6 +21,8 @@ import javax.swing.border.BevelBorder;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableModel;
 
+import main.*;
+
 public class listado extends JInternalFrame{
 	
 	/**
@@ -36,7 +38,7 @@ public class listado extends JInternalFrame{
 	
 	private int filasTabla, columnasTabla;
 	
-	private Conexion_pruebas cp;
+	private Conexion cp;
 	private Connection conn;
 	private ResultSet rs;
 	private ModeloTabla modelo;
@@ -104,17 +106,9 @@ public class listado extends JInternalFrame{
 		
 		String sql = "SELECT * FROM persona";
 		
-		cp = new Conexion_pruebas();
-		
 		
 		try {
-			conn = cp.conectar();
-		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			rs = cp.consulta(conn, sql);
+			rs = cp.consulta(Main.con, sql);
 			
 			while(rs.next()){
 	             Persona per = new Persona();
