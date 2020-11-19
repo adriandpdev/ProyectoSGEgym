@@ -65,7 +65,6 @@ public class V_UserPerfil extends JInternalFrame {
 		// ELEMENTOS NO DISPONIBLES PARA EL USUARIO. (BLOQUEADOS)----
 		txt_Dni.setEnabled(false);
 		txt_Rol.setEnabled(false);
-		txt_Cb.setEnabled(false);
 
 		//METODO PARA RELLENAR LOS CAMPOS CON LOS DATOS DEL USUARIO
 		rellenarCampos();
