@@ -3,6 +3,7 @@ package AdminFront;
 import javax.swing.*;
 import javax.swing.UIManager.*;
 
+import AdminBack.Ac_AdminScheExp;
 import AdminBack.Ac_MenuAdmin;
 
 public class V_AdminHome extends JFrame {
@@ -62,7 +63,7 @@ public class V_AdminHome extends JFrame {
 		mi[8].addActionListener(new Ac_MenuAdmin(this));
 		me[3].add(mi[8]);
 		mi[9] = new JMenuItem("Exportar PDF");
-		mi[9].addActionListener(new Ac_MenuAdmin(this));
+		mi[9].addActionListener(new Ac_AdminScheExp());
 		me[3].add(mi[9]);
 
 		me[4] = new JMenu("Newsletter");
