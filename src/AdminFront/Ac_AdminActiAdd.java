@@ -1,4 +1,5 @@
 package AdminFront;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -48,23 +49,33 @@ public class Ac_AdminActiAdd implements ActionListener{
 				JOptionPane.showMessageDialog(null,"El campo NOMBRE ACTIVIDAD no puede ser numerico.");
 				 vent.getTxtNombreactividad().setText("");
 				 vent.getTxtNombreactividad().requestFocus();
-			}
-			else
-			{
-			
-				String idclase = vent.getTxtIdclase().getText();
-				String nomAct = vent.getTxtNombreactividad().getText();
-				Object cbDni = vent.getCbDniprofesor().getSelectedItem();
-				Object cbAula = vent.getCbIdaula().getSelectedItem();
-				
+			} else
 				try {
-					c.alta(Main.con, "INSERT INTO Actividad (idActividad, nombre, dni, idAula) VALUES ("+idclase+",'"+nomAct+"', '"+cbDni+"', "+cbAula+")");
-					JOptionPane.showMessageDialog(null,"La actividad ha sido introducida correctamente.");
-				} catch (SQLException e) {
+					if(c.comprobarId(Main.con, vent.getTxtIdclase().getText().toString())==true)
+					{
+						JOptionPane.showMessageDialog(null,"El ID de esa actividad ya existe");
+						vent.getTxtIdclase().setText("");
+					}
+					else
+					{
+					
+						String idclase = vent.getTxtIdclase().getText();
+						String nomAct = vent.getTxtNombreactividad().getText();
+						Object cbDni = vent.getCbDniprofesor().getSelectedItem();
+						Object cbAula = vent.getCbIdaula().getSelectedItem();
+						
+						try {
+							c.alta(Main.con, "INSERT INTO Actividad (idActividad, nombre, dni, idAula) VALUES ("+idclase+",'"+nomAct+"', '"+cbDni+"', "+cbAula+")");
+							JOptionPane.showMessageDialog(null,"La actividad ha sido introducida correctamente.");
+						} catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+				} catch (HeadlessException | SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			}
 		}
 		
 	}
