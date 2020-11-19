@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -16,24 +17,27 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import AdminFront.V_AdminHome;
 import Login.V_Login;
 import main.Conexion;
 import main.Main;
 
 public class V_UserActiAdd extends JInternalFrame {
+	private V_AdminHome v1;
 	private JLabel lblTitulo,  lblDniuser, lblIdaula, lblverdniuser;
 	private JTextField txtIdclase, txtNombreactividad;
 	private JComboBox cbIdaula;
 	private JButton btnAñadir, btnCancelar;
 	private JPanel jpCentro, jpSur;
 	public V_Login vent;
-
+	private String DNI;
+	
 	
 
 	Conexion c = new Conexion();
 
-	public V_UserActiAdd() {
-
+	public V_UserActiAdd() throws SQLException {
+		
 		this.setTitle("Alta de Clases");
 		this.setSize(500, 500);
 		this.setLocation(20, 20);
@@ -48,11 +52,22 @@ public class V_UserActiAdd extends JInternalFrame {
 		// Parte central del borderlayout
 		jpCentro = new JPanel();
 		jpCentro.setLayout(new GridBagLayout());
+		
+		
+		try {
+			ResultSet rs = c.consulta(Main.con, "SELECT DNI FROM Persona WHERE DNI = " + v1.getDNI1());
+			while(rs.next()){
+				 DNI = rs.getString("DNI");
 
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
 		
 		lblDniuser = new JLabel("Tu DNI:");
-		lblverdniuser = new JLabel("AQUÍ VA SU DNI: ");
-
+		lblverdniuser = new JLabel();
+		lblverdniuser.setText("HOLA"+DNI);
 		
 
 		lblIdaula = new JLabel("SELECCIONA EL AULA:");
@@ -73,6 +88,9 @@ public class V_UserActiAdd extends JInternalFrame {
 			cbIdaula.addItem(lista.get(i));
 		}
 
+
+		
+		
 		GridBagConstraints c = new GridBagConstraints();
 		c.gridwidth = 1;
 		c.weightx = 1;
