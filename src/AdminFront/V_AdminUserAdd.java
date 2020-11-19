@@ -23,7 +23,7 @@ public class V_AdminUserAdd extends JInternalFrame {
  
 	public static String MINUSCULAS = "abcdefghijklmnopqrstuvwxyz";
  
-	public static String ESPECIALES = "Ò—";
+	public static String ESPECIALES = "Ò—@#$%&";
  
 	
 	public static String getPinNumber() {
