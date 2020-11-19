@@ -17,6 +17,91 @@ public class V_AdminUserAdd extends JInternalFrame {
 	private JFormattedTextField txtfecha;
 	private JButton AÒadir, Limpiar;
 	
+	public static String NUMEROS = "0123456789";
+	 
+	public static String MAYUSCULAS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+ 
+	public static String MINUSCULAS = "abcdefghijklmnopqrstuvwxyz";
+ 
+	public static String ESPECIALES = "Ò—@#$%&";
+ 
+	
+	public static String getPinNumber() {
+		return getPassword(NUMEROS, 4);
+	}
+ 
+	public static String getPassword() {
+		return getPassword(8);
+	}
+ 
+	public static String getPassword(int length) {
+		return getPassword(NUMEROS + MAYUSCULAS + MINUSCULAS, length);
+	}
+ 
+	public static String getPassword(String key, int length) {
+		String pswd = "";
+ 
+		for (int i = 0; i < length; i++) {
+			pswd+=(key.charAt((int)(Math.random() * key.length())));
+		}
+ 
+		return pswd;
+	}
+	
+	
+	public V_AdminUserAdd() {
+		CreateForm();
+	}
+
+	public V_AdminUserAdd(String name) { // AÒadir todos los datos necesarios
+		CreateForm();
+		FillFields();
+	}
+
+	private void CreateForm() {
+		this.setTitle("ALTA USUARIO");
+		this.setResizable(false);
+		this.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
+
+		JPanel Norte = new JPanel();
+		Norte.add(Titulo = new JLabel("ALTA USUARIO"));
+
+		JPanel Centro = new JPanel();
+		Centro.setLayout(new GridLayout(4, 4, 10, 10));
+		Centro.add(Nombre = new JLabel("Nombre"));
+		Centro.add(txtNombre = new JTextField());
+		Centro.add(Apellidos = new JLabel("Apellidos"));
+		Centro.add(txtApellidos = new JTextField());
+		Centro.add(Dni = new JLabel("DNI"));
+		Centro.add(txtDni = new JTextField());
+		Centro.add(CCC = new JLabel("CCC"));
+		Centro.add(txtCCC = new JTextField());
+		Centro.add(email = new JLabel("E-mail"));
+		Centro.add(txtemail = new JTextField());
+		txtfecha = new JFormattedTextField(new SimpleDateFormat("dd/MM/yyyy"));
+		txtfecha.setValue(new java.util.Date());
+		Centro.add(Fecha = new JLabel("Fecha"));
+		Centro.add(txtfecha);
+		Centro.add(ContraseÒa = new JLabel("ContraseÒa"));
+		Centro.add(txtContraseÒa = new JTextField());
+		Centro.add(Telefono = new JLabel("Telefono"));
+		Centro.add(txtTelefono = new JTextField());
+		txtContraseÒa.setEnabled(false);
+		txtContraseÒa.setText(getPassword());
+
+		JPanel Sur = new JPanel();
+		Sur.add(AÒadir = new JButton("AÒadir"));
+		AÒadir.addActionListener(new Ac_AdminUserAdd(this));
+		Sur.add(Limpiar = new JButton("Limpiar"));
+		Limpiar.addActionListener(new Ac_AdminUserAdd(this));
+
+		Container c = getContentPane();
+		c.add(Norte, BorderLayout.NORTH);
+		c.add(Centro, BorderLayout.CENTER);
+		c.add(Sur, BorderLayout.SOUTH);
+	}
+
+
 	public JTextField getTxtDni() {
 		return txtDni;
 	}
@@ -82,60 +167,6 @@ public class V_AdminUserAdd extends JInternalFrame {
 	public void setTxtfecha(JFormattedTextField txtfecha) {
 		this.txtfecha = txtfecha;
 	}
-
-	public V_AdminUserAdd() {
-		CreateForm();
-	}
-
-	public V_AdminUserAdd(String name) { // AÒadir todos los datos necesarios
-		CreateForm();
-		FillFields();
-	}
-
-	private void CreateForm() {
-		this.setTitle("ALTA USUARIO");
-		this.setResizable(false);
-		this.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
-
-		JPanel Norte = new JPanel();
-		Norte.add(Titulo = new JLabel("ALTA USUARIO"));
-
-		JPanel Centro = new JPanel();
-		Centro.setLayout(new GridLayout(4, 4, 10, 10));
-		Centro.add(Nombre = new JLabel("Nombre"));
-		Centro.add(txtNombre = new JTextField());
-		Centro.add(Apellidos = new JLabel("Apellidos"));
-		Centro.add(txtApellidos = new JTextField());
-		Centro.add(Dni = new JLabel("DNI"));
-		Centro.add(txtDni = new JTextField());
-		Centro.add(CCC = new JLabel("CCC"));
-		Centro.add(txtCCC = new JTextField());
-		Centro.add(email = new JLabel("E-mail"));
-		Centro.add(txtemail = new JTextField());
-		txtfecha = new JFormattedTextField(new SimpleDateFormat("dd/MM/yyyy"));
-		txtfecha.setValue(new java.util.Date());
-		Centro.add(Fecha = new JLabel("Fecha"));
-		Centro.add(txtfecha);
-		Centro.add(ContraseÒa = new JLabel("ContraseÒa"));
-		Centro.add(txtContraseÒa = new JTextField());
-		Centro.add(Telefono = new JLabel("Telefono"));
-		Centro.add(txtTelefono = new JTextField());
-		txtContraseÒa.setEnabled(true);
-
-		JPanel Sur = new JPanel();
-		Sur.add(AÒadir = new JButton("AÒadir"));
-		AÒadir.addActionListener(new Ac_AdminUserAdd(this));
-		Sur.add(Limpiar = new JButton("Limpiar"));
-		Limpiar.addActionListener(new Ac_AdminUserAdd(this));
-
-		Container c = getContentPane();
-		c.add(Norte, BorderLayout.NORTH);
-		c.add(Centro, BorderLayout.CENTER);
-		c.add(Sur, BorderLayout.SOUTH);
-	}
-
-
-	
 
 	private void FillFields() {
 		// Metodo para rellenar los campos con la informaciÛn de la BD
