@@ -6,7 +6,10 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -59,7 +62,7 @@ public class V_Login extends JFrame {
 		btn.addActionListener(new Ac_Login(this));
 		ch = new JCheckBox("Recordar DNI");
 		ch.setHorizontalAlignment(JLabel.CENTER);
-
+		trycache();
 		pn[0].add(lbl[0]);
 		pn[0].add(txt[0]);
 		pn[0].add(lbl[1]);
@@ -67,15 +70,35 @@ public class V_Login extends JFrame {
 		pn[1].add(ch, BorderLayout.NORTH);
 		pn[1].add(btn, BorderLayout.CENTER);
 		pn[1].add(lbl[2], BorderLayout.SOUTH);
-
+		
 		this.getContentPane().add(pn[2], BorderLayout.NORTH);
 		this.getContentPane().add(pn[0], BorderLayout.CENTER);
 		this.getContentPane().add(pn[1], BorderLayout.SOUTH);
-
+		
 		this.setVisible(true);
 	}
 
 	public JTextField[] gettxt() {
 		return txt;
 	}
+	private void trycache() throws IOException {
+		File f = new File ("cache.txt");
+		if(f.exists()){	
+			FileReader fr= new FileReader (f);
+			BufferedReader BRF = new BufferedReader (fr);
+			String linea;
+			linea=BRF.readLine();
+			while (linea!=null) {
+				txt[0].setText(linea);
+				ch.setSelected(true);
+				linea=BRF.readLine();
+			}
+			BRF.close();
+			fr.close();
+		} 
+	}
+	public JCheckBox getch() {
+		return ch;
+	}
+	
 }

@@ -1,7 +1,12 @@
 package Login;
 
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -28,22 +33,31 @@ public class Ac_Login implements ActionListener {
 				ResultSet rs = c.consulta(Main.con, "SELECT * FROM Persona");
 				while (rs.next() && enc == false) {
 					if (vent.gettxt()[0].getText().equals(rs.getString("DNI"))) {
-						String DNI = rs.getString("DNI");
 						if (vent.gettxt()[1].getText().equals(rs.getString("pass"))) {
 							enc = true;
 							switch (rs.getString("rol")) {
 							case "admin":
-								V_AdminHome vAdHome = new V_AdminHome(DNI);
+								V_AdminHome vAdHome = new V_AdminHome(vent.gettxt()[0].getText());
 								vent.dispose();
 								break;
 							case "user":
-								V_UserHome vUsHome = new V_UserHome(DNI);
+								V_UserHome vUsHome = new V_UserHome(vent.gettxt()[0].getText());
 								vent.dispose();
 								break;
 							case "empl":
-								V_EmplHome vEmHome = new V_EmplHome(DNI);
+								V_EmplHome vEmHome = new V_EmplHome(vent.gettxt()[0].getText());
 								vent.dispose();
 								break;
+							}
+							try {
+								if(vent.getch().isSelected()) {
+									inputcache();								
+								}else {
+									delcache();
+								}
+							} catch (Exception e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
 							}
 						}
 					}
@@ -54,9 +68,24 @@ public class Ac_Login implements ActionListener {
 
 			} catch (SQLException e) {
 				e.printStackTrace();
+			} catch (HeadlessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 
+	}
+	public void inputcache() throws IOException {
+		File f = new File ("cache.txt");
+		FileWriter fw = new FileWriter (f, true);
+		PrintWriter fp = new PrintWriter (fw);
+		fp.println(vent.gettxt()[0].getText());
+		fp.close();
+		fw.close();
+	}
+	public void delcache() {
+		File f = new File ("cache.txt");
+		f.delete();
 	}
 
 }

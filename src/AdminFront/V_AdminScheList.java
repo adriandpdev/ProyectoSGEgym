@@ -15,7 +15,7 @@ import main.Main;
 public class V_AdminScheList extends JInternalFrame {
 	JPanel pnhorario;
 	JLabel jlvisualizarhorario;
-	JTable jttabla;
+	JTable table;
 	String[] diasemana = { "HORA", "LUNES", "MARTES", "MIERCOLES", "JUEVES", "VIERNES", "SABADO", "DOMINGO" };
 	String[] horas = { "8:00", "9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00",
 			"19:00", "20:00", "21:00", "22:00" };
@@ -62,7 +62,7 @@ public class V_AdminScheList extends JInternalFrame {
 			}
 		}
 
-		JTable table = new JTable(actividades, diasemana) {
+	 table = new JTable(actividades, diasemana) {
 			public boolean editCellAt(int row, int colum, java.util.EventObject e) {
 				return false;
 			}
@@ -84,6 +84,14 @@ public class V_AdminScheList extends JInternalFrame {
 
 		getContentPane().add(pnhorario, BorderLayout.CENTER);
 
+	}
+
+	public JTable getTable() {
+		return table;
+	}
+
+	public void setTable(JTable table) {
+		this.table = table;
 	}
 
 }
