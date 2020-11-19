@@ -19,6 +19,38 @@ public class V_AdminEmplAdd extends JInternalFrame {
 	private JFormattedTextField txtfecha;
 	private JButton AÒadir, Limpiar;
 	private JDateChooser date;
+	
+	public static String NUMEROS = "0123456789";
+	 
+	public static String MAYUSCULAS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+ 
+	public static String MINUSCULAS = "abcdefghijklmnopqrstuvwxyz";
+ 
+	public static String ESPECIALES = "Ò—";
+ 
+
+	public static String getPinNumber() {
+		return getPassword(NUMEROS, 4);
+	}
+ 
+	public static String getPassword() {
+		return getPassword(8);
+	}
+ 
+	public static String getPassword(int length) {
+		return getPassword(NUMEROS + MAYUSCULAS + MINUSCULAS, length);
+	}
+ 
+	public static String getPassword(String key, int length) {
+		String pswd = "";
+ 
+		for (int i = 0; i < length; i++) {
+			pswd+=(key.charAt((int)(Math.random() * key.length())));
+		}
+ 
+		return pswd;
+	}
+
 	public V_AdminEmplAdd() {
 		CreateForm();
 	}
@@ -57,7 +89,8 @@ public class V_AdminEmplAdd extends JInternalFrame {
 		Centro.add(txtContraseÒa = new JTextField());
 		Centro.add(Telefono = new JLabel("Telefono"));
 		Centro.add(txtTelefono = new JTextField());
-		txtContraseÒa.setEnabled(true);
+		txtContraseÒa.setEnabled(false);
+		txtContraseÒa.setText(getPassword());
 		JPanel Sur = new JPanel();
 		Sur.add(AÒadir = new JButton("AÒadir"));
 		AÒadir.addActionListener(new Ac_AdminEmplAdd(this));
