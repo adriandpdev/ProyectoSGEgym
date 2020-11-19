@@ -7,11 +7,11 @@ import java.util.Date;
 
 
 
-import com.itextpdf.kernel.pdf.PdfWriter;
+/*import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
 
-import sun.font.FontFamily;
+import sun.font.FontFamily;*/
 
 public class Ac_AdminScheExp {
 
@@ -22,7 +22,7 @@ public class Ac_AdminScheExp {
     private static Font smallBold = new Font("Times New Roman", 12, Font.BOLD);
 
     public static void main(String[] args) {
-        try {
+      /*  try {
             Document document = new Document();
             PdfWriter.getInstance(document, new FileOutputStream(FILE));
             document.open();
@@ -163,6 +163,6 @@ public class Ac_AdminScheExp {
     private static void addEmptyLine(Paragraph paragraph, int number) {
         for (int i = 0; i < number; i++) {
             paragraph.add(new Paragraph(" "));
-        }
+        }*/
     }
 }

@@ -55,5 +55,23 @@ public class Conexion {
 		return lista;
 	}
 	
+	public boolean comprobarId(Connection con, String id) throws SQLException
+	{
+		boolean flag = false;
+			
+		Statement stm = con.createStatement();
+		ResultSet rs = stm.executeQuery("SELECT idActividad FROM Actividad");
+		
+		while(rs.next())
+		{
+			if(rs.getString("idActividad").equals(id))
+			{
+				flag = true;
+			}
+		}
+		
+		return flag;
+	}
+	
 
 }
