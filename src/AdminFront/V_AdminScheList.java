@@ -28,7 +28,7 @@ public class V_AdminScheList extends JInternalFrame {
 		// TODO Auto-generated constructor stub
 		setLayout(new BorderLayout());
 		pnhorario = new JPanel();
-		setTitle("Visualizar Horario");
+		setTitle("Visualizar Horario"); 
 		
 		jlvisualizarhorario = new JLabel("HORARIO DE CLASES",SwingConstants.CENTER);
 		jlvisualizarhorario.setFont(new Font("Verdana", Font.BOLD, 20));
@@ -78,7 +78,7 @@ public class V_AdminScheList extends JInternalFrame {
 
 		scroll = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scroll.setPreferredSize(new Dimension(750,450));
-		pnhorario.add(scroll);
+			pnhorario.add(scroll);
 
 		getContentPane().add(jlvisualizarhorario, BorderLayout.NORTH);
 
