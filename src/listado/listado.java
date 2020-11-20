@@ -2,7 +2,6 @@ package listado;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.ScrollPane;
 import java.awt.event.MouseEvent;
@@ -14,6 +13,7 @@ import java.util.ArrayList;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -21,9 +21,10 @@ import javax.swing.border.BevelBorder;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableModel;
 
-import main.*;
 
-public class listado extends JInternalFrame{
+//Implementamos un mouse listener porque queremos capturar las acciones que realice el ratón
+
+public class listado extends JInternalFrame implements MouseListener{
 	
 	/**
 	 * 
@@ -38,7 +39,7 @@ public class listado extends JInternalFrame{
 	
 	private int filasTabla, columnasTabla;
 	
-	private Conexion cp;
+	private Conexion_pruebas cp;
 	private Connection conn;
 	private ResultSet rs;
 	private ModeloTabla modelo;
@@ -65,9 +66,6 @@ public class listado extends JInternalFrame{
 		lbl_titulo.setFont(new Font("Verdana",Font.BOLD,22));
 		lbl_titulo.setForeground(Color.WHITE);
 		
-		panel_central.setLayout(new FlowLayout());
-		panel_central.setBackground(Color.BLACK);
-		
 		panel_central.setLayout(new BorderLayout());
 		
 		//JTable
@@ -75,25 +73,25 @@ public class listado extends JInternalFrame{
 		scp = new JScrollPane();
 		
 		tablaPersonas = new JTable();
-		tablaPersonas.setBackground(Color.WHITE);
-		//tablaPersonas.addMouseListener(this);
+		
+		tablaPersonas.addMouseListener(this);
 		//tablaSeguimiento.addKeyListener(this);
-		tablaPersonas.setOpaque(false);
-		scp.setViewportView(tablaPersonas);
-		
+	
 		construirTabla();
-		
 		
 		panel_central.add(panel_norte_busqueda, BorderLayout.NORTH);
 		panel_central.add(scp, BorderLayout.CENTER);
 		panel_norte.add(lbl_titulo);
 		
+		//Con esto eliminamos los bordes y la barra de títulos superior
 		((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null);
 		this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+		
 		this.getContentPane().add(panel_norte, BorderLayout.NORTH);
 		this.getContentPane().add(panel_central, BorderLayout.CENTER);
 		this.getContentPane().add(panel_sur, BorderLayout.SOUTH);
 		this.setResizable(false);
+		
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		
@@ -106,9 +104,17 @@ public class listado extends JInternalFrame{
 		
 		String sql = "SELECT * FROM persona";
 		
+		cp = new Conexion_pruebas();
+		
 		
 		try {
-			rs = cp.consulta(Main.con, sql);
+			conn = cp.conectar();
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			rs = cp.consulta(conn, sql);
 			
 			while(rs.next()){
 	             Persona per = new Persona();
@@ -122,12 +128,7 @@ public class listado extends JInternalFrame{
 	             per.setCorreo(rs.getString(8));
 	             per.setRol(rs.getString(9));
 	             lista.add(per);
-	             
-	             //Comprobaciones BORRAR DESPUES
-	             System.out.println(rs.getString(1));
-	             String cad = per.getNombre();
-	             System.out.println(cad);
-	             
+	             //System.out.println(rs.getString(1));
 	         }
 			
 			
@@ -135,6 +136,9 @@ public class listado extends JInternalFrame{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		 
+		
 		
 		return lista;
 	}
@@ -147,6 +151,8 @@ public class listado extends JInternalFrame{
 		
 		ArrayList<String> titulosList=new ArrayList<>();
 		
+		//Estos son los encabezados de las columnas
+		
 		titulosList.add("DNI");
 		titulosList.add("NOMBRE");
 		titulosList.add("APELLIDO");
@@ -156,7 +162,7 @@ public class listado extends JInternalFrame{
 		titulosList.add("TELEFONO");
 		titulosList.add("CORREO ELECTRONICO");
 		titulosList.add("ROL");
-		titulosList.add("Modificar"); //Estos serán los huecos para los botones
+		titulosList.add("Modificar");
 		titulosList.add("Eliminar"); 
 				
 		//se asignan los títulos de las columnas para enviarlas al constructor de la tabla
@@ -187,6 +193,8 @@ public class listado extends JInternalFrame{
 			informacion[i][Indicadores.TELEFONO] = listaPersonas.get(i).getTelefono()+ "";
 			informacion[i][Indicadores.CORREO] = listaPersonas.get(i).getCorreo()+ "";
 			informacion[i][Indicadores.ROL] = listaPersonas.get(i).getRol()+ "";
+			informacion[i][Indicadores.MODIFICAR] = "modificar";
+			informacion[i][Indicadores.ELIMINAR] = "eliminar";
 			
 		}
 		
@@ -203,25 +211,27 @@ public class listado extends JInternalFrame{
 		columnasTabla = tablaPersonas.getColumnCount();
 		
 		for (int i = 0; i < titulos.length; i++) {
-			tablaPersonas.getColumnModel().getColumn(i).setCellRenderer(new Celdas());	
+			tablaPersonas.getColumnModel().getColumn(i).setCellRenderer(new Celdas("campo"));	
 		}
+		tablaPersonas.getColumnModel().getColumn(Indicadores.MODIFICAR).setCellRenderer(new Celdas("boton"));
+		tablaPersonas.getColumnModel().getColumn(Indicadores.ELIMINAR).setCellRenderer(new Celdas("boton"));
 		
 		
 		tablaPersonas.getTableHeader().setReorderingAllowed(false);
 		tablaPersonas.setRowHeight(25);//tamaño de las celdas
 		
 		//Se define el tamaño de largo para cada columna y su contenido
-		tablaPersonas.getColumnModel().getColumn(Indicadores.DNI).setCellRenderer(new Celdas());//dni
-		tablaPersonas.getColumnModel().getColumn(Indicadores.NOMBRE).setCellRenderer(new Celdas());//nombre
-		tablaPersonas.getColumnModel().getColumn(Indicadores.APELLIDO).setCellRenderer(new Celdas());//apellido
-		tablaPersonas.getColumnModel().getColumn(Indicadores.CUENTABANC).setCellRenderer(new Celdas());//cuenta bancaria
-		tablaPersonas.getColumnModel().getColumn(Indicadores.PASS).setCellRenderer(new Celdas());//password
-		tablaPersonas.getColumnModel().getColumn(Indicadores.FECHANAC).setCellRenderer(new Celdas());//fecha de nacimiento
-		tablaPersonas.getColumnModel().getColumn(Indicadores.TELEFONO).setCellRenderer(new Celdas());//telefono
-		tablaPersonas.getColumnModel().getColumn(Indicadores.CORREO).setCellRenderer(new Celdas());//correo electrónico
-		tablaPersonas.getColumnModel().getColumn(Indicadores.ROL).setCellRenderer(new Celdas());//rol
-		tablaPersonas.getColumnModel().getColumn(Indicadores.MODIFICAR).setPreferredWidth(20);//boton modificar
-		tablaPersonas.getColumnModel().getColumn(Indicadores.ELIMINAR).setPreferredWidth(20);//boton eliminar
+		tablaPersonas.getColumnModel().getColumn(Indicadores.DNI).setCellRenderer(new Celdas("campo"));//dni
+		tablaPersonas.getColumnModel().getColumn(Indicadores.NOMBRE).setCellRenderer(new Celdas("campo"));//nombre
+		tablaPersonas.getColumnModel().getColumn(Indicadores.APELLIDO).setCellRenderer(new Celdas("campo"));//apellido
+		tablaPersonas.getColumnModel().getColumn(Indicadores.CUENTABANC).setCellRenderer(new Celdas("campo"));//cuenta bancaria
+		tablaPersonas.getColumnModel().getColumn(Indicadores.PASS).setCellRenderer(new Celdas("campo"));//password
+		tablaPersonas.getColumnModel().getColumn(Indicadores.FECHANAC).setCellRenderer(new Celdas("campo"));//fecha de nacimiento
+		tablaPersonas.getColumnModel().getColumn(Indicadores.TELEFONO).setCellRenderer(new Celdas("campo"));//telefono
+		tablaPersonas.getColumnModel().getColumn(Indicadores.CORREO).setCellRenderer(new Celdas("campo"));//correo electrónico
+		tablaPersonas.getColumnModel().getColumn(Indicadores.ROL).setCellRenderer(new Celdas("campo"));//rol
+		tablaPersonas.getColumnModel().getColumn(Indicadores.MODIFICAR).setCellRenderer(new Celdas("boton"));//boton modificar
+		tablaPersonas.getColumnModel().getColumn(Indicadores.ELIMINAR).setCellRenderer(new Celdas("boton"));//boton eliminar
 		
 		//personaliza el encabezado
 		JTableHeader jtableHeader = tablaPersonas.getTableHeader();
@@ -231,6 +241,50 @@ public class listado extends JInternalFrame{
 	    scp.setViewportView(tablaPersonas);
 
 
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		//Aqui nos dice que fila es en la que está clickando
+		int fila = tablaPersonas.rowAtPoint(e.getPoint());
+		//Aqui nos dice que columna es en la que está clickando
+		int columna = tablaPersonas.columnAtPoint(e.getPoint());
+		
+		if (columna == Indicadores.MODIFICAR) {
+		//Lanzamos la ventana de modificacion
+			System.out.println("pulsado modificar");
+		} else if (columna == Indicadores.ELIMINAR) {
+			System.out.println("pulsado eliminar");
+			int reply = JOptionPane.showConfirmDialog(tablaPersonas, "¿Esta seguro de que quiere borrar el registro?", "Eliminar",JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
+			if(reply == JOptionPane.YES_OPTION) {
+				JOptionPane.showMessageDialog(tablaPersonas, "Registro eliminado");
+			}
+		}
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
