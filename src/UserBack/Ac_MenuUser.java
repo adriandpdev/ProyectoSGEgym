@@ -3,7 +3,9 @@ package UserBack;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.sql.SQLException;
 
+import AdminFront.V_AdminScheList;
 import Login.*;
 import UserFront.*;
 
@@ -18,9 +20,16 @@ public class Ac_MenuUser implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		cerrarventanas();
 		if (arg0.getActionCommand().equals("Ver Horario")) {
-			V_UserScheList vUsScList = new V_UserScheList();
-			vent.add(vUsScList);
-			vUsScList.setVisible(true);
+			V_AdminScheList vUsScList;
+			try {
+				vUsScList = new V_AdminScheList();
+				vent.add(vUsScList);
+				vUsScList.setVisible(true);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		} else if (arg0.getActionCommand().equals("asdasd")) {
 			// V_AdminUserList vAdUsList = new V_AdminUserList();
 			// vent.add(vUsScList);
