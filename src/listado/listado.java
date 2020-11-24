@@ -21,8 +21,6 @@ import javax.swing.border.BevelBorder;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableModel;
 
-import main.Conexion;
-
 
 //Implementamos un mouse listener porque queremos capturar las acciones que realice el ratón
 
@@ -41,7 +39,7 @@ public class listado extends JInternalFrame implements MouseListener{
 	
 	private int filasTabla, columnasTabla;
 	
-	private Conexion cp;
+	private Conexion_pruebas cp;
 	private Connection conn;
 	private ResultSet rs;
 	private ModeloTabla modelo;
@@ -106,7 +104,7 @@ public class listado extends JInternalFrame implements MouseListener{
 		
 		String sql = "SELECT * FROM persona";
 		
-		cp = new Conexion();
+		cp = new Conexion_pruebas();
 		
 		
 		try {
@@ -133,16 +131,16 @@ public class listado extends JInternalFrame implements MouseListener{
 	             //System.out.println(rs.getString(1));
 	         }
 			
+			conn.close();
+			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		 
-		
-		
 		return lista;
+		
 	}
 	
 	//Metodo para contruir la tabla
@@ -253,14 +251,36 @@ public class listado extends JInternalFrame implements MouseListener{
 		//Aqui nos dice que columna es en la que está clickando
 		int columna = tablaPersonas.columnAtPoint(e.getPoint());
 		
+		
 		if (columna == Indicadores.MODIFICAR) {
 		//Lanzamos la ventana de modificacion
-			System.out.println("pulsado modificar");
+			int row = tablaPersonas.getSelectedRow();
+			
+			String pm_dni = tablaPersonas.getValueAt(row, 0).toString();
+			String pm_nombre = tablaPersonas.getValueAt(row, 1).toString();
+			String pm_apellido = tablaPersonas.getValueAt(row, 2).toString();
+			String pm_cuentabanc = tablaPersonas.getValueAt(row, 3).toString();
+			String pm_pass = tablaPersonas.getValueAt(row, 4).toString();
+			String pm_fechanac = tablaPersonas.getValueAt(row, 5).toString();
+			System.out.println(pm_fechanac);
+			String pm_telefono = tablaPersonas.getValueAt(row, 6).toString();
+			String pm_correo = tablaPersonas.getValueAt(row, 7).toString();
+			String pm_rol = tablaPersonas.getValueAt(row, 8).toString();
+			
+			//Abrimos el panel para hacer las modificaciones sobrecargando su constructor
+			PanelModificacion pamo = new PanelModificacion(pm_dni, pm_nombre, pm_apellido, pm_cuentabanc, pm_pass, pm_fechanac, pm_telefono, pm_correo, pm_rol);
+			
 		} else if (columna == Indicadores.ELIMINAR) {
 			System.out.println("pulsado eliminar");
 			int reply = JOptionPane.showConfirmDialog(tablaPersonas, "¿Esta seguro de que quiere borrar el registro?", "Eliminar",JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
+			
 			if(reply == JOptionPane.YES_OPTION) {
+				//Elimina el registro de la BBDD
+				EliminarRegistro(tablaPersonas.getValueAt(tablaPersonas.getSelectedRow(), 0).toString());
+				
 				JOptionPane.showMessageDialog(tablaPersonas, "Registro eliminado");
+				//Vuelvo a construir la tabla para reflejar los cambios
+				construirTabla();
 			}
 		}
 	}
@@ -288,7 +308,24 @@ public class listado extends JInternalFrame implements MouseListener{
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	public void EliminarRegistro(String dni_borrar) {
+		
+		System.out.println(dni_borrar);
+		
+		String sql_borrar = "DELETE from persona WHERE dni='"+dni_borrar+"'";
+				
+		cp = new Conexion_pruebas();
+		
+		try {
+			conn = cp.conectar();
+			cp.eliminar(conn, sql_borrar);
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+	}
+	
 }
 
 

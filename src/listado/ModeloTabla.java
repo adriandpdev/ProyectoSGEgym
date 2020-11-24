@@ -1,4 +1,5 @@
 package listado;
+import javax.swing.*;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -23,7 +24,13 @@ public class ModeloTabla extends DefaultTableModel{
 		}
 	
 	public ModeloTabla() {
-		
+		// TODO Auto-generated constructor stub
 	}
 
+	//Esta funcion evita que las celdas se puedan editar
+	public boolean isCellEditable (int row, int column) {
+		
+	return false; 
+	       
+	}
 }

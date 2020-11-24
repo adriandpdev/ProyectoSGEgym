@@ -11,8 +11,9 @@ public class Indicadores {
 	public static final int TELEFONO=6;
 	public static final int CORREO=7;
 	public static final int ROL=8;
-
 	public static final int MODIFICAR=9;
 	public static final int ELIMINAR=10;
+	
+	public static int filaSeleccionada;
 
 }
