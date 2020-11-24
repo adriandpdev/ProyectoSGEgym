@@ -3,6 +3,7 @@ package EmplBack;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.sql.SQLException;
 
 import EmplFront.*;
 import Login.*;
@@ -19,9 +20,15 @@ public class Ac_MenuEmple implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		cerrarventanas();
 		if (arg0.getActionCommand().equals("Mis clases")) {
-			V_EmplActiList vEmAcList = new V_EmplActiList();
-			vent.add(vEmAcList);
-			vEmAcList.setVisible(true);
+			V_EmplActiList vEmAcList;
+			try {
+				vEmAcList = new V_EmplActiList(vent);
+				vent.add(vEmAcList);
+				vEmAcList.setVisible(true);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} else if (arg0.getActionCommand().equals("Ver horario")) {
 			V_EmplScheList vEmScList = new V_EmplScheList();
 			vent.add(vEmScList);
