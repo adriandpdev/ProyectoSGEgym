@@ -19,7 +19,7 @@ public class V_AdminScheList extends JInternalFrame {
 	String[] diasemana = { "HORA", "LUNES", "MARTES", "MIERCOLES", "JUEVES", "VIERNES", "SABADO", "DOMINGO" };
 	String[] horas = { "8:00", "9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00",
 			"19:00", "20:00", "21:00", "22:00" };
-	String[][] datosatratar = new String[6][3];
+	String[][] datosatratar;
 	String[][] actividades = new String[horas.length][diasemana.length];
 	Conexion c = new Conexion();
 	String resultado = "";
@@ -33,6 +33,14 @@ public class V_AdminScheList extends JInternalFrame {
 		setTitle("Visualizar Horario");
 		jlvisualizarhorario = new JLabel("HORARIO DE CLASES", SwingConstants.CENTER);
 		jlvisualizarhorario.setFont(new Font("Verdana", Font.BOLD, 20));
+		int cantidadfilas=0;
+		String query1="select count(*) as cuenta from Horario";
+		ResultSet r1= c.consulta(Main.con,query1);
+			if(r1.next())
+			{
+				cantidadfilas=r1.getInt("cuenta");
+			}
+			datosatratar = new String[cantidadfilas][3];
 		int cont = 0;
 		String query = "select diasemana," + " hora,"
 				+ " (SELECT nombre from Actividad where IdActividad = h.IdActividad) as nombre" + " from Horario h";
@@ -43,6 +51,7 @@ public class V_AdminScheList extends JInternalFrame {
 			datosatratar[cont][2] = r.getString("nombre");
 			cont += 1;
 		}
+		
 		for (int i = 0; i < horas.length; i++) {
 			for (int j = 0; j < diasemana.length; j++) {
 				if (j == 0) {
