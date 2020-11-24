@@ -21,6 +21,8 @@ import javax.swing.border.BevelBorder;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableModel;
 
+import main.Conexion;
+
 
 //Implementamos un mouse listener porque queremos capturar las acciones que realice el ratón
 
@@ -39,7 +41,7 @@ public class listado extends JInternalFrame implements MouseListener{
 	
 	private int filasTabla, columnasTabla;
 	
-	private Conexion_pruebas cp;
+	private Conexion cp;
 	private Connection conn;
 	private ResultSet rs;
 	private ModeloTabla modelo;
@@ -104,7 +106,7 @@ public class listado extends JInternalFrame implements MouseListener{
 		
 		String sql = "SELECT * FROM persona";
 		
-		cp = new Conexion_pruebas();
+		cp = new Conexion();
 		
 		
 		try {

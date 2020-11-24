@@ -14,7 +14,6 @@ import java.util.Date;
 import java.io.FileOutputStream;
 import java.util.Date;
 
-<<<<<<< HEAD
 /*import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
@@ -210,11 +209,4 @@ public class Ac_AdminScheExp implements ActionListener{
         for (int i = 0; i < number; i++) {
             paragraph.add(new Paragraph(" "));
         }*/
-    }
-<<<<<<< HEAD
-=======
-
- 
-
->>>>>>> f85183482447e9a06928757896e7ee45244ae6b2
-}
+    }}
