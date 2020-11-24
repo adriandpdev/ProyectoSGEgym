@@ -1,21 +1,17 @@
 package AdminFront;
 
 import java.awt.BorderLayout;
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.SimpleDateFormat;
-import java.util.Properties;
-
-import javax.mail.*;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import javax.mail.Session;
-
-
 import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -24,14 +20,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-
-
 import AdminBack.Ac_AdminUserAdd;
 
 
 public class V_AdminWarn extends JInternalFrame {
-
-	
 	 private JTextField txtdestinatario,txtasunto;
 	 private JTextArea mensaje;
 	 private JButton btnenviar;
@@ -71,34 +63,33 @@ public class V_AdminWarn extends JInternalFrame {
 			  
 			   public void actionPerformed(ActionEvent e) {
 			    if(!txtdestinatario.getText().equalsIgnoreCase("") && !txtdestinatario.getText().equalsIgnoreCase(" ")){
-			     Properties props = new Properties();
-			     props.put("mail.smtp.user", usuario);
-			     props.put("mail.smtp.host", servidorSMTP);
-			     props.put("mail.smtp.port", puertoEnvio);
-			     props.put("mail.smtp.starttls.enable", "true");
-			     props.put("mail.smtp.auth", "true");
-			     props.put("mail.smtp.socketFactory.port", puertoEnvio);
-			     props.put("mail.smtp.socketFactory.class","javax.net.ssl.SSLSocketFactory");
-			     props.put("mail.smtp.socketFactory.fallback", "false");
-
-
-			     try {
-			      Authenticator auth = new autentificadorSMTP(usuario,clave);
-			      Session session = Session.getInstance(props, auth);
-			      MimeMessage msg = new MimeMessage(session);
-			      msg.setText(mensaje.getText());
-			      msg.setSubject(txtasunto.getText());
-			      msg.setFrom(new InternetAddress(usuario));
-			      msg.addRecipient(Message.RecipientType.TO, new InternetAddress(txtdestinatario.getText()));
-			      Transport.send(msg);
-			     } catch (Exception mex) {
-			      JOptionPane.showMessageDialog(null, "Error, El mensaje no se ha podido enviar.");
-			     }
+			    	try {
+				    	Properties props = new Properties();
+				    	props.put("mail.smtp.host", servidorSMTP);  //El servidor SMTP de Google
+						props.put("mail.smtp.user", usuario);		//Usuario que envia
+						props.put("mail.smtp.clave", clave);    //La clave de la cuenta
+						props.put("mail.smtp.auth", "true");    //Usar autenticación mediante usuario y clave
+						props.put("mail.smtp.starttls.enable", "true"); //Para conectar de manera segura al servidor SMTP
+						props.put("mail.smtp.port", 587);
+						
+						Session mailSession = Session.getInstance(props,null);
+						
+						Message msg = new MimeMessage(mailSession);
+						msg.setFrom(new InternetAddress(usuario));
+						msg.addRecipients(Message.RecipientType.TO, new InternetAddress[] { new InternetAddress(txtdestinatario.getText().toString()) });
+						msg.setSubject(txtasunto.getText().toString());
+						msg.setText(mensaje.getText().toString());
+						
+					    Transport transport = mailSession.getTransport("smtp");
+					    transport.connect("smtp.gmail.com", usuario, clave);
+					    transport.sendMessage(msg, msg.getAllRecipients());
+					    transport.close();
+					    
+					}catch (Exception e2) {JOptionPane.showMessageDialog(null, "Error, El mensaje no se ha podido enviar.");} 
 			    }else{
-			     JOptionPane.showMessageDialog(null, "Error, se debe llenar el campo destinatario.");
+			     JOptionPane.showMessageDialog(null, "Error, se debe llenar el campo destinatario.");}
 			    }
-			    }
-			   
+
 			  });
 		  
 			Container c = getContentPane();
