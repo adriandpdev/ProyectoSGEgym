@@ -39,7 +39,7 @@ public class listado extends JInternalFrame implements MouseListener{
 	
 	private int filasTabla, columnasTabla;
 	
-	private Conexion_pruebas cp;
+	private Conexion cp;
 	private Connection conn;
 	private ResultSet rs;
 	private ModeloTabla modelo;
@@ -104,7 +104,7 @@ public class listado extends JInternalFrame implements MouseListener{
 		
 		String sql = "SELECT * FROM persona";
 		
-		cp = new Conexion_pruebas();
+		cp = new Conexion();
 		
 		
 		try {
@@ -315,7 +315,7 @@ public class listado extends JInternalFrame implements MouseListener{
 		
 		String sql_borrar = "DELETE from persona WHERE dni='"+dni_borrar+"'";
 				
-		cp = new Conexion_pruebas();
+		cp = new Conexion();
 		
 		try {
 			conn = cp.conectar();
