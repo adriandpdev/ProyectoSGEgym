@@ -209,7 +209,7 @@ public class PanelModificacion extends JFrame{
 		
 		int res = 0;
 		
-		cp = new Conexion_pruebas();
+		cp = new Conexion();
 		
 		
 		try {
