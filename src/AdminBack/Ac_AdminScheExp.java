@@ -36,8 +36,8 @@ import java.util.Date;
 
 
 public class Ac_AdminScheExp implements ActionListener{
-
-	private static String FILE = "c:/users/dam203/desktop/Intento3.pdf";
+	
+	private static String FILE = "./horario.pdf";
     private static com.itextpdf.text.Font catFont = FontFactory.getFont(FontFactory.TIMES_ROMAN, 12);
     private static com.itextpdf.text.Font redFont =FontFactory.getFont(FontFactory.TIMES_ROMAN, 12, BaseColor.RED);
     private static com.itextpdf.text.Font subFont = FontFactory.getFont(FontFactory.TIMES_ROMAN, 16);
@@ -101,7 +101,7 @@ public class Ac_AdminScheExp implements ActionListener{
 
         
 
-        /*for (int i = 0; i < v.getDiasemana().length; i++) {
+        for (int i = 0; i < v.getDiasemana().length; i++) {
         	Phrase p=new Phrase(v.getDiasemana()[i]);
         	p.setFont(smallBold);
 			PdfPCell c= new PdfPCell(p);
@@ -109,17 +109,17 @@ public class Ac_AdminScheExp implements ActionListener{
 			
 			t.addCell(c);
 		}
-        */
+        
         
         t.setHeaderRows(1);
 
-        /*for (int i = 0; i < v.getActividades().length; i++) {
+        for (int i = 0; i < v.getActividades().length; i++) {
 			for (int j = 0; j < v.getActividades()[i].length; j++) {
 				PdfPCell c= new PdfPCell(new Phrase(v.getActividades()[i][j]));
 				c.setHorizontalAlignment(Element.ALIGN_CENTER);
 				t.addCell(c);
 			}
-		}*/
+		}
 
         CatPart.add(t);
 
