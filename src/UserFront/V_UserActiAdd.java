@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -13,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -23,25 +26,23 @@ import main.Conexion;
 import main.Main;
 
 public class V_UserActiAdd extends JInternalFrame {
-	private V_AdminHome v1;
-	private JLabel lblTitulo,  lblDniuser, lblIdaula, lblverdniuser;
+	private V_UserHome v1;
+	private JLabel lblTitulo, lblDniuser, lblIdaula, lblverdniuser, lblhora, lbldiasemana;
 	private JTextField txtIdclase, txtNombreactividad;
 	private JComboBox cbIdaula;
 	private JButton btnAñadir, btnCancelar;
 	private JPanel jpCentro, jpSur;
 	public V_Login vent;
 	private String DNI;
-	
-	
 
 	Conexion c = new Conexion();
 
-	public V_UserActiAdd() throws SQLException {
-		
+	public V_UserActiAdd(V_UserHome venti) {
+		v1 = venti;
+
 		this.setTitle("Alta de Clases");
 		this.setSize(500, 500);
 		this.setLocation(20, 20);
-
 		this.setLayout(new BorderLayout());
 
 		// Parte norte del borderlayout
@@ -52,45 +53,31 @@ public class V_UserActiAdd extends JInternalFrame {
 		// Parte central del borderlayout
 		jpCentro = new JPanel();
 		jpCentro.setLayout(new GridBagLayout());
-		
-		
-		try {
-			ResultSet rs = c.consulta(Main.con, "SELECT DNI FROM Persona WHERE DNI = " + v1.getDNI1());
-			while(rs.next()){
-				 DNI = rs.getString("DNI");
 
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		
-		
 		lblDniuser = new JLabel("Tu DNI:");
 		lblverdniuser = new JLabel();
-		lblverdniuser.setText("HOLA"+DNI);
-		
+		lblverdniuser.setText(v1.getDNI1());
 
-		lblIdaula = new JLabel("SELECCIONA EL AULA:");
+		lblIdaula = new JLabel("SELECCIONA EL ID HORA:");
 		cbIdaula = new JComboBox();
 
-		String q = "SELECT * FROM Aulas";
-		String x = "idAula";
+		String q = "SELECT idhora FROM Horario";
+		String x = "idHora";
 
 		cbIdaula.removeAllItems();
 		ArrayList<String> lista = new ArrayList<String>();
 		try {
 			lista = c.llenarCombo(Main.con, q, x);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		for (int i = 0; i < lista.size(); i++) {
 			cbIdaula.addItem(lista.get(i));
+
 		}
+		lblhora = new JLabel("AQUI VA LA HORA");
+		lbldiasemana = new JLabel("DIA DE LA SEMANA");
 
-
-		
-		
 		GridBagConstraints c = new GridBagConstraints();
 		c.gridwidth = 1;
 		c.weightx = 1;
@@ -114,6 +101,14 @@ public class V_UserActiAdd extends JInternalFrame {
 		cbIdaula.setPreferredSize(new Dimension(200, 20));
 		jpCentro.add(cbIdaula, c);
 
+		c.gridx = 5;
+		c.gridy = 7;
+		jpCentro.add(lblhora, c);
+
+		c.gridx = 0;
+		c.gridy = 7;
+		jpCentro.add(lbldiasemana, c);
+
 		this.getContentPane().add(jpCentro, BorderLayout.CENTER);
 
 		// Parte sur del borderlayout
@@ -123,12 +118,34 @@ public class V_UserActiAdd extends JInternalFrame {
 		btnAñadir = new JButton("AÑADIR");
 		btnCancelar = new JButton("CANCELAR");
 
+		final class addbutton implements ActionListener {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "Tu usuario con el dni: " + v1.getDNI1()
+						+ " se ha apuntado a la clase: " + cbIdaula.getSelectedItem());
+
+			}
+		}
+		addbutton elListener = new addbutton();
+		btnAñadir.addActionListener(elListener);
+		
+//		final class botonelegir implements ActionListener {
+//			public void actionPerformed(ActionEvent e) {
+//			
+//			lbldiasemana.setText(c.fechayhora(Main.con, "Select Diasemana FROM Horario WHERE idHora = '"+cbIdaula.getSelectedItem()+"'","Diasemana"));
+//			}
+//		}
+//		addbutton elListen = new addbutton();
+//		cbIdaula.addActionListener(elListen);
+		
+		
+
 		jpSur.add(btnAñadir);
 		jpSur.add(btnCancelar);
 
 		this.getContentPane().add(jpSur, BorderLayout.SOUTH);
 
 		this.setVisible(true);
+
 	}
 
 	public JTextField getTxtIdclase() {
@@ -146,7 +163,6 @@ public class V_UserActiAdd extends JInternalFrame {
 	public void setTxtNombreactividad(JTextField txtNombreactividad) {
 		this.txtNombreactividad = txtNombreactividad;
 	}
-
 
 	public JButton getBtnAñadir() {
 		return btnAñadir;

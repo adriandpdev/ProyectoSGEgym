@@ -42,8 +42,11 @@ public class V_AdminScheList extends JInternalFrame {
 			}
 			datosatratar = new String[cantidadfilas][3];
 		int cont = 0;
-		String query = "select diasemana," + " hora,"
-				+ " (SELECT nombre from Actividad where IdActividad = h.IdActividad) as nombre" + " from Horario h";
+		String query = "select diasemana, hora, "
+				+ "concat ((SELECT nombre from Actividad where IdActividad = h.IdActividad),\" - A\" ,"
+				+ "(SELECT idAula from Actividad where idActividad=h.IdActividad)) as nombre"
+				+ " from Horario h";
+				
 		ResultSet r = c.consulta(Main.con, query);
 		while (r.next()) {
 			datosatratar[cont][0] = r.getString("diasemana");
@@ -75,6 +78,7 @@ public class V_AdminScheList extends JInternalFrame {
 		Font font = new Font("Verdana", Font.PLAIN, 12);
 		table.setFont(font);
 		table.setRowHeight(table.getRowHeight() * max);
+
 		table.getTableHeader().setReorderingAllowed(false);
 		table.setShowGrid(true);
 
@@ -120,5 +124,14 @@ public class V_AdminScheList extends JInternalFrame {
 		} else {
 			return "";
 		}
+	}
+
+	public String[] getDiasemana() {
+		return diasemana;
+	}
+
+
+	public String[][] getActividades() {
+		return actividades;
 	}
 }
