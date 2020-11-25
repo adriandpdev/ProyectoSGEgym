@@ -30,7 +30,7 @@ public class Ac_MenuEmple implements ActionListener {
 				e.printStackTrace();
 			}
 		} else if (arg0.getActionCommand().equals("Ver horario")) {
-			V_EmplScheList vEmScList = new V_EmplScheList();
+			V_EmplScheList vEmScList = new V_EmplScheList(vent);
 			vent.add(vEmScList);
 			vEmScList.setVisible(true);
 		} else if (arg0.getActionCommand().equals("Última nómina")) {
