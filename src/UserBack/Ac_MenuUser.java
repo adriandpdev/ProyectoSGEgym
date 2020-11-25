@@ -30,10 +30,8 @@ public class Ac_MenuUser implements ActionListener {
 				e.printStackTrace();
 			}
 			
-		} else if (arg0.getActionCommand().equals("asdasd")) {
-			// V_AdminUserList vAdUsList = new V_AdminUserList();
-			// vent.add(vUsScList);
-			// vAdUsList.setVisible(true);
+		} else if (arg0.getActionCommand().equals("Imprimir horario")) {
+			// IMPRIMIR HORARIO
 		} else if (arg0.getActionCommand().equals("Reserva")) {
 			V_UserActiAdd vUsAcAdd = new V_UserActiAdd(vent);
 			vent.add(vUsAcAdd);

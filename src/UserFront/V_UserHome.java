@@ -27,7 +27,7 @@ public class V_UserHome extends JFrame {
 		mi[0] = new JMenuItem("Ver Horario");
 		mi[0].addActionListener(new Ac_MenuUser(this));
 		me[0].add(mi[0]);
-		mi[1] = new JMenuItem("");
+		mi[1] = new JMenuItem("Imprimir horario");
 		mi[1].addActionListener(new Ac_MenuUser(this));
 		me[0].add(mi[1]);
 
