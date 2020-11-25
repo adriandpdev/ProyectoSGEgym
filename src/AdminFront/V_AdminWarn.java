@@ -19,8 +19,11 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.text.JTextComponent;
 
 import AdminBack.Ac_AdminUserAdd;
+import main.Conexion;
+import main.Main;
 
 
 public class V_AdminWarn extends JInternalFrame {
@@ -59,11 +62,16 @@ public class V_AdminWarn extends JInternalFrame {
 		  btnenviar=new JButton("Enviar");
 		  Botones.add(btnenviar);
 		  
+		  java.util.Date d = new java.util.Date();  
+		  java.sql.Date date2 = new java.sql.Date(d.getTime());
+		  
 		  btnenviar.addActionListener(new ActionListener(){
 			  
 			   public void actionPerformed(ActionEvent e) {
+				   Conexion c = new Conexion();
 			    if(!txtdestinatario.getText().equalsIgnoreCase("") && !txtdestinatario.getText().equalsIgnoreCase(" ")){
 			    	try {
+			    		c.alta(Main.con, "INSERT INTO Avisos(asunto,mensaje,fecha)VALUES('"+txtasunto.getText()+"','"+mensaje.getText()+"','"+ date2 + "')");
 				    	Properties props = new Properties();
 				    	props.put("mail.smtp.host", servidorSMTP);  //El servidor SMTP de Google
 						props.put("mail.smtp.user", usuario);		//Usuario que envia
@@ -84,6 +92,7 @@ public class V_AdminWarn extends JInternalFrame {
 					    transport.connect("smtp.gmail.com", usuario, clave);
 					    transport.sendMessage(msg, msg.getAllRecipients());
 					    transport.close();
+					    JOptionPane.showMessageDialog(null, "Se ha enviado el Aviso.");
 					    
 					}catch (Exception e2) {JOptionPane.showMessageDialog(null, "Error, El mensaje no se ha podido enviar.");} 
 			    }else{
