@@ -2,12 +2,12 @@ package AdminBack;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.ResultSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
 import javax.swing.text.JTextComponent;
 
-import AdminFront.V_AdminHome;
 import AdminFront.V_AdminUserAdd;
 import main.Conexion;
 import main.Main;
@@ -27,7 +27,28 @@ public class Ac_AdminUserAdd implements ActionListener {
 			return false;
 		}
 	}
-	
+	public boolean isEmail (String correo){
+        Pattern pat = null;
+        Matcher mat = null;
+        pat = Pattern.compile("^[\\w\\-\\_\\+]+(\\.[\\w\\-\\_]+)*@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}$");
+        mat = pat.matcher(correo);
+        if(mat.find()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+	public boolean isTelefono (String tel){
+        Pattern pat = null;
+        Matcher mat = null;
+        pat = Pattern.compile("([0-9]{9})");
+        mat = pat.matcher(tel);
+        if(mat.find()){
+            return true;
+        }else{
+            return false;
+        }
+    }
 	 private static boolean comprobar(String dni){
 		    
 	        char[] letraDni = {
@@ -61,7 +82,7 @@ public class Ac_AdminUserAdd implements ActionListener {
 	             if(!Character.isDigit(dni.charAt(i))){
 	                   return false;    
 	             }
-	             // si es numero, lo recojo en un String
+	     
 	             num += dni.charAt(i);     
 	        }
 	  
@@ -84,18 +105,25 @@ public class Ac_AdminUserAdd implements ActionListener {
 			
 if(vent.getTxtDni().getText().equals("") || vent.getTxtNombre().getText().equals("") ||vent.getTxtApellidos().getText().equals("") ||vent.getTxtCCC().getText().equals("") ||vent.getTxtContraseña().getText().equals("") ||vent.getTxtTelefono().getText().equals("") ||vent.getTxtemail().getText().equals("")) {
 				
-				JOptionPane.showMessageDialog(null, "No puede existir ningun campo vacio");
+				JOptionPane.showMessageDialog(null, "No puede existir ningun campo vacio", "ATENCIÓN ADMINISTRADOR", JOptionPane.WARNING_MESSAGE);
 			}else if(!isNumeric(vent.getTxtTelefono().getText()) ){
 				
-				JOptionPane.showMessageDialog(null,"El Telefono tiene que ser numerico.");
+				JOptionPane.showMessageDialog(null,"El Telefono tiene que ser numerico.", "ATENCIÓN ADMINISTRADOR", JOptionPane.WARNING_MESSAGE);
 				 vent.getTxtTelefono().setText("");
 				 vent.getTxtTelefono().requestFocus();
 			}else if(!comprobar(vent.getTxtDni().getText())) {
-				JOptionPane.showMessageDialog(null, "Introduce un dni valido");
+				JOptionPane.showMessageDialog(null, "Introduce un dni valido", "ATENCIÓN ADMINISTRADOR", JOptionPane.WARNING_MESSAGE);
 				 vent.getTxtDni().setText("");
 				 vent.getTxtDni().requestFocus();
 				
-			}
+			} else if(!isEmail(vent.getTxtemail().getText())){
+	            JOptionPane.showMessageDialog(null, "¡Introduce un email Valido!", "ATENCIÓN ADMINISTRADOR", JOptionPane.WARNING_MESSAGE);
+	            vent.getTxtemail().requestFocus();
+	        }else if(!isTelefono((vent.getTxtemail().getText()))){
+	            JOptionPane.showMessageDialog(null, "¡Introduce un Telefono valido!", "ATENCIÓN ADMINISTRADOR", JOptionPane.WARNING_MESSAGE);
+				 vent.getTxtTelefono().setText("");
+	            vent.getTxtTelefono().requestFocus();
+}
 			else {
 				
 			Conexion c = new Conexion();

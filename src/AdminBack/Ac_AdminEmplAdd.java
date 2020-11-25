@@ -125,7 +125,11 @@ public class Ac_AdminEmplAdd implements ActionListener {
 	            JOptionPane.showMessageDialog(null, "¡Debes validar el email!", "ATENCIÓN ADMINISTRADOR", JOptionPane.WARNING_MESSAGE);
 	            vent.getTxtemail().setText("");
 	            vent.getTxtemail().requestFocus();
-	        } 
+	        }else if(!isTelefono((vent.getTxtemail().getText()))){
+	            JOptionPane.showMessageDialog(null, "¡Introduce un Telefono valido!", "ATENCIÓN ADMINISTRADOR", JOptionPane.WARNING_MESSAGE);
+				 vent.getTxtTelefono().setText("");
+	            vent.getTxtTelefono().requestFocus();
+} 
 	        
 		
 			else {
