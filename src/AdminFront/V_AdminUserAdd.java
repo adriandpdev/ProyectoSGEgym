@@ -8,6 +8,8 @@ import java.text.SimpleDateFormat;
 
 import javax.swing.*;
 
+import com.toedter.calendar.JDateChooser;
+
 import AdminBack.Ac_AdminUserAdd;
 
 public class V_AdminUserAdd extends JInternalFrame {
@@ -16,7 +18,15 @@ public class V_AdminUserAdd extends JInternalFrame {
 	private JTextField txtDni, txtNombre, txtCCC, txtemail, txtApellidos, txtContraseña, txtTelefono;
 	private JFormattedTextField txtfecha;
 	private JButton Añadir, Limpiar;
-	
+	private JDateChooser date;
+	public JDateChooser getDate() {
+		return date;
+	}
+
+	public void setDate(JDateChooser date) {
+		this.date = date;
+	}
+
 	public static String NUMEROS = "0123456789";
 	 
 	public static String MAYUSCULAS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -78,10 +88,10 @@ public class V_AdminUserAdd extends JInternalFrame {
 		Centro.add(txtCCC = new JTextField());
 		Centro.add(email = new JLabel("E-mail"));
 		Centro.add(txtemail = new JTextField());
-		txtfecha = new JFormattedTextField(new SimpleDateFormat("dd/MM/yyyy"));
-		txtfecha.setValue(new java.util.Date());
+		date = new JDateChooser();
+		 date.setDateFormatString("dd-MM-yyyy");
 		Centro.add(Fecha = new JLabel("Fecha"));
-		Centro.add(txtfecha);
+		Centro.add(date);
 		Centro.add(Contraseña = new JLabel("Contraseña"));
 		Centro.add(txtContraseña = new JTextField());
 		Centro.add(Telefono = new JLabel("Telefono"));

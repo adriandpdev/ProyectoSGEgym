@@ -82,9 +82,9 @@ public class V_AdminEmplAdd extends JInternalFrame {
 		Centro.add(email = new JLabel("E-mail"));
 		Centro.add(txtemail = new JTextField());
 		date = new JDateChooser();
+		 date.setDateFormatString("dd-MM-yyyy");
 		Centro.add(Fecha = new JLabel("Fecha"));
 		Centro.add(date);
-		System.out.println(date);
 		Centro.add(Contraseña = new JLabel("Contraseña"));
 		Centro.add(txtContraseña = new JTextField());
 		Centro.add(Telefono = new JLabel("Telefono"));
