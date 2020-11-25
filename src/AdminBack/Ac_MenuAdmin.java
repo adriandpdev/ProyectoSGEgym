@@ -64,11 +64,7 @@ public class Ac_MenuAdmin implements ActionListener {
 				e.printStackTrace();
 			}
 
-		} else if (arg0.getActionCommand().equals("Exportar PDF")) {
-//			V_AdminScheExp vAdScExp = new V_AdminScheExp();
-//			vent.add(vAdScExp);
-//			vAdScExp.setVisible(true);
-		} else if (arg0.getActionCommand().equals("Promociones")) {
+		}  else if (arg0.getActionCommand().equals("Promociones")) {
 			V_AdminProm vAdProm = new V_AdminProm();
 			vent.add(vAdProm);
 			vAdProm.setVisible(true);
