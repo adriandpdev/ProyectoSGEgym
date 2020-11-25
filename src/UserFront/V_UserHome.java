@@ -1,5 +1,8 @@
 package UserFront;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 import javax.swing.*;
 import javax.swing.UIManager.*;
 
@@ -14,10 +17,14 @@ public class V_UserHome extends JFrame {
 	public V_UserHome(String DNI) {
 		super("Gestión de gimnasio - Usuario");
 		DNI1 = DNI;
-		this.setSize(800, 600);
-		this.setLocation(100, 100); // PONER AL CENTRO
-		this.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
+		
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.setResizable(false);
+		this.setSize(screenSize);
+		this.setResizable(true);
+		this.setMinimumSize(new Dimension(1000, 600));
+		this.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
 
 		jmb = new JMenuBar();
 		this.setJMenuBar(jmb);
