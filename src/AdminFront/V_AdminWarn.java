@@ -84,6 +84,7 @@ public class V_AdminWarn extends JInternalFrame {
 					    transport.connect("smtp.gmail.com", usuario, clave);
 					    transport.sendMessage(msg, msg.getAllRecipients());
 					    transport.close();
+					    JOptionPane.showMessageDialog(null, "Se ha enviado el Aviso.");
 					    
 					}catch (Exception e2) {JOptionPane.showMessageDialog(null, "Error, El mensaje no se ha podido enviar.");} 
 			    }else{
