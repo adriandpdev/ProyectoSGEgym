@@ -1,5 +1,8 @@
 package AdminFront;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 import javax.swing.*;
 import javax.swing.UIManager.*;
 
@@ -16,10 +19,14 @@ public class V_AdminHome extends JFrame {
 	public V_AdminHome(String DNI) {
 		super("Gestión de gimnasio - Administrador");
 		DNI1 = DNI;
-		this.setSize(800, 600);
-		this.setLocation(100, 100); // PONER AL CENTRO
-		this.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
+		
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.setResizable(false);
+		this.setSize(screenSize);
+		this.setResizable(true);
+		this.setMinimumSize(new Dimension(1000, 600));
+		this.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
 		
 		jmb = new JMenuBar();
 		this.setJMenuBar(jmb);
@@ -63,7 +70,7 @@ public class V_AdminHome extends JFrame {
 		mi[8].addActionListener(new Ac_MenuAdmin(this));
 		me[3].add(mi[8]);
 		mi[9] = new JMenuItem("Exportar PDF");
-		//mi[9].addActionListener(new Ac_AdminScheExp());
+		mi[9].addActionListener(new Ac_AdminScheExp());
 		me[3].add(mi[9]);
 
 		me[4] = new JMenu("Newsletter");
@@ -98,7 +105,7 @@ public class V_AdminHome extends JFrame {
 		mi[16] = new JMenuItem("Cerrar sesión");
 		mi[16].addActionListener(new Ac_MenuAdmin(this));
 		me[6].add(mi[16]);
-
+		
 		this.setVisible(true);
 	}
 
