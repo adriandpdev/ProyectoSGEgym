@@ -119,7 +119,7 @@ if(vent.getTxtDni().getText().equals("") || vent.getTxtNombre().getText().equals
 			} else if(!isEmail(vent.getTxtemail().getText())){
 	            JOptionPane.showMessageDialog(null, "¡Introduce un email Valido!", "ATENCIÓN ADMINISTRADOR", JOptionPane.WARNING_MESSAGE);
 	            vent.getTxtemail().requestFocus();
-	        }else if(!isTelefono((vent.getTxtemail().getText()))){
+	        }else if(!isTelefono((vent.getTxtTelefono().getText()))){
 	            JOptionPane.showMessageDialog(null, "¡Introduce un Telefono valido!", "ATENCIÓN ADMINISTRADOR", JOptionPane.WARNING_MESSAGE);
 				 vent.getTxtTelefono().setText("");
 	            vent.getTxtTelefono().requestFocus();
