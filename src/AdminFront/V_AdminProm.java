@@ -21,6 +21,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import main.Conexion;
+import main.Main;
+
 public class V_AdminProm extends JInternalFrame {
 
 	 private JTextField txtdestinatario,txtasunto;
@@ -58,11 +61,16 @@ public class V_AdminProm extends JInternalFrame {
 		  btnenviar=new JButton("Enviar");
 		  Botones.add(btnenviar);
 		  
+		  java.util.Date d = new java.util.Date();  
+		  java.sql.Date date2 = new java.sql.Date(d.getTime());
+		  
 		  btnenviar.addActionListener(new ActionListener(){
 			  
 			   public void actionPerformed(ActionEvent e) {
+				   Conexion c = new Conexion();
 			    if(!txtdestinatario.getText().equalsIgnoreCase("") && !txtdestinatario.getText().equalsIgnoreCase(" ")){
 			    	try {
+			    		c.alta(Main.con, "INSERT INTO Promociones(asunto,mensaje,fecha)VALUES('"+txtasunto.getText()+"','"+mensaje.getText()+"','"+ date2 + "')");
 				    	Properties props = new Properties();
 				    	props.put("mail.smtp.host", servidorSMTP);  //El servidor SMTP de Google
 						props.put("mail.smtp.user", usuario);		//Usuario que envia
