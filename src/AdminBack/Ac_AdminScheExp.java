@@ -99,12 +99,9 @@ public class Ac_AdminScheExp implements ActionListener{
             throws BadElementException {
         PdfPTable t = new PdfPTable(8);
 
-         //t.setBorderColor(new Color(Color.gray));
-        // t.setPadding(4);
-        // t.setSpacing(4);
-        // t.setBorderWidth(1);
+        
 
-        for (int i = 0; i < v.getDiasemana().length; i++) {
+        /*for (int i = 0; i < v.getDiasemana().length; i++) {
         	Phrase p=new Phrase(v.getDiasemana()[i]);
         	p.setFont(smallBold);
 			PdfPCell c= new PdfPCell(p);
@@ -112,17 +109,17 @@ public class Ac_AdminScheExp implements ActionListener{
 			
 			t.addCell(c);
 		}
-        
+        */
         
         t.setHeaderRows(1);
 
-        for (int i = 0; i < v.getActividades().length; i++) {
+        /*for (int i = 0; i < v.getActividades().length; i++) {
 			for (int j = 0; j < v.getActividades()[i].length; j++) {
 				PdfPCell c= new PdfPCell(new Phrase(v.getActividades()[i][j]));
 				c.setHorizontalAlignment(Element.ALIGN_CENTER);
 				t.addCell(c);
 			}
-		}
+		}*/
 
         CatPart.add(t);
 
