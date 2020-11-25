@@ -7,10 +7,15 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.sql.SQLException;
 import java.util.Date;
 
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
+import com.itextpdf.awt.geom.Rectangle;
 import com.itextpdf.text.Anchor;
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.BaseColor;
@@ -21,13 +26,16 @@ import com.itextpdf.text.Element;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.List;
 import com.itextpdf.text.ListItem;
+import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.Section;
+import com.itextpdf.text.TabStop.Alignment;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.BaseFont;
+import com.itextpdf.text.pdf.PdfPageEventHelper;
 
 import AdminFront.V_AdminScheList;
 
@@ -35,13 +43,12 @@ import java.io.FileOutputStream;
 import java.util.Date;
 
 
-public class Ac_AdminScheExp implements ActionListener{
+public class Ac_AdminScheExp extends PdfPageEventHelper implements ActionListener {
 	
-	private static String FILE = "./horario.pdf";
-    private static com.itextpdf.text.Font catFont = FontFactory.getFont(FontFactory.TIMES_ROMAN, 12);
+    private static com.itextpdf.text.Font Titulo = FontFactory.getFont(FontFactory.TIMES_ROMAN, 30, BaseColor.BLUE);
     private static com.itextpdf.text.Font redFont =FontFactory.getFont(FontFactory.TIMES_ROMAN, 12, BaseColor.RED);
-    private static com.itextpdf.text.Font subFont = FontFactory.getFont(FontFactory.TIMES_ROMAN, 16);
-    private static com.itextpdf.text.Font smallBold =FontFactory.getFont(FontFactory.TIMES_BOLD, 12);
+    private static com.itextpdf.text.Font dias = FontFactory.getFont(FontFactory.TIMES_ROMAN, 16);
+    private static com.itextpdf.text.Font actividades =FontFactory.getFont(FontFactory.TIMES_ROMAN, 12, Font.BOLD);
     private static V_AdminScheList v;
  
 
@@ -49,6 +56,12 @@ public class Ac_AdminScheExp implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent arg0) {
+    	JFileChooser saveFile = new JFileChooser();
+    	saveFile.setFileFilter(new FileNameExtensionFilter(".pdf", ".PDF"));
+    	saveFile.showSaveDialog(null);
+    	saveFile.setSelectedFile(new File(saveFile.getSelectedFile()+".pdf"));
+    	
+    	File FILE = saveFile.getSelectedFile();
     	try {
 			v=new V_AdminScheList();
 		} catch (SQLException e1) {
@@ -58,6 +71,7 @@ public class Ac_AdminScheExp implements ActionListener{
     	try {
 
             Document document = new Document();
+            document.setPageSize(PageSize.A4.rotate());
             PdfWriter.getInstance(document, new FileOutputStream(FILE));
             document.open();
             addMetaData(document);
@@ -68,27 +82,24 @@ public class Ac_AdminScheExp implements ActionListener{
         }
     }
     private static void addMetaData(Document document) {
-        document.addTitle("My first PDF");
+        document.addTitle("Horario gimnasio");
         
     }
 
     
 
     private static void addContent(Document document) throws DocumentException {
-    	 Paragraph preface = new Paragraph();
-         // We add one empty line
-        
-         // Lets write a big header
-         preface.add(new Paragraph("Horario de la semana"));
-         preface.setFont(catFont);
+    	 Paragraph preface = new Paragraph("Horario de la semana", Titulo);
+         
+         preface.setAlignment(Element.ALIGN_CENTER);
          
          
         Chapter catPart = new Chapter(1);
        
+        catPart.add(preface);
         createTable(catPart);
 
-        // now add all this to the document
-        document.add(preface);
+        addEmptyLine(preface, 1);
         document.add(catPart);
 
        
@@ -102,8 +113,8 @@ public class Ac_AdminScheExp implements ActionListener{
         
 
         for (int i = 0; i < v.getDiasemana().length; i++) {
-        	Phrase p=new Phrase(v.getDiasemana()[i]);
-        	p.setFont(smallBold);
+        	Phrase p=new Phrase(v.getDiasemana()[i], dias);
+        	//p.setFont(catFont);
 			PdfPCell c= new PdfPCell(p);
 			c.setHorizontalAlignment(Element.ALIGN_CENTER);
 			
@@ -115,16 +126,20 @@ public class Ac_AdminScheExp implements ActionListener{
 
         for (int i = 0; i < v.getActividades().length; i++) {
 			for (int j = 0; j < v.getActividades()[i].length; j++) {
-				PdfPCell c= new PdfPCell(new Phrase(v.getActividades()[i][j]));
+				Phrase p=new Phrase(v.getActividades()[i][j], actividades);
+				PdfPCell c= new PdfPCell(p);
 				c.setHorizontalAlignment(Element.ALIGN_CENTER);
 				t.addCell(c);
 			}
 		}
+        t.setWidthPercentage(100);
+        t.setSpacingAfter(5f);
+        t.setSpacingBefore(5f);
+        
 
         CatPart.add(t);
 
     }
-
 
 
     private static void addEmptyLine(Paragraph paragraph, int number) {
