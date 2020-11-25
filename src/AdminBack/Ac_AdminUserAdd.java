@@ -49,6 +49,18 @@ public class Ac_AdminUserAdd implements ActionListener {
             return false;
         }
     }
+	
+	public boolean isCCC(String ccc){
+        Pattern pat = null;
+        Matcher mat = null;
+        pat = Pattern.compile("([0-9]{20})");
+        mat = pat.matcher(ccc);
+        if(mat.find()){
+            return true;
+        }else{
+            return false;
+        }
+    }
 	 private static boolean comprobar(String dni){
 		    
 	        char[] letraDni = {
@@ -122,8 +134,11 @@ if(vent.getTxtDni().getText().equals("") || vent.getTxtNombre().getText().equals
 	        }else if(!isTelefono((vent.getTxtTelefono().getText()))){
 	            JOptionPane.showMessageDialog(null, "¡Introduce un Telefono valido!", "ATENCIÓN ADMINISTRADOR", JOptionPane.WARNING_MESSAGE);
 				 vent.getTxtTelefono().setText("");
-	            vent.getTxtTelefono().requestFocus();
-}
+	            vent.getTxtTelefono().requestFocus();}
+	        else if(!isCCC((vent.getTxtCCC().getText()))){
+	            JOptionPane.showMessageDialog(null, "¡Introduce un numero de cuenta valido!", "ATENCIÓN ADMINISTRADOR", JOptionPane.WARNING_MESSAGE);
+				 vent.getTxtCCC().setText("");
+	            vent.getTxtCCC().requestFocus();}
 			else {
 				
 			Conexion c = new Conexion();
