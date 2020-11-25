@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -17,11 +18,15 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JSpinner;
 import javax.swing.JTextField;
+import javax.swing.SpinnerDateModel;
 import javax.swing.SwingConstants;
 
+import AdminBack.Ac_AdminScheAdd;
 import AdminFront.V_AdminHome;
 import Login.V_Login;
+import UserBack.Ac_UserActiAdd;
 import main.Conexion;
 import main.Main;
 
@@ -29,7 +34,7 @@ public class V_UserActiAdd extends JInternalFrame {
 	private V_UserHome v1;
 	private JLabel lblTitulo, lblDniuser, lblIdaula, lblverdniuser, lblhora, lbldiasemana;
 	private JTextField txtIdclase, txtNombreactividad;
-	private JComboBox cbIdaula;
+	private JComboBox cbIdaula,horaDel,actividadDel,diaAdd,horaAdd;
 	private JButton btnAñadir, btnCancelar;
 	private JPanel jpCentro, jpSur;
 	public V_Login vent;
@@ -46,23 +51,31 @@ public class V_UserActiAdd extends JInternalFrame {
 		this.setLayout(new BorderLayout());
 
 		// Parte norte del borderlayout
+		
 		lblTitulo = new JLabel("RESERVA DE CLASES");
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		this.getContentPane().add(lblTitulo, BorderLayout.NORTH);
 
 		// Parte central del borderlayout
+		
 		jpCentro = new JPanel();
 		jpCentro.setLayout(new GridBagLayout());
-
 		lblDniuser = new JLabel("Tu DNI:");
 		lblverdniuser = new JLabel();
 		lblverdniuser.setText(v1.getDNI1());
-
-		lblIdaula = new JLabel("SELECCIONA EL ID HORA:");
+		lblIdaula = new JLabel("SELECCIONA LA ACTVIDAD A LA QUE QUIERES APUNTARTE:");
 		cbIdaula = new JComboBox();
+		lblhora = new JLabel("AQUI VA LA HORA");
+		lbldiasemana = new JLabel("DIA DE LA SEMANA");
+		horaDel = new JComboBox();
+		horaDel.setEnabled(false);
+		horaDel.addActionListener(new Ac_UserActiAdd(this));
 
-		String q = "SELECT idhora FROM Horario";
-		String x = "idHora";
+		actividadDel = new JComboBox();
+		actividadDel.setEnabled(false);
+		
+		String q = "select distinct(nombre) from Actividad";
+		String x = "nombre";
 
 		cbIdaula.removeAllItems();
 		ArrayList<String> lista = new ArrayList<String>();
@@ -75,8 +88,8 @@ public class V_UserActiAdd extends JInternalFrame {
 			cbIdaula.addItem(lista.get(i));
 
 		}
-		lblhora = new JLabel("AQUI VA LA HORA");
-		lbldiasemana = new JLabel("DIA DE LA SEMANA");
+		
+
 
 		GridBagConstraints c = new GridBagConstraints();
 		c.gridwidth = 1;
@@ -108,6 +121,13 @@ public class V_UserActiAdd extends JInternalFrame {
 		c.gridx = 0;
 		c.gridy = 7;
 		jpCentro.add(lbldiasemana, c);
+		
+		c.gridx = 0;
+		c.gridy = 8;
+		jpCentro.add(actividadDel, c);
+		c.gridx = 5;
+		c.gridy = 8;
+		jpCentro.add(horaDel, c);
 
 		this.getContentPane().add(jpCentro, BorderLayout.CENTER);
 
@@ -122,23 +142,11 @@ public class V_UserActiAdd extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(null, "Tu usuario con el dni: " + v1.getDNI1()
 						+ " se ha apuntado a la clase: " + cbIdaula.getSelectedItem());
-
 			}
 		}
 		addbutton elListener = new addbutton();
 		btnAñadir.addActionListener(elListener);
 		
-//		final class botonelegir implements ActionListener {
-//			public void actionPerformed(ActionEvent e) {
-//			
-//			lbldiasemana.setText(c.fechayhora(Main.con, "Select Diasemana FROM Horario WHERE idHora = '"+cbIdaula.getSelectedItem()+"'","Diasemana"));
-//			}
-//		}
-//		addbutton elListen = new addbutton();
-//		cbIdaula.addActionListener(elListen);
-		
-		
-
 		jpSur.add(btnAñadir);
 		jpSur.add(btnCancelar);
 
@@ -187,13 +195,19 @@ public class V_UserActiAdd extends JInternalFrame {
 	public void setJpCentro(JPanel jpCentro) {
 		this.jpCentro = jpCentro;
 	}
-
+	
 	public JPanel getJpSur() {
 		return jpSur;
 	}
 
 	public void setJpSur(JPanel jpSur) {
 		this.jpSur = jpSur;
+	}
+	public JComboBox getDiaDel() {
+		return diaAdd;
+	}
+	public JComboBox getHoraDel() {
+		return horaAdd;
 	}
 
 }
