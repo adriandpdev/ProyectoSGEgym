@@ -31,9 +31,10 @@ public class V_Login extends JFrame {
 			System.out.println(e);
 		}
 		this.setSize(500, 600);
-		this.setLocation(100, 100); // PONER AL CENTRO
+		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
+		
 		this.setLayout(new BorderLayout());
 		pn[2] = new JPanel();
 		pn[2].setLayout(new BorderLayout());
@@ -42,7 +43,6 @@ public class V_Login extends JFrame {
 		pn[2].add(lbl[3], BorderLayout.NORTH);
 		logo = ImageIO.read(new File("logo.png"));
 		lbl[4] = new JLabel(new ImageIcon(logo));
-		// lbl[4].setSize(600, 100);
 		pn[2].add(lbl[4], BorderLayout.CENTER);
 		pn[0] = new JPanel();
 		pn[0].setSize(500, 150);
@@ -62,7 +62,7 @@ public class V_Login extends JFrame {
 		btn.addActionListener(new Ac_Login(this));
 		ch = new JCheckBox("Recordar DNI");
 		ch.setHorizontalAlignment(JLabel.CENTER);
-		trycache();
+		
 		pn[0].add(lbl[0]);
 		pn[0].add(txt[0]);
 		pn[0].add(lbl[1]);
@@ -76,6 +76,7 @@ public class V_Login extends JFrame {
 		this.getContentPane().add(pn[1], BorderLayout.SOUTH);
 		
 		this.setVisible(true);
+		trycache();
 	}
 
 	public JTextField[] gettxt() {
@@ -95,6 +96,7 @@ public class V_Login extends JFrame {
 			}
 			BRF.close();
 			fr.close();
+			txt[1].requestFocus();
 		} 
 	}
 	public JCheckBox getch() {
