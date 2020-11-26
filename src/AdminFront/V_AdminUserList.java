@@ -2,16 +2,20 @@ package AdminFront;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.*;
 
-public class V_AdminUserList extends JInternalFrame {
+public class V_AdminUserList extends JFrame {
 	
-	private JLabel lblTitulo, lblRol, lblMes, lblNombre, lblApell, lblCuenta, lblNac, lblTlf, lblCorreo;
+	private JLabel lblTitulo, lblRol, lblMes, lblNombre, lblApell, lblCuenta, lblNac, lblTlf, lblCorreo, lblPagado;
 	private JTextField txtDni, txtNombre, txtApell, txtCuenta, txtNac, txtTlf, txtCoreo;
 	private JComboBox cbRol, cbMes, cbDni;
 	private JButton btnBuscar, btnUpdate, btnCancelar, btnMostrar;
-	private JPanel jpTop, jpTopIzq, jpTopDer, jpMid, jpBot, jpCentro, jpSur;
+	private JPanel jpTop, jpTopIzq, jpTopDer, jpMid, jpBot, jpCentro, jpSur,jpPagar;
+	private JRadioButton rbSi, rbNo;
+	
 	
 
 	V_AdminUserList()
@@ -59,6 +63,7 @@ public class V_AdminUserList extends JInternalFrame {
 		jpTopIzq.add(cbMes);
 		
 		btnBuscar = new JButton("BUSCAR");
+		btnBuscar.addActionListener(new Ac_AdminUserList(this));
 		
 		jpTop.add(jpTopIzq);
 		jpTop.add(btnBuscar);
@@ -109,8 +114,27 @@ public class V_AdminUserList extends JInternalFrame {
 		jpBot.add(lblCorreo);
 		jpBot.add(txtCoreo);
 		
+		jpPagar = new JPanel();
+		jpPagar.setLayout(new GridLayout(1,3,10,10));
+		
+		lblPagado = new JLabel("Pagado");
+		rbSi = new JRadioButton("Si");
+		rbNo = new JRadioButton("No");
+		
+		jpPagar.add(lblPagado);
+		jpPagar.add(rbSi);
+		jpPagar.add(rbNo);
+		
+		jpPagar = new JPanel();
+		lblPagado = new JLabel("Pagado");
+		rbSi = new JRadioButton("Si");
+		rbNo = new JRadioButton("No");
+		rbNo.setSelected(true);
+		
+		
 		jpCentro.add(jpMid);
 		jpCentro.add(jpBot);
+		jpCentro.add(jpPagar);
 		
 		this.getContentPane().add(jpCentro, BorderLayout.CENTER);
 		
@@ -129,5 +153,127 @@ public class V_AdminUserList extends JInternalFrame {
 		
 		this.setVisible(true);
 	}
+
+
+	public JRadioButton getRbSi() {
+		return rbSi;
+	}
+
+
+	public void setRbSi(JRadioButton rbSi) {
+		this.rbSi = rbSi;
+	}
+
+
+	public JRadioButton getRbNo() {
+		return rbNo;
+	}
+
+
+	public void setRbNo(JRadioButton rbNo) {
+		this.rbNo = rbNo;
+	}
+
+
+	public JTextField getTxtDni() {
+		return txtDni;
+	}
+
+
+	public void setTxtDni(JTextField txtDni) {
+		this.txtDni = txtDni;
+	}
+
+
+	public JTextField getTxtNombre() {
+		return txtNombre;
+	}
+
+
+	public void setTxtNombre(JTextField txtNombre) {
+		this.txtNombre = txtNombre;
+	}
+
+
+	public JTextField getTxtApell() {
+		return txtApell;
+	}
+
+
+	public void setTxtApell(JTextField txtApell) {
+		this.txtApell = txtApell;
+	}
+
+
+	public JTextField getTxtCuenta() {
+		return txtCuenta;
+	}
+
+
+	public void setTxtCuenta(JTextField txtCuenta) {
+		this.txtCuenta = txtCuenta;
+	}
+
+
+	public JTextField getTxtNac() {
+		return txtNac;
+	}
+
+
+	public void setTxtNac(JTextField txtNac) {
+		this.txtNac = txtNac;
+	}
+
+
+	public JTextField getTxtTlf() {
+		return txtTlf;
+	}
+
+
+	public void setTxtTlf(JTextField txtTlf) {
+		this.txtTlf = txtTlf;
+	}
+
+
+	public JTextField getTxtCoreo() {
+		return txtCoreo;
+	}
+
+
+	public void setTxtCoreo(JTextField txtCoreo) {
+		this.txtCoreo = txtCoreo;
+	}
+
+
+	public JComboBox getCbRol() {
+		return cbRol;
+	}
+
+
+	public void setCbRol(JComboBox cbRol) {
+		this.cbRol = cbRol;
+	}
+
+
+	public JComboBox getCbMes() {
+		return cbMes;
+	}
+
+
+	public void setCbMes(JComboBox cbMes) {
+		this.cbMes = cbMes;
+	}
+
+
+	public JComboBox getCbDni() {
+		return cbDni;
+	}
+
+
+	public void setCbDni(JComboBox cbDni) {
+		this.cbDni = cbDni;
+	}
+	
+	
 	
 }
