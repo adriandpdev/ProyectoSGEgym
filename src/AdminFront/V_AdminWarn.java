@@ -1,113 +1,135 @@
 package AdminFront;
 
 import java.awt.BorderLayout;
-import java.util.Properties;
-import javax.mail.Message;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import java.awt.Container;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.sql.Date;
+
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.text.JTextComponent;
 
-import AdminBack.Ac_AdminUserAdd;
-import main.Conexion;
-import main.Main;
-
+import AdminBack.*;
 
 public class V_AdminWarn extends JInternalFrame {
-	 private JTextField txtdestinatario,txtasunto;
-	 private JTextArea mensaje;
-	 private JButton btnenviar;
-	 private String usuario = "prueba1357246@gmail.com";
-	        String clave = "123prueba123456";
-	        String servidorSMTP = "smtp.gmail.com";
-	        String puertoEnvio = "465";
-	        
+	private JTextField txtdestinatario, txtasunto;
+	private JTextArea mensaje;
+	private JButton btnenviar;
+	private String usuario = "prueba1357246@gmail.com";
+	private String clave = "123prueba123456";
+	private String servidorSMTP = "smtp.gmail.com";
+	private String puertoEnvio = "465";
+	private Date Date2;
 	public V_AdminWarn() {
 		CreateForm();
 	}
-	
+
 	private void CreateForm() {
 		this.setTitle("AVISOS");
-		 JPanel Titulo = new JPanel();
-		  Titulo.add(new JLabel("ENVIAR AVISO"));
-			
-		  JPanel Datos=new JPanel();
-		  Datos.setLayout(new GridLayout(3,3));
-		  Datos.add(new JLabel("Destinatario: "));
-		  txtdestinatario=new JTextField();
-		  Datos.add(txtdestinatario);
-		  Datos.add(new JLabel("Asunto: "));
-		  txtasunto=new JTextField();
-		  Datos.add(txtasunto);
-		  Datos.add(new JLabel("Mensaje: "));
-		  mensaje=new JTextArea();
-		  mensaje.setLineWrap(true);
-		  JScrollPane scroll=new JScrollPane(mensaje);
-		  Datos.add(scroll);
-		  
-		  JPanel Botones=new JPanel();
-		  btnenviar=new JButton("Enviar");
-		  Botones.add(btnenviar);
-		  
-		  java.util.Date d = new java.util.Date();  
-		  java.sql.Date date2 = new java.sql.Date(d.getTime());
-		  
-		  btnenviar.addActionListener(new ActionListener(){
-			  
-			   public void actionPerformed(ActionEvent e) {
-				   Conexion c = new Conexion();
-			    if(!txtdestinatario.getText().equalsIgnoreCase("") && !txtdestinatario.getText().equalsIgnoreCase(" ")){
-			    	try {
-			    		c.alta(Main.con, "INSERT INTO Avisos(asunto,mensaje,fecha)VALUES('"+txtasunto.getText()+"','"+mensaje.getText()+"','"+ date2 + "')");
-				    	Properties props = new Properties();
-				    	props.put("mail.smtp.host", servidorSMTP);  //El servidor SMTP de Google
-						props.put("mail.smtp.user", usuario);		//Usuario que envia
-						props.put("mail.smtp.clave", clave);    //La clave de la cuenta
-						props.put("mail.smtp.auth", "true");    //Usar autenticación mediante usuario y clave
-						props.put("mail.smtp.starttls.enable", "true"); //Para conectar de manera segura al servidor SMTP
-						props.put("mail.smtp.port", 587);
-						
-						Session mailSession = Session.getInstance(props,null);
-						
-						Message msg = new MimeMessage(mailSession);
-						msg.setFrom(new InternetAddress(usuario));
-						msg.addRecipients(Message.RecipientType.TO, new InternetAddress[] { new InternetAddress(txtdestinatario.getText().toString()) });
-						msg.setSubject(txtasunto.getText().toString());
-						msg.setText(mensaje.getText().toString());
-						
-					    Transport transport = mailSession.getTransport("smtp");
-					    transport.connect("smtp.gmail.com", usuario, clave);
-					    transport.sendMessage(msg, msg.getAllRecipients());
-					    transport.close();
-					    JOptionPane.showMessageDialog(null, "Se ha enviado el Aviso.");
-					    
-					}catch (Exception e2) {JOptionPane.showMessageDialog(null, "Error, El mensaje no se ha podido enviar.");} 
-			    }else{
-			     JOptionPane.showMessageDialog(null, "Error, se debe llenar el campo destinatario.");}
-			    }
+		JPanel Titulo = new JPanel();
+		Titulo.add(new JLabel("ENVIAR AVISO"));
 
-			  });
-		  
-			Container c = getContentPane();
-			c.add(Titulo, BorderLayout.NORTH);
-			c.add(Datos, BorderLayout.CENTER);
-			c.add(Botones, BorderLayout.SOUTH);
+		JPanel Datos = new JPanel();
+		Datos.setLayout(new GridLayout(3, 3));
+		Datos.add(new JLabel("Destinatario: "));
+		txtdestinatario = new JTextField();
+		Datos.add(txtdestinatario);
+		Datos.add(new JLabel("Asunto: "));
+		txtasunto = new JTextField();
+		Datos.add(txtasunto);
+		Datos.add(new JLabel("Mensaje: "));
+		mensaje = new JTextArea();
+		mensaje.setLineWrap(true);
+		JScrollPane scroll = new JScrollPane(mensaje);
+		Datos.add(scroll);
+
+		JPanel Botones = new JPanel();
+		btnenviar = new JButton("Enviar");
+		Botones.add(btnenviar);
+
+		java.util.Date d = new java.util.Date();
+		setDate2(new java.sql.Date(d.getTime()));
+
+		btnenviar.addActionListener(new Ac_AdminWarn(this));
+		Container c = getContentPane();
+		c.add(Titulo, BorderLayout.NORTH);
+		c.add(Datos, BorderLayout.CENTER);
+		c.add(Botones, BorderLayout.SOUTH);
 	}
-	
-	 
-	  
-	 
+
+	public JTextField getTxtdestinatario() {
+		return txtdestinatario;
+	}
+
+	public void setTxtdestinatario(JTextField txtdestinatario) {
+		this.txtdestinatario = txtdestinatario;
+	}
+
+	public JTextField getTxtasunto() {
+		return txtasunto;
+	}
+
+	public void setTxtasunto(JTextField txtasunto) {
+		this.txtasunto = txtasunto;
+	}
+
+	public JTextArea getMensaje() {
+		return mensaje;
+	}
+
+	public void setMensaje(JTextArea mensaje) {
+		this.mensaje = mensaje;
+	}
+
+	public JButton getBtnenviar() {
+		return btnenviar;
+	}
+
+	public void setBtnenviar(JButton btnenviar) {
+		this.btnenviar = btnenviar;
+	}
+
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+
+	public String getClave() {
+		return clave;
+	}
+
+	public void setClave(String clave) {
+		this.clave = clave;
+	}
+
+	public String getServidorSMTP() {
+		return servidorSMTP;
+	}
+
+	public void setServidorSMTP(String servidorSMTP) {
+		this.servidorSMTP = servidorSMTP;
+	}
+
+	public String getPuertoEnvio() {
+		return puertoEnvio;
+	}
+
+	public void setPuertoEnvio(String puertoEnvio) {
+		this.puertoEnvio = puertoEnvio;
+	}
+
+	public Date getDate2() {
+		return Date2;
+	}
+
+	public void setDate2(Date date2) {
+		Date2 = date2;
+	}
 }
