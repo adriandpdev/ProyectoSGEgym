@@ -34,12 +34,13 @@ public class V_UserActiAdd extends JInternalFrame {
 	private V_UserHome v1;
 	private JLabel lblTitulo, lblDniuser, lblIdaula, lblverdniuser, lblhora, lbldiasemana;
 	private JTextField txtIdclase, txtNombreactividad;
-	private JComboBox cbIdaula,horaDel,actividadDel,diaAdd,horaAdd;
+	private JComboBox cbIdaula, cbhora, actividadDel, diaAdd;
+	JSpinner horaAdd;
 	private JButton btnAñadir, btnCancelar;
 	private JPanel jpCentro, jpSur;
 	public V_Login vent;
 	private String DNI;
-
+	private String[] semana = { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo" };
 	Conexion c = new Conexion();
 
 	public V_UserActiAdd(V_UserHome venti) {
@@ -51,13 +52,13 @@ public class V_UserActiAdd extends JInternalFrame {
 		this.setLayout(new BorderLayout());
 
 		// Parte norte del borderlayout
-		
+
 		lblTitulo = new JLabel("RESERVA DE CLASES");
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		this.getContentPane().add(lblTitulo, BorderLayout.NORTH);
 
 		// Parte central del borderlayout
-		
+
 		jpCentro = new JPanel();
 		jpCentro.setLayout(new GridBagLayout());
 		lblDniuser = new JLabel("Tu DNI:");
@@ -65,15 +66,7 @@ public class V_UserActiAdd extends JInternalFrame {
 		lblverdniuser.setText(v1.getDNI1());
 		lblIdaula = new JLabel("SELECCIONA LA ACTVIDAD A LA QUE QUIERES APUNTARTE:");
 		cbIdaula = new JComboBox();
-		lblhora = new JLabel("AQUI VA LA HORA");
-		lbldiasemana = new JLabel("DIA DE LA SEMANA");
-		horaDel = new JComboBox();
-		horaDel.setEnabled(false);
-		horaDel.addActionListener(new Ac_UserActiAdd(this));
 
-		actividadDel = new JComboBox();
-		actividadDel.setEnabled(false);
-		
 		String q = "select distinct(nombre) from Actividad";
 		String x = "nombre";
 
@@ -88,10 +81,23 @@ public class V_UserActiAdd extends JInternalFrame {
 			cbIdaula.addItem(lista.get(i));
 
 		}
-		
 
+		lblhora = new JLabel("ELIGE HORA:");
+		lbldiasemana = new JLabel("ELIGE DÍA DE LA SEMANA:");
+		cbhora = new JComboBox();
+		cbhora.addActionListener(new Ac_UserActiAdd(this));
+		actividadDel = new JComboBox();
+
+		for (int i = 0; i < semana.length; i++) {
+			actividadDel.addItem(semana[i]);
+		}
+
+		SpinnerDateModel model = modeloHora();
+		horaAdd = new JSpinner(model);
+		JSpinner.DateEditor de = new JSpinner.DateEditor(horaAdd, "HH:mm");
 
 		GridBagConstraints c = new GridBagConstraints();
+
 		c.gridwidth = 1;
 		c.weightx = 1;
 		c.weighty = 1;
@@ -121,13 +127,13 @@ public class V_UserActiAdd extends JInternalFrame {
 		c.gridx = 0;
 		c.gridy = 7;
 		jpCentro.add(lbldiasemana, c);
-		
+
 		c.gridx = 0;
 		c.gridy = 8;
 		jpCentro.add(actividadDel, c);
 		c.gridx = 5;
 		c.gridy = 8;
-		jpCentro.add(horaDel, c);
+		jpCentro.add(cbhora, c);
 
 		this.getContentPane().add(jpCentro, BorderLayout.CENTER);
 
@@ -141,12 +147,12 @@ public class V_UserActiAdd extends JInternalFrame {
 		final class addbutton implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(null, "Tu usuario con el dni: " + v1.getDNI1()
-						+ " se ha apuntado a la clase: " + cbIdaula.getSelectedItem());
+						+ " se ha apuntado a la clase: " + cbIdaula.getSelectedItem()+ " el " +actividadDel.getSelectedItem());
 			}
 		}
 		addbutton elListener = new addbutton();
 		btnAñadir.addActionListener(elListener);
-		
+
 		jpSur.add(btnAñadir);
 		jpSur.add(btnCancelar);
 
@@ -195,7 +201,7 @@ public class V_UserActiAdd extends JInternalFrame {
 	public void setJpCentro(JPanel jpCentro) {
 		this.jpCentro = jpCentro;
 	}
-	
+
 	public JPanel getJpSur() {
 		return jpSur;
 	}
@@ -203,11 +209,34 @@ public class V_UserActiAdd extends JInternalFrame {
 	public void setJpSur(JPanel jpSur) {
 		this.jpSur = jpSur;
 	}
+
 	public JComboBox getDiaDel() {
 		return diaAdd;
 	}
-	public JComboBox getHoraDel() {
+
+	public JSpinner getHoraDel() {
 		return horaAdd;
+	}
+
+	public JComboBox getActividadDel() {
+		return cbIdaula;
+	}
+
+	public JComboBox getDia() {
+		return diaAdd;
+	}
+
+	private SpinnerDateModel modeloHora() {
+
+		Calendar inicio = Calendar.getInstance();
+
+		inicio.set(Calendar.HOUR_OF_DAY, 12);
+		inicio.set(Calendar.MINUTE, 0);
+		inicio.set(Calendar.SECOND, 0);
+
+		SpinnerDateModel model = new SpinnerDateModel(inicio.getTime(), null, null, Calendar.HOUR);
+
+		return model;
 	}
 
 }
