@@ -5,8 +5,6 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import javax.swing.*;
-
 import AdminFront.*;
 import Login.*;
 import listado.*;
@@ -60,11 +58,9 @@ public class Ac_MenuAdmin implements ActionListener {
 				vent.add(vAdScList);
 				vAdScList.setVisible(true);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
-		}  else if (arg0.getActionCommand().equals("Promociones")) {
+		} else if (arg0.getActionCommand().equals("Promociones")) {
 			V_AdminProm vAdProm = new V_AdminProm();
 			vent.add(vAdProm);
 			vAdProm.setVisible(true);
@@ -83,7 +79,7 @@ public class Ac_MenuAdmin implements ActionListener {
 		} else if (arg0.getActionCommand().equals("Mi Perfil")) {
 			V_AdminPerfil vAdPerfil = new V_AdminPerfil(vent);
 			vent.add(vAdPerfil);
-			vAdPerfil.setVisible(true); 
+			vAdPerfil.setVisible(true);
 		} else if (arg0.getActionCommand().equals("Cerrar ventana")) {
 			cerrarventanas();
 		} else if (arg0.getActionCommand().equals("Cerrar sesión")) {
@@ -91,9 +87,16 @@ public class Ac_MenuAdmin implements ActionListener {
 				V_Login vLogin = new V_Login();
 				vent.dispose();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		} else if (arg0.getActionCommand().equals("De Usuarios")) {
+			V_AdminEstUs vAdEstUs = new V_AdminEstUs();
+			vent.add(vAdEstUs);
+			vAdEstUs.setVisible(true);
+		} else if (arg0.getActionCommand().equals("De Actividades")) {
+			V_AdminEstActi vAdEstAct = new V_AdminEstActi();
+			vent.add(vAdEstAct);
+			vAdEstAct.setVisible(true);
 		}
 	}
 

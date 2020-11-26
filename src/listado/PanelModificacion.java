@@ -21,7 +21,7 @@ public class PanelModificacion extends JFrame{
 	private JButton Añadir, Limpiar;
 	private JDateChooser date;
 	
-	private Conexion_pruebas cp;
+	private Conexion cp;
 	private Connection conn;
 	private ResultSet rs;
 	
