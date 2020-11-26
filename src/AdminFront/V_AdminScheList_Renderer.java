@@ -6,12 +6,13 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.TableCellRenderer;
 
-class V_AdminScheList_Renderer extends JTextArea implements TableCellRenderer {
+public class V_AdminScheList_Renderer extends JTextArea implements TableCellRenderer {
 	 
     public V_AdminScheList_Renderer() {
         setLineWrap(true);
         setWrapStyleWord(true);
         setOpaque(true);
+        
     }
  
     public Component getTableCellRendererComponent(JTable table, Object value,

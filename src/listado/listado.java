@@ -102,7 +102,7 @@ public class listado extends JInternalFrame implements MouseListener{
 	private ArrayList<Persona> datarPersonas(){
 		ArrayList<Persona> lista = new ArrayList<>();
 		
-		String sql = "SELECT * FROM persona";
+		String sql = "SELECT * FROM Persona";
 		
 		cp = new Conexion();
 		
@@ -313,7 +313,7 @@ public class listado extends JInternalFrame implements MouseListener{
 		
 		System.out.println(dni_borrar);
 		
-		String sql_borrar = "DELETE from persona WHERE dni='"+dni_borrar+"'";
+		String sql_borrar = "DELETE from Persona WHERE dni='"+dni_borrar+"'";
 				
 		cp = new Conexion();
 		

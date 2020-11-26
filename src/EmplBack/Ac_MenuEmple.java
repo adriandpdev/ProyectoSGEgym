@@ -30,9 +30,16 @@ public class Ac_MenuEmple implements ActionListener {
 				e.printStackTrace();
 			}
 		} else if (arg0.getActionCommand().equals("Ver horario")) {
-			V_EmplScheList vEmScList = new V_EmplScheList(vent);
-			vent.add(vEmScList);
-			vEmScList.setVisible(true);
+			V_EmplScheList vEmScList;
+			try {
+				vEmScList = new V_EmplScheList(vent);
+				vent.add(vEmScList);
+				vEmScList.setVisible(true);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
 		} else if (arg0.getActionCommand().equals("Última nómina")) {
 			V_EmplPayLast vEmPayLast = new V_EmplPayLast();
 			vent.add(vEmPayLast);
