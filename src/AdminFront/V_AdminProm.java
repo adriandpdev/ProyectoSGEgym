@@ -29,8 +29,8 @@ public class V_AdminProm extends JInternalFrame {
 	 private JTextField txtdestinatario,txtasunto;
 	 private JTextArea mensaje;
 	 private JButton btnenviar;
-	 private String usuario = "prueba1357246@gmail.com";
-	        String clave = "123prueba123456";
+	 private String usuario = "sgegimnasio@gmail.com";
+	        String clave = "sgeproyecto1gimnasio";
 	        String servidorSMTP = "smtp.gmail.com";
 	        String puertoEnvio = "465";
 	        
