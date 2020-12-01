@@ -56,7 +56,7 @@ public class Ac_AdminUserAdd implements ActionListener {
 	public boolean isCCC(String ccc) {
 		Pattern pat = null;
 		Matcher mat = null;
-		pat = Pattern.compile("([0-9]{20})");
+		pat = Pattern.compile("[0-9]{20}");
 		mat = pat.matcher(ccc);
 		if (mat.find()) {
 			return true;

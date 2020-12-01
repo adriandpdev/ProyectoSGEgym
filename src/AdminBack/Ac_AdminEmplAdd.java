@@ -140,15 +140,15 @@ public class Ac_AdminEmplAdd implements ActionListener {
 					e.printStackTrace();
 				}
 			}
-			if (arg0.getActionCommand().equals("Limpiar")) {
-				vent.getTxtDni().setText("");
-				vent.getTxtNombre().setText("");
-				vent.getTxtApellidos().setText("");
-				vent.getTxtCCC().setText("");
-				vent.getTxtContraseña().setText("");
-				vent.getTxtTelefono().setText("");
-				vent.getTxtemail().setText("");
-			}
+		}
+		if (arg0.getActionCommand().equals("Limpiar")) {
+			vent.getTxtDni().setText("");
+			vent.getTxtNombre().setText("");
+			vent.getTxtApellidos().setText("");
+			vent.getTxtCCC().setText("");
+			vent.getTxtContraseña().setText("");
+			vent.getTxtTelefono().setText("");
+			vent.getTxtemail().setText("");
 		}
 	}
 }
