@@ -41,7 +41,7 @@ public class Ac_AdminEmplAdd implements ActionListener {
 	public boolean isTelefono(String tel) {
 		Pattern pat = null;
 		Matcher mat = null;
-		pat = Pattern.compile("[A-Za-Z]{2}+[0-9]{20}");
+		pat = Pattern.compile("([0-9]{9})");
 		mat = pat.matcher(tel);
 		if (mat.find()) {
 			return true;
