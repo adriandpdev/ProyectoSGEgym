@@ -90,7 +90,7 @@ public class V_AdminUserAdd extends JInternalFrame {
 		Centro.add(txtemail = new JTextField());
 		date = new JDateChooser();
 		date.setDateFormatString("dd-MM-yyyy");
-		Centro.add(Fecha = new JLabel("Fecha"));
+		Centro.add(Fecha = new JLabel("Fecha de Nacimiento"));
 		Centro.add(date);
 		Centro.add(Contraseña = new JLabel("Contraseña"));
 		Centro.add(txtContraseña = new JTextField());
