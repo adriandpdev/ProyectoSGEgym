@@ -288,8 +288,8 @@ public class PanelModificacion extends JFrame implements ActionListener{
 		System.out.println(mod_correo);
 		System.out.println(mod_rol);
 		
-		String sql_modificar = "UPDATE persona SET dni='"+mod_dni+"', nombre='"+mod_nombre+"', apellido='"+mod_apellido+"',cuentabanc='"+mod_cuentabanc+"', fechanac='"+mod_fechanac+"',"
-			+ "telefono="+mod_telefono+", correo='"+mod_correo+"', rol='"+mod_rol+"' WHERE dni='"+DNI+"'";
+		String sql_modificar = "UPDATE Persona SET DNI='"+mod_dni+"', nombre='"+mod_nombre+"', apellido='"+mod_apellido+"',cuentabanc='"+mod_cuentabanc+"', fechanac='"+mod_fechanac+"',"
+			+ "telefono="+mod_telefono+", correo='"+mod_correo+"', rol='"+mod_rol+"' WHERE DNI='"+DNI+"'";
 
 		
 		//UPDATE `persona` SET `fechanac`= "18-01-1980" WHERE 1
