@@ -19,8 +19,8 @@ public class V_AdminWarn extends JInternalFrame {
 	private JTextField txtdestinatario, txtasunto;
 	private JTextArea mensaje;
 	private JButton btnenviar;
-	private String usuario = "prueba1357246@gmail.com";
-	private String clave = "123prueba123456";
+	private String usuario = "sgegimnasio@gmail.com";
+	private String clave = "sgeproyecto1gimnasio";
 	private String servidorSMTP = "smtp.gmail.com";
 	private String puertoEnvio = "465";
 	private Date Date2;

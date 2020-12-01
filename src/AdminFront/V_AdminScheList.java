@@ -29,10 +29,14 @@ public class V_AdminScheList extends JInternalFrame {
 	public V_AdminScheList() throws SQLException {
 		// TODO Auto-generated constructor stub
 		setLayout(new BorderLayout());
-		pnhorario = new JPanel();
+	
 		setTitle("Visualizar Horario");
 		jlvisualizarhorario = new JLabel("HORARIO DE CLASES", SwingConstants.CENTER);
-		jlvisualizarhorario.setFont(new Font("Verdana", Font.BOLD, 20));
+		
+		setBackground(new Color(137, 13, 84));
+		
+		jlvisualizarhorario.setFont(new Font("Verdana", Font.BOLD, 30));
+		jlvisualizarhorario.setForeground(Color.WHITE);
 		int cantidadfilas=0;
 		String query1="select count(*) as cuenta from Horario";
 		ResultSet r1= c.consulta(Main.con,query1);
@@ -43,7 +47,7 @@ public class V_AdminScheList extends JInternalFrame {
 			datosatratar = new String[cantidadfilas][3];
 		int cont = 0;
 		String query = "select diasemana, hora, "
-				+ "concat ((SELECT nombre from Actividad where IdActividad = h.IdActividad),\" - A\" ,"
+				+ "concat ((SELECT nombre from Actividad where IdActividad = h.IdActividad),\" - Aula \" ,"
 				+ "(SELECT idAula from Actividad where idActividad=h.IdActividad)) as nombre"
 				+ " from Horario h";
 				
@@ -81,14 +85,18 @@ public class V_AdminScheList extends JInternalFrame {
 
 		table.getTableHeader().setReorderingAllowed(false);
 		table.setShowGrid(true);
+		table.getTableHeader().setBackground(new Color(65,65,65));
+		table.getTableHeader().setForeground(Color.white);
+		table.getTableHeader().setFont(new Font("Verdana", Font.BOLD, 20));
+		
 
 		scroll = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		scroll.setPreferredSize(new Dimension(750, 450));
-		pnhorario.add(scroll);
+
 
 		getContentPane().add(jlvisualizarhorario, BorderLayout.NORTH);
-		getContentPane().add(pnhorario, BorderLayout.CENTER);
+		getContentPane().add(scroll, BorderLayout.CENTER);
 	}
 
 	public JTable getTable() {

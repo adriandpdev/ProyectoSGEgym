@@ -40,7 +40,7 @@ public class V_AdminUserAdd extends JInternalFrame {
 		return getPassword(NUMEROS, 4);
 	}
  
-	public static String getPassword() {
+	public String getPassword() {
 		return getPassword(8);
 	}
  
@@ -89,7 +89,7 @@ public class V_AdminUserAdd extends JInternalFrame {
 		Centro.add(email = new JLabel("E-mail"));
 		Centro.add(txtemail = new JTextField());
 		date = new JDateChooser();
-		 date.setDateFormatString("dd-MM-yyyy");
+		date.setDateFormatString("dd-MM-yyyy");
 		Centro.add(Fecha = new JLabel("Fecha"));
 		Centro.add(date);
 		Centro.add(Contraseña = new JLabel("Contraseña"));
