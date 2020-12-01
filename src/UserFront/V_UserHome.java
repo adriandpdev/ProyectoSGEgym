@@ -6,6 +6,7 @@ import java.awt.Toolkit;
 import javax.swing.*;
 import javax.swing.UIManager.*;
 
+import AdminBack.Ac_AdminScheExp;
 import UserBack.Ac_MenuUser;
 
 public class V_UserHome extends JFrame {
@@ -35,7 +36,7 @@ public class V_UserHome extends JFrame {
 		mi[0].addActionListener(new Ac_MenuUser(this));
 		me[0].add(mi[0]);
 		mi[1] = new JMenuItem("Imprimir horario");
-		mi[1].addActionListener(new Ac_MenuUser(this));
+		mi[1].addActionListener(new Ac_AdminScheExp());
 		me[0].add(mi[1]);
 
 		me[1] = new JMenu("Actividades");

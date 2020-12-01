@@ -30,9 +30,9 @@ public class V_AdminProm extends JInternalFrame {
 	 private JTextArea mensaje;
 	 private JButton btnenviar;
 	 private String usuario = "sgegimnasio@gmail.com";
-	        String clave = "sgeproyecto1gimnasio";
-	        String servidorSMTP = "smtp.gmail.com";
-	        String puertoEnvio = "465";
+	 private String clave = "sgeproyecto1gimnasio";
+	 private String servidorSMTP = "smtp.gmail.com";
+	 private String puertoEnvio = "465";
 	        
 	public V_AdminProm() {
 		CreateForm();
