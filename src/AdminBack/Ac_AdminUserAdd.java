@@ -93,6 +93,18 @@ public class Ac_AdminUserAdd implements ActionListener {
 		}
 		return true;
 	}
+	
+	public void limpiar() {
+		vent.getTxtDni().setText("");
+		vent.getTxtNombre().setText("");
+		vent.getTxtApellidos().setText("");
+		vent.getTxtCCC().setText("");
+		vent.getTxtContraseña().setText(vent.getPassword());
+		vent.getTxtTelefono().setText("");
+		vent.getTxtemail().setText("");
+		vent.getDate().setDate(null);
+	}
+
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
@@ -139,6 +151,9 @@ public class Ac_AdminUserAdd implements ActionListener {
 									+ ((JTextComponent) vent.getDate().getDateEditor().getUiComponent()).getText()
 									+ "','" + Integer.parseInt(vent.getTxtTelefono().getText()) + "','"
 									+ vent.getTxtemail().getText() + "','user')");
+					JOptionPane.showMessageDialog(null, "¡El usuario se ha agregado correctamente!", "ATENCIÓN ADMINISTRADOR",
+							JOptionPane.INFORMATION_MESSAGE);
+					limpiar();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
