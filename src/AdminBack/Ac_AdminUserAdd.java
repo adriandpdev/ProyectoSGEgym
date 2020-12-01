@@ -2,6 +2,7 @@ package AdminBack;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
@@ -142,15 +143,16 @@ public class Ac_AdminUserAdd implements ActionListener {
 					e.printStackTrace();
 				}
 			}
-			if (arg0.getActionCommand().equals("Limpiar")) {
-				vent.getTxtDni().setText("");
-				vent.getTxtNombre().setText("");
-				vent.getTxtApellidos().setText("");
-				vent.getTxtCCC().setText("");
-				vent.getTxtContraseña().setText("");
-				vent.getTxtTelefono().setText("");
-				vent.getTxtemail().setText("");
-			}
+		}
+		if (arg0.getActionCommand().equals("Limpiar")) {
+			vent.getTxtDni().setText("");
+			vent.getTxtNombre().setText("");
+			vent.getTxtApellidos().setText("");
+			vent.getTxtCCC().setText("");
+			vent.getTxtContraseña().setText(vent.getPassword());
+			vent.getTxtTelefono().setText("");
+			vent.getTxtemail().setText("");
+			vent.getDate().setDate(null);
 		}
 	}
 }

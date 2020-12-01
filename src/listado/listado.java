@@ -166,7 +166,7 @@ public class listado extends JInternalFrame implements MouseListener,KeyListener
 	public ArrayList<Persona> datarPersonas(){
 		ArrayList<Persona> lista = new ArrayList<>();
 		
-		String sql = "SELECT * FROM persona";
+		String sql = "SELECT * FROM Persona";
 		
 		cp = new Conexion();
 		
@@ -214,21 +214,21 @@ public class listado extends JInternalFrame implements MouseListener,KeyListener
 					
 			
 		if(criterio == 0) {
-			sql_busqueda = "SELECT * FROM persona WHERE dni like '" + parametro + "%'";
+			sql_busqueda = "SELECT * FROM Persona WHERE dni like '" + parametro + "%'";
 		} else if(criterio == 1) {
-			sql_busqueda = "SELECT * FROM persona WHERE nombre like '" + parametro + "%'";
+			sql_busqueda = "SELECT * FROM Persona WHERE nombre like '" + parametro + "%'";
 		} else if(criterio == 2) {
-			sql_busqueda = "SELECT * FROM persona WHERE apellido like '" + parametro + "%'";
+			sql_busqueda = "SELECT * FROM Persona WHERE apellido like '" + parametro + "%'";
 		} else if(criterio == 3) {
-			sql_busqueda = "SELECT * FROM persona WHERE cuentabanc like '" + parametro + "%'";
+			sql_busqueda = "SELECT * FROM Persona WHERE cuentabanc like '" + parametro + "%'";
 		} else if(criterio == 4) {
-			sql_busqueda = "SELECT * FROM persona WHERE fechanac like '" + parametro + "%'";
+			sql_busqueda = "SELECT * FROM Persona WHERE fechanac like '" + parametro + "%'";
 		} else if(criterio == 5) {
-			sql_busqueda = "SELECT * FROM persona WHERE telefono like '" + parametro + "%'";
+			sql_busqueda = "SELECT * FROM Persona WHERE telefono like '" + parametro + "%'";
 		} else if(criterio == 6) {
-			sql_busqueda = "SELECT * FROM persona WHERE correo like '"+ parametro + "%'";
+			sql_busqueda = "SELECT * FROM Persona WHERE correo like '"+ parametro + "%'";
 		} else if(criterio == 7) {
-			sql_busqueda = "SELECT * FROM persona WHERE rol like '" + parametro + "%'";
+			sql_busqueda = "SELECT * FROM Persona WHERE rol like '" + parametro + "%'";
 		}
 		
 		
@@ -380,7 +380,7 @@ public class listado extends JInternalFrame implements MouseListener,KeyListener
 		
 		System.out.println(dni_borrar);
 		
-		String sql_borrar = "DELETE from persona WHERE dni='"+dni_borrar+"'";
+		String sql_borrar = "DELETE from Persona WHERE dni='"+dni_borrar+"'";
 				
 		cp = new Conexion();
 		

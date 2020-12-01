@@ -303,7 +303,7 @@ public class PanelModificacion extends JFrame implements ActionListener{
 			e.printStackTrace();
 		}
 		try {
-			cp.modificar(conn, sql_modificar);
+			cp.consulta(conn, sql_modificar);
 			JOptionPane.showMessageDialog(null, "El registro ha sido modificado correctamente");
 			dispose();
 			
