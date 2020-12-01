@@ -40,7 +40,7 @@ public class Fecha {
 
 	public String fechaActual()
 	{
-		String fecha = dia+"/"+mes+"/"+año;
+		String fecha = año+"-"+mes+"-"+dia;
 		
 		return fecha;
 	}
