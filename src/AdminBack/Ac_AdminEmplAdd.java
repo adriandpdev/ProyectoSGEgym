@@ -41,7 +41,7 @@ public class Ac_AdminEmplAdd implements ActionListener {
 	public boolean isTelefono(String tel) {
 		Pattern pat = null;
 		Matcher mat = null;
-		pat = Pattern.compile("[A-Za-Z]{2}+[0-9]{20}");
+		pat = Pattern.compile("([0-9]{9})");
 		mat = pat.matcher(tel);
 		if (mat.find()) {
 			return true;
@@ -60,6 +60,17 @@ public class Ac_AdminEmplAdd implements ActionListener {
 		} else {
 			return false;
 		}
+	}
+	
+	public void limpiar() {
+		vent.getTxtDni().setText("");
+		vent.getTxtNombre().setText("");
+		vent.getTxtApellidos().setText("");
+		vent.getTxtCCC().setText("");
+		vent.getTxtContraseña().setText(vent.getPassword());
+		vent.getTxtTelefono().setText("");
+		vent.getTxtemail().setText("");
+		vent.getDate().setDate(null);
 	}
 
 	private static boolean comprobar(String dni) {
@@ -136,19 +147,23 @@ public class Ac_AdminEmplAdd implements ActionListener {
 									+ ((JTextComponent) vent.getDate().getDateEditor().getUiComponent()).getText()
 									+ "','" + Integer.parseInt(vent.getTxtTelefono().getText()) + "','"
 									+ vent.getTxtemail().getText() + "','empl')");
+					JOptionPane.showMessageDialog(null, "¡El empleado se ha agregado correctamente!", "ATENCIÓN ADMINISTRADOR",
+							JOptionPane.INFORMATION_MESSAGE);
+					limpiar();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
-			if (arg0.getActionCommand().equals("Limpiar")) {
-				vent.getTxtDni().setText("");
-				vent.getTxtNombre().setText("");
-				vent.getTxtApellidos().setText("");
-				vent.getTxtCCC().setText("");
-				vent.getTxtContraseña().setText("");
-				vent.getTxtTelefono().setText("");
-				vent.getTxtemail().setText("");
-			}
+		}
+		if (arg0.getActionCommand().equals("Limpiar")) {
+			vent.getTxtDni().setText("");
+			vent.getTxtNombre().setText("");
+			vent.getTxtApellidos().setText("");
+			vent.getTxtCCC().setText("");
+			vent.getTxtContraseña().setText(vent.getPassword());
+			vent.getTxtTelefono().setText("");
+			vent.getTxtemail().setText("");
+			vent.getDate().setDate(null);
 		}
 	}
 }

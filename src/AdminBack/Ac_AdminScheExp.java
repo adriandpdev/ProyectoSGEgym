@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.sql.SQLException;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.BaseColor;
@@ -29,7 +30,7 @@ public class Ac_AdminScheExp extends PdfPageEventHelper implements ActionListene
 
 	private static com.itextpdf.text.Font Titulo = FontFactory.getFont(FontFactory.TIMES_ROMAN, 30, BaseColor.BLUE);
 	private static com.itextpdf.text.Font redFont = FontFactory.getFont(FontFactory.TIMES_ROMAN, 12, BaseColor.RED);
-	private static com.itextpdf.text.Font dias = FontFactory.getFont(FontFactory.TIMES_ROMAN, 16);
+	private static com.itextpdf.text.Font dias = FontFactory.getFont(FontFactory.TIMES_ROMAN, 16, Font.BOLD);
 	private static com.itextpdf.text.Font actividades = FontFactory.getFont(FontFactory.TIMES_ROMAN, 12, Font.BOLD);
 	private static V_AdminScheList v;
 
@@ -57,6 +58,7 @@ public class Ac_AdminScheExp extends PdfPageEventHelper implements ActionListene
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		JOptionPane.showMessageDialog(null, "Se ha exportado el horario correctamente");
 	}
 
 	private static void addMetaData(Document document) {
@@ -80,7 +82,7 @@ public class Ac_AdminScheExp extends PdfPageEventHelper implements ActionListene
 			// p.setFont(catFont);
 			PdfPCell c = new PdfPCell(p);
 			c.setHorizontalAlignment(Element.ALIGN_CENTER);
-
+			c.setFixedHeight(35);
 			t.addCell(c);
 		}
 		t.setHeaderRows(1);
@@ -88,6 +90,7 @@ public class Ac_AdminScheExp extends PdfPageEventHelper implements ActionListene
 			for (int j = 0; j < v.getActividades()[i].length; j++) {
 				Phrase p = new Phrase(v.getActividades()[i][j], actividades);
 				PdfPCell c = new PdfPCell(p);
+				c.setFixedHeight(60);
 				c.setHorizontalAlignment(Element.ALIGN_CENTER);
 				t.addCell(c);
 			}

@@ -71,6 +71,18 @@ public class Ac_AdminActiAdd implements ActionListener{
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
+						vent.getTxtNombreactividad().setText("");
+						
+						int idAuto = 0;
+						
+						try {
+							idAuto= c.nuevoID(Main.con, "idActividad", "Actividad");
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						
+						vent.getTxtIdclase().setText(String.valueOf(idAuto));
 					}
 				} catch (HeadlessException | SQLException e) {
 					// TODO Auto-generated catch block
