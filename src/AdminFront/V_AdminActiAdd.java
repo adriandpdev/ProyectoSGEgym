@@ -41,6 +41,19 @@ public class V_AdminActiAdd  extends JInternalFrame{
 
 		lblIdclase = new JLabel("ID CLASE");
 		txtIdclase = new JTextField();
+		
+		int idAuto = 0;
+		
+		try {
+			idAuto= c.nuevoID(Main.con, "idActividad", "Actividad");
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		txtIdclase.setText(String.valueOf(idAuto));
+		txtIdclase.setEditable(false);
+		
 		lblNombreactividad = new JLabel("NOMBRE DE LA ACTIVIDAD");
 		txtNombreactividad = new JTextField();
 		lblDniprofesor = new JLabel("DNI PROFESOR");
