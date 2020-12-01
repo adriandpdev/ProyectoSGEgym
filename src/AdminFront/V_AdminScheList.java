@@ -27,10 +27,11 @@ public class V_AdminScheList extends JInternalFrame {
 	int cont1 = 0, max = 0, control = 0;
 
 	public V_AdminScheList() throws SQLException {
+		((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null);
 		// TODO Auto-generated constructor stub
 		setLayout(new BorderLayout());
 	
-		setTitle("Visualizar Horario");
+		
 		jlvisualizarhorario = new JLabel("HORARIO DE CLASES", SwingConstants.CENTER);
 		
 		setBackground(new Color(137, 13, 84));

@@ -37,11 +37,12 @@ public class V_EmplScheList extends JInternalFrame {
 	public V_EmplScheList(V_EmplHome vent) throws SQLException {
 		// TODO Auto-generated constructor stub
 		this.vent=vent;
+		((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null);
 		
 
 			setLayout(new BorderLayout());
 		
-			setTitle("Visualizar Horario");
+		
 			jlvisualizarhorario = new JLabel("HORARIO DE CLASES", SwingConstants.CENTER);
 			
 			setBackground(new Color(137, 13, 84));
