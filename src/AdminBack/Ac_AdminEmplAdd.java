@@ -61,6 +61,17 @@ public class Ac_AdminEmplAdd implements ActionListener {
 			return false;
 		}
 	}
+	
+	public void limpiar() {
+		vent.getTxtDni().setText("");
+		vent.getTxtNombre().setText("");
+		vent.getTxtApellidos().setText("");
+		vent.getTxtCCC().setText("");
+		vent.getTxtContraseña().setText(vent.getPassword());
+		vent.getTxtTelefono().setText("");
+		vent.getTxtemail().setText("");
+		vent.getDate().setDate(null);
+	}
 
 	private static boolean comprobar(String dni) {
 		char[] letraDni = { 'T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V',
@@ -136,6 +147,9 @@ public class Ac_AdminEmplAdd implements ActionListener {
 									+ ((JTextComponent) vent.getDate().getDateEditor().getUiComponent()).getText()
 									+ "','" + Integer.parseInt(vent.getTxtTelefono().getText()) + "','"
 									+ vent.getTxtemail().getText() + "','empl')");
+					JOptionPane.showMessageDialog(null, "¡El empleado se ha agregado correctamente!", "ATENCIÓN ADMINISTRADOR",
+							JOptionPane.INFORMATION_MESSAGE);
+					limpiar();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -146,9 +160,10 @@ public class Ac_AdminEmplAdd implements ActionListener {
 			vent.getTxtNombre().setText("");
 			vent.getTxtApellidos().setText("");
 			vent.getTxtCCC().setText("");
-			vent.getTxtContraseña().setText("");
+			vent.getTxtContraseña().setText(vent.getPassword());
 			vent.getTxtTelefono().setText("");
 			vent.getTxtemail().setText("");
+			vent.getDate().setDate(null);
 		}
 	}
 }
