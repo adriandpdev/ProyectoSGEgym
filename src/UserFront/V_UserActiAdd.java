@@ -34,7 +34,7 @@ public class V_UserActiAdd extends JInternalFrame {
 	private V_UserHome v1;
 	private JLabel lblTitulo, lblDniuser, lblIdaula, lblverdniuser, lblhora, lbldiasemana;
 	private JTextField txtIdclase, txtNombreactividad;
-	private JComboBox cbIdaula, cbhora, actividadDel, diaAdd;
+	private JComboBox cbaula, cbhora, diasemana, diaAdd;
 	JSpinner horaAdd;
 	private JButton btnAñadir, btnCancelar;
 	private JPanel jpCentro, jpSur;
@@ -65,12 +65,12 @@ public class V_UserActiAdd extends JInternalFrame {
 		lblverdniuser = new JLabel();
 		lblverdniuser.setText(v1.getDNI1());
 		lblIdaula = new JLabel("SELECCIONA LA ACTVIDAD A LA QUE QUIERES APUNTARTE:");
-		cbIdaula = new JComboBox();
+		cbaula = new JComboBox();
 
 		String q = "select distinct(nombre) from Actividad";
 		String x = "nombre";
 
-		cbIdaula.removeAllItems();
+		cbaula.removeAllItems();
 		ArrayList<String> lista = new ArrayList<String>();
 		try {
 			lista = c.llenarCombo(Main.con, q, x);
@@ -78,7 +78,7 @@ public class V_UserActiAdd extends JInternalFrame {
 			e.printStackTrace();
 		}
 		for (int i = 0; i < lista.size(); i++) {
-			cbIdaula.addItem(lista.get(i));
+			cbaula.addItem(lista.get(i));
 
 		}
 
@@ -86,15 +86,15 @@ public class V_UserActiAdd extends JInternalFrame {
 		lbldiasemana = new JLabel("ELIGE DÍA DE LA SEMANA:");
 		cbhora = new JComboBox();
 		cbhora.addActionListener(new Ac_UserActiAdd(this));
-		actividadDel = new JComboBox();
+		diasemana = new JComboBox();
 
 		for (int i = 0; i < semana.length; i++) {
-			actividadDel.addItem(semana[i]);
+			diasemana.addItem(semana[i]);
 		}
 
-		SpinnerDateModel model = modeloHora();
-		horaAdd = new JSpinner(model);
-		JSpinner.DateEditor de = new JSpinner.DateEditor(horaAdd, "HH:mm");
+
+
+		diasemana.addActionListener(new Ac_UserActiAdd(this));
 
 		GridBagConstraints c = new GridBagConstraints();
 
@@ -117,8 +117,8 @@ public class V_UserActiAdd extends JInternalFrame {
 
 		c.gridx = 1;
 		c.gridy = 4;
-		cbIdaula.setPreferredSize(new Dimension(200, 20));
-		jpCentro.add(cbIdaula, c);
+		cbaula.setPreferredSize(new Dimension(200, 20));
+		jpCentro.add(cbaula, c);
 
 		c.gridx = 5;
 		c.gridy = 7;
@@ -130,7 +130,7 @@ public class V_UserActiAdd extends JInternalFrame {
 
 		c.gridx = 0;
 		c.gridy = 8;
-		jpCentro.add(actividadDel, c);
+		jpCentro.add(diasemana, c);
 		c.gridx = 5;
 		c.gridy = 8;
 		jpCentro.add(cbhora, c);
@@ -146,9 +146,13 @@ public class V_UserActiAdd extends JInternalFrame {
 
 		final class addbutton implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Tu usuario con el dni: " + v1.getDNI1()
-						+ " se ha apuntado a la clase: " + cbIdaula.getSelectedItem()+ " el " +actividadDel.getSelectedItem());
+
+				JOptionPane.showMessageDialog(null,
+						
+						"Tu usuario con el dni: " + v1.getDNI1() + " se ha apuntado a la clase: "
+								+ cbaula.getSelectedItem() + " el " + diasemana.getSelectedItem()+" a las "+cbhora.getSelectedItem());
 			}
+			
 		}
 		addbutton elListener = new addbutton();
 		btnAñadir.addActionListener(elListener);
@@ -210,33 +214,39 @@ public class V_UserActiAdd extends JInternalFrame {
 		this.jpSur = jpSur;
 	}
 
-	public JComboBox getDiaDel() {
-		return diaAdd;
-	}
 
-	public JSpinner getHoraDel() {
-		return horaAdd;
-	}
 
 	public JComboBox getActividadDel() {
-		return cbIdaula;
+		return cbaula;
 	}
 
 	public JComboBox getDia() {
 		return diaAdd;
 	}
 
-	private SpinnerDateModel modeloHora() {
-
-		Calendar inicio = Calendar.getInstance();
-
-		inicio.set(Calendar.HOUR_OF_DAY, 12);
-		inicio.set(Calendar.MINUTE, 0);
-		inicio.set(Calendar.SECOND, 0);
-
-		SpinnerDateModel model = new SpinnerDateModel(inicio.getTime(), null, null, Calendar.HOUR);
-
-		return model;
+	public JComboBox getCbaula() {
+		return cbaula;
 	}
+
+	public void setCbaula(JComboBox cbaula) {
+		this.cbaula = cbaula;
+	}
+
+	public JComboBox getCbhora() {
+		return cbhora;
+	}
+
+	public void setCbhora(JComboBox cbhora) {
+		this.cbhora = cbhora;
+	}
+
+	public JComboBox getDiasemana() {
+		return diasemana;
+	}
+
+	public void setDiasemana(JComboBox diasemana) {
+		this.diasemana = diasemana;
+	}
+	
 
 }
