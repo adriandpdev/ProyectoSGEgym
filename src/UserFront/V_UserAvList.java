@@ -63,9 +63,17 @@ private JTable getJTable() throws ClassNotFoundException, SQLException {
 	if(jtable==null) {
 	jtable = new JTable();
 	jtable.setModel(model);
-
+	JTableHeader head = jtable.getTableHeader();
+	TableColumnModel tcm = head.getColumnModel();
+	TableColumn tabCM = tcm.getColumn(0);
+	TableColumn tabCM2 = tcm.getColumn(1);
+	TableColumn tabCM3 = tcm.getColumn(2);
+	tabCM.setHeaderValue("Asunto");
+	tabCM2.setHeaderValue("Mensaje");
+	tabCM3.setHeaderValue("Fecha");
+	jtable.repaint();
 	}
-	
+
 	return jtable;
 }
 
