@@ -2,11 +2,17 @@ package AdminBack;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.text.JTextComponent;
+
+import com.mysql.cj.xdevapi.Statement;
 
 import AdminFront.V_AdminUserAdd;
 import main.Conexion;
@@ -15,6 +21,9 @@ import main.Main;
 public class Ac_AdminUserAdd implements ActionListener {
 
 	private V_AdminUserAdd vent;
+	private ResultSet rs;
+	private Conexion cp;
+	private Connection conn;
 
 	public Ac_AdminUserAdd(V_AdminUserAdd v) {
 		vent = v;
@@ -91,8 +100,27 @@ public class Ac_AdminUserAdd implements ActionListener {
 		if ((Character.toUpperCase(dni.charAt(8))) != letraDni[ind]) {
 			return false;
 		}
+		
 		return true;
 	}
+	
+	public boolean DniExists(String dni) {
+        boolean exist = false;
+        try {
+        	String sql = "SELECT DNI FROM Persona WHERE DNI = '" + vent.getTxtDni().getText() +"' ";
+        	cp = new Conexion();
+        	conn = cp.conectar();
+        	rs = cp.consulta(conn, sql);
+            if (rs.next()) {
+                exist = true;
+            }
+        } catch (ClassNotFoundException ex) {
+
+        } catch (SQLException ex) {
+            exist = false;
+        }
+        return exist;
+    }
 	
 	public void limpiar() {
 		vent.getTxtDni().setText("");
@@ -105,9 +133,11 @@ public class Ac_AdminUserAdd implements ActionListener {
 		vent.getDate().setDate(null);
 	}
 
+	
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		
 		// TODO Auto-generated method stub
 		if (arg0.getActionCommand().equals("Añadir")) {
 			if (vent.getTxtDni().getText().equals("") || vent.getTxtNombre().getText().equals("")
@@ -140,9 +170,14 @@ public class Ac_AdminUserAdd implements ActionListener {
 						JOptionPane.WARNING_MESSAGE);
 				vent.getTxtCCC().setText("");
 				vent.getTxtCCC().requestFocus();
+			} else if (DniExists(vent.getTxtDni().getText())) {
+				JOptionPane.showMessageDialog(null, "¡El DNI introducido ya esta registrado!", "ATENCIÓN ADMINISTRADOR",
+						JOptionPane.WARNING_MESSAGE);
 			} else {
 				Conexion c = new Conexion();
+				
 				try {
+					 
 					c.alta(Main.con,
 							"INSERT INTO Persona(DNI,nombre,apellido,cuentabanc,pass,fechanac,telefono,correo,rol)VALUES('"
 									+ vent.getTxtDni().getText() + "','" + vent.getTxtNombre().getText() + "','"
@@ -155,7 +190,8 @@ public class Ac_AdminUserAdd implements ActionListener {
 							JOptionPane.INFORMATION_MESSAGE);
 					limpiar();
 				} catch (Exception e) {
-					e.printStackTrace();
+					JOptionPane.showMessageDialog(null, "¡El usuario no se ha podido agregar!", "ATENCIÓN ADMINISTRADOR",
+							JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		}

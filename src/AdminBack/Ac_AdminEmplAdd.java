@@ -1,6 +1,10 @@
 package AdminBack;
 
 import java.awt.event.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import javax.swing.JOptionPane;
 import javax.swing.text.JTextComponent;
 import java.util.regex.Matcher;
@@ -12,6 +16,9 @@ import main.Main;
 
 public class Ac_AdminEmplAdd implements ActionListener {
 	private V_AdminEmplAdd vent;
+	private ResultSet rs;
+	private Conexion cp;
+	private Connection conn;
 
 	public Ac_AdminEmplAdd(V_AdminEmplAdd v) {
 		vent = v;
@@ -61,6 +68,25 @@ public class Ac_AdminEmplAdd implements ActionListener {
 			return false;
 		}
 	}
+	
+	public boolean DniExists(String dni) {
+        boolean exist = false;
+        try {
+        	String sql = "SELECT DNI FROM Persona WHERE DNI = '" + vent.getTxtDni().getText() +"' ";
+        	cp = new Conexion();
+        	conn = cp.conectar();
+        	rs = cp.consulta(conn, sql);
+            if (rs.next()) {
+                exist = true;
+            }
+        } catch (ClassNotFoundException ex) {
+
+        } catch (SQLException ex) {
+            exist = false;
+        }
+        return exist;
+    }
+	
 	
 	public void limpiar() {
 		vent.getTxtDni().setText("");
@@ -136,6 +162,9 @@ public class Ac_AdminEmplAdd implements ActionListener {
 						JOptionPane.WARNING_MESSAGE);
 				vent.getTxtCCC().setText("");
 				vent.getTxtCCC().requestFocus();
+			} else if (DniExists(vent.getTxtDni().getText())) {
+				JOptionPane.showMessageDialog(null, "¡El DNI introducido ya esta registrado!", "ATENCIÓN ADMINISTRADOR",
+						JOptionPane.WARNING_MESSAGE);
 			} else {
 				Conexion c = new Conexion();
 				try {
@@ -151,7 +180,8 @@ public class Ac_AdminEmplAdd implements ActionListener {
 							JOptionPane.INFORMATION_MESSAGE);
 					limpiar();
 				} catch (Exception e) {
-					e.printStackTrace();
+					JOptionPane.showMessageDialog(null, "¡El empleado no se ha podido agregar!", "ATENCIÓN ADMINISTRADOR",
+							JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		}
