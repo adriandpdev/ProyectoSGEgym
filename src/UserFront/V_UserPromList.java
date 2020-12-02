@@ -58,12 +58,10 @@ private JScrollPane getJscrollPane() throws ClassNotFoundException, SQLException
 private JTable getJTable() throws ClassNotFoundException, SQLException {
 	
 	if(jtable==null) {
-		
-	
 	jtable = new JTable();
 	jtable.setModel(model);
-	recuperardatos();
 	}
+	recuperardatos();
 	return jtable;
 }
 

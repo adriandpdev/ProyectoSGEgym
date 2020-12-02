@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;
 
-import com.itextpdf.text.List;
+import com.sun.tools.javac.util.List;
 
 public class promocionesJtableModel extends AbstractTableModel {
  ArrayList<String[]> promociones = new ArrayList<String[]>();
