@@ -15,6 +15,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JViewport;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
 import com.mysql.cj.xdevapi.Statement;
 
@@ -49,25 +52,33 @@ private JPanel getJContentPane() throws ClassNotFoundException, SQLException {
 private JScrollPane getJscrollPane() throws ClassNotFoundException, SQLException {
 	if(jscrollpane==null) {
 	jscrollpane=new JScrollPane();
-	jscrollpane.setBounds(new Rectangle( 18,17,552,580));
+	jscrollpane.setBounds( 18,17,1350,580);
 	jscrollpane.setViewportView(getJTable());
 	}
 	return jscrollpane;
 	
 }
 private JTable getJTable() throws ClassNotFoundException, SQLException {
-	
+	recuperardatos();
 	if(jtable==null) {
 	jtable = new JTable();
 	jtable.setModel(model);
+	JTableHeader head = jtable.getTableHeader();
+	TableColumnModel tcm = head.getColumnModel();
+	TableColumn tabCM = tcm.getColumn(0);
+	TableColumn tabCM2 = tcm.getColumn(1);
+	TableColumn tabCM3 = tcm.getColumn(2);
+	tabCM.setHeaderValue("Asunto");
+	tabCM2.setHeaderValue("Mensaje");
+	tabCM3.setHeaderValue("Fecha");
+	jtable.repaint();
 	}
-	recuperardatos();
+	
 	return jtable;
 }
 
 
 private void recuperardatos() throws ClassNotFoundException, SQLException {
-String sql = "Select * from Promociones";
 Conexion c = new Conexion();
 con = c.conectar();
 
