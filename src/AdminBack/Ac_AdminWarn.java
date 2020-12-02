@@ -1,7 +1,10 @@
 package AdminBack;
 
+import java.awt.*;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -9,7 +12,13 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.swing.BoxLayout;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import main.Conexion;
 import main.Main;
@@ -49,7 +58,6 @@ public class Ac_AdminWarn implements ActionListener {
 				transport.sendMessage(msg, msg.getAllRecipients());
 				transport.close();
 				JOptionPane.showMessageDialog(null, "Se ha enviado el Aviso.");
-
 			} catch (Exception e2) {
 				JOptionPane.showMessageDialog(null, "Error, El mensaje no se ha podido enviar.");
 			}
@@ -57,4 +65,5 @@ public class Ac_AdminWarn implements ActionListener {
 			JOptionPane.showMessageDialog(null, "Error, se debe llenar el campo destinatario.");
 		}
 	}
+	
 }
