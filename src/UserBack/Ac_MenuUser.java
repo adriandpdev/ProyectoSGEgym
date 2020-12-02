@@ -49,9 +49,16 @@ public class Ac_MenuUser implements ActionListener {
 			vent.add(vUsPayList);
 			vUsPayList.setVisible(true);
 		} else if (arg0.getActionCommand().equals("Últimos avisos")) {
-			V_UserAvList vUsAvList = new V_UserAvList();
-			vent.add(vUsAvList);
-			vUsAvList.setVisible(true);
+			V_UserAvList vUsAvList;
+			try {
+				vUsAvList = new V_UserAvList();
+				vent.add(vUsAvList);
+				vUsAvList.setVisible(true);
+			} catch (ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		} else if (arg0.getActionCommand().equals("Promociones activas")) {
 			V_UserPromList vUsPrList;
 			try {
