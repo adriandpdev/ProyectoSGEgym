@@ -36,6 +36,8 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableModel;
 
+import main.Conexion;
+
 
 //Implementamos un mouse listener porque queremos capturar las acciones que realice el ratón
 

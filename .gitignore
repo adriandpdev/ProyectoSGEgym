@@ -1,4 +1,4 @@
 /bin
 .classpath
 cache.txt
-horario.pdf
+*.pdf
