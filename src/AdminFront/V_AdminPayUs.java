@@ -194,12 +194,14 @@ public class V_AdminPayUs extends JInternalFrame {
 	 * añadirTabla();
 	 * 
 	 * 
-	 * add(superior,BorderLayout.NORTH); add(tabla,BorderLayout.CENTER);
+	 * add(superior,BorderLayout.NORTH); 
+	 * add(tabla,BorderLayout.CENTER);
 	 * 
 	 * }
 	 */
 	/*
-	 * private void añadirTabla() throws SQLException { tabla=new JPanel();
+	 * private void añadirTabla() throws SQLException { 
+	 * tabla=new JPanel();
 	 * 
 	 * String query="SELECT * from Transacciones";
 	 * 
