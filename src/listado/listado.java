@@ -17,9 +17,12 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -31,12 +34,14 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 import javax.swing.border.BevelBorder;
+import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableModel;
 
-import main.Conexion;
+import com.mysql.cj.x.protobuf.MysqlxConnection.Close;
 
 
 //Implementamos un mouse listener porque queremos capturar las acciones que realice el ratón
@@ -59,16 +64,22 @@ public class listado extends JInternalFrame implements MouseListener,KeyListener
 	ArrayList<Persona> listaPersonas;
 	
 	private int filasTabla, columnasTabla;
-	private Conexion cp;
+	private Conexion cp, cp2;
 	private Connection conn;
-	private ResultSet rs;
+	private Connection conn2;
+	private ResultSet rs, rs2;
 	private ModeloTabla modelo;
+
 	public int criterio;
 	public String parametro;
 	
 	public listado() {
 		
 		this.setLayout(new BorderLayout());
+		
+		UIManager.put("OptionPane.background",new ColorUIResource(new Color(137, 13, 84)));
+		UIManager.put("OptionPane.messageForeground",new ColorUIResource(Color.WHITE));
+		UIManager.put("Panel.background",new ColorUIResource(new Color(137, 13, 84)));
 		
 		
 		//Paneles del primer BorderLayout
@@ -84,20 +95,24 @@ public class listado extends JInternalFrame implements MouseListener,KeyListener
 		panel_norte_busqueda.setLayout(new GridLayout(1,4,5,5));
 		panel_norte_busqueda.setBackground(new Color(137, 13, 84));
 		
-		btn_buscar = new JButton("BUSCAR");
+		btn_buscar = new JButton("Buscar");
 		btn_buscar.addActionListener(this);
-		btn_buscar.setFont(new Font("Verdana",Font.PLAIN,19));
+		btn_buscar.setFont(new Font("Verdana",Font.PLAIN,18));
 		
-		btn_refrescar = new JButton("REFRESCAR");
-		btn_refrescar.setFont(new Font("Verdana",Font.PLAIN,19));
+		btn_refrescar = new JButton("Reiniciar Tabla");
+		btn_refrescar.addActionListener(this);
+		btn_refrescar.setFont(new Font("Verdana",Font.PLAIN,18));
 		
+		//Creamos la caja de busqueda y le añadimos un objeto de la clase Textpromt para añadirle un placeholder
 		tf_busqueda = new JTextField();
-		tf_busqueda.setFont(new Font("Verdana",Font.PLAIN,19));
+		tf_busqueda.setFont(new Font("Verdana",Font.PLAIN,18));
+		TextPrompt placeholder = new TextPrompt("Inserte su busqueda aquí", tf_busqueda);
+		placeholder.changeAlpha(0.5f);
 		
 		
 		lbl_criterios = new JLabel("Criterios de Busqueda:");
 		lbl_criterios.setBackground(new Color(137, 13, 84));
-		lbl_criterios.setFont(new Font("Verdana",Font.PLAIN,23));
+		lbl_criterios.setFont(new Font("Verdana",Font.PLAIN,22));
 		lbl_criterios.setForeground(Color.WHITE);
 
 		modelo_combo = new DefaultComboBoxModel<String>();
@@ -216,7 +231,7 @@ public class listado extends JInternalFrame implements MouseListener,KeyListener
 					
 			
 		if(criterio == 0) {
-			sql_busqueda = "SELECT * FROM Persona WHERE dni like '" + parametro + "%'";
+			sql_busqueda = "SELECT * FROM Persona WHERE DNI like '" + parametro + "%'";
 		} else if(criterio == 1) {
 			sql_busqueda = "SELECT * FROM Persona WHERE nombre like '" + parametro + "%'";
 		} else if(criterio == 2) {
@@ -378,27 +393,81 @@ public class listado extends JInternalFrame implements MouseListener,KeyListener
 
 	}
 	
-	public void EliminarRegistro(String dni_borrar) {
-		
-		System.out.println(dni_borrar);
-		
-		String sql_borrar = "DELETE from Persona WHERE dni='"+dni_borrar+"'";
+	
+	//Método para eliminar una persona de la BBDD 
+	
+	public void EliminarRegistro(String dni_borrar){
+
+		String sql_borrar = "DELETE from Persona WHERE DNI='"+dni_borrar+"'";
 				
-		cp = new Conexion();
-		
 		try {
 			conn = cp.conectar();
 			cp.eliminar(conn, sql_borrar);
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
+		}
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void refrescarTabla(){
 		construirTabla("lis");
+		
 	}
 
+	//Método que añade los datos de la persona que causa baja a la tabla de bajas de la BBDD
+	
+	public void AgregarBaja(String dni_baja) {
+		
+		String sql_datos_baja = "SELECT * FROM Persona WHERE DNI='" + dni_baja + "'";
+		
+		//Obtenemos la fecha del sistema para que nos de el campo de la fecha de baja de la persona
+		
+		SimpleDateFormat formatter= new SimpleDateFormat("dd-MM-yyyy");
+		Date date = new Date(System.currentTimeMillis());
+		String fecha_actual = formatter.format(date);
+		System.out.println(fecha_actual);
+		
+	
+		try {
+			conn = cp.conectar();
+			
+			String fechita = "18-01-2021";
+			System.out.println(tablaPersonas.getValueAt(tablaPersonas.getSelectedRow(), 1).toString());
+			
+			String sql_insertar_baja = "INSERT INTO PersonaBaja (DNI, nombre, apellido, cuentabanc, fechanac, telefono, correo, rol, fechabaja) VALUES"
+				+ "('"+dni_baja+"','"+tablaPersonas.getValueAt(tablaPersonas.getSelectedRow(), 1).toString()+"',"
+						+ " '"+tablaPersonas.getValueAt(tablaPersonas.getSelectedRow(), 2).toString()+"',"
+								+ " '"+tablaPersonas.getValueAt(tablaPersonas.getSelectedRow(), 3).toString()+"',"
+										+ " '"+tablaPersonas.getValueAt(tablaPersonas.getSelectedRow(), 5).toString()+"',"
+												+ " '"+tablaPersonas.getValueAt(tablaPersonas.getSelectedRow(), 6).toString()+"',"
+														+ "'"+tablaPersonas.getValueAt(tablaPersonas.getSelectedRow(), 7).toString()+"',"
+																+ "'"+tablaPersonas.getValueAt(tablaPersonas.getSelectedRow(), 8).toString()+"',"
+																		+ "'"+fecha_actual+"')";
+			
+			
+			cp.alta(conn, sql_insertar_baja);
+			
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
 	//	EVENTOS DINÁMICOS:
 	
 	//Eventos al pulsar los botones de la tabla con el click del ratón
@@ -421,7 +490,6 @@ public class listado extends JInternalFrame implements MouseListener,KeyListener
 			String pm_cuentabanc = tablaPersonas.getValueAt(row, 3).toString();
 			String pm_pass = tablaPersonas.getValueAt(row, 4).toString();
 			String pm_fechanac = tablaPersonas.getValueAt(row, 5).toString();
-			System.out.println(pm_fechanac);
 			String pm_telefono = tablaPersonas.getValueAt(row, 6).toString();
 			String pm_correo = tablaPersonas.getValueAt(row, 7).toString();
 			String pm_rol = tablaPersonas.getValueAt(row, 8).toString();
@@ -436,10 +504,14 @@ public class listado extends JInternalFrame implements MouseListener,KeyListener
 			}
 			
 		} else if (columna == Indicadores.ELIMINAR) {
-			System.out.println("pulsado eliminar");
+
 			int reply = JOptionPane.showConfirmDialog(tablaPersonas, "¿Esta seguro de que quiere borrar el registro?", "Eliminar",JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
 			
 			if(reply == JOptionPane.YES_OPTION) {
+				
+				//Añade el registro que se va a eliminar a la BBDD
+				AgregarBaja(tablaPersonas.getValueAt(tablaPersonas.getSelectedRow(), 0).toString());
+				
 				//Elimina el registro de la BBDD
 				EliminarRegistro(tablaPersonas.getValueAt(tablaPersonas.getSelectedRow(), 0).toString());
 				
@@ -506,14 +578,20 @@ public class listado extends JInternalFrame implements MouseListener,KeyListener
 		
 	}
 
+	
+	//Boton de busqueda
 	@Override
 	public void actionPerformed(ActionEvent ac) {
 		// TODO Auto-generated method stub
 		if(ac.getSource() == btn_buscar) {
 			criterio = combo_campos.getSelectedIndex();
 			parametro = getTf_busqueda().getText().toString();
-			
 			construirTabla("bus");
+		}
+		
+		if(ac.getSource() == btn_refrescar) {
+			construirTabla("lis");
+			tf_busqueda.setText("");
 		}
 	}
 	

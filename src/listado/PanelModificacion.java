@@ -21,8 +21,6 @@ import javax.swing.plaf.ColorUIResource;
 
 import com.toedter.calendar.JDateChooser;
 
-import main.Conexion;
-
 public class PanelModificacion extends JFrame implements ActionListener{
 
 	private JLabel Titulo, Dni, Nombre, CCC, email, Fecha, Apellidos, Contraseña, Telefono, Rol;
@@ -291,7 +289,7 @@ public class PanelModificacion extends JFrame implements ActionListener{
 		System.out.println(mod_rol);
 		
 		String sql_modificar = "UPDATE Persona SET DNI='"+mod_dni+"', nombre='"+mod_nombre+"', apellido='"+mod_apellido+"',cuentabanc='"+mod_cuentabanc+"', fechanac='"+mod_fechanac+"',"
-			+ "telefono="+mod_telefono+", correo='"+mod_correo+"', rol='"+mod_rol+"' WHERE DNI='"+DNI+"'";
+			+ "telefono="+mod_telefono+", correo='"+mod_correo+"', rol='"+mod_rol+"' WHERE dni='"+DNI+"'";
 
 		
 		//UPDATE `persona` SET `fechanac`= "18-01-1980" WHERE 1
@@ -310,7 +308,7 @@ public class PanelModificacion extends JFrame implements ActionListener{
 			dispose();
 			
 			listado list = new listado();
-			list.refrescarTabla();
+			list.construirTabla("lis");
 			
 			conn.close();
 			
