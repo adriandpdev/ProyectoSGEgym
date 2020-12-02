@@ -32,6 +32,8 @@ import javax.swing.UIManager;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.JTableHeader;
 
+import main.Conexion;
+
 public class ListadoBajas extends JInternalFrame implements MouseListener,KeyListener, ActionListener{
 	
 	
