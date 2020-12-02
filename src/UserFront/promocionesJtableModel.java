@@ -7,7 +7,7 @@ import javax.swing.table.AbstractTableModel;
 import com.itextpdf.text.List;
 
 public class promocionesJtableModel extends AbstractTableModel {
-  ArrayList <String[]> promociones = new ArrayList<String[]>();
+ ArrayList<String[]> promociones = new ArrayList<String[]>();
 	@Override
 	public int getRowCount() {
 		// TODO Auto-generated method stub

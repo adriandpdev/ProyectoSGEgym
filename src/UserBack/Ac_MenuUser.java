@@ -53,7 +53,14 @@ public class Ac_MenuUser implements ActionListener {
 			vent.add(vUsAvList);
 			vUsAvList.setVisible(true);
 		} else if (arg0.getActionCommand().equals("Promociones activas")) {
-			V_UserPromList vUsPrList = new V_UserPromList();
+			V_UserPromList vUsPrList = null;
+			try {
+				vUsPrList = new V_UserPromList();
+				
+			} catch (ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			vent.add(vUsPrList);
 			vUsPrList.setVisible(true);
 		} else if (arg0.getActionCommand().equals("Mi Perfil")) {
