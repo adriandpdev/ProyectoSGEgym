@@ -1,7 +1,9 @@
 package AdminFront;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Container;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,6 +28,7 @@ import main.Main;
 
 public class V_AdminProm extends JInternalFrame {
 
+	 private JLabel titulo, destinatario, asunto, mens;
 	 private JTextField txtdestinatario,txtasunto;
 	 private JTextArea mensaje;
 	 private JButton btnenviar;
@@ -41,24 +44,38 @@ public class V_AdminProm extends JInternalFrame {
 	private void CreateForm() {
 		this.setTitle("PROMOCIONES");
 		 JPanel Titulo = new JPanel();
-		  Titulo.add(new JLabel("ENVIAR PROMOCION"));
+		  Titulo.add(titulo= new JLabel("ENVIAR PROMOCION"));
+		  Titulo.setBackground(new Color(137, 13, 84));
+		  titulo.setFont(new Font("Verdana",Font.BOLD,22));
+		  titulo.setForeground(Color.WHITE);
 			
 		  JPanel Datos=new JPanel();
 		  Datos.setLayout(new GridLayout(3,3));
-		  Datos.add(new JLabel("Destinatario: "));
+		  Datos.add(destinatario= new JLabel("Destinatario: "));
+		  destinatario.setFont(new Font("Verdana",Font.BOLD,20));
+		  destinatario.setHorizontalAlignment(JTextField.CENTER);
 		  txtdestinatario=new JTextField();
+		  txtdestinatario.setFont(new Font("Verdana",Font.BOLD,20));
 		  Datos.add(txtdestinatario);
-		  Datos.add(new JLabel("Asunto: "));
+		  Datos.add(asunto= new JLabel("Asunto: "));
+		  asunto.setFont(new Font("Verdana",Font.BOLD,20));
+		  asunto.setHorizontalAlignment(JTextField.CENTER);
 		  txtasunto=new JTextField();
+		  txtasunto.setFont(new Font("Verdana",Font.BOLD,20));
 		  Datos.add(txtasunto);
-		  Datos.add(new JLabel("Mensaje: "));
+		  Datos.add(mens= new JLabel("Mensaje: "));
+		  mens.setFont(new Font("Verdana",Font.BOLD,20));
+		  mens.setHorizontalAlignment(JTextField.CENTER);
 		  mensaje=new JTextArea();
+		  mensaje.setFont(new Font("Verdana",Font.BOLD,20));
 		  mensaje.setLineWrap(true);
 		  JScrollPane scroll=new JScrollPane(mensaje);
 		  Datos.add(scroll);
 		  
 		  JPanel Botones=new JPanel();
+		  Botones.setBackground(new Color(137, 13, 84));
 		  btnenviar=new JButton("Enviar");
+		  btnenviar.setFont(new Font("Verdana",Font.BOLD,20));
 		  Botones.add(btnenviar);
 		  
 		  java.util.Date d = new java.util.Date();  

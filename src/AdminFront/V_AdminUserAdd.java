@@ -1,7 +1,9 @@
 package AdminFront;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Container;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -75,35 +77,66 @@ public class V_AdminUserAdd extends JInternalFrame {
 
 		JPanel Norte = new JPanel();
 		Norte.add(Titulo = new JLabel("ALTA USUARIO"));
+		Norte.setBackground(new Color(137, 13, 84));
+		Titulo.setFont(new Font("Verdana",Font.BOLD,22));
+		Titulo.setForeground(Color.WHITE);
+		
 
 		JPanel Centro = new JPanel();
 		Centro.setLayout(new GridLayout(4, 4, 10, 10));
 		Centro.add(Nombre = new JLabel("Nombre"));
+		Nombre.setFont(new Font("Verdana",Font.BOLD,20));
+		Nombre.setHorizontalAlignment(JTextField.CENTER);
 		Centro.add(txtNombre = new JTextField());
+		txtNombre.setFont(new Font("Verdana",Font.BOLD,20));
 		Centro.add(Apellidos = new JLabel("Apellidos"));
+		Apellidos.setFont(new Font("Verdana",Font.BOLD,20));
+		Apellidos.setHorizontalAlignment(JTextField.CENTER);
 		Centro.add(txtApellidos = new JTextField());
+		txtApellidos.setFont(new Font("Verdana",Font.BOLD,20));
 		Centro.add(Dni = new JLabel("DNI"));
+		Dni.setFont(new Font("Verdana",Font.BOLD,20));
+		Dni.setHorizontalAlignment(JTextField.CENTER);
 		Centro.add(txtDni = new JTextField());
+		txtDni.setFont(new Font("Verdana",Font.BOLD,20));
 		Centro.add(CCC = new JLabel("CCC"));
+		CCC.setFont(new Font("Verdana",Font.BOLD,20));
+		CCC.setHorizontalAlignment(JTextField.CENTER);
 		Centro.add(txtCCC = new JTextField());
+		txtCCC.setFont(new Font("Verdana",Font.BOLD,20));
 		Centro.add(email = new JLabel("E-mail"));
+		email.setFont(new Font("Verdana",Font.BOLD,20));
+		email.setHorizontalAlignment(JTextField.CENTER);
 		Centro.add(txtemail = new JTextField());
+		txtemail.setFont(new Font("Verdana",Font.BOLD,20));
 		date = new JDateChooser();
 		date.setDateFormatString("dd-MM-yyyy");
+		date.setFont(new Font("Verdana",Font.BOLD,20));
 		Centro.add(Fecha = new JLabel("Fecha de Nacimiento"));
+		Fecha.setFont(new Font("Verdana",Font.BOLD,20));
+		Fecha.setHorizontalAlignment(JTextField.CENTER);
 		Centro.add(date);
 		Centro.add(Contraseña = new JLabel("Contraseña"));
+		Contraseña.setFont(new Font("Verdana",Font.BOLD,20));
+		Contraseña.setHorizontalAlignment(JTextField.CENTER);
 		Centro.add(txtContraseña = new JTextField());
+		txtContraseña.setFont(new Font("Verdana",Font.BOLD,20));
 		Centro.add(Telefono = new JLabel("Telefono"));
+		Telefono.setFont(new Font("Verdana",Font.BOLD,20));
+		Telefono.setHorizontalAlignment(JTextField.CENTER);
 		Centro.add(txtTelefono = new JTextField());
+		txtTelefono.setFont(new Font("Verdana",Font.BOLD,20));
 		txtContraseña.setEnabled(false);
 		txtContraseña.setText(getPassword());
 
 		JPanel Sur = new JPanel();
+		Sur.setBackground(new Color(137, 13, 84));
 		Sur.add(Añadir = new JButton("Añadir"));
 		Añadir.addActionListener(new Ac_AdminUserAdd(this));
+		Añadir.setFont(new Font("Verdana",Font.BOLD,20));
 		Sur.add(Limpiar = new JButton("Limpiar"));
 		Limpiar.addActionListener(new Ac_AdminUserAdd(this));
+		Limpiar.setFont(new Font("Verdana",Font.BOLD,20));
 
 		Container c = getContentPane();
 		c.add(Norte, BorderLayout.NORTH);
