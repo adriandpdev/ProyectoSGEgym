@@ -60,7 +60,42 @@ public class Ac_AdminPayUs implements FocusListener, ActionListener {
 					e.printStackTrace();
 				}
 			}
+			else {
+				String query="SELECT * from Transacciones where year(date)="+v.getAño().getValue()+" and month(date)="+(v.getMes().getSelectedIndex()+1);
+				
+				String query1="select count(*) as cuenta from Transacciones where year(date)="+v.getAño().getValue()+" and month(date)="+(v.getMes().getSelectedIndex()+1);
+				try {
+					rellenarTabla(query, query1);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 			
+		}
+		else {
+			if (v.getMes().getSelectedIndex()==-1) {
+				String query="SELECT * from Transacciones where dniusuario like '"+v.getDni().getText()+"' and year(date)="+v.getAño().getValue();
+				
+				String query1="select count(*) as cuenta from Transacciones where dniusuario like '"+v.getDni().getText()+"' and year(date)="+v.getAño().getValue();
+				try {
+					rellenarTabla(query, query1);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			else {
+				String query="SELECT * from Transacciones where dniusuario like '"+v.getDni().getText()+"' and year(date)="+v.getAño().getValue()+" and month(date)="+(v.getMes().getSelectedIndex()+1);
+				
+				String query1="select count(*) as cuenta from Transacciones where dniusuario like '"+v.getDni().getText()+"' and year(date)="+v.getAño().getValue()+" and month(date)="+(v.getMes().getSelectedIndex()+1);
+				try {
+					rellenarTabla(query, query1);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 		
 		
@@ -79,26 +114,28 @@ public class Ac_AdminPayUs implements FocusListener, ActionListener {
 		nuevaTabla=new String[cantidadfilas][v.getColumnas().length];
 		ResultSet rs;
 		rs=c.consulta(Main.con, query);
-		if (rs.next()) {
-			for (int i = 0; i < v.getPagos().length; i++) {
+		
+			for (int i = 0; i <nuevaTabla.length && rs.next(); i++) {
 				ResultSetMetaData metaData = rs.getMetaData();
-				for (int j = 1; j <= v.getPagos()[i].length; j++) {
+				for (int j = 1; j <= nuevaTabla[i].length; j++) {
 					String columnName = metaData.getColumnName(j);
-					if(!columnName.equals("Pagado"))
-						v.getPagos()[i][j-1]=rs.getString(columnName);
+					if(!columnName.equals("Pagado")) {
+						nuevaTabla[i][j-1]=rs.getString(columnName);
+					}
 					else {
 						if(rs.getString(columnName).equals("1")) {
-							v.getPagos()[i][j-1]="SI";
+							nuevaTabla[i][j-1]="SI";
 						}
 						else {
-							v.getPagos()[i][j-1]="NO";
+							nuevaTabla[i][j-1]="NO";
 						}
 					}
 				}
-				rs.next();
-			}
+				
+			
 		}
 		v.setPagos(nuevaTabla);
+		
 		v.setT(new JTable(new DefaultTableModel(v.getPagos(), v.getColumnas())));
 		v.getT().setDefaultRenderer(Object.class, new V_AdminScheList_Renderer());
 		Font font = new Font("Verdana", Font.PLAIN, 12);
@@ -112,8 +149,10 @@ public class Ac_AdminPayUs implements FocusListener, ActionListener {
 		v.getT().getTableHeader().setFont(new Font("Verdana", Font.BOLD, 20));
 		v.setScroll((new JScrollPane(v.getT(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS)) );
-		v.getScroll().setPreferredSize(new Dimension(800, 450));
+		v.getScroll().setPreferredSize(new Dimension(1500, 1000));
 		v.getTabla().add(v.getScroll());
+		v.getTabla().revalidate();
+		v.getTabla().repaint();
 
 	}
 
