@@ -86,7 +86,7 @@ public class Ac_MenuAdmin implements ActionListener {
 			V_AdminWarn vAdWarn = new V_AdminWarn();
 			vent.add(vAdWarn);
 			vAdWarn.setVisible(true);
-		} else if (arg0.getActionCommand().equals("Pagos usuarios")) {
+		} else if (arg0.getActionCommand().equals("Pagos y Nominas")) {
 			V_AdminPayUs vAdPayUs;
 			try {
 				vAdPayUs = new V_AdminPayUs();
@@ -96,10 +96,6 @@ public class Ac_MenuAdmin implements ActionListener {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		} else if (arg0.getActionCommand().equals("Nominas profesores")) {
-			V_AdminPayEm vAdPayEm = new V_AdminPayEm();
-			vent.add(vAdPayEm);
-			vAdPayEm.setVisible(true);
 		} else if (arg0.getActionCommand().equals("Mi Perfil")) {
 			V_AdminPerfil vAdPerfil = new V_AdminPerfil(vent);
 			vent.add(vAdPerfil);
