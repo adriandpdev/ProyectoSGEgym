@@ -43,8 +43,6 @@ import javax.swing.table.TableModel;
 
 import com.mysql.cj.x.protobuf.MysqlxConnection.Close;
 
-import main.Conexion;
-
 
 //Implementamos un mouse listener porque queremos capturar las acciones que realice el ratón
 
@@ -141,8 +139,8 @@ public class listado extends JInternalFrame implements MouseListener,KeyListener
 		panel_norte.setBackground(new Color(137, 13, 84));
 		
 		//Título personalizado 
-		lbl_titulo = new JLabel("Listado de Usuarios y Profesores:");
-		lbl_titulo.setFont(new Font("Verdana",Font.PLAIN,35));
+		lbl_titulo = new JLabel("LISTADO DE USUARIOS/PROFESORES");
+		lbl_titulo.setFont(new Font("Verdana",Font.BOLD,22));
 		lbl_titulo.setForeground(Color.WHITE);
 		
 		panel_central.setLayout(new BorderLayout());
@@ -426,8 +424,6 @@ public class listado extends JInternalFrame implements MouseListener,KeyListener
 	
 	public void AgregarBaja(String dni_baja) {
 		
-		String sql_datos_baja = "SELECT * FROM Persona WHERE DNI='" + dni_baja + "'";
-		
 		//Obtenemos la fecha del sistema para que nos de el campo de la fecha de baja de la persona
 		
 		SimpleDateFormat formatter= new SimpleDateFormat("dd-MM-yyyy");
@@ -438,7 +434,6 @@ public class listado extends JInternalFrame implements MouseListener,KeyListener
 	
 		try {
 			conn = cp.conectar();
-			
 			
 			System.out.println(tablaPersonas.getValueAt(tablaPersonas.getSelectedRow(), 1).toString());
 			
@@ -517,7 +512,7 @@ public class listado extends JInternalFrame implements MouseListener,KeyListener
 				//Elimina el registro de la BBDD
 				EliminarRegistro(tablaPersonas.getValueAt(tablaPersonas.getSelectedRow(), 0).toString());
 				
-				JOptionPane.showMessageDialog(tablaPersonas, "Registro eliminado");
+				JOptionPane.showMessageDialog(tablaPersonas, "Registro eliminado", "Eliminar", JOptionPane.PLAIN_MESSAGE);
 				//Vuelvo a construir la tabla para reflejar los cambios
 				construirTabla("lis");
 			}
@@ -569,8 +564,8 @@ public class listado extends JInternalFrame implements MouseListener,KeyListener
 		if(e.getKeyCode()==KeyEvent.VK_ENTER) {
 			criterio = combo_campos.getSelectedIndex();
 			parametro = getTf_busqueda().getText().toString();
+			
 			construirTabla("bus");
-			tf_busqueda.setText("");
 		}
 	}
 
@@ -589,7 +584,6 @@ public class listado extends JInternalFrame implements MouseListener,KeyListener
 			criterio = combo_campos.getSelectedIndex();
 			parametro = getTf_busqueda().getText().toString();
 			construirTabla("bus");
-			tf_busqueda.setText("");
 		}
 		
 		if(ac.getSource() == btn_refrescar) {

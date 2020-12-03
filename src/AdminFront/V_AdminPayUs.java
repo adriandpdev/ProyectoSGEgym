@@ -8,7 +8,6 @@ import java.text.DateFormatSymbols;
 import java.util.Calendar;
 import java.util.Locale;
 
-
 import java.awt.GridLayout;
 import java.sql.SQLException;
 import javax.swing.*;
@@ -17,7 +16,6 @@ import javax.swing.JSpinner.DefaultEditor;
 import AdminBack.Ac_AdminPayUs;
 import main.Conexion;
 import main.Main;
-
 
 import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
@@ -35,17 +33,13 @@ public class V_AdminPayUs extends JInternalFrame {
 	private Conexion c;
 	JScrollPane scroll;
 
-	
 	public V_AdminPayUs() throws SQLException {
-		
-		  setLayout(new BorderLayout()); 
-		  c=new Conexion(); 
-		  instanciarElementos();
-		
-
-		
+		setLayout(new BorderLayout());
+		c = new Conexion();
+		instanciarElementos();
 	}
 
+	
 	
 	  private void instanciarElementos() throws SQLException { 
 		  
@@ -113,6 +107,7 @@ public class V_AdminPayUs extends JInternalFrame {
 		  }				  
 	  }
 	 
+
 	public void añadirVacio(JPanel p) {
 		p.add(new JLabel());
 	}
@@ -127,14 +122,14 @@ public class V_AdminPayUs extends JInternalFrame {
 
 		año = new JSpinner();
 		año.setValue(2000);
-		((DefaultEditor)año.getEditor()).getTextField().setEditable(false);
+		((DefaultEditor) año.getEditor()).getTextField().setEditable(false);
 
 		mes = new JComboBox();
 		for (int i = 0; i < 12; i++) {
 
 			Calendar c = Calendar.getInstance();
 			c.set(2, i);
-			mes.addItem(getMonthName(c.get(Calendar.MONTH),getDefaultLocale()));
+			mes.addItem(getMonthName(c.get(Calendar.MONTH), getDefaultLocale()));
 		}
 		mes.setSelectedIndex(-1);
 		filtrar = new JButton("Buscar");
@@ -202,7 +197,4 @@ public class V_AdminPayUs extends JInternalFrame {
 		String[] monthNames = symbols.getMonths();
 		return monthNames[month];
 	}
-
-
 }
-

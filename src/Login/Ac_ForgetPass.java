@@ -12,6 +12,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.swing.JOptionPane;
 
+import AdminFront.V_AdminUserAdd;
 import main.Conexion;
 import main.Main;
 
@@ -22,6 +23,7 @@ public class Ac_ForgetPass implements MouseListener {
 	private String clave = "sgeproyecto1gimnasio";
 	private String servidorSMTP = "smtp.gmail.com";
 	private String puertoEnvio = "587";
+	private String dni;
 
 	Ac_ForgetPass(V_Login v) {
 		vent = v;
@@ -37,7 +39,7 @@ public class Ac_ForgetPass implements MouseListener {
 				ResultSet rs = c.consulta(Main.con, "SELECT * FROM Persona WHERE correo LIKE '" + correo + "'");
 				rs.next();
 				if (rs.first()) {
-					System.out.println("HAY CORREO");
+					dni = rs.getString("DNI");
 					Properties props = new Properties();
 					props.put("mail.smtp.host", servidorSMTP); // El servidor SMTP de Google
 					props.put("mail.smtp.user", usuario); // Usuario que envia
@@ -50,16 +52,18 @@ public class Ac_ForgetPass implements MouseListener {
 					msg.setFrom(new InternetAddress(usuario));
 					msg.addRecipients(Message.RecipientType.TO, new InternetAddress[] { new InternetAddress(correo) });
 					msg.setSubject("Nueva contraseña de proyectoSGEgym");
-
-					// GENERAR UNA NUEVA CLAVE Y MODIFICARLA EN LA BASE DE DATOS
-					nclave = "NULL";
-					mensaje = "Tu nueva contraseña es " + nclave;
+					nclave = V_AdminUserAdd.getPassword();
+					c.modificar(Main.con,
+							"UPDATE `Persona` SET `pass` = '" + nclave + "' WHERE `Persona`.`DNI` = '" + dni + "'");
+					mensaje = "Tu nueva contraseña es " + nclave
+							+ "\n\nPodrás cambiarla al iniciar sesión en tu perfil";
 					msg.setText(mensaje);
 					Transport transport = mailSession.getTransport("smtp");
 					transport.connect("smtp.gmail.com", usuario, clave);
 					transport.sendMessage(msg, msg.getAllRecipients());
 					transport.close();
-					JOptionPane.showMessageDialog(null, "Se ha enviado una nueva contraseña al correo.");
+					JOptionPane.showMessageDialog(null, "Se ha enviado una nueva contraseña al correo.",
+							"Restablecer contraseña", 1);
 				} else {
 					JOptionPane.showMessageDialog(null, "Introduce un correo valido.");
 				}

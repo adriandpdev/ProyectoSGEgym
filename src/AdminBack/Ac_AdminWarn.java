@@ -1,7 +1,10 @@
 package AdminBack;
 
+import java.awt.*;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -9,7 +12,13 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.swing.BoxLayout;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import main.Conexion;
 import main.Main;
@@ -20,6 +29,13 @@ public class Ac_AdminWarn implements ActionListener {
 
 	public Ac_AdminWarn(V_AdminWarn v) {
 		vent = v;
+	}
+	
+	public void limpiar() {
+		vent.getTxtdestinatario().setText("");
+		vent.getTxtasunto().setText("");
+		vent.getMensaje().setText("");
+		
 	}
 
 	@Override
@@ -48,6 +64,7 @@ public class Ac_AdminWarn implements ActionListener {
 				transport.connect("smtp.gmail.com", vent.getUsuario(), vent.getClave());
 				transport.sendMessage(msg, msg.getAllRecipients());
 				transport.close();
+                limpiar();
 				JOptionPane.showMessageDialog(null, "Se ha enviado el Aviso.", "ATENCIÓN ADMINISTRADOR", JOptionPane.INFORMATION_MESSAGE );
 
 			} catch (Exception e2) {
@@ -57,4 +74,5 @@ public class Ac_AdminWarn implements ActionListener {
 			JOptionPane.showMessageDialog(null, "Error, Se debe rellenar el campo destinatario.", "ATENCIÓN ADMINISTRADOR", JOptionPane.ERROR_MESSAGE);
 		}
 	}
+	
 }
