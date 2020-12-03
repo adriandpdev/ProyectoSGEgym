@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -24,7 +25,7 @@ public class Ac_UserActiAdd implements ChangeListener, ActionListener {
 		v = x;
 	}
 
-	@Override
+	
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
 		String q2 = "select Hora from Horario where idactividad in(select idactividad from Actividad where nombre like '"
@@ -46,11 +47,33 @@ public class Ac_UserActiAdd implements ChangeListener, ActionListener {
 		}
 		
 		
+		String q3 = "select aforo from Aulas where idAula in(select idAula from Actividad where nombre like '"
+				+ v.getCbaula().getSelectedItem() + "') " ;
+	
+		ResultSet aforo = null;
+		try {
+			aforo = c.consulta(Main.con,q3);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
-
+	
+		try {
+			while(aforo.next())
+			{
+				v.getLblmostraraforo().setText(aforo.getString("aforo"));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		
 	}
 
-	@Override
+
+	
+
 	public void stateChanged(ChangeEvent arg0) {
 		// TODO Auto-generated method stub
 		

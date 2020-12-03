@@ -22,28 +22,40 @@ import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerDateModel;
 import javax.swing.SwingConstants;
+import javax.swing.text.JTextComponent;
+
+import com.toedter.calendar.JDateChooser;
 
 import AdminBack.Ac_AdminScheAdd;
 import AdminFront.V_AdminHome;
 import Login.V_Login;
 import UserBack.Ac_UserActiAdd;
 import main.Conexion;
+import main.Fecha;
 import main.Main;
 
 public class V_UserActiAdd extends JInternalFrame {
 	private V_UserHome v1;
-	private JLabel lblTitulo, lblDniuser, lblIdaula, lblverdniuser, lblhora, lbldiasemana;
+	private JLabel lblTitulo, lblDniuser, lblIdaula, lblverdniuser, lblhora, lbldiasemana,lblaforo,lblmostraraforo;
 	private JTextField txtIdclase, txtNombreactividad;
-	private JComboBox cbaula, cbhora, diasemana, diaAdd;
-	JSpinner horaAdd;
+	private JComboBox cbaula, cbhora, diasemana, diaAdd,cbaforo;
 	private JButton btnAñadir, btnCancelar;
 	private JPanel jpCentro, jpSur;
 	public V_Login vent;
 	private String DNI;
 	private String[] semana = { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo" };
 	Conexion c = new Conexion();
+	private JDateChooser date;
+	public JDateChooser getDate() {
+		return date;
+	}
 
-	public V_UserActiAdd(V_UserHome venti) {
+	public void setDate(JDateChooser date) {
+		this.date = date;
+	}
+	
+
+	public V_UserActiAdd(V_UserHome venti){
 		v1 = venti;
 
 		this.setTitle("Alta de Clases");
@@ -66,7 +78,9 @@ public class V_UserActiAdd extends JInternalFrame {
 		lblverdniuser.setText(v1.getDNI1());
 		lblIdaula = new JLabel("SELECCIONA LA ACTVIDAD A LA QUE QUIERES APUNTARTE:");
 		cbaula = new JComboBox();
+		
 
+				
 		String q = "select distinct(nombre) from Actividad";
 		String x = "nombre";
 
@@ -81,60 +95,84 @@ public class V_UserActiAdd extends JInternalFrame {
 			cbaula.addItem(lista.get(i));
 
 		}
-
+		
+		
 		lblhora = new JLabel("ELIGE HORA:");
 		lbldiasemana = new JLabel("ELIGE DÍA DE LA SEMANA:");
 		cbhora = new JComboBox();
 		cbhora.addActionListener(new Ac_UserActiAdd(this));
 		diasemana = new JComboBox();
-
+		
+		
+		
 		for (int i = 0; i < semana.length; i++) {
 			diasemana.addItem(semana[i]);
 		}
+		
+		
+		lblaforo = new JLabel("AFORO TOTAL: ");
 
+		lblmostraraforo= new JLabel();
 
+	
+		
 
 		diasemana.addActionListener(new Ac_UserActiAdd(this));
 
-		GridBagConstraints c = new GridBagConstraints();
+		GridBagConstraints g = new GridBagConstraints();
 
-		c.gridwidth = 1;
-		c.weightx = 1;
-		c.weighty = 1;
+		g.gridwidth = 1;
+		g.weightx = 1;
+		g.weighty = 1;
 
-		c.gridx = 0;
-		c.gridy = 3;
-		jpCentro.add(lblDniuser, c);
+		g.gridx = 0;
+		g.gridy = 3;
+		jpCentro.add(lblDniuser, g);
 
-		c.gridx = 1;
-		c.gridy = 3;
+		g.gridx = 1;
+		g.gridy = 3;
 		lblverdniuser.setPreferredSize(new Dimension(200, 20));
-		jpCentro.add(lblverdniuser, c);
+		jpCentro.add(lblverdniuser, g);
 
-		c.gridx = 0;
-		c.gridy = 4;
-		jpCentro.add(lblIdaula, c);
+		g.gridx = 0;
+		g.gridy = 4;
+		jpCentro.add(lblIdaula, g);
 
-		c.gridx = 1;
-		c.gridy = 4;
+		g.gridx = 1;
+		g.gridy = 4;
 		cbaula.setPreferredSize(new Dimension(200, 20));
-		jpCentro.add(cbaula, c);
+		jpCentro.add(cbaula, g);
 
-		c.gridx = 5;
-		c.gridy = 7;
-		jpCentro.add(lblhora, c);
+		g.gridx = 5;
+		g.gridy = 7;
+		jpCentro.add(lblhora, g);
 
-		c.gridx = 0;
-		c.gridy = 7;
-		jpCentro.add(lbldiasemana, c);
+		g.gridx = 0;
+		g.gridy = 7;
+		jpCentro.add(lbldiasemana, g);
 
-		c.gridx = 0;
-		c.gridy = 8;
-		jpCentro.add(diasemana, c);
-		c.gridx = 5;
-		c.gridy = 8;
-		jpCentro.add(cbhora, c);
+		g.gridx = 0;
+		g.gridy = 8;
+		jpCentro.add(diasemana, g);
+		g.gridx = 5;
+		g.gridy = 8;
+		jpCentro.add(cbhora, g);
+		
+		g.gridwidth = 1;
+		g.weightx = 1;
+		g.weighty = 1;
 
+		g.gridx = 0;
+		g.gridy = 9;
+		jpCentro.add(lblaforo, g);
+		
+		g.gridx = 1;
+		g.gridy = 9;
+		jpCentro.add(lblmostraraforo, g);
+		
+
+		
+		
 		this.getContentPane().add(jpCentro, BorderLayout.CENTER);
 
 		// Parte sur del borderlayout
@@ -151,12 +189,49 @@ public class V_UserActiAdd extends JInternalFrame {
 						
 						"Tu usuario con el dni: " + v1.getDNI1() + " se ha apuntado a la clase: "
 								+ cbaula.getSelectedItem() + " el " + diasemana.getSelectedItem()+" a las "+cbhora.getSelectedItem());
+				int id=0;
+				try {
+					id = c.nuevoID(Main.con, "idReserva", "Reserva");
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				Fecha f = new Fecha();
+			
+				String q5 = "select idHora from Horario where idactividad in(select idactividad from Actividad where nombre like '"
+						+ getCbaula().getSelectedItem() + "') and Diasemana like '" + getDiasemana().getSelectedItem() + "'";
+				try {
+					c.alta(Main.con, "INSERT INTO Reserva VALUES ("+id+","+vasafuncionar(q5)+","+ v1.getDNI1()+", '"+f.fechaActual() +"')");
+					JOptionPane.showMessageDialog(null, "¡Se ha agregado correctamente!", "Creado correctamente",
+							JOptionPane.INFORMATION_MESSAGE);
+				
+				} catch (Exception h) {
+					JOptionPane.showMessageDialog(null, "No se ha podido agregar", "¡Advertencia!",
+							JOptionPane.ERROR_MESSAGE);
+				h.printStackTrace();
+				}
+			}
+			
+			public String vasafuncionar(String query) throws SQLException {
+				ResultSet rs = c.consulta(Main.con, query);
+				rs.next();
+				return rs.getString("idhora");
+				
 			}
 			
 		}
+	
+		
+		
 		addbutton elListener = new addbutton();
 		btnAñadir.addActionListener(elListener);
-
+		
+		
+		
+		
+		
+		
 		jpSur.add(btnAñadir);
 		jpSur.add(btnCancelar);
 
@@ -165,6 +240,32 @@ public class V_UserActiAdd extends JInternalFrame {
 		this.setVisible(true);
 
 	}
+	
+
+
+	public JLabel getLblmostraraforo() {
+		return lblmostraraforo;
+	}
+
+
+
+	public void setLblmostraraforo(JLabel lblmostraraforo) {
+		this.lblmostraraforo = lblmostraraforo;
+	}
+
+
+
+	public JLabel getLblaforo() {
+		return lblaforo;
+	}
+
+
+
+	public void setLblaforo(JLabel lblaforo) {
+		this.lblaforo = lblaforo;
+	}
+
+
 
 	public JTextField getTxtIdclase() {
 		return txtIdclase;
