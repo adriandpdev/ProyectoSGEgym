@@ -52,9 +52,16 @@ public class Ac_MenuUser implements ActionListener {
 			}
 	
 		} else if (arg0.getActionCommand().equals("Últimos pagos")) {
-			V_UserPayList vUsPayList = new V_UserPayList();
-			vent.add(vUsPayList);
-			vUsPayList.setVisible(true);
+			V_UserPayList vUsPayList;
+			try {
+				vUsPayList = new V_UserPayList(vent);
+				vent.add(vUsPayList);
+				vUsPayList.setVisible(true);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
 		} else if (arg0.getActionCommand().equals("Últimos avisos")) {
 			V_UserAvList vUsAvList;
 			try {
