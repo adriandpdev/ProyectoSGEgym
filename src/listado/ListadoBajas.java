@@ -32,8 +32,6 @@ import javax.swing.UIManager;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.JTableHeader;
 
-import main.Conexion;
-
 public class ListadoBajas extends JInternalFrame implements MouseListener,KeyListener, ActionListener{
 	
 	
@@ -53,13 +51,14 @@ public class ListadoBajas extends JInternalFrame implements MouseListener,KeyLis
 	private Connection conn;
 	private ResultSet rs;
 	private ModeloTabla modelo;
-	public int criterio;
-	public String parametro;
+	private int criterio;
+	private String parametro;
 	
 	public ListadoBajas() {
 		
 		this.setLayout(new BorderLayout());
-		
+
+		//Fondo de los paneles
 		UIManager.put("OptionPane.background",new ColorUIResource(new Color(137, 13, 84)));
 		UIManager.put("OptionPane.messageForeground",new ColorUIResource(Color.WHITE));
 		UIManager.put("Panel.background",new ColorUIResource(new Color(137, 13, 84)));
