@@ -41,9 +41,16 @@ public class Ac_MenuUser implements ActionListener {
 			vent.add(vUsAcList);
 			vUsAcList.setVisible(true);
 		} else if (arg0.getActionCommand().equals("Información")) {
-			V_UserPayInfo vUsPayIn = new V_UserPayInfo();
-			vent.add(vUsPayIn);
-			vUsPayIn.setVisible(true);
+			V_UserPayInfo vUsPayIn;
+			try {
+				vUsPayIn = new V_UserPayInfo(vent);
+				vent.add(vUsPayIn);
+				vUsPayIn.setVisible(true);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	
 		} else if (arg0.getActionCommand().equals("Últimos pagos")) {
 			V_UserPayList vUsPayList = new V_UserPayList();
 			vent.add(vUsPayList);

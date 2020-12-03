@@ -99,20 +99,19 @@ private void consulta() throws SQLException
 {
 	
 	String query="select date  as fecha from Transacciones where dniUsuario like '"+ vent.getDNI1()+"' and pagado=1 and descripción like 'nomina' order by date desc limit 1 ";
-	System.out.println(query);
-	ResultSet r= c.consulta(Main.con,query);
+		ResultSet r= c.consulta(Main.con,query);
 		if(r.next())
 		{
 			
 			fechaultimopago=r.getString("fecha");
-			System.out.println(fechaultimopago);
+		
 			
 		}
 	
 	String query1="select date as fecha, cantidad as cantidad from Transacciones"
 			+ " where dniUsuario like '"+vent.getDNI1()+"' "
 					+ "and date ='"+ fechaultimopago+"' and descripción like 'nomina' and Pagado=1";
-	System.out.println(query1);
+
 	ResultSet r1=c.consulta(Main.con, query1);
 	while(r1.next())
 	{
