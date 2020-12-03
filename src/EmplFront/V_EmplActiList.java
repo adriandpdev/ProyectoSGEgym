@@ -16,7 +16,7 @@ public class V_EmplActiList extends JInternalFrame {
 	String[] nombreColumnas = { "AULA", "NOMBRE", "DIA", "HORA", "AFORO"};
 	String resultado = "";
 	JScrollPane scroll;
-	//String[][]datosatratar = new String [horas.length][diasemana.length];
+	
 	public V_EmplActiList(V_EmplHome vent) throws SQLException {
 		v=vent;
 		// TODO Auto-generated constructor stub
