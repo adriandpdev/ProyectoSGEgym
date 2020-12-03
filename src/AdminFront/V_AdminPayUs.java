@@ -121,7 +121,7 @@ public class V_AdminPayUs extends JInternalFrame {
 		superior = new JPanel();
 		superior.setLayout(new GridLayout(1, 10));
 
-		dni = new JTextField("Introduce el dni que buscas");
+		dni = new JTextField("Introduce el DNI que buscas");
 		dni.setForeground(Color.gray);
 		dni.addFocusListener(new Ac_AdminPayUs(this));
 
@@ -144,10 +144,10 @@ public class V_AdminPayUs extends JInternalFrame {
 		superior.add(dni);
 
 		añadirVacio(superior);
-		superior.add(new JLabel("Elije el año"));
+		superior.add(new JLabel("Elige el año"));
 		superior.add(año);
 		añadirVacio(superior);
-		superior.add(new JLabel("Elije el mes"));
+		superior.add(new JLabel("Elige el mes"));
 		superior.add(mes);
 		añadirVacio(superior);
 		superior.add(filtrar);
