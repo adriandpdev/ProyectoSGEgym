@@ -44,9 +44,13 @@ public class Ac_MenuAdmin implements ActionListener {
 			vent.add(vAdAcAdd);
 			vAdAcAdd.setVisible(true);
 		} else if (arg0.getActionCommand().equals("Lista actividades")) {
-			V_AdminActiList vAdAcList = new V_AdminActiList();
-			vent.add(vAdAcList);
-			vAdAcList.setVisible(true);
+			V_AdminActiList vAdAcList;
+			try {
+				vAdAcList = new V_AdminActiList(vent);
+				vent.add(vAdAcList);
+				vAdAcList.setVisible(true);
+			} catch (SQLException e) {e.printStackTrace();}
+
 		} else if (arg0.getActionCommand().equals("Añadir hora")) {
 			V_AdminScheAdd vAdScAdd = new V_AdminScheAdd();
 			vent.add(vAdScAdd);

@@ -13,7 +13,7 @@ public class V_EmplActiList extends JInternalFrame {
 	JLabel jlvisualizarhorario;
 	JTable table;
 	int tuplas, reservas;
-	String[] nombreColumnas = { "AULA", "NOMBRE", "DIA", "HORA", "AFORO"};
+	String[] nombreColumnas = { "AULA", "NOMBRE", "DIA", "HORA", "PLAZAS LIBRES"};
 	String resultado = "";
 	JScrollPane scroll;
 	
