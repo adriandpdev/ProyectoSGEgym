@@ -165,6 +165,7 @@ public class Ac_AdminEmplAdd implements ActionListener {
 			} else if (DniExists(vent.getTxtDni().getText())) {
 				JOptionPane.showMessageDialog(null, "¡El DNI introducido ya esta registrado!", "ATENCIÓN ADMINISTRADOR",
 						JOptionPane.WARNING_MESSAGE);
+				
 			} else {
 				Conexion c = new Conexion();
 				try {
