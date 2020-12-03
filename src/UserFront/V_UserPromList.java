@@ -92,12 +92,10 @@ try {
 	while (result.next()) {	               
 
 		String[] registro= {
-			id=result.getString("idPromocion"),
 		asunto = result.getString("asunto"),
 		mensaje = result.getString("mensaje"),	 
 	    fecha = result.getString("fecha")               
 		};
-		 System.out.println(asunto + " " + mensaje + " " + fecha);
 	model.promociones.add(registro);
 	}
 }catch (Exception e) {
