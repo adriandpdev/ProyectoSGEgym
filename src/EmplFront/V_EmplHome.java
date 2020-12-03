@@ -11,7 +11,7 @@ import UserBack.Ac_MenuUser;
 
 public class V_EmplHome extends JFrame {
 	private JMenuBar jmb;
-	private JMenu[] me = new JMenu[3];
+	private JMenu[] me = new JMenu[4];
 	private JMenuItem[] mi = new JMenuItem[7];
 	private String DNI1;
 	
@@ -47,18 +47,21 @@ public class V_EmplHome extends JFrame {
 		mi[3] = new JMenuItem("Historial");
 		mi[3].addActionListener(new Ac_MenuEmple(this));
 		me[1].add(mi[3]);
-
-		me[2] = new JMenu("Opciones");
+		
+		me[2] = new JMenu("Perfil");
 		jmb.add(me[2]);
 		mi[4] = new JMenuItem("Mi Perfil");
 		mi[4].addActionListener(new Ac_MenuEmple(this));
 		me[2].add(mi[4]);
-		mi[5] = new JMenuItem("Cerrar ventana");
-		mi[5].addActionListener(new Ac_MenuEmple(this));
-		me[2].add(mi[5]);
 		mi[6] = new JMenuItem("Cerrar sesión");
 		mi[6].addActionListener(new Ac_MenuEmple(this));
 		me[2].add(mi[6]);
+
+		me[3] = new JMenu("Opciones");
+		jmb.add(me[3]);
+		mi[5] = new JMenuItem("Cerrar ventana");
+		mi[5].addActionListener(new Ac_MenuEmple(this));
+		me[3].add(mi[5]);
 
 		this.setVisible(true);
 	}
