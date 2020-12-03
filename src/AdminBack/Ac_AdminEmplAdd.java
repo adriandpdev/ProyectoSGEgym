@@ -60,7 +60,7 @@ public class Ac_AdminEmplAdd implements ActionListener {
 	public boolean isCCC(String ccc) {
 		Pattern pat = null;
 		Matcher mat = null;
-		pat = Pattern.compile("([0-9]{20})");
+		pat = Pattern.compile("(^[A-Za-z]{2}[0-9]{22})");
 		mat = pat.matcher(ccc);
 		if (mat.find()) {
 			return true;
