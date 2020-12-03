@@ -67,7 +67,6 @@ public class V_AdminUserAdd extends JInternalFrame {
 	}
 
 	private void CreateForm() {
-		this.setTitle("ALTA USUARIO");
 		this.setResizable(false);
 		this.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
 
@@ -156,6 +155,7 @@ public class V_AdminUserAdd extends JInternalFrame {
 		c.add(Norte, BorderLayout.NORTH);
 		c.add(Centro, BorderLayout.CENTER);
 		c.add(Sur, BorderLayout.SOUTH);
+		((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null);
 	}
 
 

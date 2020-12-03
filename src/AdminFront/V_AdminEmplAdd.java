@@ -64,7 +64,6 @@ public class V_AdminEmplAdd extends JInternalFrame {
 	}
 
 	private void CreateForm() {
-		this.setTitle("ALTA PROFESOR");
 		this.setLocation(100, 100);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
@@ -151,6 +150,7 @@ public class V_AdminEmplAdd extends JInternalFrame {
 		c.add(Norte, BorderLayout.NORTH);
 		c.add(Centro, BorderLayout.CENTER);
 		c.add(Sur, BorderLayout.SOUTH);
+		((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null);
 
 	}
 
