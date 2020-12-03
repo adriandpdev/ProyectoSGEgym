@@ -43,7 +43,7 @@ public class V_AdminUserPend extends JInternalFrame {
 		try {
 			while(listado.next())
 			{
-				modelo.addElement(listado.getString("nombre")+", "+listado.getString("dni")+", "+listado.getString("cantidad"));
+				modelo.addElement("NOMBRE: "+listado.getString("nombre")+", DNI: "+listado.getString("dni")+", CANTIDAD QUE DEBE: "+listado.getString("cantidad")+"€");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
