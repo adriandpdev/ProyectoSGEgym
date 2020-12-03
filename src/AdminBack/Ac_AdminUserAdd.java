@@ -127,7 +127,7 @@ public class Ac_AdminUserAdd implements ActionListener {
 		vent.getTxtNombre().setText("");
 		vent.getTxtApellidos().setText("");
 		vent.getTxtCCC().setText("");
-		vent.getTxtContraseña().setText(vent.getPassword());
+		vent.getTxtContraseña().setText(V_AdminUserAdd.getPassword());
 		vent.getTxtTelefono().setText("");
 		vent.getTxtemail().setText("");
 		vent.getDate().setDate(null);
@@ -200,7 +200,7 @@ public class Ac_AdminUserAdd implements ActionListener {
 			vent.getTxtNombre().setText("");
 			vent.getTxtApellidos().setText("");
 			vent.getTxtCCC().setText("");
-			vent.getTxtContraseña().setText(vent.getPassword());
+			vent.getTxtContraseña().setText(V_AdminUserAdd.getPassword());
 			vent.getTxtTelefono().setText("");
 			vent.getTxtemail().setText("");
 			vent.getDate().setDate(null);

@@ -32,6 +32,8 @@ import javax.swing.UIManager;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.JTableHeader;
 
+import main.Conexion;
+
 public class ListadoBajas extends JInternalFrame implements MouseListener,KeyListener, ActionListener{
 	
 	
@@ -48,7 +50,7 @@ public class ListadoBajas extends JInternalFrame implements MouseListener,KeyLis
 	
 	private int filasTabla, columnasTabla;
 	private Conexion cp;
-	private Connection conn;
+	private Connection conn; 
 	private ResultSet rs;
 	private ModeloTabla modelo;
 	private int criterio;
@@ -73,7 +75,7 @@ public class ListadoBajas extends JInternalFrame implements MouseListener,KeyLis
 		panel_norte_busqueda = new JPanel();
 		panel_central_listado = new JPanel();
 		
-		//Panel norte interior con los criterios de busqueda y el botón para refrescar
+		//Panel norte interior con los criterios de busqueda y el boton para refrescar
 		panel_norte_busqueda.setLayout(new GridLayout(1,4,5,5));
 		panel_norte_busqueda.setBackground(new Color(137, 13, 84));
 		
@@ -85,7 +87,7 @@ public class ListadoBajas extends JInternalFrame implements MouseListener,KeyLis
 		btn_refrescar.addActionListener(this);
 		btn_refrescar.setFont(new Font("Verdana",Font.PLAIN,19));
 		
-		//Creamos la caja de busqueda y le añadimos un objeto de la clase Textpromt para añadirle un placeholder
+		//Creamos la caja de busqueda y le anadimos un objeto de la clase Textpromt para anadirle un placeholder
 		tf_busqueda = new JTextField();
 		tf_busqueda.setFont(new Font("Verdana",Font.PLAIN,19));
 		TextPrompt placeholder = new TextPrompt("Inserte su busqueda aquí...", tf_busqueda);
@@ -119,10 +121,10 @@ public class ListadoBajas extends JInternalFrame implements MouseListener,KeyLis
 		panel_norte_busqueda.add(btn_buscar);
 		panel_norte_busqueda.add(btn_refrescar);
 		
-		//Color de fondo personalizado del título
+		//Color de fondo personalizado del titulo
 		panel_norte.setBackground(new Color(137, 13, 84));
 		
-		//TÃ­tulo personalizado 
+		//Titulo personalizado 
 		lbl_titulo = new JLabel("Listado de Bajas:");
 		lbl_titulo.setFont(new Font("Verdana",Font.PLAIN,35));
 		lbl_titulo.setForeground(Color.WHITE);
@@ -148,7 +150,7 @@ public class ListadoBajas extends JInternalFrame implements MouseListener,KeyLis
 		panel_sur.setBackground(new Color(137, 13, 84));
 		
 		
-		//Con esto eliminamos los bordes y la barra de títulos superior
+		//Con esto eliminamos los bordes y la barra de titulos superior
 		((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null);
 		this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
 		
@@ -162,7 +164,7 @@ public class ListadoBajas extends JInternalFrame implements MouseListener,KeyLis
 		
 	}
 	
-	//En este mÃ©todo cogemos todos los datos de la tabla personas
+	//En este metodo cogemos todos los datos de la tabla personas
 	
 	public ArrayList<PersonaBaja> datarPersonas(){
 		ArrayList<PersonaBaja> lista = new ArrayList<>();
@@ -301,7 +303,7 @@ public class ListadoBajas extends JInternalFrame implements MouseListener,KeyLis
 		titulosListBaja.add("Reincorporar");
 		titulosListBaja.add("Eliminar"); 
 				
-		//se asignan los tÃ­tulos de las columnas para enviarlas al constructor de la tabla
+		//se asignan los titulos de las columnas para enviarlas al constructor de la tabla
 		
 		String titulos[] = new String[titulosListBaja.size()];
 		for (int i = 0; i < titulos.length; i++) {
@@ -315,7 +317,7 @@ public class ListadoBajas extends JInternalFrame implements MouseListener,KeyLis
 	
 	public Object[][] arrayDatos(ArrayList<String> titulosList) {
 	
-		//Creamos un  array bidimensional donde las filas que corresponden a los usuarios son dinÃ¡micas y las columnas que pertenecen a los campos son estÃ¡ticas
+		//Creamos un  array bidimensional donde las filas que corresponden a los usuarios son dinamicas y las columnas que pertenecen a los campos son estaticas
 		String informacion[][] = new String[listaPersonasBaja.size()][titulosList.size()];
 		
 		for (int i = 0; i < informacion.length; i++) {
@@ -354,9 +356,9 @@ public class ListadoBajas extends JInternalFrame implements MouseListener,KeyLis
 		
 		
 		tablaPersonasBaja.getTableHeader().setReorderingAllowed(false);
-		tablaPersonasBaja.setRowHeight(25);//tamaÃ±o de las celdas
+		tablaPersonasBaja.setRowHeight(25);//tamano de las celdas
 		
-		//Se define el tamaÃ±o de largo para cada columna y su contenido
+		//Se define el tamano de largo para cada columna y su contenido
 		tablaPersonasBaja.getColumnModel().getColumn(IndicadoresBaja.DNI).setCellRenderer(new Celdas("campo"));//dni
 		tablaPersonasBaja.getColumnModel().getColumn(IndicadoresBaja.NOMBRE).setCellRenderer(new Celdas("campo"));//nombre
 		tablaPersonasBaja.getColumnModel().getColumn(IndicadoresBaja.APELLIDO).setCellRenderer(new Celdas("campo"));//apellido
@@ -399,15 +401,15 @@ public class ListadoBajas extends JInternalFrame implements MouseListener,KeyLis
 		construirTabla("lis");
 	}
 
-	//	EVENTOS DINÁMICOS:
+	//	EVENTOS DINAMICOS:
 	
-	//Eventos al pulsar los botones de la tabla con el click del ratÃ³n
+	//Eventos al pulsar los botones de la tabla con el click del raton
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		//Aqui nos dice que fila es en la que estÃ¡ clickando
+		//Aqui nos dice que fila es en la que esta clickando
 		int fila = tablaPersonasBaja.rowAtPoint(e.getPoint());
-		//Aqui nos dice que columna es en la que estÃ¡ clickando
+		//Aqui nos dice que columna es en la que esta clickando
 		int columna = tablaPersonasBaja.columnAtPoint(e.getPoint());
 		
 		
