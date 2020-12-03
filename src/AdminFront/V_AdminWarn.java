@@ -81,7 +81,9 @@ public class V_AdminWarn extends JInternalFrame {
 		todos.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(todos.isSelected()) {txtdestinatario.setEnabled(false);
+				if(todos.isSelected()) {
+					txtdestinatario.setText("");
+					txtdestinatario.setEnabled(false);
 				}else {txtdestinatario.setEnabled(true);}
 			}
 		  });
