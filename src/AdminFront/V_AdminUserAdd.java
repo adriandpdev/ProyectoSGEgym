@@ -78,6 +78,7 @@ public class V_AdminUserAdd extends JInternalFrame {
 		
 
 		JPanel Centro = new JPanel();
+		Centro.setBorder(BorderFactory.createEmptyBorder(50, 60, 50, 60));
 		Centro.setLayout(new GridLayout(4, 4, 10, 10));
 		Centro.add(Nombre = new JLabel("Nombre"));
 		Nombre.setFont(new Font("Verdana",Font.BOLD,20));

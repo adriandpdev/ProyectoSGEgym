@@ -16,6 +16,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JInternalFrame;
@@ -56,6 +57,7 @@ public class V_AdminProm extends JInternalFrame {
 			
 		  JPanel Datos=new JPanel();
 		  Datos.setLayout(new GridLayout(3,3));
+		  Datos.setBorder(BorderFactory.createEmptyBorder(50, 60, 50, 60));
 		  Datos.add(destinatario= new JLabel("Destinatario: "));
 		  destinatario.setFont(new Font("Verdana",Font.BOLD,20));
 		  destinatario.setHorizontalAlignment(JTextField.CENTER);

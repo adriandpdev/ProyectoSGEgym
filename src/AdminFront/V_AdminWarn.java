@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JInternalFrame;
@@ -45,6 +46,7 @@ public class V_AdminWarn extends JInternalFrame {
 
 		JPanel Datos = new JPanel();
 		Datos.setLayout(new GridLayout(3, 3));
+		Datos.setBorder(BorderFactory.createEmptyBorder(50, 60, 50, 60));
 		Datos.add(destinatario= new JLabel("Destinatario: "));
 		destinatario.setFont(new Font("Verdana",Font.BOLD,20));
 		destinatario.setHorizontalAlignment(JTextField.CENTER);

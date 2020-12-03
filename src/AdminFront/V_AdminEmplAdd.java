@@ -77,6 +77,7 @@ public class V_AdminEmplAdd extends JInternalFrame {
 
 		JPanel Centro = new JPanel();
 		Centro.setLayout(new GridLayout(4, 4, 10, 10));
+		Centro.setBorder(BorderFactory.createEmptyBorder(50, 60, 50, 60));
 		Centro.add(Nombre = new JLabel("Nombre"));
 		Nombre.setFont(new Font("Verdana",Font.BOLD,20));
 		Nombre.setHorizontalAlignment(JTextField.CENTER);
