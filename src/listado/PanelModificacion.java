@@ -21,6 +21,8 @@ import javax.swing.plaf.ColorUIResource;
 
 import com.toedter.calendar.JDateChooser;
 
+import main.Conexion;
+
 public class PanelModificacion extends JFrame implements ActionListener{
 
 	private JLabel Titulo, Dni, Nombre, CCC, email, Fecha, Apellidos, Contraseña, Telefono, Rol;

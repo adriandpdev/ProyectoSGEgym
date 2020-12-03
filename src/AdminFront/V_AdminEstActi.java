@@ -24,7 +24,7 @@ public class V_AdminEstActi extends JInternalFrame {
 	public V_AdminEstActi() throws SQLException {
 		((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
 		setBackground(new Color(137, 13, 84));
-		lbl = new JLabel("Estadisticas de actividades", SwingConstants.CENTER);
+		lbl = new JLabel("Estadísticas de actividades", SwingConstants.CENTER);
 		lbl.setFont(new Font("Verdana", Font.BOLD, 40));
 		lbl.setForeground(Color.WHITE);
 
