@@ -36,14 +36,14 @@ public class V_UserAvList extends JInternalFrame {
 		private String asunto,mensaje,fecha;
  public V_UserAvList() throws ClassNotFoundException, SQLException {
 	// TODO Auto-generated constructor stub
-
+	 ((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null);
 	 this.setSize(700,500);
 	 this.setLayout(new BorderLayout());
 		JPanel Norte = new JPanel();
-		Norte.add(Titulo = new JLabel("Ultimos Avisos"));
-		Norte.setBackground(new Color(137, 13, 84));
-		Titulo.setFont(new Font("Verdana",Font.BOLD,22));
-		Titulo.setForeground(Color.WHITE);
+		 Norte.add(Titulo = new JLabel("Ultimos Avisos"));
+		 Norte.setBackground(new Color(137, 13, 84));
+		 Titulo.setFont(new Font("Verdana",Font.BOLD,22));
+		 Titulo.setForeground(Color.WHITE);
 		 this.add(Norte,BorderLayout.NORTH);
 		 this.add(getJContentPane());
 		 this.setVisible(true);
@@ -54,7 +54,7 @@ private JPanel getJContentPane() throws ClassNotFoundException, SQLException {
 	if(jcontentpane==null) {
 	jcontentpane=new JPanel();
 	jcontentpane.setLayout(null);
-	jcontentpane.add(getJscrollPane(),this);
+	jcontentpane.add(getJscrollPane());
 	}
 	return jcontentpane;
 }
@@ -62,8 +62,8 @@ private JPanel getJContentPane() throws ClassNotFoundException, SQLException {
 
 private JScrollPane getJscrollPane() throws ClassNotFoundException, SQLException {
 	if(jscrollpane==null) {
-	jscrollpane=new JScrollPane();
-	jscrollpane.setBounds( 18,17,1350,580);
+	jscrollpane=new JScrollPane(jtable, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+	jscrollpane.setBounds( 0,0,1350,600);
 	jscrollpane.setViewportView(getJTable());
 	}
 	return jscrollpane;
@@ -82,7 +82,15 @@ private JTable getJTable() throws ClassNotFoundException, SQLException {
 	tabCM.setHeaderValue("Asunto");
 	tabCM2.setHeaderValue("Mensaje");
 	tabCM3.setHeaderValue("Fecha");
-	jtable.repaint();
+	 jtable.getTableHeader().setReorderingAllowed(false); 
+	 jtable.setShowGrid(true);
+	 jtable.getTableHeader().setBackground(new Color(65,65,65));
+	 jtable.getTableHeader().setForeground(Color.white);
+	 jtable.getTableHeader().setFont(new Font("Verdana", Font.BOLD, 20));
+	 jtable.setRowHeight(jtable.getRowHeight() * 5);
+	  Font font = new Font("Verdana", Font.PLAIN, 12); 
+	  jtable.setFont(font);
+	 jtable.repaint();
 	}
 
 	return jtable;

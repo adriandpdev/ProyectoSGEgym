@@ -29,19 +29,26 @@ public class Ac_MenuAdmin implements ActionListener {
 			vent.add(vAdUsAdd);
 			vAdUsAdd.setVisible(true);
 		} else if (arg0.getActionCommand().equals("Lista usuarios")) {
-			listado vAdUsList = new listado();
+			ListadoUsuarios vAdUsList = new ListadoUsuarios();
 			vent.add(vAdUsList);
 			vAdUsList.setVisible(true);
 		} else if (arg0.getActionCommand().equals("Pendiente de pago")) {
-			V_AdminUserPend vAdUsPend = new V_AdminUserPend();
-			vent.add(vAdUsPend);
-			vAdUsPend.setVisible(true);
+			V_AdminUserPend vAdUsPend;
+			try {
+				vAdUsPend = new V_AdminUserPend();
+				vent.add(vAdUsPend);
+				vAdUsPend.setVisible(true);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		} else if (arg0.getActionCommand().equals("Alta profesor")) {
 			V_AdminEmplAdd vAdEmAdd = new V_AdminEmplAdd();
 			vent.add(vAdEmAdd);
 			vAdEmAdd.setVisible(true);
 		} else if (arg0.getActionCommand().equals("Lista profesores")) {
-			V_AdminEmplList vAdEmList = new V_AdminEmplList();
+			ListadoEmpleados vAdEmList = new ListadoEmpleados();
 			vent.add(vAdEmList);
 			vAdEmList.setVisible(true);
 		} else if (arg0.getActionCommand().equals("Alta actividad")) {
