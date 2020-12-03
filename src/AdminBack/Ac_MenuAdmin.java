@@ -70,9 +70,14 @@ public class Ac_MenuAdmin implements ActionListener {
 			vAdWarn.setVisible(true);
 		} else if (arg0.getActionCommand().equals("Pagos usuarios")) {
 			V_AdminPayUs vAdPayUs;
-			vAdPayUs = new V_AdminPayUs();
-			vent.add(vAdPayUs);
-			vAdPayUs.setVisible(true);
+			try {
+				vAdPayUs = new V_AdminPayUs();
+				vent.add(vAdPayUs);
+				vAdPayUs.setVisible(true);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} else if (arg0.getActionCommand().equals("Nominas profesores")) {
 			V_AdminPayEm vAdPayEm = new V_AdminPayEm();
 			vent.add(vAdPayEm);

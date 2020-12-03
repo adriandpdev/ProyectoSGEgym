@@ -21,4 +21,5 @@ public class V_AdminEstUs extends JInternalFrame {
 		add(lbl[2], BorderLayout.SOUTH);
 		setVisible(true);
 	}
+	
 }

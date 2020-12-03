@@ -32,7 +32,7 @@ import javax.swing.UIManager;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.JTableHeader;
 
-import main.Conexion;
+import AdminFront.V_AdminUserAdd;
 
 public class ListadoBajas extends JInternalFrame implements MouseListener,KeyListener, ActionListener{
 	
@@ -53,13 +53,14 @@ public class ListadoBajas extends JInternalFrame implements MouseListener,KeyLis
 	private Connection conn;
 	private ResultSet rs;
 	private ModeloTabla modelo;
-	public int criterio;
-	public String parametro;
+	private int criterio;
+	private String parametro;
 	
 	public ListadoBajas() {
 		
 		this.setLayout(new BorderLayout());
-		
+
+		//Fondo de los paneles
 		UIManager.put("OptionPane.background",new ColorUIResource(new Color(137, 13, 84)));
 		UIManager.put("OptionPane.messageForeground",new ColorUIResource(Color.WHITE));
 		UIManager.put("Panel.background",new ColorUIResource(new Color(137, 13, 84)));
@@ -89,7 +90,7 @@ public class ListadoBajas extends JInternalFrame implements MouseListener,KeyLis
 		//Creamos la caja de busqueda y le aÃ±adimos un objeto de la clase Textpromt para aÃ±adirle un placeholder
 		tf_busqueda = new JTextField();
 		tf_busqueda.setFont(new Font("Verdana",Font.PLAIN,19));
-		TextPrompt placeholder = new TextPrompt("Inserte su busqueda aquí...", tf_busqueda);
+		TextPrompt placeholder = new TextPrompt("Inserte su busqueda aquÃ­...", tf_busqueda);
 		placeholder.changeAlpha(0.5f);
 		
 		
@@ -123,7 +124,7 @@ public class ListadoBajas extends JInternalFrame implements MouseListener,KeyLis
 		//Color de fondo personalizado del tÃ­tulo
 		panel_norte.setBackground(new Color(137, 13, 84));
 		
-		//TÃ­tulo personalizado 
+		//TÃƒÂ­tulo personalizado 
 		lbl_titulo = new JLabel("Listado de Bajas:");
 		lbl_titulo.setFont(new Font("Verdana",Font.PLAIN,35));
 		lbl_titulo.setForeground(Color.WHITE);
@@ -163,7 +164,7 @@ public class ListadoBajas extends JInternalFrame implements MouseListener,KeyLis
 		
 	}
 	
-	//En este mÃ©todo cogemos todos los datos de la tabla personas
+	//En este mÃƒÂ©todo cogemos todos los datos de la tabla personas
 	
 	public ArrayList<PersonaBaja> datarPersonas(){
 		ArrayList<PersonaBaja> lista = new ArrayList<>();
@@ -302,7 +303,7 @@ public class ListadoBajas extends JInternalFrame implements MouseListener,KeyLis
 		titulosListBaja.add("Reincorporar");
 		titulosListBaja.add("Eliminar"); 
 				
-		//se asignan los tÃ­tulos de las columnas para enviarlas al constructor de la tabla
+		//se asignan los tÃƒÂ­tulos de las columnas para enviarlas al constructor de la tabla
 		
 		String titulos[] = new String[titulosListBaja.size()];
 		for (int i = 0; i < titulos.length; i++) {
@@ -316,7 +317,7 @@ public class ListadoBajas extends JInternalFrame implements MouseListener,KeyLis
 	
 	public Object[][] arrayDatos(ArrayList<String> titulosList) {
 	
-		//Creamos un  array bidimensional donde las filas que corresponden a los usuarios son dinÃ¡micas y las columnas que pertenecen a los campos son estÃ¡ticas
+		//Creamos un  array bidimensional donde las filas que corresponden a los usuarios son dinÃƒÂ¡micas y las columnas que pertenecen a los campos son estÃƒÂ¡ticas
 		String informacion[][] = new String[listaPersonasBaja.size()][titulosList.size()];
 		
 		for (int i = 0; i < informacion.length; i++) {
@@ -355,16 +356,16 @@ public class ListadoBajas extends JInternalFrame implements MouseListener,KeyLis
 		
 		
 		tablaPersonasBaja.getTableHeader().setReorderingAllowed(false);
-		tablaPersonasBaja.setRowHeight(25);//tamaÃ±o de las celdas
+		tablaPersonasBaja.setRowHeight(25);//tamaÃƒÂ±o de las celdas
 		
-		//Se define el tamaÃ±o de largo para cada columna y su contenido
+		//Se define el tamaÃƒÂ±o de largo para cada columna y su contenido
 		tablaPersonasBaja.getColumnModel().getColumn(IndicadoresBaja.DNI).setCellRenderer(new Celdas("campo"));//dni
 		tablaPersonasBaja.getColumnModel().getColumn(IndicadoresBaja.NOMBRE).setCellRenderer(new Celdas("campo"));//nombre
 		tablaPersonasBaja.getColumnModel().getColumn(IndicadoresBaja.APELLIDO).setCellRenderer(new Celdas("campo"));//apellido
 		tablaPersonasBaja.getColumnModel().getColumn(IndicadoresBaja.CUENTABANC).setCellRenderer(new Celdas("campo"));//cuenta bancaria
 		tablaPersonasBaja.getColumnModel().getColumn(IndicadoresBaja.FECHANAC).setCellRenderer(new Celdas("campo"));//fecha de nacimiento
-		tablaPersonasBaja.getColumnModel().getColumn(IndicadoresBaja.TELEFONO).setCellRenderer(new Celdas("campo"));//telÃ©fono
-		tablaPersonasBaja.getColumnModel().getColumn(IndicadoresBaja.CORREO).setCellRenderer(new Celdas("campo"));//correo electrÃ³nico
+		tablaPersonasBaja.getColumnModel().getColumn(IndicadoresBaja.TELEFONO).setCellRenderer(new Celdas("campo"));//telÃƒÂ©fono
+		tablaPersonasBaja.getColumnModel().getColumn(IndicadoresBaja.CORREO).setCellRenderer(new Celdas("campo"));//correo electrÃƒÂ³nico
 		tablaPersonasBaja.getColumnModel().getColumn(IndicadoresBaja.ROL).setCellRenderer(new Celdas("campo"));//rol
 		tablaPersonasBaja.getColumnModel().getColumn(IndicadoresBaja.REINCORPORAR).setCellRenderer(new Celdas("boton"));//boton modificar
 		tablaPersonasBaja.getColumnModel().getColumn(IndicadoresBaja.ELIMINAR).setCellRenderer(new Celdas("boton"));//boton eliminar
@@ -400,30 +401,33 @@ public class ListadoBajas extends JInternalFrame implements MouseListener,KeyLis
 		construirTabla("lis");
 	}
 
-	//	EVENTOS DINÃ�MICOS:
+	//	EVENTOS DINÁMICOS:
 	
-	//Eventos al pulsar los botones de la tabla con el click del ratÃ³n
+	//Eventos al pulsar los botones de la tabla con el click del ratÃƒÂ³n
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		//Aqui nos dice que fila es en la que estÃ¡ clickando
+		//Aqui nos dice que fila es en la que estÃƒÂ¡ clickando
 		int fila = tablaPersonasBaja.rowAtPoint(e.getPoint());
-		//Aqui nos dice que columna es en la que estÃ¡ clickando
+		//Aqui nos dice que columna es en la que estÃƒÂ¡ clickando
 		int columna = tablaPersonasBaja.columnAtPoint(e.getPoint());
 		
 		
 		if (columna == IndicadoresBaja.REINCORPORAR) {
 		//Lanzamos la ventana de modificacion
 			int row = tablaPersonasBaja.getSelectedRow();
+			int reply = JOptionPane.showConfirmDialog(tablaPersonasBaja, "¿Esta seguro de que quiere reincorporar este usuario?", "Reincorporar",JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
 			
+			if(reply == JOptionPane.YES_OPTION) {
 			Reincorporar(tablaPersonasBaja.getValueAt(tablaPersonasBaja.getSelectedRow(), 0).toString());
 			EliminarRegistro(tablaPersonasBaja.getValueAt(tablaPersonasBaja.getSelectedRow(), 0).toString());
-			JOptionPane.showMessageDialog(null, "El registro ha sido reincorporado a la tabla de usuarios activos correctamente");
+			JOptionPane.showMessageDialog(tablaPersonasBaja, "El registro ha sido reincorporado a la tabla de usuarios activos correctamente","Reincorporar", JOptionPane.PLAIN_MESSAGE);
 			construirTabla("lis");
+			}
 			
 		} else if (columna == Indicadores.ELIMINAR) {
 			System.out.println("pulsado eliminar");
-			int reply = JOptionPane.showConfirmDialog(tablaPersonasBaja, "Â¿Esta seguro de que quiere borrar el registro DEFINITIVAMENTE?", "Eliminar",JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
+			int reply = JOptionPane.showConfirmDialog(tablaPersonasBaja, "¿Esta seguro de que quiere borrar el registro DEFINITIVAMENTE?", "Eliminar",JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
 			
 			if(reply == JOptionPane.YES_OPTION) {
 				//Elimina el registro de la BBDD
@@ -442,7 +446,10 @@ public void Reincorporar(String dni_rein) {
 		try {
 			conn = cp.conectar();
 			
-			String pass_prov = JOptionPane.showInputDialog("Introduzca una CONTRASEÃ‘A PROVISIONAL");
+			String pass_pro = V_AdminUserAdd.getPassword(8);
+			
+			
+				
 			
 			int telefono = Integer.valueOf(tablaPersonasBaja.getValueAt(tablaPersonasBaja.getSelectedRow(), 5).toString());
 			
@@ -450,7 +457,7 @@ public void Reincorporar(String dni_rein) {
 				+ "('"+dni_rein+"','"+tablaPersonasBaja.getValueAt(tablaPersonasBaja.getSelectedRow(), 1).toString()+"',"
 						+ " '"+tablaPersonasBaja.getValueAt(tablaPersonasBaja.getSelectedRow(), 2).toString()+"',"
 								+ " '"+tablaPersonasBaja.getValueAt(tablaPersonasBaja.getSelectedRow(), 3).toString()+"',"
-										+ " '"+pass_prov+"',"
+										+ " '"+pass_pro+"',"
 												+ " '"+tablaPersonasBaja.getValueAt(tablaPersonasBaja.getSelectedRow(), 5).toString()+"',"
 														+ " '"+telefono+"',"
 														+ "'"+tablaPersonasBaja.getValueAt(tablaPersonasBaja.getSelectedRow(), 6).toString()+"',"

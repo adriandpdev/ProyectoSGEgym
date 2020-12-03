@@ -108,11 +108,11 @@ public class V_AdminProm extends JInternalFrame {
 					    transport.connect("smtp.gmail.com", usuario, clave);
 					    transport.sendMessage(msg, msg.getAllRecipients());
 					    transport.close();
-					    JOptionPane.showMessageDialog(null, "Se ha enviado la promoción.");
+					    JOptionPane.showMessageDialog(null, "Se ha enviado el Aviso.", "ATENCIÓN ADMINISTRADOR", JOptionPane.INFORMATION_MESSAGE );
 					    
-					}catch (Exception e2) {JOptionPane.showMessageDialog(null, "Error, El mensaje no se ha podido enviar.");} 
+					}catch (Exception e2) {JOptionPane.showMessageDialog(null, "Error, El mensaje no se ha podido enviar.", "ATENCIÓN ADMINISTRADOR", JOptionPane.ERROR_MESSAGE);} 
 			    }else{
-			     JOptionPane.showMessageDialog(null, "Error, se debe llenar el campo destinatario.");}
+			    	JOptionPane.showMessageDialog(null, "Error, Se debe rellenar el campo destinatario.", "ATENCIÓN ADMINISTRADOR", JOptionPane.ERROR_MESSAGE);}
 			    }
 
 			  });

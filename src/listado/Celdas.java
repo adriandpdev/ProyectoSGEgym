@@ -76,6 +76,9 @@ public class Celdas extends DefaultTableCellRenderer{
             } else if(String.valueOf(value).equals("eliminar")) {
             	JButton btn_eliminar = new JButton("Eliminar");
             	return btn_eliminar;
+            } else if(String.valueOf(value).equals("reincorporar")) {
+            	JButton btn_reincorporar = new JButton("Reincorporar");
+            	return btn_reincorporar;
             }
          
         }
@@ -88,3 +91,4 @@ public class Celdas extends DefaultTableCellRenderer{
 	
 	
 }
+	

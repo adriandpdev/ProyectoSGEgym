@@ -42,7 +42,7 @@ public class V_AdminUserAdd extends JInternalFrame {
 		return getPassword(NUMEROS, 4);
 	}
  
-	public String getPassword() {
+	public static String getPassword() {
 		return getPassword(8);
 	}
  

@@ -21,8 +21,6 @@ import javax.swing.plaf.ColorUIResource;
 
 import com.toedter.calendar.JDateChooser;
 
-import main.Conexion;
-
 public class PanelModificacion extends JFrame implements ActionListener{
 
 	private JLabel Titulo, Dni, Nombre, CCC, email, Fecha, Apellidos, Contraseña, Telefono, Rol;
@@ -306,7 +304,7 @@ public class PanelModificacion extends JFrame implements ActionListener{
 		}
 		try {
 			cp.modificar(conn, sql_modificar);
-			JOptionPane.showMessageDialog(null, "El registro ha sido modificado correctamente");
+			JOptionPane.showMessageDialog(null, "El registro ha sido modificado correctamente","Modificar",JOptionPane.PLAIN_MESSAGE);
 			dispose();
 			
 			listado list = new listado();
@@ -317,7 +315,7 @@ public class PanelModificacion extends JFrame implements ActionListener{
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "No se han podido realizar los cambios");
+			JOptionPane.showMessageDialog(null, "No se han podido realizar los cambios","Modificar",JOptionPane.PLAIN_MESSAGE);
 		}
 		
 	}

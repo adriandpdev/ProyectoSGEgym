@@ -52,9 +52,16 @@ public class Ac_MenuEmple implements ActionListener {
 			}
 			
 		} else if (arg0.getActionCommand().equals("Historial")) {
-			V_EmplPayList vEmPayList = new V_EmplPayList();
-			vent.add(vEmPayList);
-			vEmPayList.setVisible(true);
+			V_EmplPayList vEmPayList;
+			try {
+				vEmPayList = new V_EmplPayList(vent);
+				vent.add(vEmPayList);
+				vEmPayList.setVisible(true);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
 		}else if (arg0.getActionCommand().equals("Mi Perfil")) {
 			V_EmplPerfil vEmPerfil = new V_EmplPerfil(vent);
 			vent.add(vEmPerfil);
