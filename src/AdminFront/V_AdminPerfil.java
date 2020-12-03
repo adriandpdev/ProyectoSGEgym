@@ -19,9 +19,11 @@ public class V_AdminPerfil extends JInternalFrame {
 
 	public V_AdminPerfil(V_AdminHome v) {
 		v1 = v;
-
 		// ATRIBUTOS DEL PANEL PRINCIPAL
 		setLayout(new BorderLayout());
+		JLabel titulo = new JLabel("Perfil Administrador", SwingConstants.CENTER);
+		titulo.setFont(new Font("Verdana", Font.BOLD, 30));
+		titulo.setForeground(Color.WHITE);
 		// INSTANCIO LOS ELEMENTOS
 		lbl[0] = new JLabel("Ajustes de Perfil");
 		lbl[1] = new JLabel("DNI");
@@ -130,10 +132,15 @@ public class V_AdminPerfil extends JInternalFrame {
 		panel_btn_Cambiar_Contraeña.add(btn_CambiarContraseña);
 		// PanelNorte----
 		JPanel PanelNorte = new JPanel();
-		PanelNorte.setLayout(new GridLayout(1, 2));
-		PanelNorte.setBorder(new TitledBorder("Privado"));
-		PanelNorte.add(panel_Dni);
-		PanelNorte.add(panel_Rol);
+		PanelNorte.setLayout(new GridLayout(2, 1));
+		PanelNorte.setBackground(new Color(137, 13, 84));
+		PanelNorte.add(titulo);
+			JPanel panelDNiRol = new JPanel();
+			panelDNiRol.setLayout(new GridLayout(1,2));
+			panelDNiRol.setBorder(new TitledBorder("Privado"));
+			panelDNiRol.add(panel_Dni);
+			panelDNiRol.add(panel_Rol);
+		PanelNorte.add(panelDNiRol);
 		// PanelCentral-----
 		JPanel PanelCentral = new JPanel();
 		PanelCentral.setLayout(new BorderLayout());
@@ -168,6 +175,7 @@ public class V_AdminPerfil extends JInternalFrame {
 		this.add(PanelCentral, BorderLayout.CENTER);
 		this.add(PanelSur, BorderLayout.SOUTH);
 		setVisible(true);
+		((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null);
 	}
 	
 

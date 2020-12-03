@@ -41,7 +41,6 @@ public class Ac_AdminWarn implements ActionListener {
 		vent.getTxtdestinatario().setText("");
 		vent.getTxtasunto().setText("");
 		vent.getMensaje().setText("");
-		
 	}
 
 	@Override

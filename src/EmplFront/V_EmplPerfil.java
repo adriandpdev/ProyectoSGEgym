@@ -1,6 +1,7 @@
 package EmplFront;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -13,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
 import EmplBack.Ac_EmplPerfil;
@@ -33,6 +35,9 @@ public class V_EmplPerfil extends JInternalFrame {
 
 		// ATRIBUTOS DEL PANEL PRINCIPAL
 		setLayout(new BorderLayout());
+		JLabel titulo = new JLabel("Perfil Empleado", SwingConstants.CENTER);
+		titulo.setFont(new Font("Verdana", Font.BOLD, 30));
+		titulo.setForeground(Color.WHITE);
 		// INSTANCIO LOS ELEMENTOS
 		lbl[0] = new JLabel("Ajustes de Perfil");
 		lbl[1] = new JLabel("DNI");
@@ -140,10 +145,15 @@ public class V_EmplPerfil extends JInternalFrame {
 		panel_btn_Cambiar_Contraeña.add(btn_CambiarContraseña);
 		// PanelNorte----
 		JPanel PanelNorte = new JPanel();
-		PanelNorte.setLayout(new GridLayout(1, 2));
-		PanelNorte.setBorder(new TitledBorder("Privado"));
-		PanelNorte.add(panel_Dni);
-		PanelNorte.add(panel_Rol);
+		PanelNorte.setLayout(new GridLayout(2, 1));
+		PanelNorte.setBackground(new Color(137, 13, 84));
+		PanelNorte.add(titulo);
+			JPanel panelDNiRol = new JPanel();
+			panelDNiRol.setLayout(new GridLayout(1,2));
+			panelDNiRol.setBorder(new TitledBorder("Privado"));
+			panelDNiRol.add(panel_Dni);
+			panelDNiRol.add(panel_Rol);
+		PanelNorte.add(panelDNiRol);
 		// PanelCentral-----
 		JPanel PanelCentral = new JPanel();
 		PanelCentral.setLayout(new BorderLayout());
@@ -178,6 +188,7 @@ public class V_EmplPerfil extends JInternalFrame {
 		this.add(PanelCentral, BorderLayout.CENTER);
 		this.add(PanelSur, BorderLayout.SOUTH);
 		setVisible(true);
+		((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null);
 	}
 	
 
