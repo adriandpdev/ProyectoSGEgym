@@ -29,7 +29,8 @@ public class V_UserPromList extends JInternalFrame {
 		private JTable jtable=null;
 		private promocionesJtableModel model= new promocionesJtableModel();
 		private Connection con;
-		private String asunto,mensaje,fecha;
+		private String id,asunto,mensaje,fecha;
+		;
  public V_UserPromList() throws ClassNotFoundException, SQLException {
 	// TODO Auto-generated constructor stub
 
@@ -91,6 +92,7 @@ try {
 	while (result.next()) {	               
 
 		String[] registro= {
+			id=result.getString("idPromocion"),
 		asunto = result.getString("asunto"),
 		mensaje = result.getString("mensaje"),	 
 	    fecha = result.getString("fecha")               
