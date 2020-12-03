@@ -38,27 +38,31 @@ public class Ac_AdminScheExp extends PdfPageEventHelper implements ActionListene
 	public void actionPerformed(ActionEvent arg0) {
 		JFileChooser saveFile = new JFileChooser();
 		saveFile.setFileFilter(new FileNameExtensionFilter(".pdf", ".PDF"));
-		saveFile.showSaveDialog(null);
-		saveFile.setSelectedFile(new File(saveFile.getSelectedFile() + ".pdf"));
-		File FILE = saveFile.getSelectedFile();
-		try {
-			v = new V_AdminScheList();
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+		int result = saveFile.showSaveDialog(null);
+		if (result == JFileChooser.APPROVE_OPTION) {
+			saveFile.setSelectedFile(new File(saveFile.getSelectedFile() + ".pdf"));
+			File FILE = saveFile.getSelectedFile();
+			try {
+				v = new V_AdminScheList();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			try {
+				Document document = new Document();
+				document.setPageSize(PageSize.A4.rotate());
+				PdfWriter.getInstance(document, new FileOutputStream(FILE));
+				document.open();
+				addMetaData(document);
+				addContent(document);
+				document.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			JOptionPane.showMessageDialog(null, "Se ha exportado el horario correctamente");
+		} else if (result == JFileChooser.CANCEL_OPTION) {
+		    
 		}
-		try {
-			Document document = new Document();
-			document.setPageSize(PageSize.A4.rotate());
-			PdfWriter.getInstance(document, new FileOutputStream(FILE));
-			document.open();
-			addMetaData(document);
-			addContent(document);
-			document.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		JOptionPane.showMessageDialog(null, "Se ha exportado el horario correctamente");
 	}
 
 	private static void addMetaData(Document document) {

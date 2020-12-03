@@ -33,6 +33,7 @@ import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.JTableHeader;
 
 import AdminFront.V_AdminUserAdd;
+import main.Conexion;
 
 public class ListadoBajas extends JInternalFrame implements MouseListener,KeyListener, ActionListener{
 	
@@ -75,7 +76,7 @@ public class ListadoBajas extends JInternalFrame implements MouseListener,KeyLis
 		panel_norte_busqueda = new JPanel();
 		panel_central_listado = new JPanel();
 		
-		//Panel norte interior con los criterios de busqueda y el botÃ³n para refrescar
+		//Panel norte interior con los criterios de busqueda y el botn para refrescar
 		panel_norte_busqueda.setLayout(new GridLayout(1,4,5,5));
 		panel_norte_busqueda.setBackground(new Color(137, 13, 84));
 		
@@ -87,10 +88,10 @@ public class ListadoBajas extends JInternalFrame implements MouseListener,KeyLis
 		btn_refrescar.addActionListener(this);
 		btn_refrescar.setFont(new Font("Verdana",Font.PLAIN,19));
 		
-		//Creamos la caja de busqueda y le aÃ±adimos un objeto de la clase Textpromt para aÃ±adirle un placeholder
+		//Creamos la caja de busqueda y le aÃƒÂ±adimos un objeto de la clase Textpromt para anadirle un placeholder
 		tf_busqueda = new JTextField();
 		tf_busqueda.setFont(new Font("Verdana",Font.PLAIN,19));
-		TextPrompt placeholder = new TextPrompt("Inserte su busqueda aquÃ­...", tf_busqueda);
+		TextPrompt placeholder = new TextPrompt("Inserte su busqueda aquÃƒÂ­...", tf_busqueda);
 		placeholder.changeAlpha(0.5f);
 		
 		
@@ -106,9 +107,9 @@ public class ListadoBajas extends JInternalFrame implements MouseListener,KeyLis
 		modelo_combo.addElement("Cuenta Bancaria");
 		modelo_combo.addElement("Fecha de Nacimiento");
 		modelo_combo.addElement("Telefono");
-		modelo_combo.addElement("Correo Electrónico");
+		modelo_combo.addElement("Correo ElectrÃ³nico");
 		modelo_combo.addElement("Rol");
-		modelo_combo.addElement("Mas Antigüas");
+		modelo_combo.addElement("Mas AntigÃ¼as");
 		modelo_combo.addElement("Mas Nuevas");
 				
 		combo_campos = new JComboBox<String>();
@@ -121,10 +122,10 @@ public class ListadoBajas extends JInternalFrame implements MouseListener,KeyLis
 		panel_norte_busqueda.add(btn_buscar);
 		panel_norte_busqueda.add(btn_refrescar);
 		
-		//Color de fondo personalizado del tÃ­tulo
+		//Color de fondo personalizado del tÃƒÂ­tulo
 		panel_norte.setBackground(new Color(137, 13, 84));
 		
-		//TÃƒÂ­tulo personalizado 
+		//TÃƒÆ’Ã‚Â­tulo personalizado 
 		lbl_titulo = new JLabel("Listado de Bajas:");
 		lbl_titulo.setFont(new Font("Verdana",Font.PLAIN,35));
 		lbl_titulo.setForeground(Color.WHITE);
@@ -150,7 +151,7 @@ public class ListadoBajas extends JInternalFrame implements MouseListener,KeyLis
 		panel_sur.setBackground(new Color(137, 13, 84));
 		
 		
-		//Con esto eliminamos los bordes y la barra de tÃ­tulos superior
+		//Con esto eliminamos los bordes y la barra de ttulos superior
 		((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null);
 		this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
 		
@@ -164,7 +165,7 @@ public class ListadoBajas extends JInternalFrame implements MouseListener,KeyLis
 		
 	}
 	
-	//En este mÃƒÂ©todo cogemos todos los datos de la tabla personas
+	//En este todo cogemos todos los datos de la tabla personas
 	
 	public ArrayList<PersonaBaja> datarPersonas(){
 		ArrayList<PersonaBaja> lista = new ArrayList<>();
@@ -303,7 +304,7 @@ public class ListadoBajas extends JInternalFrame implements MouseListener,KeyLis
 		titulosListBaja.add("Reincorporar");
 		titulosListBaja.add("Eliminar"); 
 				
-		//se asignan los tÃƒÂ­tulos de las columnas para enviarlas al constructor de la tabla
+		//se asignan los tÃƒÆ’Ã‚Â­tulos de las columnas para enviarlas al constructor de la tabla
 		
 		String titulos[] = new String[titulosListBaja.size()];
 		for (int i = 0; i < titulos.length; i++) {
@@ -317,7 +318,7 @@ public class ListadoBajas extends JInternalFrame implements MouseListener,KeyLis
 	
 	public Object[][] arrayDatos(ArrayList<String> titulosList) {
 	
-		//Creamos un  array bidimensional donde las filas que corresponden a los usuarios son dinÃƒÂ¡micas y las columnas que pertenecen a los campos son estÃƒÂ¡ticas
+		//Creamos un  array bidimensional donde las filas que corresponden a los usuarios son dinmicas y las columnas que pertenecen a los campos son estticas
 		String informacion[][] = new String[listaPersonasBaja.size()][titulosList.size()];
 		
 		for (int i = 0; i < informacion.length; i++) {
@@ -356,16 +357,16 @@ public class ListadoBajas extends JInternalFrame implements MouseListener,KeyLis
 		
 		
 		tablaPersonasBaja.getTableHeader().setReorderingAllowed(false);
-		tablaPersonasBaja.setRowHeight(25);//tamaÃƒÂ±o de las celdas
+		tablaPersonasBaja.setRowHeight(25);//tamaÃƒÆ’Ã‚Â±o de las celdas
 		
-		//Se define el tamaÃƒÂ±o de largo para cada columna y su contenido
+		//Se define el tamaÃƒÆ’Ã‚Â±o de largo para cada columna y su contenido
 		tablaPersonasBaja.getColumnModel().getColumn(IndicadoresBaja.DNI).setCellRenderer(new Celdas("campo"));//dni
 		tablaPersonasBaja.getColumnModel().getColumn(IndicadoresBaja.NOMBRE).setCellRenderer(new Celdas("campo"));//nombre
 		tablaPersonasBaja.getColumnModel().getColumn(IndicadoresBaja.APELLIDO).setCellRenderer(new Celdas("campo"));//apellido
 		tablaPersonasBaja.getColumnModel().getColumn(IndicadoresBaja.CUENTABANC).setCellRenderer(new Celdas("campo"));//cuenta bancaria
 		tablaPersonasBaja.getColumnModel().getColumn(IndicadoresBaja.FECHANAC).setCellRenderer(new Celdas("campo"));//fecha de nacimiento
-		tablaPersonasBaja.getColumnModel().getColumn(IndicadoresBaja.TELEFONO).setCellRenderer(new Celdas("campo"));//telÃƒÂ©fono
-		tablaPersonasBaja.getColumnModel().getColumn(IndicadoresBaja.CORREO).setCellRenderer(new Celdas("campo"));//correo electrÃƒÂ³nico
+		tablaPersonasBaja.getColumnModel().getColumn(IndicadoresBaja.TELEFONO).setCellRenderer(new Celdas("campo"));//telÃƒÆ’Ã‚Â©fono
+		tablaPersonasBaja.getColumnModel().getColumn(IndicadoresBaja.CORREO).setCellRenderer(new Celdas("campo"));//correo electrÃƒÆ’Ã‚Â³nico
 		tablaPersonasBaja.getColumnModel().getColumn(IndicadoresBaja.ROL).setCellRenderer(new Celdas("campo"));//rol
 		tablaPersonasBaja.getColumnModel().getColumn(IndicadoresBaja.REINCORPORAR).setCellRenderer(new Celdas("boton"));//boton modificar
 		tablaPersonasBaja.getColumnModel().getColumn(IndicadoresBaja.ELIMINAR).setCellRenderer(new Celdas("boton"));//boton eliminar
@@ -401,22 +402,22 @@ public class ListadoBajas extends JInternalFrame implements MouseListener,KeyLis
 		construirTabla("lis");
 	}
 
-	//	EVENTOS DINÁMICOS:
+	//	EVENTOS DINÃ�MICOS:
 	
-	//Eventos al pulsar los botones de la tabla con el click del ratÃƒÂ³n
+	//Eventos al pulsar los botones de la tabla con el click del ratn
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		//Aqui nos dice que fila es en la que estÃƒÂ¡ clickando
+		//Aqui nos dice que fila es en la que estÃƒÆ’Ã‚Â¡ clickando
 		int fila = tablaPersonasBaja.rowAtPoint(e.getPoint());
-		//Aqui nos dice que columna es en la que estÃƒÂ¡ clickando
+		//Aqui nos dice que columna es en la que est clickando
 		int columna = tablaPersonasBaja.columnAtPoint(e.getPoint());
 		
 		
 		if (columna == IndicadoresBaja.REINCORPORAR) {
 		//Lanzamos la ventana de modificacion
 			int row = tablaPersonasBaja.getSelectedRow();
-			int reply = JOptionPane.showConfirmDialog(tablaPersonasBaja, "¿Esta seguro de que quiere reincorporar este usuario?", "Reincorporar",JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
+			int reply = JOptionPane.showConfirmDialog(tablaPersonasBaja, "Â¿Esta seguro de que quiere reincorporar este usuario?", "Reincorporar",JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
 			
 			if(reply == JOptionPane.YES_OPTION) {
 			Reincorporar(tablaPersonasBaja.getValueAt(tablaPersonasBaja.getSelectedRow(), 0).toString());
@@ -427,7 +428,7 @@ public class ListadoBajas extends JInternalFrame implements MouseListener,KeyLis
 			
 		} else if (columna == Indicadores.ELIMINAR) {
 			System.out.println("pulsado eliminar");
-			int reply = JOptionPane.showConfirmDialog(tablaPersonasBaja, "¿Esta seguro de que quiere borrar el registro DEFINITIVAMENTE?", "Eliminar",JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
+			int reply = JOptionPane.showConfirmDialog(tablaPersonasBaja, "Â¿Esta seguro de que quiere borrar el registro DEFINITIVAMENTE?", "Eliminar",JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
 			
 			if(reply == JOptionPane.YES_OPTION) {
 				//Elimina el registro de la BBDD

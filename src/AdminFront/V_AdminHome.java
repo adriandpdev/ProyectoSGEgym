@@ -12,8 +12,8 @@ import AdminBack.Ac_MenuAdmin;
 
 public class V_AdminHome extends JFrame {
 	private JMenuBar jmb;
-	private JMenu[] me = new JMenu[9];
-	private JMenuItem[] mi = new JMenuItem[19];
+	private JMenu[] me = new JMenu[10];
+	private JMenuItem[] mi = new JMenuItem[21];
 	private JSeparator sep;
 	private String DNI1;
 
@@ -30,7 +30,19 @@ public class V_AdminHome extends JFrame {
 
 		jmb = new JMenuBar();
 		this.setJMenuBar(jmb);
-
+		
+		me[9] = new JMenu("Listados");
+		jmb.add(me[9]);
+		mi[18] = new JMenuItem("Listado general");
+		mi[18].addActionListener(new Ac_MenuAdmin(this));
+		me[9].add(mi[18]);
+		mi[19] = new JMenuItem("Lista usuarios");
+		mi[19].addActionListener(new Ac_MenuAdmin(this));
+		me[9].add(mi[19]);
+		mi[20] = new JMenuItem("Lista profesores");
+		mi[20].addActionListener(new Ac_MenuAdmin(this));
+		me[9].add(mi[20]);
+		
 		me[0] = new JMenu("Usuarios");
 		jmb.add(me[0]);
 		mi[0] = new JMenuItem("Alta usuario");
@@ -94,24 +106,20 @@ public class V_AdminHome extends JFrame {
 		me[6] = new JMenu("Estadisticas");
 		jmb.add(me[6]);
 
-		mi[14] = new JMenuItem("De Usuarios");
+		mi[14] = new JMenuItem("De Actividades");
 		mi[14].addActionListener(new Ac_MenuAdmin(this));
 		me[6].add(mi[14]);
-
-		mi[15] = new JMenuItem("De Actividades");
-		mi[15].addActionListener(new Ac_MenuAdmin(this));
-		me[6].add(mi[15]);
 
 		me[7] = new JMenu("Perfil");
 		jmb.add(me[7]);
 
-		mi[16] = new JMenuItem("Mi Perfil");
+		mi[15] = new JMenuItem("Mi Perfil");
+		mi[15].addActionListener(new Ac_MenuAdmin(this));
+		me[7].add(mi[15]);
+
+		mi[16] = new JMenuItem("Cerrar sesión");
 		mi[16].addActionListener(new Ac_MenuAdmin(this));
 		me[7].add(mi[16]);
-
-		mi[18] = new JMenuItem("Cerrar sesión");
-		mi[18].addActionListener(new Ac_MenuAdmin(this));
-		me[7].add(mi[18]);
 
 		me[8] = new JMenu("Opciones");
 		jmb.add(me[8]);

@@ -19,7 +19,12 @@ public class Ac_MenuAdmin implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		cerrarventanas();
-		if (arg0.getActionCommand().equals("Alta usuario")) {
+		// 
+		if (arg0.getActionCommand().equals("Listado general")) {
+			listado vAdGeList = new listado(); //CAMBIAR
+			vent.add(vAdGeList);
+			vAdGeList.setVisible(true);
+		} else if (arg0.getActionCommand().equals("Alta usuario")) {
 			V_AdminUserAdd vAdUsAdd = new V_AdminUserAdd();
 			vent.add(vAdUsAdd);
 			vAdUsAdd.setVisible(true);
@@ -49,7 +54,9 @@ public class Ac_MenuAdmin implements ActionListener {
 				vAdAcList = new V_AdminActiList(vent);
 				vent.add(vAdAcList);
 				vAdAcList.setVisible(true);
-			} catch (SQLException e) {e.printStackTrace();}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 
 		} else if (arg0.getActionCommand().equals("Añadir hora")) {
 			V_AdminScheAdd vAdScAdd = new V_AdminScheAdd();
@@ -99,14 +106,16 @@ public class Ac_MenuAdmin implements ActionListener {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		} else if (arg0.getActionCommand().equals("De Usuarios")) {
-			V_AdminEstUs vAdEstUs = new V_AdminEstUs();
-			vent.add(vAdEstUs);
-			vAdEstUs.setVisible(true);
 		} else if (arg0.getActionCommand().equals("De Actividades")) {
-			V_AdminEstActi vAdEstAct = new V_AdminEstActi();
-			vent.add(vAdEstAct);
-			vAdEstAct.setVisible(true);
+			V_AdminEstActi vAdEstAct;
+			try {
+				vAdEstAct = new V_AdminEstActi();
+				vent.add(vAdEstAct);
+				vAdEstAct.setVisible(true);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 

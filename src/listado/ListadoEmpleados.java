@@ -43,12 +43,11 @@ import javax.swing.table.TableModel;
 
 import com.mysql.cj.x.protobuf.MysqlxConnection.Close;
 
-import main.Conexion;
-
 
 //Implementamos un mouse listener porque queremos capturar las acciones que realice el ratón
 
-public class listado extends JInternalFrame implements MouseListener,KeyListener, ActionListener{
+public class ListadoEmpleados extends JInternalFrame implements MouseListener,KeyListener, ActionListener{
+	
 	
 	/**
 	 * 
@@ -75,13 +74,13 @@ public class listado extends JInternalFrame implements MouseListener,KeyListener
 	public int criterio;
 	public String parametro;
 	
-	public listado() {
+	public ListadoEmpleados() {
 		
 		this.setLayout(new BorderLayout());
 		
-//		UIManager.put("OptionPane.background",new ColorUIResource(new Color(137, 13, 84)));
-//		UIManager.put("OptionPane.messageForeground",new ColorUIResource(Color.WHITE));
-//		UIManager.put("Panel.background",new ColorUIResource(new Color(137, 13, 84)));
+		UIManager.put("OptionPane.background",new ColorUIResource(new Color(137, 13, 84)));
+		UIManager.put("OptionPane.messageForeground",new ColorUIResource(Color.WHITE));
+		//UIManager.put("Panel.background",new ColorUIResource(new Color(137, 13, 84)));
 		
 		
 		//Paneles del primer BorderLayout
@@ -100,6 +99,7 @@ public class listado extends JInternalFrame implements MouseListener,KeyListener
 		btn_buscar = new JButton("Buscar");
 		btn_buscar.addActionListener(this);
 		btn_buscar.setFont(new Font("Verdana",Font.PLAIN,18));
+
 		
 		btn_refrescar = new JButton("Reiniciar Tabla");
 		btn_refrescar.addActionListener(this);
@@ -125,7 +125,6 @@ public class listado extends JInternalFrame implements MouseListener,KeyListener
 		modelo_combo.addElement("Fecha de Nacimiento");
 		modelo_combo.addElement("Telefono");
 		modelo_combo.addElement("Correo Electrónico");
-		modelo_combo.addElement("Rol");
 				
 		combo_campos = new JComboBox<String>();
 		combo_campos.setModel(modelo_combo);
@@ -141,8 +140,8 @@ public class listado extends JInternalFrame implements MouseListener,KeyListener
 		panel_norte.setBackground(new Color(137, 13, 84));
 		
 		//Título personalizado 
-		lbl_titulo = new JLabel("LISTADO DE USUARIOS/PROFESORES");
-		lbl_titulo.setFont(new Font("Verdana",Font.BOLD,22));
+		lbl_titulo = new JLabel("Listado de Empleados:");
+		lbl_titulo.setFont(new Font("Verdana",Font.PLAIN,34));
 		lbl_titulo.setForeground(Color.WHITE);
 		
 		panel_central.setLayout(new BorderLayout());
@@ -185,7 +184,7 @@ public class listado extends JInternalFrame implements MouseListener,KeyListener
 	public ArrayList<Persona> datarPersonas(){
 		ArrayList<Persona> lista = new ArrayList<>();
 		
-		String sql = "SELECT * FROM Persona";
+		String sql = "SELECT * FROM Persona WHERE rol = 'empl'";
 		
 		cp = new Conexion();
 		
@@ -233,21 +232,19 @@ public class listado extends JInternalFrame implements MouseListener,KeyListener
 					
 			
 		if(criterio == 0) {
-			sql_busqueda = "SELECT * FROM Persona WHERE DNI like '" + parametro + "%'";
+			sql_busqueda = "SELECT * FROM Persona WHERE rol = 'empl' AND DNI like '" + parametro + "%'";
 		} else if(criterio == 1) {
-			sql_busqueda = "SELECT * FROM Persona WHERE nombre like '" + parametro + "%'";
+			sql_busqueda = "SELECT * FROM Persona WHERE rol = 'empl' AND nombre like '" + parametro + "%'";
 		} else if(criterio == 2) {
-			sql_busqueda = "SELECT * FROM Persona WHERE apellido like '" + parametro + "%'";
+			sql_busqueda = "SELECT * FROM Persona WHERE rol = 'empl' AND apellido like '" + parametro + "%'";
 		} else if(criterio == 3) {
-			sql_busqueda = "SELECT * FROM Persona WHERE cuentabanc like '" + parametro + "%'";
+			sql_busqueda = "SELECT * FROM Persona WHERE rol = 'empl' AND cuentabanc like '" + parametro + "%'";
 		} else if(criterio == 4) {
-			sql_busqueda = "SELECT * FROM Persona WHERE fechanac like '" + parametro + "%'";
+			sql_busqueda = "SELECT * FROM Persona WHERE rol = 'empl' AND fechanac like '" + parametro + "%'";
 		} else if(criterio == 5) {
-			sql_busqueda = "SELECT * FROM Persona WHERE telefono like '" + parametro + "%'";
+			sql_busqueda = "SELECT * FROM Persona WHERE rol = 'empl' AND telefono like '" + parametro + "%'";
 		} else if(criterio == 6) {
-			sql_busqueda = "SELECT * FROM Persona WHERE correo like '"+ parametro + "%'";
-		} else if(criterio == 7) {
-			sql_busqueda = "SELECT * FROM Persona WHERE rol like '" + parametro + "%'";
+			sql_busqueda = "SELECT * FROM Persona WHERE rol = 'empl' AND correo like '"+ parametro + "%'";
 		}
 		
 		
@@ -596,7 +593,3 @@ public class listado extends JInternalFrame implements MouseListener,KeyListener
 	
 	
 }
-
-
-	
-
