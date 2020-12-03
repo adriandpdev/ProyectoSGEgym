@@ -3,6 +3,7 @@ package UserFront;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Rectangle;
 import java.sql.Connection;
@@ -24,6 +25,7 @@ import javax.swing.table.TableColumnModel;
 
 import com.mysql.cj.xdevapi.Statement;
 
+import AdminFront.V_AdminScheList_Renderer;
 import main.Conexion;
 
 public class V_UserPromList extends JInternalFrame {
@@ -64,7 +66,7 @@ private JPanel getJContentPane() throws ClassNotFoundException, SQLException {
 private JScrollPane getJscrollPane() throws ClassNotFoundException, SQLException {
 	if(jscrollpane==null) {
 	jscrollpane=new JScrollPane();
-	jscrollpane.setBounds( 18,17,1350,580);
+	jscrollpane.setBounds( 0,0,1350,580);
 	jscrollpane.setViewportView(getJTable());
 	}
 	return jscrollpane;
@@ -75,14 +77,21 @@ private JTable getJTable() throws ClassNotFoundException, SQLException {
 	if(jtable==null) {
 	jtable = new JTable();
 	jtable.setModel(model);
+
 	JTableHeader head = jtable.getTableHeader();
 	TableColumnModel tcm = head.getColumnModel();
 	TableColumn tabCM = tcm.getColumn(0);
 	TableColumn tabCM2 = tcm.getColumn(1);
 	TableColumn tabCM3 = tcm.getColumn(2);
+	
 	tabCM.setHeaderValue("Asunto");
 	tabCM2.setHeaderValue("Mensaje");
 	tabCM3.setHeaderValue("Fecha");
+	 jtable.getTableHeader().setReorderingAllowed(false); 
+	 jtable.setShowGrid(true);
+	 jtable.getTableHeader().setBackground(new Color(65,65,65));
+	 jtable.getTableHeader().setForeground(Color.white);
+	 jtable.getTableHeader().setFont(new Font("Verdana", Font.BOLD, 20));
 	jtable.repaint();
 	}
 	
