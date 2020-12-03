@@ -93,6 +93,8 @@ private JTable getJTable() throws ClassNotFoundException, SQLException {
 	 jtable.getTableHeader().setForeground(Color.white);
 	 jtable.getTableHeader().setFont(new Font("Verdana", Font.BOLD, 20));
 	 jtable.setRowHeight(jtable.getRowHeight() * 5);
+	  Font font = new Font("Verdana", Font.PLAIN, 12); 
+	  jtable.setFont(font);
 	jtable.repaint();
 	}
 	
