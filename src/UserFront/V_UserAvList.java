@@ -36,7 +36,7 @@ public class V_UserAvList extends JInternalFrame {
 		private String asunto,mensaje,fecha;
  public V_UserAvList() throws ClassNotFoundException, SQLException {
 	// TODO Auto-generated constructor stub
-
+	 ((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null);
 	 this.setSize(700,500);
 	 this.setLayout(new BorderLayout());
 		JPanel Norte = new JPanel();
