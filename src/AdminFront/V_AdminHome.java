@@ -108,12 +108,9 @@ public class V_AdminHome extends JFrame {
 
 		me[5] = new JMenu("Facturas");
 		jmb.add(me[5]);
-		mi[12] = new JMenuItem("Pagos usuarios");
+		mi[12] = new JMenuItem("Pagos y Nominas");
 		mi[12].addActionListener(new Ac_MenuAdmin(this));
 		me[5].add(mi[12]);
-		mi[13] = new JMenuItem("Nominas profesores");
-		mi[13].addActionListener(new Ac_MenuAdmin(this));
-		me[5].add(mi[13]);
 
 		me[6] = new JMenu("Estadisticas");
 		jmb.add(me[6]);
