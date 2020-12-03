@@ -34,6 +34,8 @@ public class Ac_ForgetPass implements MouseListener {
 		String correo = JOptionPane.showInputDialog(vent, "Introduce el correo registrado",
 				JOptionPane.QUESTION_MESSAGE);
 		Conexion c = new Conexion();
+		if(correo!=null)
+		{
 		if (!correo.equals("")) {
 			try {
 				ResultSet rs = c.consulta(Main.con, "SELECT * FROM Persona WHERE correo LIKE '" + correo + "'");
@@ -74,6 +76,7 @@ public class Ac_ForgetPass implements MouseListener {
 		} else {
 			JOptionPane.showMessageDialog(null, "Introduce un correo valido.");
 		}
+	}
 	}
 
 	@Override

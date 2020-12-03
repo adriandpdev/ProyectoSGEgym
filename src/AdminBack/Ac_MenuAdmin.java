@@ -99,14 +99,17 @@ public class Ac_MenuAdmin implements ActionListener {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		} else if (arg0.getActionCommand().equals("De Usuarios")) {
-			V_AdminEstUs vAdEstUs = new V_AdminEstUs();
-			vent.add(vAdEstUs);
-			vAdEstUs.setVisible(true);
 		} else if (arg0.getActionCommand().equals("De Actividades")) {
-			V_AdminEstActi vAdEstAct = new V_AdminEstActi();
-			vent.add(vAdEstAct);
-			vAdEstAct.setVisible(true);
+			V_AdminEstActi vAdEstAct;
+			try {
+				vAdEstAct = new V_AdminEstActi();
+				vent.add(vAdEstAct);
+				vAdEstAct.setVisible(true);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
 	}
 

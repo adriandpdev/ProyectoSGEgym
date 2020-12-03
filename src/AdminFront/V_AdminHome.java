@@ -94,10 +94,6 @@ public class V_AdminHome extends JFrame {
 		me[6] = new JMenu("Estadisticas");
 		jmb.add(me[6]);
 
-		mi[14] = new JMenuItem("De Usuarios");
-		mi[14].addActionListener(new Ac_MenuAdmin(this));
-		me[6].add(mi[14]);
-
 		mi[15] = new JMenuItem("De Actividades");
 		mi[15].addActionListener(new Ac_MenuAdmin(this));
 		me[6].add(mi[15]);

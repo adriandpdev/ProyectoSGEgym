@@ -39,65 +39,74 @@ public class V_AdminPayUs extends JInternalFrame {
 		instanciarElementos();
 	}
 
-	private void instanciarElementos() throws SQLException {
-		añadirSuperior();
-		añadirTabla();
-		add(superior, BorderLayout.NORTH);
-		add(tabla, BorderLayout.CENTER);
-	}
-
-	private void añadirTabla() throws SQLException {
-		tabla = new JPanel();
-
-		String query = "SELECT * from Transacciones";
-		String query1 = "select count(*) as cuenta from Transacciones";
-		rellenarTabla(query, query1);
-		
-		t = new JTable(new DefaultTableModel(pagos, columnas));
-		t.setDefaultRenderer(Object.class, new V_AdminScheList_Renderer());
-		Font font = new Font("Verdana", Font.PLAIN, 12);
-		t.setFont(font);
-		t.setRowHeight(t.getRowHeight() * 5);
-
-		t.getTableHeader().setReorderingAllowed(false);
-		t.setShowGrid(true);
-		t.getTableHeader().setBackground(new Color(65, 65, 65));
-		t.getTableHeader().setForeground(Color.white);
-		t.getTableHeader().setFont(new Font("Verdana", Font.BOLD, 20));
-		scroll = new JScrollPane(t, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		scroll.setPreferredSize(new Dimension(800, 450));
-
-		tabla.add(scroll);
-	}
-
-	private void rellenarTabla(String query, String query1) throws SQLException {
-		int cantidadfilas = 0;
-		ResultSet r1 = c.consulta(Main.con, query1);
-		if (r1.next()) {
-			cantidadfilas = r1.getInt("cuenta");
-		}
-		pagos = new String[cantidadfilas][columnas.length];
-		ResultSet rs;
-		rs = c.consulta(Main.con, query);
-		if (rs.next()) {
-			for (int i = 0; i < pagos.length; i++) {
-				ResultSetMetaData metaData = rs.getMetaData();
-				for (int j = 1; j <= pagos[i].length; j++) {
-					String columnName = metaData.getColumnName(j);
-					if (!columnName.equals("Pagado"))
-						pagos[i][j - 1] = rs.getString(columnName);
-					else {
-						if (rs.getString(columnName).equals("1")) {
-							pagos[i][j - 1] = "SI";
-						} else {
-							pagos[i][j - 1] = "NO";
-						}
-					}
-				}
-				rs.next();
-			}
-		}
-	}
+	
+	
+	  private void instanciarElementos() throws SQLException { 
+		  
+		  añadirSuperior();
+		  añadirTabla();
+	  
+		  add(superior,BorderLayout.NORTH);
+		  add(tabla,BorderLayout.CENTER);
+	  
+	  }
+	 
+	
+	  private void añadirTabla() throws SQLException { 
+		  tabla=new JPanel();
+	  
+		  String query="SELECT * from Transacciones";
+	  
+		  String query1="select count(*) as cuenta from Transacciones";
+		  rellenarTabla(query, query1);
+	  
+		  t=new JTable(new DefaultTableModel(pagos, columnas));
+		  t.setDefaultRenderer(Object.class, new V_AdminScheList_Renderer()); 
+		  Font font = new Font("Verdana", Font.PLAIN, 12); 
+		  t.setFont(font);
+		  t.setRowHeight(t.getRowHeight() * 5);
+	  
+		  t.getTableHeader().setReorderingAllowed(false); 
+		  t.setShowGrid(true);
+		  t.getTableHeader().setBackground(new Color(65,65,65));
+		  t.getTableHeader().setForeground(Color.white);
+		  t.getTableHeader().setFont(new Font("Verdana", Font.BOLD, 20));
+		  scroll = new JScrollPane(t, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS); 
+		  scroll.setPreferredSize(new Dimension(1500, 1000));
+	  
+		  tabla.add(scroll); 
+	  }
+	 
+	
+	  private void rellenarTabla(String query, String query1) throws SQLException {
+		  int cantidadfilas=0; 
+		  ResultSet r1= c.consulta(Main.con,query1); 
+		  if(r1.next()){ 
+			  cantidadfilas=r1.getInt("cuenta"); 
+			  } 
+		  pagos=new String[cantidadfilas][columnas.length]; 
+		  ResultSet rs; 
+		  rs=c.consulta(Main.con, query); 
+		  if (rs.next()) {
+			  for (int i = 0; i < pagos.length; i++) {		  
+				  ResultSetMetaData metaData = rs.getMetaData(); 
+				  for (int j = 1; j <= pagos[i].length; j++) { 
+					  String columnName = metaData.getColumnName(j);
+					  if(!columnName.equals("Pagado")) 
+						  pagos[i][j-1]=rs.getString(columnName); 
+					  else{
+						  if(rs.getString(columnName).equals("1")) { 
+							  pagos[i][j-1]="SI"; 
+						  } else {
+							  pagos[i][j-1]="NO"; 
+						  } 
+					  } 
+				  } 
+			  rs.next(); 
+			  } 
+		  }				  
+	  }
+	 
 
 	public void añadirVacio(JPanel p) {
 		p.add(new JLabel());

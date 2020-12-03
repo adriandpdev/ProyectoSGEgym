@@ -43,6 +43,8 @@ import javax.swing.table.TableModel;
 
 import com.mysql.cj.x.protobuf.MysqlxConnection.Close;
 
+import main.Conexion;
+
 
 //Implementamos un mouse listener porque queremos capturar las acciones que realice el ratón
 
@@ -77,9 +79,9 @@ public class listado extends JInternalFrame implements MouseListener,KeyListener
 		
 		this.setLayout(new BorderLayout());
 		
-		UIManager.put("OptionPane.background",new ColorUIResource(new Color(137, 13, 84)));
-		UIManager.put("OptionPane.messageForeground",new ColorUIResource(Color.WHITE));
-		UIManager.put("Panel.background",new ColorUIResource(new Color(137, 13, 84)));
+//		UIManager.put("OptionPane.background",new ColorUIResource(new Color(137, 13, 84)));
+//		UIManager.put("OptionPane.messageForeground",new ColorUIResource(Color.WHITE));
+//		UIManager.put("Panel.background",new ColorUIResource(new Color(137, 13, 84)));
 		
 		
 		//Paneles del primer BorderLayout

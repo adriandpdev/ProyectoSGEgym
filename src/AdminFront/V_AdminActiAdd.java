@@ -142,7 +142,7 @@ public class V_AdminActiAdd  extends JInternalFrame{
 		jpSur.setLayout(new GridLayout(1, 2));
 
 		btnAñadir = new JButton("AÑADIR");
-		btnCancelar = new JButton("CANCELAR");
+		btnCancelar = new JButton("LIMPIAR");
 
 		jpSur.add(btnAñadir);
 		jpSur.add(btnCancelar);
@@ -151,6 +151,7 @@ public class V_AdminActiAdd  extends JInternalFrame{
 		
 		//Añadir escucha a los botones
 		btnAñadir.addActionListener(new Ac_AdminActiAdd(this));
+		btnCancelar.addActionListener(new Ac_AdminActiAdd(this));
 
 		this.setVisible(true);
 	}

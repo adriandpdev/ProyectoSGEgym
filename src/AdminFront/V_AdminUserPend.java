@@ -17,7 +17,6 @@ public class V_AdminUserPend extends JInternalFrame {
 	
 	Conexion c = new Conexion();
 	private JLabel lblTitulo;
-	private JButton btnUpdate;
 	private JList lista;
 	
 	public V_AdminUserPend()
@@ -33,13 +32,27 @@ public class V_AdminUserPend extends JInternalFrame {
 		
 		//modelo.addElement("Hola");
 		
+		String query = "Select Persona.nombre, Persona.dni, Transacciones.cantidad From Persona, Transacciones Where Persona.DNI=Transacciones.dniUsuario and  Transacciones.Pagado Like 0";
+		ResultSet listado = null;
+		try {
+			listado = c.consulta(Main.con, query);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			while(listado.next())
+			{
+				modelo.addElement("NOMBRE: "+listado.getString("nombre")+", DNI: "+listado.getString("dni")+", CANTIDAD QUE DEBE: "+listado.getString("cantidad")+"€");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		lista.setModel(modelo);
 		
 		this.getContentPane().add(lista, BorderLayout.CENTER);
-
-		btnUpdate = new JButton("ACTUALIZAR");
-
-		this.getContentPane().add(btnUpdate, BorderLayout.SOUTH);
 		
         this.setVisible(true);
 	}

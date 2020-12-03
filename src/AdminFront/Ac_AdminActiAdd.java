@@ -89,6 +89,10 @@ public class Ac_AdminActiAdd implements ActionListener{
 					e.printStackTrace();
 				}
 		}
+		else if(arg0.getActionCommand().equals("LIMPIAR"))
+		{
+			vent.getTxtNombreactividad().setText("");
+		}
 		
 	}
 
