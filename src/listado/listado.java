@@ -43,6 +43,8 @@ import javax.swing.table.TableModel;
 
 import com.mysql.cj.x.protobuf.MysqlxConnection.Close;
 
+import main.Conexion;
+
 
 //Implementamos un mouse listener porque queremos capturar las acciones que realice el ratón
 
@@ -139,8 +141,8 @@ public class listado extends JInternalFrame implements MouseListener,KeyListener
 		panel_norte.setBackground(new Color(137, 13, 84));
 		
 		//Título personalizado 
-		lbl_titulo = new JLabel("LISTADO DE USUARIOS/PROFESORES");
-		lbl_titulo.setFont(new Font("Verdana",Font.BOLD,22));
+		lbl_titulo = new JLabel("Listado de Usuarios y Profesores:");
+		lbl_titulo.setFont(new Font("Verdana",Font.PLAIN,35));
 		lbl_titulo.setForeground(Color.WHITE);
 		
 		panel_central.setLayout(new BorderLayout());
@@ -437,10 +439,10 @@ public class listado extends JInternalFrame implements MouseListener,KeyListener
 		try {
 			conn = cp.conectar();
 			
-			String fechita = "18-01-2021";
+			
 			System.out.println(tablaPersonas.getValueAt(tablaPersonas.getSelectedRow(), 1).toString());
 			
-			String sql_insertar_baja = "INSERT INTO PersonaBaja (DNI, nombre, apellido, cuentabanc, fechanac, telefono, correo, rol, fechabaja) VALUES"
+			String sql_insertar_baja = "INSERT INTO PersonaBaja (DNI, nombre, apellido, cuentabanc, fechanac, telefono, correo, rol, fechabaja, fecha_index) VALUES"
 				+ "('"+dni_baja+"','"+tablaPersonas.getValueAt(tablaPersonas.getSelectedRow(), 1).toString()+"',"
 						+ " '"+tablaPersonas.getValueAt(tablaPersonas.getSelectedRow(), 2).toString()+"',"
 								+ " '"+tablaPersonas.getValueAt(tablaPersonas.getSelectedRow(), 3).toString()+"',"
@@ -448,7 +450,7 @@ public class listado extends JInternalFrame implements MouseListener,KeyListener
 												+ " '"+tablaPersonas.getValueAt(tablaPersonas.getSelectedRow(), 6).toString()+"',"
 														+ "'"+tablaPersonas.getValueAt(tablaPersonas.getSelectedRow(), 7).toString()+"',"
 																+ "'"+tablaPersonas.getValueAt(tablaPersonas.getSelectedRow(), 8).toString()+"',"
-																		+ "'"+fecha_actual+"')";
+																		+ "'"+fecha_actual+"', '"+date+"')";
 			
 			
 			cp.alta(conn, sql_insertar_baja);
@@ -567,8 +569,8 @@ public class listado extends JInternalFrame implements MouseListener,KeyListener
 		if(e.getKeyCode()==KeyEvent.VK_ENTER) {
 			criterio = combo_campos.getSelectedIndex();
 			parametro = getTf_busqueda().getText().toString();
-			
 			construirTabla("bus");
+			tf_busqueda.setText("");
 		}
 	}
 
@@ -587,6 +589,7 @@ public class listado extends JInternalFrame implements MouseListener,KeyListener
 			criterio = combo_campos.getSelectedIndex();
 			parametro = getTf_busqueda().getText().toString();
 			construirTabla("bus");
+			tf_busqueda.setText("");
 		}
 		
 		if(ac.getSource() == btn_refrescar) {

@@ -57,6 +57,7 @@ public class V_Login extends JFrame {
 		lbl[0] = new JLabel("DNI");
 		lbl[1] = new JLabel("Contraseña");
 		lbl[2] = new JLabel("He olvidado mi contraseña", SwingConstants.CENTER);
+		lbl[2].addMouseListener(new Ac_ForgetPass(this));
 		btn = new JButton("Iniciar sesión");
 		btn.setMargin(new Insets(10, 10, 10, 10));
 		btn.addActionListener(new Ac_Login(this));

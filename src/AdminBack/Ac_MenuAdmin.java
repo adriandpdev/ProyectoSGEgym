@@ -69,7 +69,8 @@ public class Ac_MenuAdmin implements ActionListener {
 			vent.add(vAdWarn);
 			vAdWarn.setVisible(true);
 		} else if (arg0.getActionCommand().equals("Pagos usuarios")) {
-			V_AdminPayUs vAdPayUs = new V_AdminPayUs();
+			V_AdminPayUs vAdPayUs;
+			vAdPayUs = new V_AdminPayUs();
 			vent.add(vAdPayUs);
 			vAdPayUs.setVisible(true);
 		} else if (arg0.getActionCommand().equals("Nominas profesores")) {
