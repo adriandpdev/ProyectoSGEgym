@@ -43,7 +43,7 @@ import javax.swing.table.TableModel;
 
 import com.mysql.cj.x.protobuf.MysqlxConnection.Close;
 
-import main.Conexion;
+//import main.Conexion;
 
 
 //Implementamos un mouse listener porque queremos capturar las acciones que realice el ratón
@@ -66,10 +66,9 @@ public class listado extends JInternalFrame implements MouseListener,KeyListener
 	ArrayList<Persona> listaPersonas;
 	
 	private int filasTabla, columnasTabla;
-	private Conexion cp, cp2;
+	private Conexion cp;
 	private Connection conn;
-	private Connection conn2;
-	private ResultSet rs, rs2;
+	private ResultSet rs;
 	private ModeloTabla modelo;
 
 	public int criterio;
@@ -141,8 +140,8 @@ public class listado extends JInternalFrame implements MouseListener,KeyListener
 		panel_norte.setBackground(new Color(137, 13, 84));
 		
 		//Título personalizado 
-		lbl_titulo = new JLabel("LISTADO DE USUARIOS/PROFESORES");
-		lbl_titulo.setFont(new Font("Verdana",Font.BOLD,22));
+		lbl_titulo = new JLabel("Listado General:");
+		lbl_titulo.setFont(new Font("Verdana",Font.PLAIN,34));
 		lbl_titulo.setForeground(Color.WHITE);
 		
 		panel_central.setLayout(new BorderLayout());
@@ -205,7 +204,7 @@ public class listado extends JInternalFrame implements MouseListener,KeyListener
 	             per.setNombre(rs.getString(2));
 	             per.setApellido(rs.getString(3));
 	             per.setCuentabanc(rs.getString(4));
-	             per.setPass(rs.getString(5));
+	             per.setPass("***********"); //ocultamos el hash de las contraseñas por seguridad
 	             per.setFechanac(rs.getString(6));
 	             per.setTelefono(rs.getInt(7));
 	             per.setCorreo(rs.getString(8));
