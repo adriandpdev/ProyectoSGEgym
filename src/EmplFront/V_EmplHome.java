@@ -1,8 +1,13 @@
 package EmplFront;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.UIManager.*;
 
@@ -14,8 +19,10 @@ public class V_EmplHome extends JFrame {
 	private JMenu[] me = new JMenu[4];
 	private JMenuItem[] mi = new JMenuItem[7];
 	private String DNI1;
+	private JLabel lbl;
+	private BufferedImage logo;
 	
-	public V_EmplHome(String DNI) {
+	public V_EmplHome(String DNI) throws IOException {
 		super("Gestión de gimnasio - Empleado");
 		DNI1 = DNI;
 		
@@ -64,8 +71,14 @@ public class V_EmplHome extends JFrame {
 		mi[5] = new JMenuItem("Cerrar ventana");
 		mi[5].addActionListener(new Ac_MenuEmple(this));
 		me[3].add(mi[5]);
-
+		setfoto();
+		
 		this.setVisible(true);
+	}
+	public void setfoto() throws IOException {
+		logo = ImageIO.read(new File("images/fondomenu.png"));
+		lbl = new JLabel(new ImageIcon(logo));
+		this.add(lbl, BorderLayout.CENTER);
 	}
 
 	public String getDNI1() {
