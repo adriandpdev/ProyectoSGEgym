@@ -36,8 +36,9 @@ public class V_Login extends JFrame {
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
-        //Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("images/icono.png"));
-        //setIconImage(icon);
+        ImageIcon icon = new ImageIcon("./images/icono.png");
+        setIconImage(icon.getImage());
+        		//Toolkit.getDefaultToolkit().getImage(getClass().getResource("images/icono.png"));
 		
 		this.setLayout(new BorderLayout());
 		pn[2] = new JPanel();

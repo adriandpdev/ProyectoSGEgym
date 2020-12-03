@@ -27,7 +27,9 @@ public class V_UserHome extends JFrame {
 		this.setResizable(true);
 		this.setMinimumSize(new Dimension(1000, 600));
 		this.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
-
+		ImageIcon icon = new ImageIcon("./images/icono.png");
+        setIconImage(icon.getImage());
+        
 		jmb = new JMenuBar();
 		this.setJMenuBar(jmb);
 

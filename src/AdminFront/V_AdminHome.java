@@ -18,6 +18,7 @@ public class V_AdminHome extends JFrame {
 	private String DNI1;
 
 	public V_AdminHome(String DNI) {
+		
 		super("Gestión de gimnasio - Administrador");
 		DNI1 = DNI;
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -27,7 +28,10 @@ public class V_AdminHome extends JFrame {
 		this.setResizable(true);
 		this.setMinimumSize(new Dimension(1000, 600));
 		this.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
-
+		
+		ImageIcon icon = new ImageIcon("./images/icono.png");
+        setIconImage(icon.getImage());
+        
 		jmb = new JMenuBar();
 		this.setJMenuBar(jmb);
 		
