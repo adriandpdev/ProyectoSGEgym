@@ -36,7 +36,7 @@ public class V_UserAvList extends JInternalFrame {
 		private String asunto,mensaje,fecha;
  public V_UserAvList() throws ClassNotFoundException, SQLException {
 	// TODO Auto-generated constructor stub
-
+	 ((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null);
 	 this.setSize(700,500);
 	 this.setLayout(new BorderLayout());
 		JPanel Norte = new JPanel();
@@ -88,7 +88,9 @@ private JTable getJTable() throws ClassNotFoundException, SQLException {
 	 jtable.getTableHeader().setForeground(Color.white);
 	 jtable.getTableHeader().setFont(new Font("Verdana", Font.BOLD, 20));
 	 jtable.setRowHeight(jtable.getRowHeight() * 5);
-	jtable.repaint();
+	  Font font = new Font("Verdana", Font.PLAIN, 12); 
+	  jtable.setFont(font);
+	 jtable.repaint();
 	}
 
 	return jtable;

@@ -43,6 +43,8 @@ import javax.swing.table.TableModel;
 
 import com.mysql.cj.x.protobuf.MysqlxConnection.Close;
 
+import main.Conexion;
+
 
 //Implementamos un mouse listener porque queremos capturar las acciones que realice el ratón
 

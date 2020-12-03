@@ -6,6 +6,8 @@ import java.awt.Container;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.swing.*;
 
@@ -16,9 +18,8 @@ import AdminBack.Ac_AdminUserAdd;
 
 public class V_AdminEmplAdd extends JInternalFrame {
 
-	private JLabel Titulo, Dni, Nombre, CCC, email, Fecha, Apellidos, Contraseña, Telefono;
+	private JLabel Titulo, Dni, Nombre, CCC, email, Fecha, Apellidos, Contraseña, Telefono, minimo;
 	private JTextField txtDni, txtNombre, txtCCC, txtemail, txtApellidos, txtContraseña, txtTelefono;
-	private JFormattedTextField txtfecha;
 	private JButton Añadir, Limpiar;
 	private JDateChooser date;
 	
@@ -63,7 +64,6 @@ public class V_AdminEmplAdd extends JInternalFrame {
 	}
 
 	private void CreateForm() {
-		this.setTitle("ALTA PROFESOR");
 		this.setLocation(100, 100);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
@@ -103,11 +103,26 @@ public class V_AdminEmplAdd extends JInternalFrame {
 		Centro.add(txtemail = new JTextField());
 		txtemail.setFont(new Font("Verdana",Font.BOLD,20));
 		date = new JDateChooser();
-		date.setDateFormatString("dd-MM-yyyy");
 		date.setFont(new Font("Verdana",Font.BOLD,20));
-		Centro.add(Fecha = new JLabel("Fecha de Nacimiento"));
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.YEAR, -200);
+		Calendar cal2 = Calendar.getInstance();
+		cal2.add(Calendar.YEAR, -16);
+		Date min = cal.getTime();
+		Date max = cal2.getTime();
+		date.setSelectableDateRange(min, max);
+		date.setDate(max);
+
+		JPanel Minimo = new JPanel();
+		Minimo.setLayout(new GridLayout(2,1));
+		Minimo.add(Fecha = new JLabel("Fecha de Nacimiento"));
 		Fecha.setFont(new Font("Verdana",Font.BOLD,20));
 		Fecha.setHorizontalAlignment(JTextField.CENTER);
+		Minimo.add(minimo= new JLabel("(Minimo 16 años)"));
+		minimo.setFont(new Font("Verdana",Font.BOLD,20));
+		minimo.setHorizontalAlignment(JTextField.CENTER);
+		
+		Centro.add(Minimo);
 		Centro.add(date);
 		Centro.add(Contraseña = new JLabel("Contraseña"));
 		Contraseña.setFont(new Font("Verdana",Font.BOLD,20));
@@ -135,17 +150,11 @@ public class V_AdminEmplAdd extends JInternalFrame {
 		c.add(Norte, BorderLayout.NORTH);
 		c.add(Centro, BorderLayout.CENTER);
 		c.add(Sur, BorderLayout.SOUTH);
+		((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null);
 
 	}
 
-	public JDateChooser getDate() {
-		return date;
-	}
-
-	public void setDate(JDateChooser date) {
-		this.date = date;
-	}
-
+	
 	public JTextField getTxtDni() {
 		return txtDni;
 	}
@@ -201,13 +210,13 @@ public class V_AdminEmplAdd extends JInternalFrame {
 	public void setTxtTelefono(JTextField txtTelefono) {
 		this.txtTelefono = txtTelefono;
 	}
-
-	public JFormattedTextField getTxtfecha() {
-		return txtfecha;
+	
+	public JDateChooser getDate() {
+		return date;
 	}
 
-	public void setTxtfecha(JFormattedTextField txtfecha) {
-		this.txtfecha = txtfecha;
+	public void setDate(JDateChooser date) {
+		this.date = date;
 	}
 
 	private void FillFields() {
