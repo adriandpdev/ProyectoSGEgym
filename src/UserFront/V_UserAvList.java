@@ -95,7 +95,6 @@ try {
 		mensaje = result.getString("mensaje"),	 
 	    fecha = result.getString("fecha")               
 		};
-		 System.out.println(asunto + " " + mensaje + " " + fecha);
 	model2.avisos.add(registro);
 	}
 }catch (Exception e) {
