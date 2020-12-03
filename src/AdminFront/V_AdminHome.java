@@ -137,12 +137,15 @@ public class V_AdminHome extends JFrame {
 		mi[17].addActionListener(new Ac_MenuAdmin(this));
 		me[8].add(mi[17]);
 		
-		logo = ImageIO.read(new File("images/fondomenu.png"));
-		lbl = new JLabel(new ImageIcon(logo));
-		this.add(lbl, BorderLayout.CENTER);
+		setfoto();
 		
 		
 		this.setVisible(true);
+	}
+	public void setfoto() throws IOException {
+		logo = ImageIO.read(new File("images/fondomenu.png"));
+		lbl = new JLabel(new ImageIcon(logo));
+		this.add(lbl, BorderLayout.CENTER);
 	}
 
 	public String getDNI1() {

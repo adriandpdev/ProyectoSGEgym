@@ -18,7 +18,12 @@ public class Ac_MenuAdmin implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		cerrarventanas();
+		try {
+			cerrarventanas();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		// 
 		if (arg0.getActionCommand().equals("Listado general")) {
 			listado vAdGeList = new listado(); //CAMBIAR
@@ -101,7 +106,12 @@ public class Ac_MenuAdmin implements ActionListener {
 			vent.add(vAdPerfil);
 			vAdPerfil.setVisible(true);
 		} else if (arg0.getActionCommand().equals("Cerrar ventana")) {
-			cerrarventanas();
+			try {
+				cerrarventanas();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} else if (arg0.getActionCommand().equals("Cerrar sesión")) {
 			try {
 				V_Login vLogin = new V_Login();
@@ -122,9 +132,10 @@ public class Ac_MenuAdmin implements ActionListener {
 		}
 	}
 
-	private void cerrarventanas() {
+	private void cerrarventanas() throws IOException {
 		vent.getContentPane().setVisible(false);
 		vent.getContentPane().removeAll();
 		vent.getContentPane().setVisible(true);
+		vent.setfoto();
 	}
 }

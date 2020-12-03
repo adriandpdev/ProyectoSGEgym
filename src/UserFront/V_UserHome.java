@@ -1,8 +1,13 @@
 package UserFront;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.UIManager.*;
 
@@ -15,8 +20,10 @@ public class V_UserHome extends JFrame {
 	private JMenu[] me = new JMenu[6];
 	private JMenuItem[] mi = new JMenuItem[10];
 	private String DNI1;
-
-	public V_UserHome(String DNI) {
+	private JLabel lbl;
+	private BufferedImage logo;
+	
+	public V_UserHome(String DNI) throws IOException {
 		super("Gestión de gimnasio - Usuario");
 		DNI1 = DNI;
 
@@ -86,8 +93,14 @@ public class V_UserHome extends JFrame {
 		mi[8] = new JMenuItem("Cerrar ventana");
 		mi[8].addActionListener(new Ac_MenuUser(this));
 		me[5].add(mi[8]);
+		setfoto();
 
 		this.setVisible(true);
+	}
+	public void setfoto() throws IOException {
+		logo = ImageIO.read(new File("images/fondomenu.png"));
+		lbl = new JLabel(new ImageIcon(logo));
+		this.add(lbl, BorderLayout.CENTER);
 	}
 
 	public String getDNI1() {
