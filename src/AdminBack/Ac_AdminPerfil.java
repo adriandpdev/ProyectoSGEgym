@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 import AdminFront.V_AdminPerfil;
 import main.Conexion;
 import main.Main;
@@ -45,10 +47,15 @@ public class Ac_AdminPerfil implements ActionListener {
 	}
 
 	// MODIFICA LA CONTRASEÑA DE LA PERSONA.
+	
+	public String cifrar(String cadena) {
+		String codi=DigestUtils.md5Hex(cadena);
+		return codi;
+	}
 	public void modificarContraseña() {
 		Conexion c = new Conexion();
-		String AntiguaContraseña = vent.getTxt_Antigua_Contraseña().getText();
-		String NuevaContraseña = vent.getTxt_Nueva_Contraseña().getText();
+		String AntiguaContraseña = cifrar(vent.getTxt_Antigua_Contraseña().getText());
+		String NuevaContraseña = cifrar(vent.getTxt_Nueva_Contraseña().getText());
 		String pass = "";
 		try {
 			// Almaceno la contraseña de la persona con el DNI logeado.

@@ -12,6 +12,8 @@ import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 import AdminFront.*;
 import EmplFront.*;
 import UserFront.*;
@@ -23,6 +25,11 @@ public class Ac_Login implements ActionListener {
 	Ac_Login(V_Login v) {
 		vent = v;
 	}
+	
+	public String cifrar(String cadena) {
+		String codi=DigestUtils.md5Hex(cadena);
+		return codi;
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
@@ -33,7 +40,7 @@ public class Ac_Login implements ActionListener {
 				ResultSet rs = c.consulta(Main.con, "SELECT * FROM Persona");
 				while (rs.next() && enc == false) {
 					if (vent.gettxt()[0].getText().equals(rs.getString("DNI"))) {
-						if (vent.gettxt()[1].getText().equals(rs.getString("pass"))) {
+						if (cifrar(vent.gettxt()[1].getText()).equals(rs.getString("pass"))) {
 							enc = true;
 							switch (rs.getString("rol")) {
 							case "admin":
