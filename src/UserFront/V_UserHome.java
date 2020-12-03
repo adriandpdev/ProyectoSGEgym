@@ -7,18 +7,19 @@ import javax.swing.*;
 import javax.swing.UIManager.*;
 
 import AdminBack.Ac_AdminScheExp;
+import AdminBack.Ac_MenuAdmin;
 import UserBack.Ac_MenuUser;
 
 public class V_UserHome extends JFrame {
 	private JMenuBar jmb;
-	private JMenu[] me = new JMenu[7];
-	private JMenuItem[] mi = new JMenuItem[16];
+	private JMenu[] me = new JMenu[6];
+	private JMenuItem[] mi = new JMenuItem[10];
 	private String DNI1;
 
 	public V_UserHome(String DNI) {
 		super("Gestión de gimnasio - Usuario");
 		DNI1 = DNI;
-		
+
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.setResizable(false);
@@ -66,17 +67,23 @@ public class V_UserHome extends JFrame {
 		mi[6].addActionListener(new Ac_MenuUser(this));
 		me[3].add(mi[6]);
 
-		me[4] = new JMenu("Opciones");
+		me[4] = new JMenu("Perfil");
 		jmb.add(me[4]);
+
 		mi[7] = new JMenuItem("Mi Perfil");
 		mi[7].addActionListener(new Ac_MenuUser(this));
 		me[4].add(mi[7]);
-		mi[8] = new JMenuItem("Cerrar ventana");
-		mi[8].addActionListener(new Ac_MenuUser(this));
-		me[4].add(mi[8]);
+
 		mi[9] = new JMenuItem("Cerrar sesión");
 		mi[9].addActionListener(new Ac_MenuUser(this));
 		me[4].add(mi[9]);
+
+		me[5] = new JMenu("Opciones");
+		jmb.add(me[5]);
+
+		mi[8] = new JMenuItem("Cerrar ventana");
+		mi[8].addActionListener(new Ac_MenuUser(this));
+		me[5].add(mi[8]);
 
 		this.setVisible(true);
 	}
