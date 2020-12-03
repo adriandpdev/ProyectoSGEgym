@@ -78,7 +78,7 @@ public class V_AdminPayUs extends JInternalFrame {
 		  t.getTableHeader().setForeground(Color.white);
 		  t.getTableHeader().setFont(new Font("Verdana", Font.BOLD, 20));
 		  scroll = new JScrollPane(t, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS); 
-		  scroll.setPreferredSize(new Dimension(800, 450));
+		  scroll.setPreferredSize(new Dimension(1500, 1000));
 	  
 		  tabla.add(scroll); 
 	  }
