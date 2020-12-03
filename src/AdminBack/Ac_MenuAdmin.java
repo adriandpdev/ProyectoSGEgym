@@ -29,7 +29,7 @@ public class Ac_MenuAdmin implements ActionListener {
 			vent.add(vAdUsAdd);
 			vAdUsAdd.setVisible(true);
 		} else if (arg0.getActionCommand().equals("Lista usuarios")) {
-			listado vAdUsList = new listado();
+			ListadoUsuarios vAdUsList = new ListadoUsuarios();
 			vent.add(vAdUsList);
 			vAdUsList.setVisible(true);
 		} else if (arg0.getActionCommand().equals("Pendiente de pago")) {
@@ -41,7 +41,7 @@ public class Ac_MenuAdmin implements ActionListener {
 			vent.add(vAdEmAdd);
 			vAdEmAdd.setVisible(true);
 		} else if (arg0.getActionCommand().equals("Lista profesores")) {
-			V_AdminEmplList vAdEmList = new V_AdminEmplList();
+			ListadoEmpleados vAdEmList = new ListadoEmpleados();
 			vent.add(vAdEmList);
 			vAdEmList.setVisible(true);
 		} else if (arg0.getActionCommand().equals("Alta actividad")) {

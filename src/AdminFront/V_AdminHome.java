@@ -1,9 +1,14 @@
 package AdminFront;
 
+import java.awt.BorderLayout;
 import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.UIManager.*;
 
@@ -16,8 +21,10 @@ public class V_AdminHome extends JFrame {
 	private JMenuItem[] mi = new JMenuItem[21];
 	private JSeparator sep;
 	private String DNI1;
+	private JLabel lbl;
+	private BufferedImage logo;
 
-	public V_AdminHome(String DNI) {
+	public V_AdminHome(String DNI) throws IOException {
 		super("Gestión de gimnasio - Administrador");
 		DNI1 = DNI;
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -127,7 +134,12 @@ public class V_AdminHome extends JFrame {
 		mi[17] = new JMenuItem("Cerrar ventana");
 		mi[17].addActionListener(new Ac_MenuAdmin(this));
 		me[8].add(mi[17]);
-
+		
+		logo = ImageIO.read(new File("images/fondomenu.png"));
+		lbl = new JLabel(new ImageIcon(logo));
+		this.add(lbl, BorderLayout.CENTER);
+		
+		
 		this.setVisible(true);
 	}
 
