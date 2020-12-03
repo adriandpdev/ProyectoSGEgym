@@ -12,6 +12,8 @@ import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.text.JTextComponent;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 import com.mysql.cj.xdevapi.Statement;
 
 import AdminFront.V_AdminUserAdd;
@@ -106,6 +108,11 @@ public class Ac_AdminUserAdd implements ActionListener {
 		return true;
 	}
 	
+	public String cifrar(String cadena) {
+		String codi=DigestUtils.md5Hex(cadena);
+		return codi;
+	}
+	
 	public boolean DniExists(String dni) {
         boolean exist = false;
         try {
@@ -186,7 +193,7 @@ public class Ac_AdminUserAdd implements ActionListener {
 							"INSERT INTO Persona(DNI,nombre,apellido,cuentabanc,pass,fechanac,telefono,correo,rol)VALUES('"
 									+ vent.getTxtDni().getText() + "','" + vent.getTxtNombre().getText() + "','"
 									+ vent.getTxtApellidos().getText() + "','" + vent.getTxtCCC().getText() + "','"
-									+ vent.getTxtContraseña().getText() + "','"
+									+ cifrar(vent.getTxtContraseña().getText()) + "','"
 									+ ((JTextComponent) vent.getDate().getDateEditor().getUiComponent()).getText()
 									+ "','" + Integer.parseInt(vent.getTxtTelefono().getText()) + "','"
 									+ vent.getTxtemail().getText() + "','user')");

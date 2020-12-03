@@ -7,6 +7,8 @@ import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 import EmplFront.V_EmplPerfil;
 import main.Conexion;
 import main.Main;
@@ -38,11 +40,17 @@ private V_EmplPerfil vent;
 			ex.printStackTrace();
 		}
 	}
+	
+	public String cifrar(String cadena) {
+		String codi=DigestUtils.md5Hex(cadena);
+		return codi;
+	}
+	
 	//MODIFICA LA CONTRASEÑA DE LA PERSONA.
 	public void modificarContraseña() {
 		Conexion c = new Conexion();
-		String AntiguaContraseña = vent.getTxt_Antigua_Contraseña().getText();
-		String NuevaContraseña = vent.getTxt_Nueva_Contraseña().getText();
+		String AntiguaContraseña = cifrar(vent.getTxt_Antigua_Contraseña().getText());
+		String NuevaContraseña = cifrar(vent.getTxt_Nueva_Contraseña().getText());
 		String pass = "";
 		try {
 			//Almaceno la contraseña de la persona con el DNI logeado.
