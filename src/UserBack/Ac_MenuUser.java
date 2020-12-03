@@ -37,9 +37,12 @@ public class Ac_MenuUser implements ActionListener {
 			vent.add(vUsAcAdd);
 			
 		} else if (arg0.getActionCommand().equals("Mis reservas")) {
-			V_UserActiList vUsAcList = new V_UserActiList();
-			vent.add(vUsAcList);
-			vUsAcList.setVisible(true);
+			V_UserActiList vUsAcList;
+			try {
+				vUsAcList = new V_UserActiList(vent);
+				vent.add(vUsAcList);
+				vUsAcList.setVisible(true);
+			} catch (SQLException e) {e.printStackTrace();}
 		} else if (arg0.getActionCommand().equals("Información")) {
 			V_UserPayInfo vUsPayIn;
 			try {
