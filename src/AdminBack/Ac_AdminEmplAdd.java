@@ -48,7 +48,7 @@ public class Ac_AdminEmplAdd implements ActionListener {
 	public boolean isTelefono(String tel) {
 		Pattern pat = null;
 		Matcher mat = null;
-		pat = Pattern.compile("([0-9]{9})");
+		pat = Pattern.compile("(^[6|7|9]{1}[0-9]{8})");
 		mat = pat.matcher(tel);
 		if (mat.find()) {
 			return true;
@@ -60,7 +60,7 @@ public class Ac_AdminEmplAdd implements ActionListener {
 	public boolean isCCC(String ccc) {
 		Pattern pat = null;
 		Matcher mat = null;
-		pat = Pattern.compile("([0-9]{20})");
+		pat = Pattern.compile("(^[A-Za-z]{2}[0-9]{22})");
 		mat = pat.matcher(ccc);
 		if (mat.find()) {
 			return true;
@@ -165,6 +165,7 @@ public class Ac_AdminEmplAdd implements ActionListener {
 			} else if (DniExists(vent.getTxtDni().getText())) {
 				JOptionPane.showMessageDialog(null, "¡El DNI introducido ya esta registrado!", "ATENCIÓN ADMINISTRADOR",
 						JOptionPane.WARNING_MESSAGE);
+				
 			} else {
 				Conexion c = new Conexion();
 				try {

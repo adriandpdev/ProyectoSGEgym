@@ -1,9 +1,14 @@
 package AdminFront;
 
+import java.awt.BorderLayout;
 import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.UIManager.*;
 
@@ -12,12 +17,16 @@ import AdminBack.Ac_MenuAdmin;
 
 public class V_AdminHome extends JFrame {
 	private JMenuBar jmb;
-	private JMenu[] me = new JMenu[9];
-	private JMenuItem[] mi = new JMenuItem[19];
+	private JMenu[] me = new JMenu[10];
+	private JMenuItem[] mi = new JMenuItem[21];
 	private JSeparator sep;
 	private String DNI1;
+	private JLabel lbl;
+	private BufferedImage logo;
 
-	public V_AdminHome(String DNI) {
+
+	public V_AdminHome(String DNI) throws IOException {
+
 		super("Gestión de gimnasio - Administrador");
 		DNI1 = DNI;
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -27,10 +36,25 @@ public class V_AdminHome extends JFrame {
 		this.setResizable(true);
 		this.setMinimumSize(new Dimension(1000, 600));
 		this.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
-
+		
+		ImageIcon icon = new ImageIcon("./images/icono.png");
+        setIconImage(icon.getImage());
+        
 		jmb = new JMenuBar();
 		this.setJMenuBar(jmb);
-
+		
+		me[9] = new JMenu("Listados");
+		jmb.add(me[9]);
+		mi[18] = new JMenuItem("Listado general");
+		mi[18].addActionListener(new Ac_MenuAdmin(this));
+		me[9].add(mi[18]);
+		mi[19] = new JMenuItem("Lista usuarios");
+		mi[19].addActionListener(new Ac_MenuAdmin(this));
+		me[9].add(mi[19]);
+		mi[20] = new JMenuItem("Lista profesores");
+		mi[20].addActionListener(new Ac_MenuAdmin(this));
+		me[9].add(mi[20]);
+		
 		me[0] = new JMenu("Usuarios");
 		jmb.add(me[0]);
 		mi[0] = new JMenuItem("Alta usuario");
@@ -84,34 +108,27 @@ public class V_AdminHome extends JFrame {
 
 		me[5] = new JMenu("Facturas");
 		jmb.add(me[5]);
-		mi[12] = new JMenuItem("Pagos usuarios");
+		mi[12] = new JMenuItem("Pagos y Nominas");
 		mi[12].addActionListener(new Ac_MenuAdmin(this));
 		me[5].add(mi[12]);
-		mi[13] = new JMenuItem("Nominas profesores");
-		mi[13].addActionListener(new Ac_MenuAdmin(this));
-		me[5].add(mi[13]);
 
 		me[6] = new JMenu("Estadisticas");
 		jmb.add(me[6]);
 
-		mi[14] = new JMenuItem("De Usuarios");
+		mi[14] = new JMenuItem("De Actividades");
 		mi[14].addActionListener(new Ac_MenuAdmin(this));
 		me[6].add(mi[14]);
-
-		mi[15] = new JMenuItem("De Actividades");
-		mi[15].addActionListener(new Ac_MenuAdmin(this));
-		me[6].add(mi[15]);
 
 		me[7] = new JMenu("Perfil");
 		jmb.add(me[7]);
 
-		mi[16] = new JMenuItem("Mi Perfil");
+		mi[15] = new JMenuItem("Mi Perfil");
+		mi[15].addActionListener(new Ac_MenuAdmin(this));
+		me[7].add(mi[15]);
+
+		mi[16] = new JMenuItem("Cerrar sesión");
 		mi[16].addActionListener(new Ac_MenuAdmin(this));
 		me[7].add(mi[16]);
-
-		mi[18] = new JMenuItem("Cerrar sesión");
-		mi[18].addActionListener(new Ac_MenuAdmin(this));
-		me[7].add(mi[18]);
 
 		me[8] = new JMenu("Opciones");
 		jmb.add(me[8]);
@@ -119,7 +136,12 @@ public class V_AdminHome extends JFrame {
 		mi[17] = new JMenuItem("Cerrar ventana");
 		mi[17].addActionListener(new Ac_MenuAdmin(this));
 		me[8].add(mi[17]);
-
+		
+		logo = ImageIO.read(new File("images/fondomenu.png"));
+		lbl = new JLabel(new ImageIcon(logo));
+		this.add(lbl, BorderLayout.CENTER);
+		
+		
 		this.setVisible(true);
 	}
 

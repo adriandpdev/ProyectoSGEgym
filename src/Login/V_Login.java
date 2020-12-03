@@ -4,7 +4,9 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.Insets;
+import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
@@ -34,6 +36,9 @@ public class V_Login extends JFrame {
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
+        ImageIcon icon = new ImageIcon("./images/icono.png");
+        setIconImage(icon.getImage());
+        		//Toolkit.getDefaultToolkit().getImage(getClass().getResource("images/icono.png"));
 		
 		this.setLayout(new BorderLayout());
 		pn[2] = new JPanel();
@@ -41,7 +46,7 @@ public class V_Login extends JFrame {
 		lbl[3] = new JLabel("<html><center>Gestión del<br>gimnasio<html>", SwingConstants.CENTER);
 		lbl[3].setFont(new Font("Century", Font.BOLD, 40));
 		pn[2].add(lbl[3], BorderLayout.NORTH);
-		logo = ImageIO.read(new File("logo.png"));
+		logo = ImageIO.read(new File("images/logo.png"));
 		lbl[4] = new JLabel(new ImageIcon(logo));
 		pn[2].add(lbl[4], BorderLayout.CENTER);
 		pn[0] = new JPanel();
@@ -54,8 +59,8 @@ public class V_Login extends JFrame {
 		txt[0].setSize(300, 30);
 		txt[1] = new JTextField();
 		txt[1].setSize(300, 30);
-		lbl[0] = new JLabel("DNI");
-		lbl[1] = new JLabel("Contraseña");
+		lbl[0] = new JLabel("DNI",SwingConstants.CENTER);
+		lbl[1] = new JLabel("Contraseña",SwingConstants.CENTER);
 		lbl[2] = new JLabel("He olvidado mi contraseña", SwingConstants.CENTER);
 		lbl[2].addMouseListener(new Ac_ForgetPass(this));
 		btn = new JButton("Iniciar sesión");

@@ -53,7 +53,7 @@ public class Ac_AdminUserAdd implements ActionListener {
 	public boolean isTelefono(String tel) {
 		Pattern pat = null;
 		Matcher mat = null;
-		pat = Pattern.compile("([0-9]{9})");
+		pat = Pattern.compile("(^[6|7|9]{1}[0-9]{8})");
 		mat = pat.matcher(tel);
 		if (mat.find()) {
 			return true;
@@ -65,7 +65,7 @@ public class Ac_AdminUserAdd implements ActionListener {
 	public boolean isCCC(String ccc) {
 		Pattern pat = null;
 		Matcher mat = null;
-		pat = Pattern.compile("[0-9]{20}");
+		pat = Pattern.compile("(^[A-Za-z]{2}[0-9]{22})");
 		mat = pat.matcher(ccc);
 		if (mat.find()) {
 			return true;
@@ -73,6 +73,8 @@ public class Ac_AdminUserAdd implements ActionListener {
 			return false;
 		}
 	}
+	
+	
 
 	private static boolean comprobar(String dni) {
 		char[] letraDni = { 'T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V',
@@ -121,6 +123,8 @@ public class Ac_AdminUserAdd implements ActionListener {
         }
         return exist;
     }
+	
+	
 	
 	public void limpiar() {
 		vent.getTxtDni().setText("");
@@ -172,7 +176,7 @@ public class Ac_AdminUserAdd implements ActionListener {
 				vent.getTxtCCC().requestFocus();
 			} else if (DniExists(vent.getTxtDni().getText())) {
 				JOptionPane.showMessageDialog(null, "¡El DNI introducido ya esta registrado!", "ATENCIÓN ADMINISTRADOR",
-						JOptionPane.WARNING_MESSAGE);
+						JOptionPane.WARNING_MESSAGE);	
 			} else {
 				Conexion c = new Conexion();
 				
