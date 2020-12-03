@@ -23,6 +23,7 @@ import java.sql.ResultSetMetaData;
 
 public class V_AdminPayUs extends JInternalFrame {
 	private JPanel superior, tabla;
+	private JLabel titulo;
 	private JComboBox mes;
 	private JSpinner año;
 	private JTextField dni;
@@ -34,18 +35,21 @@ public class V_AdminPayUs extends JInternalFrame {
 	JScrollPane scroll;
 
 	public V_AdminPayUs() throws SQLException {
+		((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null);
 		setLayout(new BorderLayout());
 		c = new Conexion();
 		instanciarElementos();
+	
 	}
 
 	
 	
 	  private void instanciarElementos() throws SQLException { 
-		  
+		 
 		  añadirSuperior();
 		  añadirTabla();
 	  
+		  
 		  add(superior,BorderLayout.NORTH);
 		  add(tabla,BorderLayout.CENTER);
 	  
@@ -113,6 +117,7 @@ public class V_AdminPayUs extends JInternalFrame {
 	}
 
 	private void añadirSuperior() {
+	
 		superior = new JPanel();
 		superior.setLayout(new GridLayout(1, 10));
 
