@@ -27,7 +27,7 @@ public class V_UserAvList extends JInternalFrame {
 		private JPanel jcontentpane=null;
 		private JScrollPane jscrollpane=null;
 		private JTable jtable=null;
-		private avisosJtableModel model= new avisosJtableModel();
+		private avisosJtableModel model2 = new avisosJtableModel();
 		private Connection con;
 		private String asunto,mensaje,fecha;
  public V_UserAvList() throws ClassNotFoundException, SQLException {
@@ -43,7 +43,7 @@ private JPanel getJContentPane() throws ClassNotFoundException, SQLException {
 	if(jcontentpane==null) {
 	jcontentpane=new JPanel();
 	jcontentpane.setLayout(null);
-	jcontentpane.add(getJscrollPane(),null);
+	jcontentpane.add(getJscrollPane(),this);
 	}
 	return jcontentpane;
 }
@@ -62,7 +62,7 @@ private JTable getJTable() throws ClassNotFoundException, SQLException {
 	recuperardatos();
 	if(jtable==null) {
 	jtable = new JTable();
-	jtable.setModel(model);
+	jtable.setModel(model2);
 	JTableHeader head = jtable.getTableHeader();
 	TableColumnModel tcm = head.getColumnModel();
 	TableColumn tabCM = tcm.getColumn(0);
@@ -95,8 +95,7 @@ try {
 		mensaje = result.getString("mensaje"),	 
 	    fecha = result.getString("fecha")               
 		};
-		 System.out.println(asunto + " " + mensaje + " " + fecha);
-	model.avisos.add(registro);
+	model2.avisos.add(registro);
 	}
 }catch (Exception e) {
 	 con = null ;	           

@@ -41,6 +41,13 @@ public class V_AdminProm extends JInternalFrame {
 		CreateForm();
 	}
 	
+	public void limpiar() {
+		txtdestinatario.setText("");
+		txtasunto.setText("");
+		mensaje.setText("");
+		
+	}
+	
 	private void CreateForm() {
 		this.setTitle("PROMOCIONES");
 		 JPanel Titulo = new JPanel();
@@ -108,7 +115,8 @@ public class V_AdminProm extends JInternalFrame {
 					    transport.connect("smtp.gmail.com", usuario, clave);
 					    transport.sendMessage(msg, msg.getAllRecipients());
 					    transport.close();
-					    JOptionPane.showMessageDialog(null, "Se ha enviado el Aviso.", "ATENCIÓN ADMINISTRADOR", JOptionPane.INFORMATION_MESSAGE );
+                        limpiar();
+					    JOptionPane.showMessageDialog(null, "Se ha enviado la Promoción.", "ATENCIÓN ADMINISTRADOR", JOptionPane.INFORMATION_MESSAGE );
 					    
 					}catch (Exception e2) {JOptionPane.showMessageDialog(null, "Error, El mensaje no se ha podido enviar.", "ATENCIÓN ADMINISTRADOR", JOptionPane.ERROR_MESSAGE);} 
 			    }else{

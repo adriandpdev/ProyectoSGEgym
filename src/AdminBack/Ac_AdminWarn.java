@@ -30,6 +30,13 @@ public class Ac_AdminWarn implements ActionListener {
 	public Ac_AdminWarn(V_AdminWarn v) {
 		vent = v;
 	}
+	
+	public void limpiar() {
+		vent.getTxtdestinatario().setText("");
+		vent.getTxtasunto().setText("");
+		vent.getMensaje().setText("");
+		
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
@@ -57,9 +64,7 @@ public class Ac_AdminWarn implements ActionListener {
 				transport.connect("smtp.gmail.com", vent.getUsuario(), vent.getClave());
 				transport.sendMessage(msg, msg.getAllRecipients());
 				transport.close();
-
-				JOptionPane.showMessageDialog(null, "Se ha enviado el Aviso.");
-
+                limpiar();
 				JOptionPane.showMessageDialog(null, "Se ha enviado el Aviso.", "ATENCIÓN ADMINISTRADOR", JOptionPane.INFORMATION_MESSAGE );
 
 			} catch (Exception e2) {
