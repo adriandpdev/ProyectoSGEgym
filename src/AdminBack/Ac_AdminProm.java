@@ -1,10 +1,7 @@
 package AdminBack;
 
-import java.awt.*;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.net.URL;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Properties;
@@ -14,26 +11,21 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import javax.swing.BoxLayout;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JInternalFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
+import AdminBack.Ac_AdminWarn.HiloEnvio;
+import AdminFront.V_AdminProm;
 import main.Conexion;
 import main.Main;
-import AdminFront.*;
 
-public class Ac_AdminWarn implements ActionListener {
-	private V_AdminWarn vent;
-	 private String usuario = "sgegimnasio@gmail.com";
-	 private String clave = "sgeproyecto1gimnasio";
-	 private String servidorSMTP = "smtp.gmail.com";
-	 private String puertoEnvio = "465";
-
-	public Ac_AdminWarn(V_AdminWarn v) {
+public class Ac_AdminProm implements ActionListener{
+	private V_AdminProm vent;
+	private String usuario = "sgegimnasio@gmail.com";
+	private String clave = "sgeproyecto1gimnasio";
+	private String servidorSMTP = "smtp.gmail.com";
+	private String puertoEnvio = "465";
+	
+	public Ac_AdminProm(V_AdminProm v) {
 		vent = v;
 	}
 	
@@ -43,13 +35,16 @@ public class Ac_AdminWarn implements ActionListener {
 		vent.getMensaje().setText("");
 		
 	}
-
+	
+	
 	@Override
-	public void actionPerformed(ActionEvent e) {
-			HiloEnvio envio = new HiloEnvio();
-			envio.start();
-			JOptionPane.showMessageDialog(null, "Enviando...", "ATENCIÓN ADMINISTRADOR", JOptionPane.INFORMATION_MESSAGE );	
+	public void actionPerformed(ActionEvent arg0) {
+		HiloEnvio envio = new HiloEnvio();
+		envio.start();
+		JOptionPane.showMessageDialog(null, "Enviando...", "ATENCIÓN ADMINISTRADOR", JOptionPane.INFORMATION_MESSAGE );
 	}
+	
+	
 	
 	
 	class HiloEnvio extends Thread{
@@ -113,7 +108,7 @@ public class Ac_AdminWarn implements ActionListener {
 					    transport.connect("smtp.gmail.com", usuario, clave);
 					    transport.sendMessage(msg, msg.getAllRecipients());
 					    transport.close();
-                      limpiar();
+                    limpiar();
 					    JOptionPane.showMessageDialog(null, "Se ha enviado el Aviso.", "ATENCIÓN ADMINISTRADOR", JOptionPane.INFORMATION_MESSAGE );
 					    
 					}catch (Exception e2) {System.out.println(e2);
@@ -123,5 +118,4 @@ public class Ac_AdminWarn implements ActionListener {
 			    }
 	      }
 	   };
-	
 }

@@ -5,9 +5,12 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Date;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -22,6 +25,7 @@ public class V_AdminWarn extends JInternalFrame {
 	private JTextField txtdestinatario, txtasunto;
 	private JTextArea mensaje;
 	private JButton btnenviar;
+	private JCheckBox todos;
 	private String usuario = "sgegimnasio@gmail.com";
 	private String clave = "sgeproyecto1gimnasio";
 	private String servidorSMTP = "smtp.gmail.com";
@@ -64,12 +68,21 @@ public class V_AdminWarn extends JInternalFrame {
 
 		JPanel Botones = new JPanel();
 		Botones.setBackground(new Color(137, 13, 84));
+		todos = new JCheckBox("Enviar a todos");
+		todos.setBackground(new Color(137, 13, 84));
+		todos.setFont(new Font("Verdana",Font.BOLD,20));
 		btnenviar = new JButton("Enviar");
 		btnenviar.setFont(new Font("Verdana",Font.BOLD,20));
 		Botones.add(btnenviar);
-
-		java.util.Date d = new java.util.Date();
-		setDate2(new java.sql.Date(d.getTime()));
+		Botones.add(todos);
+		
+		todos.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(todos.isSelected()) {txtdestinatario.setEnabled(false);
+				}else {txtdestinatario.setEnabled(true);}
+			}
+		  });
 
 		btnenviar.addActionListener(new Ac_AdminWarn(this));
 		Container c = getContentPane();
@@ -149,4 +162,37 @@ public class V_AdminWarn extends JInternalFrame {
 	public void setDate2(Date date2) {
 		Date2 = date2;
 	}
+
+	public JLabel getDestinatario() {
+		return destinatario;
+	}
+
+	public void setDestinatario(JLabel destinatario) {
+		this.destinatario = destinatario;
+	}
+
+	public JLabel getAsunto() {
+		return asunto;
+	}
+
+	public void setAsunto(JLabel asunto) {
+		this.asunto = asunto;
+	}
+
+	public JLabel getMens() {
+		return mens;
+	}
+
+	public void setMens(JLabel mens) {
+		this.mens = mens;
+	}
+
+	public JCheckBox getTodos() {
+		return todos;
+	}
+
+	public void setTodos(JCheckBox todos) {
+		this.todos = todos;
+	}
+	
 }
