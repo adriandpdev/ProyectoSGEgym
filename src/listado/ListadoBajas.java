@@ -73,7 +73,7 @@ public class ListadoBajas extends JInternalFrame implements MouseListener,KeyLis
 		panel_norte_busqueda = new JPanel();
 		panel_central_listado = new JPanel();
 		
-		//Panel norte interior con los criterios de busqueda y el botÃ³n para refrescar
+		//Panel norte interior con los criterios de busqueda y el botón para refrescar
 		panel_norte_busqueda.setLayout(new GridLayout(1,4,5,5));
 		panel_norte_busqueda.setBackground(new Color(137, 13, 84));
 		
@@ -85,7 +85,7 @@ public class ListadoBajas extends JInternalFrame implements MouseListener,KeyLis
 		btn_refrescar.addActionListener(this);
 		btn_refrescar.setFont(new Font("Verdana",Font.PLAIN,19));
 		
-		//Creamos la caja de busqueda y le aÃ±adimos un objeto de la clase Textpromt para aÃ±adirle un placeholder
+		//Creamos la caja de busqueda y le añadimos un objeto de la clase Textpromt para añadirle un placeholder
 		tf_busqueda = new JTextField();
 		tf_busqueda.setFont(new Font("Verdana",Font.PLAIN,19));
 		TextPrompt placeholder = new TextPrompt("Inserte su busqueda aquí...", tf_busqueda);
@@ -119,7 +119,7 @@ public class ListadoBajas extends JInternalFrame implements MouseListener,KeyLis
 		panel_norte_busqueda.add(btn_buscar);
 		panel_norte_busqueda.add(btn_refrescar);
 		
-		//Color de fondo personalizado del tÃ­tulo
+		//Color de fondo personalizado del título
 		panel_norte.setBackground(new Color(137, 13, 84));
 		
 		//TÃ­tulo personalizado 
@@ -148,7 +148,7 @@ public class ListadoBajas extends JInternalFrame implements MouseListener,KeyLis
 		panel_sur.setBackground(new Color(137, 13, 84));
 		
 		
-		//Con esto eliminamos los bordes y la barra de tÃ­tulos superior
+		//Con esto eliminamos los bordes y la barra de títulos superior
 		((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null);
 		this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
 		
@@ -399,7 +399,7 @@ public class ListadoBajas extends JInternalFrame implements MouseListener,KeyLis
 		construirTabla("lis");
 	}
 
-	//	EVENTOS DINÃ�MICOS:
+	//	EVENTOS DINÁMICOS:
 	
 	//Eventos al pulsar los botones de la tabla con el click del ratÃ³n
 	@Override
@@ -441,7 +441,7 @@ public void Reincorporar(String dni_rein) {
 		try {
 			conn = cp.conectar();
 			
-			String pass_prov = JOptionPane.showInputDialog("Introduzca una CONTRASEÃ‘A PROVISIONAL");
+			String pass_prov = JOptionPane.showInputDialog("Introduzca una CONTRASEÑA PROVISIONAL");
 			
 			int telefono = Integer.valueOf(tablaPersonasBaja.getValueAt(tablaPersonasBaja.getSelectedRow(), 5).toString());
 			
