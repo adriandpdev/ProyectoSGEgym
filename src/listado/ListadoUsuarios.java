@@ -79,8 +79,8 @@ public class ListadoUsuarios extends JInternalFrame implements MouseListener,Key
 		
 		this.setLayout(new BorderLayout());
 		
-		UIManager.put("OptionPane.background",new ColorUIResource(new Color(137, 13, 84)));
-		UIManager.put("OptionPane.messageForeground",new ColorUIResource(Color.WHITE));
+//		UIManager.put("OptionPane.background",new ColorUIResource(new Color(137, 13, 84)));
+//		UIManager.put("OptionPane.messageForeground",new ColorUIResource(Color.WHITE));
 		//UIManager.put("Panel.background",new ColorUIResource(new Color(137, 13, 84)));
 		
 		
@@ -141,8 +141,8 @@ public class ListadoUsuarios extends JInternalFrame implements MouseListener,Key
 		panel_norte.setBackground(new Color(137, 13, 84));
 		
 		//Título personalizado 
-		lbl_titulo = new JLabel("Listado de Usuarios:");
-		lbl_titulo.setFont(new Font("Verdana",Font.PLAIN,34));
+		lbl_titulo = new JLabel("LISTADO DE USUARIOS:");
+		lbl_titulo.setFont(new Font("Verdana",Font.BOLD,22));
 		lbl_titulo.setForeground(Color.WHITE);
 		
 		panel_central.setLayout(new BorderLayout());

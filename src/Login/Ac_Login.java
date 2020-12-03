@@ -33,7 +33,7 @@ public class Ac_Login implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		if (arg0.getActionCommand().equals("Iniciar sesión")) {
+		if (arg0.getActionCommand().equals("INICIAR SESIÓN")) {
 			Conexion c = new Conexion();
 			try {
 				Boolean enc = false;

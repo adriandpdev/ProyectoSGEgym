@@ -69,7 +69,7 @@ public class V_AdminEmplAdd extends JInternalFrame {
 		this.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
 
 		JPanel Norte = new JPanel();
-		Norte.add(Titulo = new JLabel("ALTA PROFESOR"));
+		Norte.add(Titulo = new JLabel("ALTA EMPLEADO"));
 		Norte.setBackground(new Color(137, 13, 84));
 		Titulo.setFont(new Font("Verdana",Font.BOLD,22));
 		Titulo.setForeground(Color.WHITE);

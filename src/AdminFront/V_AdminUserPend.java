@@ -32,7 +32,7 @@ public class V_AdminUserPend extends JInternalFrame {
 	setLayout(new BorderLayout());
 	setBackground(new Color(137, 13, 84));
 	lblTitulo= new JLabel("PENDIENTES DE PAGO", SwingConstants.CENTER);
-	lblTitulo.setFont(new Font("Verdana", Font.BOLD, 30));
+	lblTitulo.setFont(new Font("Verdana",Font.BOLD,22));
 	lblTitulo.setForeground(Color.WHITE);
 	
 	add(lblTitulo, BorderLayout.NORTH);
@@ -55,7 +55,7 @@ public class V_AdminUserPend extends JInternalFrame {
 			
 			
 			scroll = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-					JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+					JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 			scroll.setPreferredSize(new Dimension(750, 450));
 		
 			add(scroll, BorderLayout.CENTER);

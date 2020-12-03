@@ -62,9 +62,9 @@ public class ListadoBajas extends JInternalFrame implements MouseListener,KeyLis
 		this.setLayout(new BorderLayout());
 
 		//Fondo de los paneles
-		UIManager.put("OptionPane.background",new ColorUIResource(new Color(137, 13, 84)));
-		UIManager.put("OptionPane.messageForeground",new ColorUIResource(Color.WHITE));
-		UIManager.put("Panel.background",new ColorUIResource(new Color(137, 13, 84)));
+//		UIManager.put("OptionPane.background",new ColorUIResource(new Color(137, 13, 84)));
+//		UIManager.put("OptionPane.messageForeground",new ColorUIResource(Color.WHITE));
+//		UIManager.put("Panel.background",new ColorUIResource(new Color(137, 13, 84)));
 		
 		
 		//Paneles del primer BorderLayout

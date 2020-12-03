@@ -48,10 +48,10 @@ public class V_AdminHome extends JFrame {
 		mi[18] = new JMenuItem("Listado general");
 		mi[18].addActionListener(new Ac_MenuAdmin(this));
 		me[9].add(mi[18]);
-		mi[19] = new JMenuItem("Lista usuarios");
+		mi[19] = new JMenuItem("Lista de usuarios");
 		mi[19].addActionListener(new Ac_MenuAdmin(this));
 		me[9].add(mi[19]);
-		mi[20] = new JMenuItem("Lista profesores");
+		mi[20] = new JMenuItem("Lista de empleados");
 		mi[20].addActionListener(new Ac_MenuAdmin(this));
 		me[9].add(mi[20]);
 		
@@ -60,19 +60,19 @@ public class V_AdminHome extends JFrame {
 		mi[0] = new JMenuItem("Alta usuario");
 		mi[0].addActionListener(new Ac_MenuAdmin(this));
 		me[0].add(mi[0]);
-		mi[1] = new JMenuItem("Lista usuarios");
+		mi[1] = new JMenuItem("Lista de usuarios");
 		mi[1].addActionListener(new Ac_MenuAdmin(this));
 		me[0].add(mi[1]);
 		mi[2] = new JMenuItem("Pendiente de pago");
 		mi[2].addActionListener(new Ac_MenuAdmin(this));
 		me[0].add(mi[2]);
 
-		me[1] = new JMenu("Profesores");
+		me[1] = new JMenu("Empleados");
 		jmb.add(me[1]);
-		mi[3] = new JMenuItem("Alta profesor");
+		mi[3] = new JMenuItem("Alta empleado");
 		mi[3].addActionListener(new Ac_MenuAdmin(this));
 		me[1].add(mi[3]);
-		mi[4] = new JMenuItem("Lista profesores");
+		mi[4] = new JMenuItem("Lista de empleados");
 		mi[4].addActionListener(new Ac_MenuAdmin(this));
 		me[1].add(mi[4]);
 

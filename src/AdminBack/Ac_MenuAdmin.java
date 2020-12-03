@@ -33,7 +33,7 @@ public class Ac_MenuAdmin implements ActionListener {
 			V_AdminUserAdd vAdUsAdd = new V_AdminUserAdd();
 			vent.add(vAdUsAdd);
 			vAdUsAdd.setVisible(true);
-		} else if (arg0.getActionCommand().equals("Lista usuarios")) {
+		} else if (arg0.getActionCommand().equals("Lista de usuarios")) {
 			ListadoUsuarios vAdUsList = new ListadoUsuarios();
 			vent.add(vAdUsList);
 			vAdUsList.setVisible(true);
@@ -47,12 +47,11 @@ public class Ac_MenuAdmin implements ActionListener {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-		} else if (arg0.getActionCommand().equals("Alta profesor")) {
+		} else if (arg0.getActionCommand().equals("Alta empleado")) {
 			V_AdminEmplAdd vAdEmAdd = new V_AdminEmplAdd();
 			vent.add(vAdEmAdd);
 			vAdEmAdd.setVisible(true);
-		} else if (arg0.getActionCommand().equals("Lista profesores")) {
+		} else if (arg0.getActionCommand().equals("Lista de empleados")) {
 			ListadoEmpleados vAdEmList = new ListadoEmpleados();
 			vent.add(vAdEmList);
 			vAdEmList.setVisible(true);
