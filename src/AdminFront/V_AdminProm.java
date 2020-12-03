@@ -58,7 +58,7 @@ public class V_AdminProm extends JInternalFrame {
 	private void CreateForm() {
 		this.setTitle("PROMOCIONES");
 		 JPanel Titulo = new JPanel();
-		  Titulo.add(titulo= new JLabel("ENVIAR PROMOCION"));
+		  Titulo.add(titulo= new JLabel("ENVIAR PROMOCIÓN"));
 		  Titulo.setBackground(new Color(137, 13, 84));
 		  titulo.setFont(new Font("Verdana",Font.BOLD,22));
 		  titulo.setForeground(Color.WHITE);
