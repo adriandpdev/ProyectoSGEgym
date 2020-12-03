@@ -41,7 +41,7 @@ public class V_UserPromList extends JInternalFrame {
 	 this.setSize(700,500);
 	 this.setLayout(new BorderLayout());
 		JPanel Norte = new JPanel();
-		Norte.add(Titulo = new JLabel("Ultimos Avisos"));
+		Norte.add(Titulo = new JLabel("Ultimas Promociones"));
 		Norte.setBackground(new Color(137, 13, 84));
 		Titulo.setFont(new Font("Verdana",Font.BOLD,22));
 		Titulo.setForeground(Color.WHITE);
