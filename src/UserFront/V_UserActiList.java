@@ -1,6 +1,7 @@
 package UserFront;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.sql.ResultSet;
@@ -24,18 +25,22 @@ public class V_UserActiList extends JInternalFrame {
 	JLabel jlvisualizarhorario;
 	JTable table;
 	int tuplas, reservas;
-	String[] nombreColumnas = { "Nombre Actividad", "Profesor", "Dni", "Aula", "Dia", "Hora"};
+	String[] nombreColumnas = { "NOMBRE ACTIVIDAD", "PROFESOR", "DNI", "AULA", "DIA", "HORA"};
 	String resultado = "";
 	JScrollPane scroll;
 	
 	public V_UserActiList(V_UserHome vent) throws SQLException {
+		((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null);
 		v=vent;
 		// TODO Auto-generated constructor stub
 		setLayout(new BorderLayout());
-		pnhorario = new JPanel();
-		setTitle("Visualizar Actividades");
-		jlvisualizarhorario = new JLabel("Mis actividades", SwingConstants.CENTER);
-		jlvisualizarhorario.setFont(new Font("Verdana", Font.BOLD, 20));
+
+	
+		jlvisualizarhorario = new JLabel("MIS RESERVAS", SwingConstants.CENTER);
+		setBackground(new Color(137, 13, 84));
+		
+		jlvisualizarhorario.setFont(new Font("Verdana", Font.BOLD, 30));
+		jlvisualizarhorario.setForeground(Color.WHITE);
 		
 		//Consulta Actividades por Empleado.
 		String query1 = "SELECT Actividad.nombre, Persona.nombre, Reserva.DNI, Actividad.idAula, Horario.Diasemana, Horario.Hora FROM Actividad,Persona,Horario,Reserva WHERE Actividad.idActividad = Horario.IdActividad AND Horario.IdHora = Reserva.idHora AND Reserva.Dni = Persona.Dni AND Reserva.Dni = "+v.getDNI1();
@@ -75,12 +80,15 @@ public class V_UserActiList extends JInternalFrame {
 		table.setFont(font);
 		table.setRowHeight(table.getRowHeight() * 2);
 		table.getTableHeader().setReorderingAllowed(false);
+		table.getTableHeader().setBackground(new Color(65,65,65));
+		table.getTableHeader().setForeground(Color.white);
+		table.getTableHeader().setFont(new Font("Verdana", Font.BOLD, 20));
 		table.setShowGrid(true);
 		scroll = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scroll.setPreferredSize(new Dimension(750, 450));
-		pnhorario.add(scroll);
+	
 		getContentPane().add(jlvisualizarhorario, BorderLayout.NORTH);
-		getContentPane().add(pnhorario, BorderLayout.CENTER);
+		getContentPane().add(scroll, BorderLayout.CENTER);
 	}
 
 	public JTable getTable() {
