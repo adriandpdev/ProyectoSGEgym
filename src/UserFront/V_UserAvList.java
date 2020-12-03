@@ -54,7 +54,7 @@ private JPanel getJContentPane() throws ClassNotFoundException, SQLException {
 	if(jcontentpane==null) {
 	jcontentpane=new JPanel();
 	jcontentpane.setLayout(null);
-	jcontentpane.add(getJscrollPane(),this);
+	jcontentpane.add(getJscrollPane());
 	}
 	return jcontentpane;
 }
@@ -62,7 +62,7 @@ private JPanel getJContentPane() throws ClassNotFoundException, SQLException {
 
 private JScrollPane getJscrollPane() throws ClassNotFoundException, SQLException {
 	if(jscrollpane==null) {
-	jscrollpane=new JScrollPane();
+	jscrollpane=new JScrollPane(jtable, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 	jscrollpane.setBounds( 0,0,1350,600);
 	jscrollpane.setViewportView(getJTable());
 	}
@@ -87,6 +87,7 @@ private JTable getJTable() throws ClassNotFoundException, SQLException {
 	 jtable.getTableHeader().setBackground(new Color(65,65,65));
 	 jtable.getTableHeader().setForeground(Color.white);
 	 jtable.getTableHeader().setFont(new Font("Verdana", Font.BOLD, 20));
+	 jtable.setRowHeight(jtable.getRowHeight() * 5);
 	jtable.repaint();
 	}
 
