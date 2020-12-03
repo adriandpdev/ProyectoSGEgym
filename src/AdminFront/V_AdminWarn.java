@@ -89,6 +89,7 @@ public class V_AdminWarn extends JInternalFrame {
 		c.add(Titulo, BorderLayout.NORTH);
 		c.add(Datos, BorderLayout.CENTER);
 		c.add(Botones, BorderLayout.SOUTH);
+		((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null);
 	}
 
 	public JTextField getTxtdestinatario() {

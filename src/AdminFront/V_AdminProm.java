@@ -102,6 +102,7 @@ public class V_AdminProm extends JInternalFrame {
 			c.add(Titulo, BorderLayout.NORTH);
 			c.add(Datos, BorderLayout.CENTER);
 			c.add(Botones, BorderLayout.SOUTH);
+			((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null);
 	}
 	   
 	
