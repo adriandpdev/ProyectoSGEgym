@@ -27,7 +27,7 @@ public class V_UserAvList extends JInternalFrame {
 		private JPanel jcontentpane=null;
 		private JScrollPane jscrollpane=null;
 		private JTable jtable=null;
-		private AvisosModelo model2 = new AvisosModelo();
+		private avisosJtableModel model2 = new avisosJtableModel();
 		private Connection con;
 		private String asunto,mensaje,fecha;
  public V_UserAvList() throws ClassNotFoundException, SQLException {
