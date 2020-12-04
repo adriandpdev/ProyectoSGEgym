@@ -44,7 +44,7 @@ public class V_UserPayList extends JInternalFrame {
 		setLayout(new BorderLayout());
 		setBackground(new Color(137, 13, 84));
 		jlnombre= new JLabel("ÚLTIMOS PAGOS REALIZADOS", SwingConstants.CENTER);
-		jlnombre.setFont(new Font("Verdana", Font.BOLD, 30));
+		jlnombre.setFont(new Font("Verdana", Font.BOLD, 22));
 		jlnombre.setForeground(Color.WHITE);
 		
 		add(jlnombre, BorderLayout.NORTH);

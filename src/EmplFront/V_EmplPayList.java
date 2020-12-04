@@ -43,7 +43,7 @@ public class V_EmplPayList extends JInternalFrame {
 		setLayout(new BorderLayout());
 		setBackground(new Color(137, 13, 84));
 		jlnombre= new JLabel("NÓMINAS", SwingConstants.CENTER);
-		jlnombre.setFont(new Font("Verdana", Font.BOLD, 30));
+		jlnombre.setFont(new Font("Verdana", Font.BOLD, 22));
 		jlnombre.setForeground(Color.WHITE);
 		
 		add(jlnombre, BorderLayout.NORTH);

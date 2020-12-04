@@ -35,8 +35,8 @@ public class V_EmplPerfil extends JInternalFrame {
 
 		// ATRIBUTOS DEL PANEL PRINCIPAL
 		setLayout(new BorderLayout());
-		JLabel titulo = new JLabel("Perfil Empleado", SwingConstants.CENTER);
-		titulo.setFont(new Font("Verdana", Font.BOLD, 30));
+		JLabel titulo = new JLabel("PERFIL EMPLEADO", SwingConstants.CENTER);
+		titulo.setFont(new Font("Verdana", Font.BOLD, 22));
 		titulo.setForeground(Color.WHITE);
 		// INSTANCIO LOS ELEMENTOS
 		lbl[0] = new JLabel("Ajustes de Perfil");

@@ -23,8 +23,8 @@ public class V_UserPerfil extends JInternalFrame {
 
 		// ATRIBUTOS DEL PANEL PRINCIPAL
 		setLayout(new BorderLayout());
-		JLabel titulo = new JLabel("Perfil Usuario", SwingConstants.CENTER);
-		titulo.setFont(new Font("Verdana", Font.BOLD, 30));
+		JLabel titulo = new JLabel("PERFIL USUARIO", SwingConstants.CENTER);
+		titulo.setFont(new Font("Verdana", Font.BOLD, 22));
 		titulo.setForeground(Color.WHITE);
 		// INSTANCIO LOS ELEMENTOS
 		lbl[0] = new JLabel("Ajustes de Perfil");

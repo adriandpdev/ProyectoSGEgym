@@ -36,6 +36,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.BevelBorder;
+import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.JTableHeader;
@@ -136,6 +137,7 @@ public class ListadoUsuarios extends JInternalFrame implements MouseListener,Key
 		panel_norte_busqueda.add(tf_busqueda);
 		panel_norte_busqueda.add(btn_buscar);
 		panel_norte_busqueda.add(btn_refrescar);
+		panel_norte_busqueda.setBorder(new EmptyBorder(5,5,5,5));
 		
 		//Color de fondo personalizado del tÃ­tulo
 		panel_norte.setBackground(new Color(137, 13, 84));
