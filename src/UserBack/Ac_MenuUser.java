@@ -106,6 +106,7 @@ public class Ac_MenuUser implements ActionListener {
 		} else if (arg0.getActionCommand().equals("Cerrar sesión")) {
 			try {
 				V_Login vLogin = new V_Login();
+				vLogin.setVisible(true);
 				vent.dispose();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block

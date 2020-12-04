@@ -40,7 +40,7 @@ public class V_Login extends JFrame implements KeyListener{
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
-        ImageIcon icon = new ImageIcon("./images/icono.png");
+        ImageIcon icon = new ImageIcon(getClass().getResource("/images/icono.png"));
         setIconImage(icon.getImage());
 		
 		this.setLayout(new BorderLayout());
@@ -50,7 +50,7 @@ public class V_Login extends JFrame implements KeyListener{
 		lbl[3].setFont(new Font("Verdana", Font.BOLD, 40));
 		lbl[3].setForeground(new Color(137, 13, 84));
 		pn[2].add(lbl[3], BorderLayout.NORTH);
-		logo = ImageIO.read(new File("images/logo.png"));
+		logo = ImageIO.read(getClass().getResource("/images/logo.png"));
 		lbl[4] = new JLabel(new ImageIcon(logo));
 		pn[2].add(lbl[4], BorderLayout.CENTER);
 		pn[0] = new JPanel();
@@ -98,7 +98,6 @@ public class V_Login extends JFrame implements KeyListener{
 		this.getContentPane().add(pn[0], BorderLayout.CENTER);
 		this.getContentPane().add(pn[1], BorderLayout.SOUTH);
 		
-		this.setVisible(true);
 		trycache();
 	}
 
@@ -106,7 +105,7 @@ public class V_Login extends JFrame implements KeyListener{
 		return txt;
 	}
 	private void trycache() throws IOException {
-		File f = new File ("cache.txt");
+		File f = new File ("/cache.txt");
 		if(f.exists()){	
 			FileReader fr= new FileReader (f);
 			BufferedReader BRF = new BufferedReader (fr);

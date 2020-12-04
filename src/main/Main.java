@@ -19,9 +19,7 @@ public class Main {
 		}
 
 		V_Login v = new V_Login();
+		v.setVisible(true);
 
-		// V_AdminHome v = new V_AdminHome();
-		// V_UserHome v = new V_UserHome();
-		// V_EmplHome v = new V_EmplHome();
 	}
 }

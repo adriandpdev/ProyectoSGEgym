@@ -37,7 +37,7 @@ public class V_AdminHome extends JFrame {
 		this.setMinimumSize(new Dimension(1000, 600));
 		this.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
 		
-		ImageIcon icon = new ImageIcon("./images/icono.png");
+		ImageIcon icon = new ImageIcon(getClass().getResource("/images/icono.png"));
         setIconImage(icon.getImage());
         
 		jmb = new JMenuBar();
@@ -143,7 +143,7 @@ public class V_AdminHome extends JFrame {
 		this.setVisible(true);
 	}
 	public void setfoto() throws IOException {
-		logo = ImageIO.read(new File("images/fondomenu.png"));
+		logo = ImageIO.read(getClass().getResource("/images/fondomenu.png"));
 		lbl = new JLabel(new ImageIcon(logo));
 		this.add(lbl, BorderLayout.CENTER);
 	}
