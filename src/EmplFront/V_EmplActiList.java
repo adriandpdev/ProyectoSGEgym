@@ -28,7 +28,7 @@ public class V_EmplActiList extends JInternalFrame {
 
 		setBackground(new Color(137, 13, 84));
 		
-		jlvisualizarhorario.setFont(new Font("Verdana", Font.BOLD, 30));
+		jlvisualizarhorario.setFont(new Font("Verdana", Font.BOLD, 22));
 		jlvisualizarhorario.setForeground(Color.WHITE);
 		
 		//Consulta Actividades por Empleado.
@@ -78,9 +78,8 @@ public class V_EmplActiList extends JInternalFrame {
 		table.getTableHeader().setBackground(new Color(65,65,65));
 		table.getTableHeader().setForeground(Color.white);
 		table.getTableHeader().setFont(new Font("Verdana", Font.BOLD, 20));
-		scroll = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		scroll = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scroll.setPreferredSize(new Dimension(750, 450));
-		
 		getContentPane().add(jlvisualizarhorario, BorderLayout.NORTH);
 		getContentPane().add(scroll, BorderLayout.CENTER);
 	}

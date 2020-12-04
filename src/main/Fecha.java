@@ -3,15 +3,13 @@ package main;
 import java.util.Calendar;
 
 public class Fecha {
-	
+
 	Calendar fecha = Calendar.getInstance();
-	
+
 	int dia = fecha.get(Calendar.DAY_OF_MONTH);
-	int mes = fecha.get(Calendar.MONTH)+1;
+	int mes = fecha.get(Calendar.MONTH) + 1;
 	int año = fecha.get(Calendar.YEAR);
-	
-	
-	
+
 	public int getDia() {
 		return dia;
 	}
@@ -36,12 +34,9 @@ public class Fecha {
 		this.año = año;
 	}
 
+	public String fechaActual() {
+		String fecha = año + "-" + mes + "-" + dia;
 
-
-	public String fechaActual()
-	{
-		String fecha = año+"-"+mes+"-"+dia;
-		
 		return fecha;
 	}
 

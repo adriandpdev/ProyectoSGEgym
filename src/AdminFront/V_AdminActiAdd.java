@@ -1,7 +1,9 @@
 package AdminFront;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -9,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 import main.Conexion;
 import main.Main;
@@ -18,29 +21,34 @@ public class V_AdminActiAdd  extends JInternalFrame{
 	private JLabel lblTitulo, lblIdclase, lblNombreactividad, lblDniprofesor, lblIdaula;
 	private JTextField txtIdclase, txtNombreactividad;
 	private JComboBox cbDniprofesor, cbIdaula;
-	private JButton btnAñadir, btnCancelar;
+	private JButton btnAnadir, btnCancelar;
 	private JPanel jpCentro, jpSur;
 	
 	Conexion c = new Conexion();
 
 	public V_AdminActiAdd() {
-		this.setTitle("Alta de Clases");
-		this.setSize(500, 500);
-		this.setLocation(20, 20);
+		((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null);
 
 		this.setLayout(new BorderLayout());
 
 		// Parte norte del borderlayout
 		lblTitulo = new JLabel("ALTA DE CLASES");
+		lblTitulo.setFont(new Font("Verdana", Font.BOLD, 22));
+		lblTitulo.setForeground(Color.WHITE);
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+		setBackground(new Color(137, 13, 84));
 		this.getContentPane().add(lblTitulo, BorderLayout.NORTH);
 
 		// Parte central del borderlayout
 		jpCentro = new JPanel();
 		jpCentro.setLayout(new GridBagLayout());
 
+		
 		lblIdclase = new JLabel("ID CLASE");
+		lblIdclase.setFont(new Font("Verdana", Font.BOLD, 20));
 		txtIdclase = new JTextField();
+		txtIdclase.setFont(new Font("Verdana", Font.BOLD, 19));
+		
 		
 		int idAuto = 0;
 		
@@ -55,10 +63,13 @@ public class V_AdminActiAdd  extends JInternalFrame{
 		txtIdclase.setEditable(false);
 		
 		lblNombreactividad = new JLabel("NOMBRE DE LA ACTIVIDAD");
+		lblNombreactividad.setFont(new Font("Verdana", Font.BOLD, 20));
 		txtNombreactividad = new JTextField();
+		txtNombreactividad.setFont(new Font("Verdana", Font.BOLD, 19));
 		lblDniprofesor = new JLabel("DNI PROFESOR");
+		lblDniprofesor.setFont(new Font("Verdana", Font.BOLD, 20));
 		cbDniprofesor = new JComboBox();
-		
+		cbDniprofesor.setFont(new Font("Verdana", Font.BOLD, 20));
 			String qu = "SELECT DNI FROM Persona WHERE rol LIKE 'empl'";
 			String xu = "dni";
 			
@@ -76,7 +87,9 @@ public class V_AdminActiAdd  extends JInternalFrame{
 			}
 		
 		lblIdaula = new JLabel("ID AULA");
+		lblIdaula.setFont(new Font("Verdana", Font.BOLD, 20));
 		cbIdaula = new JComboBox();
+		cbIdaula.setFont(new Font("Verdana", Font.BOLD, 19));
 		
 		String q = "SELECT * FROM Aulas";
 		String x = "idAula";
@@ -105,7 +118,7 @@ public class V_AdminActiAdd  extends JInternalFrame{
 
 		c.gridx = 1;
 		c.gridy = 0;
-		txtIdclase.setPreferredSize(new Dimension(200, 20));
+		txtIdclase.setPreferredSize(new Dimension(200, 60));
 		jpCentro.add(txtIdclase, c);
 
 		c.gridx = 0;
@@ -114,7 +127,7 @@ public class V_AdminActiAdd  extends JInternalFrame{
 
 		c.gridx = 1;
 		c.gridy = 2;
-		txtNombreactividad.setPreferredSize(new Dimension(200, 20));
+		txtNombreactividad.setPreferredSize(new Dimension(200, 60));
 		jpCentro.add(txtNombreactividad, c);
 
 		c.gridx = 0;
@@ -123,7 +136,7 @@ public class V_AdminActiAdd  extends JInternalFrame{
 
 		c.gridx = 1;
 		c.gridy = 3;
-		cbDniprofesor.setPreferredSize(new Dimension(200, 20));
+		cbDniprofesor.setPreferredSize(new Dimension(200, 40));
 		jpCentro.add(cbDniprofesor, c);
 
 		c.gridx = 0;
@@ -132,7 +145,7 @@ public class V_AdminActiAdd  extends JInternalFrame{
 
 		c.gridx = 1;
 		c.gridy = 4;
-		cbIdaula.setPreferredSize(new Dimension(200, 20));
+		cbIdaula.setPreferredSize(new Dimension(200, 40));
 		jpCentro.add(cbIdaula, c);
 
 		this.getContentPane().add(jpCentro, BorderLayout.CENTER);
@@ -141,16 +154,24 @@ public class V_AdminActiAdd  extends JInternalFrame{
 		jpSur = new JPanel();
 		jpSur.setLayout(new GridLayout(1, 2));
 
-		btnAñadir = new JButton("AÑADIR");
+		btnAnadir = new JButton("AÑADIR");
+		btnAnadir.setBackground(new Color(137, 13, 84));
+		btnAnadir.setFont(new Font("Verdana", Font.BOLD, 19));
+		btnAnadir.setForeground(Color.WHITE);
+		btnAnadir.setPreferredSize(new Dimension(0,50));
+		
 		btnCancelar = new JButton("LIMPIAR");
+		btnCancelar.setBackground(new Color(137, 13, 84));
+		btnCancelar.setFont(new Font("Verdana", Font.BOLD, 19));
+		btnCancelar.setForeground(Color.WHITE);
 
-		jpSur.add(btnAñadir);
+		jpSur.add(btnAnadir);
 		jpSur.add(btnCancelar);
 
 		this.getContentPane().add(jpSur, BorderLayout.SOUTH);
 		
 		//Añadir escucha a los botones
-		btnAñadir.addActionListener(new Ac_AdminActiAdd(this));
+		btnAnadir.addActionListener(new Ac_AdminActiAdd(this));
 		btnCancelar.addActionListener(new Ac_AdminActiAdd(this));
 
 		this.setVisible(true);
@@ -189,11 +210,11 @@ public class V_AdminActiAdd  extends JInternalFrame{
 	}
 
 	public JButton getBtnAñadir() {
-		return btnAñadir;
+		return btnAnadir;
 	}
 
 	public void setBtnAñadir(JButton btnAñadir) {
-		this.btnAñadir = btnAñadir;
+		this.btnAnadir = btnAñadir;
 	}
 
 	public JButton getBtnCancelar() {

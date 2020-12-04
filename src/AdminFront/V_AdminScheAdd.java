@@ -1,6 +1,7 @@
 package AdminFront;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.sql.Connection;
@@ -22,6 +23,7 @@ import AdminBack.Ac_AdminScheAdd;
 import main.Conexion;
 import main.Main;
 
+
 public class V_AdminScheAdd extends JInternalFrame {
 	private JPanel principal, eleccion, eliminar;
 	private JComboBox diaAdd, diaDel, actividadAdd, actividadDel, horaDel;
@@ -33,13 +35,15 @@ public class V_AdminScheAdd extends JInternalFrame {
 
 
 	public V_AdminScheAdd() {
-		fuente=new Font("Verdana",Font.PLAIN,15);
+		((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null);
+		fuente=new Font("Verdana",Font.BOLD,20);
 		try {
 			AddElements();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 	}
 
 	private void AddElements() throws SQLException {
@@ -87,7 +91,9 @@ public class V_AdminScheAdd extends JInternalFrame {
 		actividadDel.setEnabled(false);
 		actividadDel.setFont(fuente);
 
-		quitar = new JButton("Eliminar");
+		quitar = new JButton("ELIMINAR");
+		quitar.setBackground(new Color(137, 13, 84));
+		quitar.setForeground(Color.WHITE);
 		quitar.addActionListener(new Ac_AdminScheAdd(this));
 		quitar.setFont(fuente);
 
@@ -95,7 +101,7 @@ public class V_AdminScheAdd extends JInternalFrame {
 		eliminar.add(new JSeparator());
 		eliminar.add(new JSeparator());
 
-		añadirTitulo("Eliminar clases", eliminar);
+		añadirTitulo("ELIMINAR CLASES", eliminar);
 		eliminar.add(dDel);
 		eliminar.add(new JLabel());
 		eliminar.add(diaDel);
@@ -144,12 +150,14 @@ public class V_AdminScheAdd extends JInternalFrame {
 		rellenarActividades();
 		actividadAdd.setFont(fuente);
 
-		subir = new JButton("Añadir");
+		subir = new JButton("AÑADIR");
+		subir.setBackground(new Color(137, 13, 84));
+		subir.setForeground(Color.WHITE);
 		subir.addActionListener(new Ac_AdminScheAdd(this));
 		subir.setFont(fuente);
 
-		añadirTitulo("Añadir clases", eleccion);
-
+		añadirTitulo("AÑADIR CLASES", eleccion);
+		
 		eleccion.add(dAdd);
 		eleccion.add(new JLabel());
 		eleccion.add(diaAdd);
@@ -221,7 +229,8 @@ public class V_AdminScheAdd extends JInternalFrame {
 
 	private void añadirTitulo(String t, JPanel p) {
 		JLabel titulo = new JLabel(t);
-		titulo.setFont(fuente);
+		titulo.setFont(new Font("Verdana",Font.BOLD,22));
+		titulo.setForeground(new Color(137, 13, 84));
 		titulo.setHorizontalAlignment(SwingConstants.CENTER);
 		p.add(new JLabel());
 		p.add(titulo);

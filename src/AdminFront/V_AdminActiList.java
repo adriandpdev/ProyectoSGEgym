@@ -36,7 +36,7 @@ public class V_AdminActiList extends JInternalFrame {
 
 		setBackground(new Color(137, 13, 84));
 		jlvisualizarhorario = new JLabel("VISUALIZAR ACTIVIDADES", SwingConstants.CENTER);
-		jlvisualizarhorario.setFont(new Font("Verdana", Font.BOLD, 30));
+		jlvisualizarhorario.setFont(new Font("Verdana", Font.BOLD, 22));
 		jlvisualizarhorario.setForeground(Color.WHITE);
 		
 		//Consulta Actividades por Empleado.

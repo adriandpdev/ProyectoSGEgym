@@ -36,7 +36,7 @@ public class V_AdminScheList extends JInternalFrame {
 		
 		setBackground(new Color(137, 13, 84));
 		
-		jlvisualizarhorario.setFont(new Font("Verdana", Font.BOLD, 30));
+		jlvisualizarhorario.setFont(new Font("Verdana", Font.BOLD, 22));
 		jlvisualizarhorario.setForeground(Color.WHITE);
 		int cantidadfilas=0;
 		String query1="select count(*) as cuenta from Horario";
@@ -92,7 +92,7 @@ public class V_AdminScheList extends JInternalFrame {
 		
 
 		scroll = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scroll.setPreferredSize(new Dimension(750, 450));
 
 

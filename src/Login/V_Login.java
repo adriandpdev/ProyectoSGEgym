@@ -8,6 +8,8 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
@@ -19,7 +21,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-public class V_Login extends JFrame {
+public class V_Login extends JFrame implements KeyListener{
 	private JTextField txt[] = new JTextField[2];
 	private JLabel lbl[] = new JLabel[5];
 	private JCheckBox ch;
@@ -40,7 +42,6 @@ public class V_Login extends JFrame {
 		this.setResizable(false);
         ImageIcon icon = new ImageIcon("./images/icono.png");
         setIconImage(icon.getImage());
-        		//Toolkit.getDefaultToolkit().getImage(getClass().getResource("images/icono.png"));
 		
 		this.setLayout(new BorderLayout());
 		pn[2] = new JPanel();
@@ -61,8 +62,10 @@ public class V_Login extends JFrame {
 
 		txt[0] = new JTextField();
 		txt[0].setFont(new Font("Verdana",Font.BOLD,20));
+		txt[0].addKeyListener(this);
 		txt[1] = new JTextField();
 		txt[1].setFont(new Font("Verdana",Font.BOLD,20));
+		txt[1].addKeyListener(this);
 		
 		lbl[0] = new JLabel("DNI",SwingConstants.CENTER);
 		lbl[0].setFont(new Font("Verdana",Font.BOLD,20));
@@ -121,6 +124,26 @@ public class V_Login extends JFrame {
 	}
 	public JCheckBox getch() {
 		return ch;
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getKeyCode()==KeyEvent.VK_ENTER) {
+			Ac_Login.iniciarsesion();
+		}
+	}
+
+	@Override
+	public void keyTyped(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
