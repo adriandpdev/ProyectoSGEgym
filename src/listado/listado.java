@@ -110,7 +110,7 @@ public class listado extends JInternalFrame implements MouseListener,KeyListener
 		//Creamos la caja de busqueda y le aÃ±adimos un objeto de la clase Textpromt para aÃ±adirle un placeholder
 		tf_busqueda = new JTextField();
 		tf_busqueda.setFont(new Font("Verdana",Font.PLAIN,18));
-		TextPrompt placeholder = new TextPrompt("Inserte su busqueda aquÃ­", tf_busqueda);
+		TextPrompt placeholder = new TextPrompt("Inserte su busqueda aqui", tf_busqueda);
 		placeholder.changeAlpha(0.5f);
 		
 		

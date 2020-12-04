@@ -39,17 +39,19 @@ import main.Main;
 
 public class V_UserActiAdd extends JInternalFrame {
 	private V_UserHome v1;
-	private JLabel lblTitulo, lblDniuser, lblIdaula, lblverdniuser, lblhora, lbldiasemana,lblaforo,lblmostraraforo;
+	private JLabel lblTitulo, lblDniuser, lblIdaula, lblverdniuser, lblhora, lbldiasemana, lblaforo, lblmostraraforo;
 	private JTextField txtIdclase, txtNombreactividad;
-	private JComboBox cbaula, cbhora, diasemana, diaAdd,cbaforo;
-	private JButton btnAñadir, btnCancelar;
-	private JPanel jpCentro, jpSur, panel_titulo, panel_dni_lbl, panel_dni_mostrar, panel_actividad_lbl, panel_actividad_combo, panel_hora_lbl, panel_hora_combo, 
-	panel_dia_lbl, panel_dia_combo, panel_aforo_lbl, panel_aforo_mostrar;
+	private JComboBox cbaula, cbhora, diasemana, diaAdd, cbaforo;
+	private JButton btnAdd, btnCancelar;
+	private JPanel jpCentro, jpSur, panel_titulo, panel_dni_lbl, panel_dni_mostrar, panel_actividad_lbl,
+			panel_actividad_combo, panel_hora_lbl, panel_hora_combo, panel_dia_lbl, panel_dia_combo, panel_aforo_lbl,
+			panel_aforo_mostrar;
 	public V_Login vent;
 	private String DNI;
 	private String[] semana = { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo" };
 	Conexion c = new Conexion();
 	private JDateChooser date;
+
 	public JDateChooser getDate() {
 		return date;
 	}
@@ -57,55 +59,53 @@ public class V_UserActiAdd extends JInternalFrame {
 	public void setDate(JDateChooser date) {
 		this.date = date;
 	}
-	
 
-	public V_UserActiAdd(V_UserHome venti){
+	public V_UserActiAdd(V_UserHome venti) {
 		v1 = venti;
-
-		this.setTitle("Alta de Clases");
+		((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
 		this.setLayout(new BorderLayout());
 
 		// Parte norte del borderlayout
 
-		lblTitulo = new JLabel("Reserva de Clases:");
-		lblTitulo.setFont(new Font("Verdana",Font.PLAIN,50));
+		lblTitulo = new JLabel("RESERVA DE CLASES:");
+		lblTitulo.setFont(new Font("Verdana", Font.BOLD, 22));
 		lblTitulo.setForeground(Color.WHITE);
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_titulo = new JPanel();
 		panel_titulo.setBackground(new Color(137, 13, 84));
 		panel_titulo.add(lblTitulo);
-		
+
 		this.getContentPane().add(panel_titulo, BorderLayout.NORTH);
 
 		// Parte central del borderlayout
 
 		jpCentro = new JPanel();
-		jpCentro.setLayout(new GridLayout(8,2));
-		
+		jpCentro.setLayout(new GridLayout(8, 2));
+
 		panel_dni_lbl = new JPanel();
 		lblDniuser = new JLabel("Tu DNI:");
 		lblDniuser.setBackground(new Color(137, 13, 84));
-		lblDniuser.setFont(new Font("Verdana",Font.PLAIN,50));
+		lblDniuser.setFont(new Font("Verdana", Font.PLAIN, 40));
 		panel_dni_lbl.add(lblDniuser);
 		jpCentro.add(panel_dni_lbl);
-		
+
 		panel_dni_mostrar = new JPanel();
 		lblverdniuser = new JLabel();
 		lblverdniuser.setText(v1.getDNI1());
 		lblverdniuser.setBackground(new Color(137, 13, 84));
-		lblverdniuser.setFont(new Font("Verdana",Font.PLAIN,50));
+		lblverdniuser.setFont(new Font("Verdana", Font.PLAIN, 40));
 		panel_dni_mostrar.add(lblverdniuser);
 		jpCentro.add(panel_dni_mostrar);
-		
+
 		panel_actividad_lbl = new JPanel();
 		lblIdaula = new JLabel("Selecciona la actividad:");
-		lblIdaula.setFont(new Font("Verdana",Font.PLAIN,50));
+		lblIdaula.setFont(new Font("Verdana", Font.PLAIN, 40));
 		panel_actividad_lbl.add(lblIdaula);
-		
+
 		panel_actividad_combo = new JPanel();
 		panel_actividad_combo.setLayout(new FlowLayout());
 		cbaula = new JComboBox();
-		cbaula.setFont(new Font("Verdana",Font.PLAIN,50));
+		cbaula.setFont(new Font("Verdana", Font.PLAIN, 40));
 		panel_actividad_combo.add(cbaula);
 
 		String q = "select distinct(nombre) from Actividad";
@@ -122,113 +122,103 @@ public class V_UserActiAdd extends JInternalFrame {
 			cbaula.addItem(lista.get(i));
 
 		}
-		
+
 		panel_hora_lbl = new JPanel();
 		lblhora = new JLabel("Elige una hora:");
-		lblhora.setFont(new Font("Verdana",Font.PLAIN,50));
+		lblhora.setFont(new Font("Verdana", Font.PLAIN, 40));
 		panel_hora_lbl.add(lblhora);
-		
+
 		panel_hora_combo = new JPanel();
 		cbhora = new JComboBox();
-		cbhora.setFont(new Font("Verdana",Font.PLAIN,50));
+		cbhora.setFont(new Font("Verdana", Font.PLAIN, 40));
 		cbhora.addActionListener(new Ac_UserActiAdd(this));
 		panel_hora_combo.add(cbhora);
-		
+
 		panel_dia_lbl = new JPanel();
-		lbldiasemana = new JLabel("Elige un día:");
-		lbldiasemana.setFont(new Font("Verdana",Font.PLAIN,50));
-		
-		
+		lbldiasemana = new JLabel("Elige un d�a:");
+		lbldiasemana.setFont(new Font("Verdana", Font.PLAIN, 40));
+
 		diasemana = new JComboBox();
-		diasemana.setFont(new Font("Verdana",Font.PLAIN,50));
-		
+		diasemana.setFont(new Font("Verdana", Font.PLAIN, 40));
+
 		for (int i = 0; i < semana.length; i++) {
 			diasemana.addItem(semana[i]);
 		}
-		
-		
-		
-		
-		
-		lblmostraraforo= new JLabel();
-		lblmostraraforo.setFont(new Font("Verdana",Font.PLAIN,50));
+
+		lblmostraraforo = new JLabel();
+		lblmostraraforo.setFont(new Font("Verdana", Font.PLAIN, 40));
 		lblaforo = new JLabel("Aforo Total:");
-		lblaforo.setFont(new Font("Verdana",Font.PLAIN,50));
-
-		
-
-	
+		lblaforo.setFont(new Font("Verdana", Font.PLAIN, 40));
 
 		diasemana.addActionListener(new Ac_UserActiAdd(this));
 
 		jpCentro.add(lblIdaula);
 		jpCentro.add(cbaula);
-		jpCentro.add(lblhora);
-		jpCentro.add(cbhora);
 		jpCentro.add(lbldiasemana);
 		jpCentro.add(diasemana);
+		jpCentro.add(lblhora);
+		jpCentro.add(cbhora);
 		jpCentro.add(lblaforo);
 		jpCentro.add(lblmostraraforo);
-		
-		
+
 		this.getContentPane().add(jpCentro, BorderLayout.CENTER);
 
 		// Parte sur del borderlayout
 		jpSur = new JPanel();
 		jpSur.setLayout(new GridLayout(1, 2));
 
-		btnAñadir = new JButton("Añadir");
-		btnAñadir.setFont(new Font("Verdana",Font.PLAIN,50));
+		btnAdd = new JButton("A�adir");
+		btnAdd.setFont(new Font("Verdana", Font.PLAIN, 40));
 		btnCancelar = new JButton("Cancelar");
-		btnCancelar.setFont(new Font("Verdana",Font.PLAIN,50));
+		btnCancelar.setFont(new Font("Verdana", Font.PLAIN, 40));
 
 		final class addbutton implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 
 				JOptionPane.showMessageDialog(null,
-						
+
 						"Tu usuario con el dni: " + v1.getDNI1() + " se ha apuntado a la clase: "
-								+ cbaula.getSelectedItem() + " el " + diasemana.getSelectedItem()+" a las "+cbhora.getSelectedItem());
-				int id=0;
+								+ cbaula.getSelectedItem() + " el " + diasemana.getSelectedItem() + " a las "
+								+ cbhora.getSelectedItem());
+				int id = 0;
 				try {
 					id = c.nuevoID(Main.con, "idReserva", "Reserva");
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				
+
 				Fecha f = new Fecha();
-			
+
 				String q5 = "select idHora from Horario where idactividad in(select idactividad from Actividad where nombre like '"
-						+ getCbaula().getSelectedItem() + "') and Diasemana like '" + getDiasemana().getSelectedItem() + "'";
+						+ getCbaula().getSelectedItem() + "') and Diasemana like '" + getDiasemana().getSelectedItem()
+						+ "'";
 				try {
-					c.alta(Main.con, "INSERT INTO Reserva VALUES ("+id+","+vasafuncionar(q5)+","+ v1.getDNI1()+", '"+f.fechaActual() +"')");
-					JOptionPane.showMessageDialog(null, "¡Se ha agregado correctamente!", "Creado correctamente",
+					c.alta(Main.con, "INSERT INTO Reserva VALUES (" + id + "," + vasafuncionar(q5) + "," + v1.getDNI1()
+							+ ", '" + f.fechaActual() + "')");
+					JOptionPane.showMessageDialog(null, "�Se ha agregado correctamente!", "Creado correctamente",
 							JOptionPane.INFORMATION_MESSAGE);
-				
+
 				} catch (Exception h) {
-					JOptionPane.showMessageDialog(null, "No se ha podido agregar", "¡Advertencia!",
+					JOptionPane.showMessageDialog(null, "No se ha podido agregar", "�Advertencia!",
 							JOptionPane.ERROR_MESSAGE);
-				h.printStackTrace();
+					h.printStackTrace();
 				}
 			}
-			
+
 			public String vasafuncionar(String query) throws SQLException {
 				ResultSet rs = c.consulta(Main.con, query);
 				rs.next();
 				return rs.getString("idhora");
-				
+
 			}
-			
+
 		}
-	
-		
-		
+
 		addbutton elListener = new addbutton();
-		btnAñadir.addActionListener(elListener);
-	
-		
-		jpSur.add(btnAñadir);
+		btnAdd.addActionListener(elListener);
+
+		jpSur.add(btnAdd);
 		jpSur.add(btnCancelar);
 
 		this.getContentPane().add(jpSur, BorderLayout.SOUTH);
@@ -236,32 +226,22 @@ public class V_UserActiAdd extends JInternalFrame {
 		this.setVisible(true);
 
 	}
-	
-
 
 	public JLabel getLblmostraraforo() {
 		return lblmostraraforo;
 	}
 
-
-
 	public void setLblmostraraforo(JLabel lblmostraraforo) {
 		this.lblmostraraforo = lblmostraraforo;
 	}
-
-
 
 	public JLabel getLblaforo() {
 		return lblaforo;
 	}
 
-
-
 	public void setLblaforo(JLabel lblaforo) {
 		this.lblaforo = lblaforo;
 	}
-
-
 
 	public JTextField getTxtIdclase() {
 		return txtIdclase;
@@ -279,12 +259,12 @@ public class V_UserActiAdd extends JInternalFrame {
 		this.txtNombreactividad = txtNombreactividad;
 	}
 
-	public JButton getBtnAñadir() {
-		return btnAñadir;
+	public JButton getBtnbtnAdd() {
+		return btnAdd;
 	}
 
-	public void setBtnAñadir(JButton btnAñadir) {
-		this.btnAñadir = btnAñadir;
+	public void setbtnAdd(JButton btnAdd) {
+		this.btnAdd = btnAdd;
 	}
 
 	public JButton getBtnCancelar() {
@@ -310,8 +290,6 @@ public class V_UserActiAdd extends JInternalFrame {
 	public void setJpSur(JPanel jpSur) {
 		this.jpSur = jpSur;
 	}
-
-
 
 	public JComboBox getActividadDel() {
 		return cbaula;
@@ -344,6 +322,5 @@ public class V_UserActiAdd extends JInternalFrame {
 	public void setDiasemana(JComboBox diasemana) {
 		this.diasemana = diasemana;
 	}
-	
 
 }
