@@ -58,7 +58,9 @@ public class Ac_UserActiAdd implements ChangeListener, ActionListener {
 			e1.printStackTrace();
 		}
 		
+		
 	
+		
 		try {
 			while(aforo.next())
 			{
@@ -67,6 +69,8 @@ public class Ac_UserActiAdd implements ChangeListener, ActionListener {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+		
+		
 		
 		
 	}
