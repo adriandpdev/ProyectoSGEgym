@@ -36,9 +36,9 @@ import main.Main;
 
 public class V_UserActiAdd extends JInternalFrame {
 	private V_UserHome v1;
-	private JLabel lblTitulo, lblDniuser, lblIdaula, lblverdniuser, lblhora, lbldiasemana,lblaforo,lblmostraraforo;
+	private JLabel lblTitulo, lblDniuser, lblIdaula, lblverdniuser, lblhora, lbldiasemana, lblaforo, lblmostraraforo;
 	private JTextField txtIdclase, txtNombreactividad;
-	private JComboBox cbaula, cbhora, diasemana, diaAdd,cbaforo;
+	private JComboBox cbaula, cbhora, diasemana, diaAdd, cbaforo;
 	private JButton btnAñadir, btnCancelar;
 	private JPanel jpCentro, jpSur;
 	public V_Login vent;
@@ -46,6 +46,7 @@ public class V_UserActiAdd extends JInternalFrame {
 	private String[] semana = { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo" };
 	Conexion c = new Conexion();
 	private JDateChooser date;
+
 	public JDateChooser getDate() {
 		return date;
 	}
@@ -53,9 +54,8 @@ public class V_UserActiAdd extends JInternalFrame {
 	public void setDate(JDateChooser date) {
 		this.date = date;
 	}
-	
 
-	public V_UserActiAdd(V_UserHome venti){
+	public V_UserActiAdd(V_UserHome venti) {
 		v1 = venti;
 
 		this.setTitle("Alta de Clases");
@@ -78,9 +78,7 @@ public class V_UserActiAdd extends JInternalFrame {
 		lblverdniuser.setText(v1.getDNI1());
 		lblIdaula = new JLabel("SELECCIONA LA ACTVIDAD A LA QUE QUIERES APUNTARTE:");
 		cbaula = new JComboBox();
-		
 
-				
 		String q = "select distinct(nombre) from Actividad";
 		String x = "nombre";
 
@@ -95,27 +93,20 @@ public class V_UserActiAdd extends JInternalFrame {
 			cbaula.addItem(lista.get(i));
 
 		}
-		
-		
+
 		lblhora = new JLabel("ELIGE HORA:");
 		lbldiasemana = new JLabel("ELIGE DÍA DE LA SEMANA:");
 		cbhora = new JComboBox();
 		cbhora.addActionListener(new Ac_UserActiAdd(this));
 		diasemana = new JComboBox();
-		
-		
-		
+
 		for (int i = 0; i < semana.length; i++) {
 			diasemana.addItem(semana[i]);
 		}
-		
-		
+
 		lblaforo = new JLabel("AFORO TOTAL: ");
 
-		lblmostraraforo= new JLabel();
-
-	
-		
+		lblmostraraforo = new JLabel();
 
 		diasemana.addActionListener(new Ac_UserActiAdd(this));
 
@@ -157,7 +148,7 @@ public class V_UserActiAdd extends JInternalFrame {
 		g.gridx = 5;
 		g.gridy = 8;
 		jpCentro.add(cbhora, g);
-		
+
 		g.gridwidth = 1;
 		g.weightx = 1;
 		g.weighty = 1;
@@ -165,14 +156,11 @@ public class V_UserActiAdd extends JInternalFrame {
 		g.gridx = 0;
 		g.gridy = 9;
 		jpCentro.add(lblaforo, g);
-		
+
 		g.gridx = 1;
 		g.gridy = 9;
 		jpCentro.add(lblmostraraforo, g);
-		
 
-		
-		
 		this.getContentPane().add(jpCentro, BorderLayout.CENTER);
 
 		// Parte sur del borderlayout
@@ -186,82 +174,77 @@ public class V_UserActiAdd extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				JOptionPane.showMessageDialog(null,
-						
+
 						"Tu usuario con el dni: " + v1.getDNI1() + " se ha apuntado a la clase: "
-								+ cbaula.getSelectedItem() + " el " + diasemana.getSelectedItem()+" a las "+cbhora.getSelectedItem());
-				int id=0;
+								+ cbaula.getSelectedItem() + " el " + diasemana.getSelectedItem() + " a las "
+								+ cbhora.getSelectedItem());
+				int id = 0;
 				try {
 					id = c.nuevoID(Main.con, "idReserva", "Reserva");
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				
+
 				Fecha f = new Fecha();
-			
-				String q5 = "select idHora from Horario where idactividad in(select idactividad from Actividad where nombre like '"
-						+ getCbaula().getSelectedItem() + "') and Diasemana like '" + getDiasemana().getSelectedItem() + "'";
-				
-				
+
 				String queryIdHora = "select idHora from Horario where idactividad in(select idactividad from Actividad where nombre like '"
-                        + getCbaula().getSelectedItem() + "') and Diasemana like '" + getDiasemana().getSelectedItem() + "'";
-                int idHora = 0;
-                int MaxAforo = 0;
-                int reservas = 0;
-                try {
-                    ResultSet rs = c.consulta(Main.con, queryIdHora);
-                    while(rs.next()) {
-                        idHora = rs.getInt(0);
-                    }
-                    String queryAforoMax = "SELECT Aulas.aforo FROM Aulas,Actividad,Horario WHERE Aulas.idAula = Actividad.idAula AND Actividad.idActividad = Horario.IdActividad AND Horario.IdHora = "+idHora;
-                    rs = c.consulta(Main.con, queryAforoMax);
-                    while(rs.next()) {
-                        MaxAforo = rs.getInt(0);
-                    }
-                    String queryCantidadReservas = "SELECT Actividad.nombre,Reserva.idHora, COUNT(*) FROM Actividad , Reserva,Horario WHERE Actividad.idActividad=Horario.IdActividad AND Horario.IdHora=Reserva.idHora AND Reserva.idHora = "+idHora+" GROUP BY idHora";
-                    rs = c.consulta(Main.con, queryCantidadReservas);
-                    while(rs.next()) {
-                        reservas++;
-                    }
-                } catch (Exception e2) {}
-               
-                if(reservas < MaxAforo) {
-                    try {
-                        c.alta(Main.con, "INSERT INTO Reserva VALUES ("+id+","+vasafuncionar(queryIdHora)+","+ v1.getDNI1()+", '"+f.fechaActual() +"')");
-                        JOptionPane.showMessageDialog(null, "¡Se ha agregado correctamente!", "Creado correctamente",
-                                JOptionPane.INFORMATION_MESSAGE);
-                    } catch (Exception h) {
-                        JOptionPane.showMessageDialog(null, "No se ha podido agregar", "¡Advertencia!",
-                                JOptionPane.ERROR_MESSAGE);
-                    h.printStackTrace();
-                    }
-                }else {
-                    JOptionPane.showMessageDialog(null, "No se ha podido agregar", "¡Aforo Maximo!",
-                            JOptionPane.ERROR_MESSAGE);
-                }
-				
-				
+						+ getCbaula().getSelectedItem() + "') and Diasemana like '" + getDiasemana().getSelectedItem()
+						+ "'";
+
+				int idHora = 0;
+				int MaxAforo = 0;
+				int reservas = 0;
+				try {
+					ResultSet rs = c.consulta(Main.con, queryIdHora);
+					while (rs.next()) {
+						idHora = rs.getInt(0);
+					}
+					String queryAforoMax = "SELECT Aulas.aforo FROM Aulas,Actividad,Horario WHERE Aulas.idAula = Actividad.idAula AND Actividad.idActividad = Horario.IdActividad AND Horario.IdHora = "
+							+ idHora;
+					rs = c.consulta(Main.con, queryAforoMax);
+					while (rs.next()) {
+						MaxAforo = rs.getInt(0);
+					}
+					String queryCantidadReservas = "SELECT Actividad.nombre,Reserva.idHora, COUNT(*) FROM Actividad , Reserva,Horario WHERE Actividad.idActividad=Horario.IdActividad AND Horario.IdHora=Reserva.idHora AND Reserva.idHora = "
+							+ idHora + " GROUP BY idHora";
+					rs = c.consulta(Main.con, queryCantidadReservas);
+					while (rs.next()) {
+						reservas++;
+					}
+				} catch (Exception e2) {
+				}
+
+				if (reservas < MaxAforo) {
+					try {
+						c.alta(Main.con, "INSERT INTO Reserva VALUES (" + id + "," + vasafuncionar(queryIdHora) + ","
+								+ v1.getDNI1() + ", '" + f.fechaActual() + "')");
+						JOptionPane.showMessageDialog(null, "¡Se ha agregado correctamente!", "Creado correctamente",
+								JOptionPane.INFORMATION_MESSAGE);
+					} catch (Exception h) {
+						JOptionPane.showMessageDialog(null, "No se ha podido agregar", "¡Advertencia!",
+								JOptionPane.ERROR_MESSAGE);
+						h.printStackTrace();
+					}
+				} else {
+					JOptionPane.showMessageDialog(null, "No se ha podido agregar", "¡Aforo Maximo!",
+							JOptionPane.ERROR_MESSAGE);
+				}
+
 			}
-			
+
 			public String vasafuncionar(String query) throws SQLException {
 				ResultSet rs = c.consulta(Main.con, query);
 				rs.next();
 				return rs.getString("idhora");
-				
+
 			}
-			
+
 		}
-	
-		
-		
+
 		addbutton elListener = new addbutton();
 		btnAñadir.addActionListener(elListener);
-		
-		
-		
-		
-		
-		
+
 		jpSur.add(btnAñadir);
 		jpSur.add(btnCancelar);
 
@@ -270,32 +253,22 @@ public class V_UserActiAdd extends JInternalFrame {
 		this.setVisible(true);
 
 	}
-	
-
 
 	public JLabel getLblmostraraforo() {
 		return lblmostraraforo;
 	}
 
-
-
 	public void setLblmostraraforo(JLabel lblmostraraforo) {
 		this.lblmostraraforo = lblmostraraforo;
 	}
-
-
 
 	public JLabel getLblaforo() {
 		return lblaforo;
 	}
 
-
-
 	public void setLblaforo(JLabel lblaforo) {
 		this.lblaforo = lblaforo;
 	}
-
-
 
 	public JTextField getTxtIdclase() {
 		return txtIdclase;
@@ -345,8 +318,6 @@ public class V_UserActiAdd extends JInternalFrame {
 		this.jpSur = jpSur;
 	}
 
-
-
 	public JComboBox getActividadDel() {
 		return cbaula;
 	}
@@ -378,6 +349,5 @@ public class V_UserActiAdd extends JInternalFrame {
 	public void setDiasemana(JComboBox diasemana) {
 		this.diasemana = diasemana;
 	}
-	
 
 }

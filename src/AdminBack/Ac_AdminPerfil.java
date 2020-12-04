@@ -47,7 +47,6 @@ public class Ac_AdminPerfil implements ActionListener {
 	}
 
 	// MODIFICA LA CONTRASEÑA DE LA PERSONA.
-	
 	public String cifrar(String cadena) {
 		String codi=DigestUtils.md5Hex(cadena);
 		return codi;
