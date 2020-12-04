@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JSpinner;
+import javax.swing.JTextField;
 import javax.swing.SpinnerDateModel;
 import javax.swing.SwingConstants;
 
@@ -25,9 +26,9 @@ import main.Main;
 
 
 public class V_AdminScheAdd extends JInternalFrame {
-	private JPanel principal, eleccion, eliminar;
+	private JPanel principal, eleccion, eliminar,espacio1, espacio2;
 	private JComboBox diaAdd, diaDel, actividadAdd, actividadDel, horaDel;
-	private JLabel dAdd,dDel,aAdd,aDel,hAdd,hDel;
+	private JLabel dAdd,dDel,aAdd,aDel,hAdd,hDel,titl,spc1,spc2;
 	private JSpinner horaAdd;
 	private JButton subir, quitar;
 	private String[] semana = { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo" };
@@ -49,6 +50,7 @@ public class V_AdminScheAdd extends JInternalFrame {
 	private void AddElements() throws SQLException {
 		principal = new JPanel();
 		principal.setLayout(new GridLayout(2, 1));
+		
 
 		establecerAñadir();
 
@@ -63,10 +65,18 @@ public class V_AdminScheAdd extends JInternalFrame {
 
 	private void establecerEliminar() {
 		eliminar = new JPanel();
-		eliminar.setLayout(new GridLayout(6, 3));
+		JPanel espacio1= new JPanel();
+		JPanel espacio2= new JPanel();
+		espacio1.add(spc1=new JLabel());
+		espacio1.setBackground(new Color(137, 13, 84));
+		espacio2.add(spc2=new JLabel());
+		espacio2.setBackground(new Color(137, 13, 84));
+		eliminar.setLayout(new GridLayout(5, 3));
+		
 
 		dDel=new JLabel("Elegir día");
 		dDel.setFont(fuente);
+		dDel.setHorizontalAlignment(JTextField.CENTER);
 
 		diaDel = new JComboBox();
 		for (int i = 0; i < semana.length; i++) {
@@ -78,6 +88,7 @@ public class V_AdminScheAdd extends JInternalFrame {
 
 		hDel=new JLabel("Elegir hora");
 		hDel.setFont(fuente);
+		hDel.setHorizontalAlignment(JTextField.CENTER);
 		
 		horaDel = new JComboBox();
 		horaDel.setEnabled(false);
@@ -86,21 +97,18 @@ public class V_AdminScheAdd extends JInternalFrame {
 
 		aDel=new JLabel("Elegir clase");
 		aDel.setFont(fuente);
+		aDel.setHorizontalAlignment(JTextField.CENTER);
 		
 		actividadDel = new JComboBox();
 		actividadDel.setEnabled(false);
 		actividadDel.setFont(fuente);
 
 		quitar = new JButton("ELIMINAR");
-		quitar.setBackground(new Color(137, 13, 84));
-		quitar.setForeground(Color.WHITE);
+		quitar.setBackground(Color.WHITE);
 		quitar.addActionListener(new Ac_AdminScheAdd(this));
 		quitar.setFont(fuente);
 
-		eliminar.add(new JSeparator());
-		eliminar.add(new JSeparator());
-		eliminar.add(new JSeparator());
-
+		
 		añadirTitulo("ELIMINAR CLASES", eliminar);
 		eliminar.add(dDel);
 		eliminar.add(new JLabel());
@@ -114,17 +122,26 @@ public class V_AdminScheAdd extends JInternalFrame {
 		eliminar.add(new JLabel());
 		eliminar.add(actividadDel);
 
-		eliminar.add(new JLabel());
+		eliminar.add(espacio1);
 		eliminar.add(quitar);
-		eliminar.add(new JLabel());
+		eliminar.add(espacio2);
 	}
 
 	private void establecerAñadir() throws SQLException {
 		eleccion = new JPanel();
+		JPanel espacio1= new JPanel();
+		JPanel espacio2= new JPanel();
+		espacio1.add(spc1=new JLabel());
+		espacio1.setBackground(new Color(137, 13, 84));
+		espacio2.add(spc2=new JLabel());
+		espacio2.setBackground(new Color(137, 13, 84));
 		eleccion.setLayout(new GridLayout(5, 3));
+		
 		
 		dAdd=new JLabel("Elegir día");
 		dAdd.setFont(fuente);
+		dAdd.setHorizontalAlignment(JTextField.CENTER);
+		
 		
 		diaAdd = new JComboBox();
 		for (int i = 0; i < semana.length; i++) {
@@ -134,6 +151,8 @@ public class V_AdminScheAdd extends JInternalFrame {
 		
 		hAdd=new JLabel("Elegir hora");
 		hAdd.setFont(fuente);
+		hAdd.setHorizontalAlignment(JTextField.CENTER);
+		
 		
 		SpinnerDateModel model = modeloHora();
 		horaAdd = new JSpinner(model);
@@ -145,16 +164,19 @@ public class V_AdminScheAdd extends JInternalFrame {
 		
 		aAdd=new JLabel("Elegir actividad");
 		aAdd.setFont(fuente);
+		aAdd.setHorizontalAlignment(JTextField.CENTER);
+		
 		
 		actividadAdd = new JComboBox();
 		rellenarActividades();
 		actividadAdd.setFont(fuente);
 
 		subir = new JButton("AÑADIR");
-		subir.setBackground(new Color(137, 13, 84));
-		subir.setForeground(Color.WHITE);
 		subir.addActionListener(new Ac_AdminScheAdd(this));
 		subir.setFont(fuente);
+		subir.setBackground(Color.WHITE);
+		
+		
 
 		añadirTitulo("AÑADIR CLASES", eleccion);
 		
@@ -170,9 +192,9 @@ public class V_AdminScheAdd extends JInternalFrame {
 		eleccion.add(new JLabel());
 		eleccion.add(actividadAdd);
 
-		eleccion.add(new JLabel());
+		eleccion.add(espacio1);
 		eleccion.add(subir);
-		eleccion.add(new JLabel());
+		eleccion.add(espacio2);
 	}
 
 	public JComboBox getDia() {
@@ -228,12 +250,19 @@ public class V_AdminScheAdd extends JInternalFrame {
 	}
 
 	private void añadirTitulo(String t, JPanel p) {
-		JLabel titulo = new JLabel(t);
-		titulo.setFont(new Font("Verdana",Font.BOLD,22));
-		titulo.setForeground(new Color(137, 13, 84));
-		titulo.setHorizontalAlignment(SwingConstants.CENTER);
-		p.add(new JLabel());
+		JPanel titulo= new JPanel();
+		JPanel espacio1= new JPanel();
+		JPanel espacio2= new JPanel();
+		titulo.add(titl= new JLabel(t));
+		titl.setFont(new Font("Verdana",Font.BOLD,22));
+		titl.setForeground(Color.WHITE);
+		titulo.setBackground(new Color(137, 13, 84));
+		espacio1.add(spc1=new JLabel());
+		espacio1.setBackground(new Color(137, 13, 84));
+		espacio2.add(spc2=new JLabel());
+		espacio2.setBackground(new Color(137, 13, 84));
+		p.add(espacio1);
 		p.add(titulo);
-		p.add(new JLabel());
+		p.add(espacio2);
 	}
 }
