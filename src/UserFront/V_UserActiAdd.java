@@ -215,7 +215,7 @@ public class V_UserActiAdd extends JInternalFrame {
 				} catch (Exception e2) {
 				}
 
-				if (reservas < MaxAforo) {
+				if (reservas <= MaxAforo) {
 					try {
 						c.alta(Main.con, "INSERT INTO Reserva VALUES (" + id + "," + vasafuncionar(queryIdHora) + ","
 								+ v1.getDNI1() + ", '" + f.fechaActual() + "')");
