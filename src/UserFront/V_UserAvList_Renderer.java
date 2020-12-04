@@ -1,16 +1,17 @@
 package UserFront;
 
+
 import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;
 
 
-public class promocionesJtableModel extends AbstractTableModel {
- ArrayList<String[]> promociones = new ArrayList<String[]>();
+public class V_UserAvList_Renderer extends AbstractTableModel {
+ ArrayList<String[]> avisos = new ArrayList<String[]>();
 	@Override
 	public int getRowCount() {
 		// TODO Auto-generated method stub
-		return promociones.size();
+		return avisos.size();
 	}
 
 	@Override
@@ -21,9 +22,8 @@ public class promocionesJtableModel extends AbstractTableModel {
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-Object resultado = promociones.get(rowIndex) [columnIndex];
-		
-		return resultado;
+Object res = avisos.get(rowIndex) [columnIndex];
+		return res;
 	}
 
 }

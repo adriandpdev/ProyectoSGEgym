@@ -1,4 +1,4 @@
-package AdminFront;
+package AdminBack;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 import javax.swing.*;
 
+import AdminFront.V_AdminActiAdd;
 import main.Conexion;
 import main.Main;
 
@@ -14,7 +15,7 @@ public class Ac_AdminActiAdd implements ActionListener{
 	public V_AdminActiAdd  vent;
 	Conexion c = new Conexion();
 	
-	Ac_AdminActiAdd(V_AdminActiAdd v) 
+	public Ac_AdminActiAdd(V_AdminActiAdd v) 
 	{
 		vent = v;
 	}

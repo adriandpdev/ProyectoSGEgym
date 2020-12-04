@@ -32,7 +32,7 @@ public class V_UserPromList extends JInternalFrame {
 	private JPanel jcontentpane = null;
 	private JScrollPane jscrollpane = null;
 	private JTable jtable = null;
-	private promocionesJtableModel model = new promocionesJtableModel();
+	private V_UserPromList_Renderer model = new V_UserPromList_Renderer();
 	private Connection con;
 	private JLabel Titulo;
 	private String id, asunto, mensaje, fecha;;

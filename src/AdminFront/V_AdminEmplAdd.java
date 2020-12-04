@@ -22,35 +22,34 @@ public class V_AdminEmplAdd extends JInternalFrame {
 	private JTextField txtDni, txtNombre, txtCCC, txtemail, txtApellidos, txtContraseña, txtTelefono;
 	private JButton Añadir, Limpiar;
 	private JDateChooser date;
-	
+
 	public static String NUMEROS = "0123456789";
-	 
+
 	public static String MAYUSCULAS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
- 
+
 	public static String MINUSCULAS = "abcdefghijklmnopqrstuvwxyz";
- 
+
 	public static String ESPECIALES = "ñÑ@#$%&";
- 
 
 	public static String getPinNumber() {
 		return getPassword(NUMEROS, 4);
 	}
- 
+
 	public static String getPassword() {
 		return getPassword(8);
 	}
- 
+
 	public static String getPassword(int length) {
 		return getPassword(NUMEROS + MAYUSCULAS + MINUSCULAS, length);
 	}
- 
+
 	public static String getPassword(String key, int length) {
 		String pswd = "";
- 
+
 		for (int i = 0; i < length; i++) {
-			pswd+=(key.charAt((int)(Math.random() * key.length())));
+			pswd += (key.charAt((int) (Math.random() * key.length())));
 		}
- 
+
 		return pswd;
 	}
 
@@ -71,40 +70,39 @@ public class V_AdminEmplAdd extends JInternalFrame {
 		JPanel Norte = new JPanel();
 		Norte.add(Titulo = new JLabel("ALTA EMPLEADO"));
 		Norte.setBackground(new Color(137, 13, 84));
-		Titulo.setFont(new Font("Verdana",Font.BOLD,22));
+		Titulo.setFont(new Font("Verdana", Font.BOLD, 22));
 		Titulo.setForeground(Color.WHITE);
-		
 
 		JPanel Centro = new JPanel();
 		Centro.setLayout(new GridLayout(4, 4, 10, 10));
 		Centro.setBorder(BorderFactory.createEmptyBorder(50, 60, 50, 60));
 		Centro.add(Nombre = new JLabel("Nombre"));
-		Nombre.setFont(new Font("Verdana",Font.BOLD,20));
+		Nombre.setFont(new Font("Verdana", Font.BOLD, 20));
 		Nombre.setHorizontalAlignment(JTextField.CENTER);
 		Centro.add(txtNombre = new JTextField());
-		txtNombre.setFont(new Font("Verdana",Font.BOLD,20));
+		txtNombre.setFont(new Font("Verdana", Font.BOLD, 20));
 		Centro.add(Apellidos = new JLabel("Apellidos"));
-		Apellidos.setFont(new Font("Verdana",Font.BOLD,20));
+		Apellidos.setFont(new Font("Verdana", Font.BOLD, 20));
 		Apellidos.setHorizontalAlignment(JTextField.CENTER);
 		Centro.add(txtApellidos = new JTextField());
-		txtApellidos.setFont(new Font("Verdana",Font.BOLD,20));
+		txtApellidos.setFont(new Font("Verdana", Font.BOLD, 20));
 		Centro.add(Dni = new JLabel("DNI"));
-		Dni.setFont(new Font("Verdana",Font.BOLD,20));
+		Dni.setFont(new Font("Verdana", Font.BOLD, 20));
 		Dni.setHorizontalAlignment(JTextField.CENTER);
 		Centro.add(txtDni = new JTextField());
-		txtDni.setFont(new Font("Verdana",Font.BOLD,20));
+		txtDni.setFont(new Font("Verdana", Font.BOLD, 20));
 		Centro.add(CCC = new JLabel("CCC"));
-		CCC.setFont(new Font("Verdana",Font.BOLD,20));
+		CCC.setFont(new Font("Verdana", Font.BOLD, 20));
 		CCC.setHorizontalAlignment(JTextField.CENTER);
 		Centro.add(txtCCC = new JTextField());
-		txtCCC.setFont(new Font("Verdana",Font.BOLD,20));
+		txtCCC.setFont(new Font("Verdana", Font.BOLD, 20));
 		Centro.add(email = new JLabel("E-mail"));
-		email.setFont(new Font("Verdana",Font.BOLD,20));
+		email.setFont(new Font("Verdana", Font.BOLD, 20));
 		email.setHorizontalAlignment(JTextField.CENTER);
 		Centro.add(txtemail = new JTextField());
-		txtemail.setFont(new Font("Verdana",Font.BOLD,20));
+		txtemail.setFont(new Font("Verdana", Font.BOLD, 20));
 		date = new JDateChooser();
-		date.setFont(new Font("Verdana",Font.BOLD,20));
+		date.setFont(new Font("Verdana", Font.BOLD, 20));
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.YEAR, -200);
 		Calendar cal2 = Calendar.getInstance();
@@ -115,47 +113,46 @@ public class V_AdminEmplAdd extends JInternalFrame {
 		date.setDate(max);
 
 		JPanel Minimo = new JPanel();
-		Minimo.setLayout(new GridLayout(2,1));
+		Minimo.setLayout(new GridLayout(2, 1));
 		Minimo.add(Fecha = new JLabel("Fecha de Nacimiento"));
-		Fecha.setFont(new Font("Verdana",Font.BOLD,20));
+		Fecha.setFont(new Font("Verdana", Font.BOLD, 20));
 		Fecha.setHorizontalAlignment(JTextField.CENTER);
-		Minimo.add(minimo= new JLabel("(Minimo 16 años)"));
-		minimo.setFont(new Font("Verdana",Font.BOLD,20));
+		Minimo.add(minimo = new JLabel("(Minimo 16 años)"));
+		minimo.setFont(new Font("Verdana", Font.BOLD, 20));
 		minimo.setHorizontalAlignment(JTextField.CENTER);
-		
+
 		Centro.add(Minimo);
 		Centro.add(date);
 		Centro.add(Contraseña = new JLabel("Contraseña"));
-		Contraseña.setFont(new Font("Verdana",Font.BOLD,20));
+		Contraseña.setFont(new Font("Verdana", Font.BOLD, 20));
 		Contraseña.setHorizontalAlignment(JTextField.CENTER);
 		Centro.add(txtContraseña = new JTextField());
-		txtContraseña.setFont(new Font("Verdana",Font.BOLD,20));
+		txtContraseña.setFont(new Font("Verdana", Font.BOLD, 20));
 		Centro.add(Telefono = new JLabel("Telefono"));
-		Telefono.setFont(new Font("Verdana",Font.BOLD,20));
+		Telefono.setFont(new Font("Verdana", Font.BOLD, 20));
 		Telefono.setHorizontalAlignment(JTextField.CENTER);
 		Centro.add(txtTelefono = new JTextField());
-		txtTelefono.setFont(new Font("Verdana",Font.BOLD,20));
+		txtTelefono.setFont(new Font("Verdana", Font.BOLD, 20));
 		txtContraseña.setEnabled(false);
 		txtContraseña.setText(getPassword());
-		
+
 		JPanel Sur = new JPanel();
 		Sur.setBackground(new Color(137, 13, 84));
 		Sur.add(Añadir = new JButton("Añadir"));
 		Añadir.addActionListener(new Ac_AdminEmplAdd(this));
-		Añadir.setFont(new Font("Verdana",Font.BOLD,20));
+		Añadir.setFont(new Font("Verdana", Font.BOLD, 20));
 		Sur.add(Limpiar = new JButton("Limpiar"));
 		Limpiar.addActionListener(new Ac_AdminEmplAdd(this));
-		Limpiar.setFont(new Font("Verdana",Font.BOLD,20));
+		Limpiar.setFont(new Font("Verdana", Font.BOLD, 20));
 
 		Container c = getContentPane();
 		c.add(Norte, BorderLayout.NORTH);
 		c.add(Centro, BorderLayout.CENTER);
 		c.add(Sur, BorderLayout.SOUTH);
-		((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null);
+		((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
 
 	}
 
-	
 	public JTextField getTxtDni() {
 		return txtDni;
 	}
@@ -211,7 +208,7 @@ public class V_AdminEmplAdd extends JInternalFrame {
 	public void setTxtTelefono(JTextField txtTelefono) {
 		this.txtTelefono = txtTelefono;
 	}
-	
+
 	public JDateChooser getDate() {
 		return date;
 	}

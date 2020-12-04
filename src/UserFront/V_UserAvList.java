@@ -30,7 +30,7 @@ public class V_UserAvList extends JInternalFrame {
 	private JPanel jcontentpane = null;
 	private JScrollPane jscrollpane = null;
 	private JTable jtable = null;
-	private avisosJtableModel model2 = new avisosJtableModel();
+	private V_UserAvList_Renderer model2 = new V_UserAvList_Renderer();
 	private JLabel Titulo;
 	private Connection con;
 	private String asunto, mensaje, fecha;
