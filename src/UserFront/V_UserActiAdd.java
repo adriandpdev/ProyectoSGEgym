@@ -199,18 +199,43 @@ public class V_UserActiAdd extends JInternalFrame {
 				
 				Fecha f = new Fecha();
 			
-				String q5 = "select idHora from Horario where idactividad in(select idactividad from Actividad where nombre like '"
+				String queryIdHora = "select idHora from Horario where idactividad in(select idactividad from Actividad where nombre like '"
 						+ getCbaula().getSelectedItem() + "') and Diasemana like '" + getDiasemana().getSelectedItem() + "'";
+				int idHora = 0;
+				int MaxAforo = 0;
+				int reservas = 0;
 				try {
-					c.alta(Main.con, "INSERT INTO Reserva VALUES ("+id+","+vasafuncionar(q5)+","+ v1.getDNI1()+", '"+f.fechaActual() +"')");
-					JOptionPane.showMessageDialog(null, "¡Se ha agregado correctamente!", "Creado correctamente",
-							JOptionPane.INFORMATION_MESSAGE);
+					ResultSet rs = c.consulta(Main.con, queryIdHora);
+					while(rs.next()) {
+						idHora = rs.getInt(0);
+					}
+					String queryAforoMax = "SELECT Aulas.aforo FROM Aulas,Actividad,Horario WHERE Aulas.idAula = Actividad.idAula AND Actividad.idActividad = Horario.IdActividad AND Horario.IdHora = "+idHora;
+					rs = c.consulta(Main.con, queryAforoMax);
+					while(rs.next()) {
+						MaxAforo = rs.getInt(0);
+					}
+					String queryCantidadReservas = "SELECT Actividad.nombre,Reserva.idHora, COUNT(*) FROM Actividad , Reserva,Horario WHERE Actividad.idActividad=Horario.IdActividad AND Horario.IdHora=Reserva.idHora AND Reserva.idHora = "+idHora+" GROUP BY idHora";
+					rs = c.consulta(Main.con, queryCantidadReservas);
+					while(rs.next()) {
+						reservas++;
+					}
+				} catch (Exception e2) {}
 				
-				} catch (Exception h) {
-					JOptionPane.showMessageDialog(null, "No se ha podido agregar", "¡Advertencia!",
+				if(reservas < MaxAforo) {
+					try {
+						c.alta(Main.con, "INSERT INTO Reserva VALUES ("+id+","+vasafuncionar(queryIdHora)+","+ v1.getDNI1()+", '"+f.fechaActual() +"')");
+						JOptionPane.showMessageDialog(null, "¡Se ha agregado correctamente!", "Creado correctamente",
+								JOptionPane.INFORMATION_MESSAGE);
+					} catch (Exception h) {
+						JOptionPane.showMessageDialog(null, "No se ha podido agregar", "¡Advertencia!",
+								JOptionPane.ERROR_MESSAGE);
+					h.printStackTrace();
+					}
+				}else {
+					JOptionPane.showMessageDialog(null, "No se ha podido agregar", "¡Aforo Maximo!",
 							JOptionPane.ERROR_MESSAGE);
-				h.printStackTrace();
 				}
+
 			}
 			
 			public String vasafuncionar(String query) throws SQLException {
