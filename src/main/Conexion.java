@@ -8,7 +8,8 @@ public class Conexion {
 
 	public Connection conectar() throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
-		con = DriverManager.getConnection("jdbc:mysql://80.211.5.118:3306/SGE-Gimnasio","SGE-DAM-2020","SGE2020root#");
+		con = DriverManager.getConnection("jdbc:mysql://80.211.5.118:3306/SGE-Gimnasio", "SGE-DAM-2020",
+				"SGE2020root#");
 		return con;
 	}
 
@@ -19,27 +20,28 @@ public class Conexion {
 		return rs.getInt("max(" + campo + ")") + 1;
 	}
 
-	public void alta(Connection con,String query) throws SQLException {
+	public void alta(Connection con, String query) throws SQLException {
 		Statement stm = con.createStatement();
 		stm.executeUpdate(query);
 	}
-	
+
 	public ResultSet consulta(Connection con, String query) throws SQLException {
 		Statement stm = con.createStatement();
 		ResultSet rs = stm.executeQuery(query);
 		return rs;
 	}
-	
+
 	public void eliminar(Connection con, String query) throws SQLException {
 		Statement stm = con.createStatement();
 		stm.executeUpdate(query);
 	}
+
 	public void modificar(Connection con, String query) throws SQLException {
 		Statement stm = con.createStatement();
 		stm.executeUpdate(query);
 	}
-	public ArrayList<String> llenarCombo(Connection con, String q, String x) throws SQLException
-	{
+
+	public ArrayList<String> llenarCombo(Connection con, String q, String x) throws SQLException {
 		Statement stm = con.createStatement();
 		ResultSet rs = null;
 
@@ -52,8 +54,7 @@ public class Conexion {
 		}
 
 		try {
-			while(rs.next())
-			{
+			while (rs.next()) {
 				lista.add(rs.getString(x));
 			}
 		} catch (Exception e) {
@@ -62,22 +63,19 @@ public class Conexion {
 		return lista;
 	}
 
-	public boolean comprobarId(Connection con, String id) throws SQLException
-	{
+	public boolean comprobarId(Connection con, String id) throws SQLException {
 		boolean flag = false;
 
 		Statement stm = con.createStatement();
 		ResultSet rs = stm.executeQuery("SELECT idActividad FROM Actividad");
 
-		while(rs.next())
-		{
-			if(rs.getString("idActividad").equals(id))
-			{
+		while (rs.next()) {
+			if (rs.getString("idActividad").equals(id)) {
 				flag = true;
 			}
 		}
 
 		return flag;
 	}
-	
+
 }
