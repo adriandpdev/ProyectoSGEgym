@@ -83,69 +83,70 @@ public class PanelModificacion extends JFrame implements ActionListener{
 		this.setTitle("PANEL DE MODIFICACIÓN");
 		
 
-		UIManager.put("OptionPane.background",new ColorUIResource(new Color(137, 13, 84)));
-		UIManager.put("OptionPane.messageForeground",new ColorUIResource(Color.WHITE));
-		UIManager.put("Panel.background",new ColorUIResource(new Color(137, 13, 84)));
+//		UIManager.put("OptionPane.background",new ColorUIResource(new Color(137, 13, 84)));
+//		UIManager.put("OptionPane.messageForeground",new ColorUIResource(Color.WHITE));
+//		UIManager.put("Panel.background",new ColorUIResource(new Color(137, 13, 84)));
 		
 		JPanel Norte = new JPanel();
 		Norte.add(Titulo = new JLabel("MODIFICADOR DE DATOS:"));
 		Titulo.setForeground(Color.WHITE);
+		Norte.setBackground(new Color(137, 13, 84));
 		Titulo.setFont(new Font("Verdana",Font.BOLD,23));
 
 		JPanel Centro = new JPanel();
 		Centro.setLayout(new GridLayout(10, 2, 10, 10));
 		
 		Centro.add(Dni = new JLabel("DNI:"));
-		Dni.setForeground(Color.WHITE);
+		Dni.setForeground(Color.black);
 		Dni.setFont(new Font("Verdana",Font.PLAIN,20));
 		Centro.add(txtDni = new JTextField());
 		txtDni.setFont(new Font("Verdana",Font.PLAIN,20));
 		
 		Centro.add(Nombre = new JLabel("Nombre:"));
-		Nombre.setForeground(Color.WHITE);
+		Nombre.setForeground(Color.black);
 		Nombre.setFont(new Font("Verdana",Font.PLAIN,20));
 		Centro.add(txtNombre = new JTextField());
 		txtNombre.setFont(new Font("Verdana",Font.PLAIN,20));
 		
 		Centro.add(Apellidos = new JLabel("Apellido:"));
-		Apellidos.setForeground(Color.WHITE);
+		Apellidos.setForeground(Color.black);
 		Apellidos.setFont(new Font("Verdana",Font.PLAIN,20));
 		Centro.add(txtApellidos = new JTextField());
 		txtApellidos.setFont(new Font("Verdana",Font.PLAIN,20));
 		
 		Centro.add(CCC = new JLabel("Número de Cuenta:"));
-		CCC.setForeground(Color.WHITE);
+		CCC.setForeground(Color.black);
 		CCC.setFont(new Font("Verdana",Font.PLAIN,20));
 		Centro.add(txtCCC = new JTextField());
 		txtCCC.setFont(new Font("Verdana",Font.PLAIN,20));
 		
 		Centro.add(email = new JLabel("Correo Electrónico:"));
-		email.setForeground(Color.WHITE);
+		email.setForeground(Color.black);
 		email.setFont(new Font("Verdana",Font.PLAIN,20));
 		Centro.add(txtemail = new JTextField());
 		txtemail.setFont(new Font("Verdana",Font.PLAIN,20));
 		
 		Centro.add(Fecha = new JLabel("Fecha de Nacimiento:"));
-		Fecha.setForeground(Color.WHITE);
+		Fecha.setForeground(Color.black);
 		Fecha.setFont(new Font("Verdana",Font.PLAIN,20));
 		Calendario = new JDateChooser();
 		Calendario.setFont(new Font("Verdana",Font.PLAIN,20));
 		Centro.add(Calendario);
 		
 		Centro.add(Contraseña = new JLabel("Contraseña:"));
-		Contraseña.setForeground(Color.WHITE);
+		Contraseña.setForeground(Color.black);
 		Contraseña.setFont(new Font("Verdana",Font.PLAIN,20));
 		Centro.add(txtContraseña = new JTextField());
 		txtContraseña.setFont(new Font("Verdana",Font.PLAIN,20));
 		
 		Centro.add(Telefono = new JLabel("Telefono:"));
-		Telefono.setForeground(Color.WHITE);
+		Telefono.setForeground(Color.black);
 		Telefono.setFont(new Font("Verdana",Font.PLAIN,20));
 		Centro.add(txtTelefono = new JTextField());
 		txtTelefono.setFont(new Font("Verdana",Font.PLAIN,20));
 		
 		Centro.add(Rol = new JLabel("Rol:"));
-		Rol.setForeground(Color.WHITE);
+		Rol.setForeground(Color.black);
 		Rol.setFont(new Font("Verdana",Font.PLAIN,20));
 		Centro.add(txtRol = new JTextField());
 		txtRol.setFont(new Font("Verdana",Font.PLAIN,20));
@@ -157,6 +158,8 @@ public class PanelModificacion extends JFrame implements ActionListener{
 		panel_sur.setLayout(new GridLayout());
 		panel_sur.add(Modificar = new JButton("Modificar"));
 		Modificar.setFont(new Font("Verdana",Font.PLAIN,25));
+		Modificar.setBackground(new Color(137, 13, 84));
+		Modificar.setForeground(Color.white);
 		Modificar.addActionListener(this);
 	
 		this.getContentPane().add(Norte, BorderLayout.NORTH);
