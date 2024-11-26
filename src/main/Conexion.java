@@ -8,8 +8,7 @@ public class Conexion {
 
 	public Connection conectar() throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
-		con = DriverManager.getConnection("jdbc:mysql://80.211.5.118:3306/SGE-Gimnasio", "SGE-DAM-2020",
-				"SGE2020root#");
+		con = DriverManager.getConnection("jdbc:mysql://####/SGE-Gimnasio", "####", "###");
 		return con;
 	}
 
